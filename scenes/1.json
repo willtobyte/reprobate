@@ -1,0 +1,11 @@
+{
+  "background": "blobs/red.png",
+  "width": 480,
+  "height": 270,
+  "entities": {
+    "hammer": {
+      "x": 10,
+      "y": 20
+    }
+  }
+}
