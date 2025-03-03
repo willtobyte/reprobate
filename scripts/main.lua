@@ -21,7 +21,8 @@ function setup()
   -- scenemanager:destroy() -- or set a new
   --
   cassete:set("foo", "bar")
-  print(cassete:get("foo"))
+  local value = cassete:get("foo")
+  print("value " .. value)
 end
 
 function loop()
