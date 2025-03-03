@@ -3,7 +3,9 @@
   "width": 480,
   "height": 270,
   "entities": {
-    "hammer": {
+    "hammer 1": {
+      "action": "default",
+      "kind": "hammer",
       "x": 10,
       "y": 20
     }
