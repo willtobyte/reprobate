@@ -4,10 +4,10 @@ _G.engine             = EngineFactory.new()
     :with_width(1920)
     :with_height(1080)
     :with_scale(4.0)
-    :with_fullscreen(true)
+    :with_fullscreen(false)
     :create()
 
---local entitymanager   = engine:entitymanager()
+local entitymanager   = engine:entitymanager()
 local cassete         = engine:cassete()
 local fontfactory     = engine:fontfactory()
 local resourcemanager = engine:resourcemanager()
@@ -15,11 +15,19 @@ local scenemanager    = engine:scenemanager()
 local overlay         = engine:overlay()
 
 local label           = nil
+local player          = nil
 
 function setup()
-  resourcemanager:prefetch({ "fonts/fixedsys.json", "blobs/horn.png", "blobs/red.png" })
+  resourcemanager:prefetch({ "fonts/fixedsys.json", "blobs/horn.png", "blobs/player.png", "blobs/red.png" })
   scenemanager:set("1")
 
+  player = entitymanager:spawn("player")
+  player.placement:set(40, 40)
+  player.action:set("idle")
+
+  player:on_touch(function()
+    print("player was touched")
+  end)
   -- local hammer = scenemanager:get("hammer 1")
 
   -- scenemanager:destroy() -- or set a new
