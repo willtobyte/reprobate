@@ -17,7 +17,7 @@ local overlay         = engine:overlay()
 local label           = nil
 
 function setup()
-  resourcemanager:prefetch({ "blobs/horn.png", "blobs/red.png" })
+  resourcemanager:prefetch({ "fonts/fixedsys.json", "blobs/horn.png", "blobs/red.png" })
   scenemanager:set("1")
 
   -- local hammer = scenemanager:get("hammer 1")
