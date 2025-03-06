@@ -1,24 +1,175 @@
 {
   "spritesheet": "blobs/horn.png",
-  "point": {
+  "offset": {
     "x": 10,
     "y": 10
   },
   "size": {
-    "width": 40,
-    "height": 40
+    "width": 32,
+    "height": 80
   },
   "animations": {
+    "click": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 105
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 30,
+            "height": 66
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 106
+          },
+          "rect": {
+            "x": 1,
+            "y": 69,
+            "width": 30,
+            "height": 66
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 107
+          },
+          "rect": {
+            "x": 1,
+            "y": 137,
+            "width": 30,
+            "height": 62
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 107
+          },
+          "rect": {
+            "x": 1,
+            "y": 201,
+            "width": 30,
+            "height": 64
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 106
+          },
+          "rect": {
+            "x": 1,
+            "y": 267,
+            "width": 30,
+            "height": 66
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 105
+          },
+          "rect": {
+            "x": 1,
+            "y": 335,
+            "width": 30,
+            "height": 66
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 103
+          },
+          "rect": {
+            "x": 1,
+            "y": 403,
+            "width": 30,
+            "height": 57
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 103
+          },
+          "rect": {
+            "x": 1,
+            "y": 462,
+            "width": 30,
+            "height": 66
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 103
+          },
+          "rect": {
+            "x": 1,
+            "y": 530,
+            "width": 30,
+            "height": 69
+          }
+        }
+      ]
+    },
     "idle": {
       "frames": [
         {
-          "rect": {
-            "x": 0,
-            "y": 0,
-            "width": 40,
-            "height": 40
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 103
           },
-          "duration": 100
+          "rect": {
+            "x": 1,
+            "y": 601,
+            "width": 30,
+            "height": 66
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 104
+          },
+          "rect": {
+            "x": 1,
+            "y": 669,
+            "width": 30,
+            "height": 71
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 225,
+            "y": 104
+          },
+          "rect": {
+            "x": 1,
+            "y": 742,
+            "width": 30,
+            "height": 68
+          }
         }
       ]
     }
