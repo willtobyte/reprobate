@@ -36,12 +36,13 @@ jobs:
           mv bundle.7z output/
           mv carimbo.exe output/
 
-      - name: Run ls -lah
-        run: ls -lah output
-
-      # - name: Release
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     tag_name: ${{ github.event.inputs.tagName }}
-      #     prerelease: ${{ github.events.inputs.prerelease }}
-      #     files: bundle.7z
+      - name: Upload build to Steam
+        uses: game-ci/steam-deploy@v3
+        with:
+          username: ${{ secrets.STEAM_USERNAME }}
+          configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
+          appId: ${{ secrets.STEAM_APP_ID }}
+          buildDescription: "Build ${GITHUB_REF} uploaded without direct publishing"
+          rootPath: output
+          depot1Path: .
+          releaseBranch: prerelease
