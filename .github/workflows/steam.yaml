@@ -32,7 +32,8 @@ jobs:
 
       - name: Organize output
         run: |
-          mkdir -p output
+          mkdir output
+          mkdir depot
           mv bundle.7z output/
           mv carimbo.exe output/
 
