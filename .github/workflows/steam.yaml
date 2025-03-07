@@ -42,7 +42,6 @@ jobs:
           username: ${{ secrets.STEAM_USERNAME }}
           configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
           appId: ${{ secrets.STEAM_APP_ID }}
-          buildDescription: "Build ${GITHUB_REF} uploaded without direct publishing"
           rootPath: output
-          depot1Path: .
+          depot1Path: depot
           releaseBranch: prerelease
