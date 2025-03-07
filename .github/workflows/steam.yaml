@@ -30,8 +30,14 @@ jobs:
       - name: Extract Carimbo runtime
         run: 7z x Windows.zip -o.
 
+      - name: Organize output
+        run: |
+          mkdir -p output
+          mv bundle.7z output/
+          mv carimbo.exe output/
+
       - name: Run ls -lah
-        run: ls -lah
+        run: ls -lah output
 
       # - name: Release
       #   uses: softprops/action-gh-release@v1
