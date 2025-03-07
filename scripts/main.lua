@@ -35,6 +35,8 @@ function setup()
 
   overlay.cursor:set("horn")
 
+  -- overlay.cursor:dispatch("hit")
+
   cassete:set("numbers", { 1, 2, 3 })
   local value = cassete:get("numbers")
   print("numbers: " .. table.concat(value, ", "))
