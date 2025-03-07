@@ -1,0 +1,38 @@
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      CARIMBO_TAG: "v1.0.65"
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Clone the repository
+      - uses: actions/checkout@v4
+
+      - name: Install 7zip
+        run: apt install p7zip-full
+
+      - name: Create bundle
+        run: 7z a -xr'!.git/*' -xr'!.git' -xr'!.*' -t7z -m0=lzma -mx=6 -mfb=64 -md=32m -ms=on bundle.7z .
+
+      - name: Download Carimbo runtime
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release download ${{ env.RELEASE_TAG }} --pattern "Windows.zip"
+
+      - name: Extract Carimbo runtime
+        run: 7z x Windows.zip -o.
+
+      # - name: Release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     tag_name: ${{ github.event.inputs.tagName }}
+      #     prerelease: ${{ github.events.inputs.prerelease }}
+      #     files: bundle.7z
