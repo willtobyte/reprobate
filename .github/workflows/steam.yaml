@@ -51,4 +51,4 @@ jobs:
           appId: ${{ secrets.STEAM_APP_ID }}
           rootPath: output
           depot1Path: "."
-          releaseBranch: default
+          releaseBranch: alpha
