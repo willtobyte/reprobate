@@ -49,6 +49,7 @@ jobs:
           username: ${{ secrets.STEAM_USERNAME }}
           configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
           appId: ${{ secrets.STEAM_APP_ID }}
+          buildDescription: ${{ github.ref_name }}
           rootPath: output
           depot1Path: "."
           releaseBranch: alpha
