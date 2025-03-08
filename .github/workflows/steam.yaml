@@ -32,7 +32,6 @@ jobs:
 
       - name: Copy files
         run: |
-          mkdir -p /github/home/.steam
           mkdir -p output
           mv bundle.7z output/
           mv carimbo.exe output/
