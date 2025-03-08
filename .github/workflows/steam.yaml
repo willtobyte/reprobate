@@ -30,10 +30,9 @@ jobs:
       - name: Extract Carimbo runtime
         run: 7z x Windows.zip -o.
 
-      - name: Organize output
+      - name: Copy files
         run: |
-          mkdir output
-          mkdir depot
+          mkdir -p output
           mv bundle.7z output/
           mv carimbo.exe output/
 
@@ -44,5 +43,5 @@ jobs:
           configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
           appId: ${{ secrets.STEAM_APP_ID }}
           rootPath: output
-          depot1Path: depot
+          depot1Path: "."
           releaseBranch: prerelease
