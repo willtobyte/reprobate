@@ -8,7 +8,7 @@ _G.engine             = EngineFactory.new()
     :create()
 
 local entitymanager   = engine:entitymanager()
-local cassete         = engine:cassete()
+-- local cassete         = engine:cassete()
 local fontfactory     = engine:fontfactory()
 local resourcemanager = engine:resourcemanager()
 local scenemanager    = engine:scenemanager()
@@ -37,9 +37,9 @@ function setup()
 
   -- overlay.cursor:dispatch("hit")
 
-  cassete:set("numbers", { 1, 2, 3 })
-  local value = cassete:get("numbers")
-  print("numbers: " .. table.concat(value, ", "))
+  -- cassete:set("numbers", { 1, 2, 3 })
+  -- local value = cassete:get("numbers")
+  -- print("numbers: " .. table.concat(value, ", "))
 
   label = overlay:create(WidgetType.label)
   label.font = fontfactory:get("fixedsys")
