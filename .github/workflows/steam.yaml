@@ -37,6 +37,13 @@ jobs:
           mv bundle.7z output/
           mv carimbo.exe output/
 
+      - name: SteamCMD cache
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/work/_temp/_github_home
+          key: steamcmd-${{ github.sha }}
+          restore-keys: steamcmd
+
       - name: Upload build to Steam
         uses: game-ci/steam-deploy@v3
         with:
