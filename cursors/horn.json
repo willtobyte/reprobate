@@ -306,7 +306,7 @@
     "idle": {
       "frames": [
         {
-          "duration": 80,
+          "duration": 120,
           "offset": {
             "x": 17,
             "y": 7
@@ -319,7 +319,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 120,
           "offset": {
             "x": 17,
             "y": 8
@@ -332,7 +332,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 120,
           "offset": {
             "x": 17,
             "y": 8
