@@ -6,6 +6,7 @@
   },
   "animations": {
     "left": {
+      "oneshot": true,
       "frames": [
         {
           "duration": 80,
@@ -127,9 +128,10 @@
       ]
     },
     "damage": {
+      "oneshot": true,
       "frames": [
         {
-          "duration": 80,
+          "duration": 70,
           "offset": {
             "x": 16,
             "y": 9
@@ -142,7 +144,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 70,
           "offset": {
             "x": 10,
             "y": 10
@@ -155,7 +157,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 70,
           "offset": {
             "x": 9,
             "y": 8
@@ -168,7 +170,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 70,
           "offset": {
             "x": 10,
             "y": 8
@@ -181,7 +183,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 70,
           "offset": {
             "x": 8,
             "y": 8
@@ -194,7 +196,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 70,
           "offset": {
             "x": 9,
             "y": 8
@@ -207,7 +209,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 70,
           "offset": {
             "x": 10,
             "y": 8
@@ -220,7 +222,7 @@
           }
         },
         {
-          "duration": 80,
+          "duration": 70,
           "offset": {
             "x": 8,
             "y": 8
@@ -235,6 +237,7 @@
       ]
     },
     "right": {
+      "oneshot": true,
       "frames": [
         {
           "duration": 80,

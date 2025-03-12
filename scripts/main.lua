@@ -26,10 +26,11 @@ function setup()
   label.font = fontfactory:get("fixedsys")
   label:set("Hello world", 10, 10)
 
-  --scene = require("scenes/1").construct(scenemanager, entitymanager)
-
   scenemanager:set("1")
   local player = scenemanager:grab("le player")
+  player:on_touch(function()
+    overlay:dispatch(WidgetType.cursor, "hit")
+  end)
 
   print(player)
 end
