@@ -3,9 +3,9 @@
   "width": 480,
   "height": 270,
   "entities": {
-    "hammer 1": {
-      "action": "default",
-      "kind": "hammer",
+    "le player": {
+      "action": "idle",
+      "kind": "player",
       "x": 10,
       "y": 20
     }

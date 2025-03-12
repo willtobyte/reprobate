@@ -18,7 +18,7 @@ local scene           = nil
 local label           = nil
 
 function setup()
-  resourcemanager:prefetch({ "blobs/fixedsys.png", "blobs/horn.png" })
+  resourcemanager:prefetch({ "blobs/fixedsys.png", "blobs/horn.png", "blobs/player.png", "blobs/red.png" })
 
   overlay.cursor:set("horn")
 
@@ -26,7 +26,12 @@ function setup()
   label.font = fontfactory:get("fixedsys")
   label:set("Hello world", 10, 10)
 
-  scene = require("scenes/1").construct(scenemanager, entitymanager)
+  --scene = require("scenes/1").construct(scenemanager, entitymanager)
+
+  scenemanager:set("1")
+  local player = scenemanager:grab("le player")
+
+  print(player)
 end
 
 function loop(delta)
