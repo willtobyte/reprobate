@@ -18,7 +18,7 @@ local scene           = nil
 local label           = nil
 
 function setup()
-  resourcemanager:prefetch({ "blobs/fixedsys.png", "blobs/horn.png", "blobs/player.png", "blobs/red.png" })
+  resourcemanager:prefetch({ "fonts/fixedsys.json", "blobs/horn.png", "blobs/player.png", "blobs/red.png" })
 
   overlay.cursor:set("horn")
 
@@ -27,6 +27,7 @@ function setup()
   label:set("Hello world", 10, 10)
 
   scenemanager:set("1")
+
   local player = scenemanager:grab("le player")
   player:on_touch(function()
     overlay:dispatch(WidgetType.cursor, "hit")
