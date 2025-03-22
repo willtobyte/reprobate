@@ -14,7 +14,6 @@ local resourcemanager = engine:resourcemanager()
 local scenemanager    = engine:scenemanager()
 local overlay         = engine:overlay()
 
-local scene           = nil
 local label           = nil
 
 function setup()
@@ -37,9 +36,6 @@ function setup()
 end
 
 function loop(delta)
-  if scene then
-    scene:loop(delta)
-  end
 end
 
 function run()

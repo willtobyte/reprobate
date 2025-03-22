@@ -1,4 +1,0 @@
-{
-  "tween": "inout",
-  "steps": [{ "x": 0, "y": 0, "duration": 10 }]
-}
