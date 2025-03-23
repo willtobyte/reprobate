@@ -14,10 +14,7 @@ local resourcemanager = engine:resourcemanager()
 local scenemanager    = engine:scenemanager()
 local overlay         = engine:overlay()
 
-local io              = Socket.new()
-
 local label           = nil
-local lettercoro      = nil
 
 function setup()
   resourcemanager:prefetch({ "fonts/fixedsys.json", "blobs/horn.png", "blobs/player.png", "blobs/red.png" })
@@ -37,33 +34,9 @@ function setup()
 
   -- player = nil
   -- scenemanager:set("2")
-  --
-  io:on("online", function(data)
-    print("Online " .. data.clients)
-  end)
-
-  io:connect()
-
-  lettercoro = coroutine.create(function()
-    local text = "Hello world v2"
-    local result = ""
-    for i = 1, #text do
-      result = result .. text:sub(i, i)
-      label:set(result, 10, 10)
-
-      local timer = 0
-      while timer < 0.5 do
-        local dt = coroutine.yield()
-        timer = timer + dt
-      end
-    end
-  end)
 end
 
 function loop(delta)
-  if lettercoro and coroutine.status(lettercoro) ~= "dead" then
-    coroutine.resume(lettercoro, delta)
-  end
 end
 
 function run()
