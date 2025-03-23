@@ -45,14 +45,14 @@ function setup()
   io:connect()
 
   lettercoro = coroutine.create(function()
-    local text = "Hello world"
+    local text = "Hello world v2"
     local result = ""
     for i = 1, #text do
       result = result .. text:sub(i, i)
       label:set(result, 10, 10)
 
       local timer = 0
-      while timer < 0.1 do
+      while timer < 0.5 do
         local dt = coroutine.yield()
         timer = timer + dt
       end
