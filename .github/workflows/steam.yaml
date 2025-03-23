@@ -36,11 +36,19 @@ jobs:
           mv bundle.7z output/
           mv carimbo.exe output/
 
+      - name: Generate TOTP
+        uses: cyberandrii/steam-totp@v1
+        id: totp
+        with:
+          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+
       - name: Upload build to Steam
         uses: game-ci/steam-deploy@v3
         with:
           username: ${{ secrets.STEAM_USERNAME }}
-          configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
+          #configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
+          totp: ${{ steps.totp.outputs.code }}
+          buildDescription: ${{ github.ref_name }}
           appId: ${{ secrets.STEAM_APP_ID }}
           rootPath: output
           depot1Path: "."
