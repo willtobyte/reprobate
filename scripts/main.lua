@@ -20,7 +20,6 @@ local scenemanager    = engine:scenemanager()
 local overlay         = engine:overlay()
 local canvas          = engine:canvas()
 
-local label           = nil
 local pool            = {}
 
 function setup()
@@ -34,6 +33,10 @@ function setup()
   overlay.cursor:set("horn")
 
   scenemanager:on_enter("0", function()
+    pool.label = overlay:create(WidgetType.label)
+    pool.label.font = fontfactory:get("fixedsys")
+    pool.label:set("Ok", 10, 10)
+
     pool.button = scenemanager:grab("button")
     pool.button:on_touch(function()
       scenemanager:set("1")
@@ -45,14 +48,21 @@ function setup()
   end)
 
   scenemanager:on_enter("1", function()
-    label = overlay:create(WidgetType.label)
-    label.font = fontfactory:get("fixedsys")
-    label:set("Hello world", 10, 10)
+    pool.label = overlay:create(WidgetType.label)
+    pool.label.font = fontfactory:get("fixedsys")
+    pool.label:set("Run", 10, 10)
 
     pool.player = scenemanager:grab("player")
     pool.player:on_touch(function()
       overlay:dispatch(WidgetType.cursor, "damage")
     end)
+  end)
+
+  scenemanager:on_leave("0", function()
+    overlay:destroy(pool.label)
+
+    pool.player = nil
+    pool.label = nil
   end)
 
   scenemanager:set("0")
