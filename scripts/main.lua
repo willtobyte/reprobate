@@ -53,7 +53,7 @@ function setup()
   scenemanager:on_enter("1", function()
     pool.label = overlay:create(WidgetType.label)
     pool.label.font = fontfactory:get("fixedsys")
-    pool.label:set("Run", 40, 10)
+    pool.label:set("Run", 40, 40)
 
     pool.player = scenemanager:grab("player")
     pool.player:on_touch(function()
@@ -61,7 +61,7 @@ function setup()
     end)
   end)
 
-  scenemanager:on_leave("0", function()
+  scenemanager:on_leave("1", function()
     overlay:destroy(pool.label)
 
     pool.player = nil
