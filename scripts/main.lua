@@ -47,8 +47,9 @@ function setup()
   scenemanager:on_leave("0", function()
     overlay:destroy(pool.label)
 
-    pool.label = nil
-    pool.button = nil
+    for key in pairs(pool) do
+      pool[key] = nil
+    end
   end)
 
   scenemanager:on_enter("1", function()
@@ -61,13 +62,18 @@ function setup()
       overlay:dispatch(WidgetType.cursor, "damage")
       scenemanager:set("0")
     end)
+
+    pool.player:on_ntick(10, function()
+      print("on tick")
+    end)
   end)
 
   scenemanager:on_leave("1", function()
     overlay:destroy(pool.label)
 
-    pool.player = nil
-    pool.label = nil
+    for key in pairs(pool) do
+      pool[key] = nil
+    end
   end)
 
   scenemanager:set("0")
