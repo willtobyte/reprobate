@@ -33,21 +33,22 @@ function setup()
 
   overlay.cursor:set("horn")
 
-  label = overlay:create(WidgetType.label)
-  label.font = fontfactory:get("fixedsys")
-  label:set("Hello world", 10, 10)
-
   scenemanager:on_enter("0", function()
-    print("Entering scene 0")
+    pool.button = scenemanager:grab("button")
+    pool.button:on_touch(function()
+      scenemanager:set("1")
+    end)
   end)
 
   scenemanager:on_leave("0", function()
-    print("Leaving scene 0")
     pool.button = nil
   end)
 
   scenemanager:on_enter("1", function()
-    print("Entering scene 1")
+    label = overlay:create(WidgetType.label)
+    label.font = fontfactory:get("fixedsys")
+    label:set("Hello world", 10, 10)
+
     pool.player = scenemanager:grab("player")
     pool.player:on_touch(function()
       overlay:dispatch(WidgetType.cursor, "damage")
@@ -55,11 +56,6 @@ function setup()
   end)
 
   scenemanager:set("0")
-
-  pool.button = scenemanager:grab("button")
-  pool.button:on_touch(function()
-    scenemanager:set("1")
-  end)
 end
 
 function loop(delta)
