@@ -24,6 +24,7 @@ local pool            = {}
 
 function setup()
   resourcemanager:prefetch({
+    "blobs/blue.png",
     "fonts/fixedsys.json",
     "blobs/horn.png",
     "blobs/player.png",
@@ -58,6 +59,7 @@ function setup()
     pool.player = scenemanager:grab("player")
     pool.player:on_touch(function()
       overlay:dispatch(WidgetType.cursor, "damage")
+      scenemanager:set("0")
     end)
   end)
 
