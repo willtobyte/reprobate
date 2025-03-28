@@ -1,0 +1,13 @@
+{
+  "background": "blobs/blue.png",
+  "width": 480,
+  "height": 270,
+  "entities": {
+    "button": {
+      "action": "idle",
+      "kind": "player",
+      "x": 10,
+      "y": 20
+    }
+  }
+}
