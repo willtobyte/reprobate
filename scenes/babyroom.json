@@ -4,7 +4,7 @@
   "height": 270,
   "entities": {
     "beelzebuuth": {
-      "action": "shake",
+      "action": "summon",
       "kind": "beelzebuuth"
     },
     "crucifix": {
