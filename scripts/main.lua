@@ -113,7 +113,7 @@ function loop()
 
   if counter % 666 == 0 then
     if pool.beelzebuuth then
-      pool.beelzebuuth.action:set("shake")
+      pool.beelzebuuth.action:set("summon")
     end
   end
 end
