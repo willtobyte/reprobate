@@ -2,7 +2,7 @@
   "background": "blobs/babyroom.png",
   "width": 480,
   "height": 270,
-  "entities": {
+  "objects": {
     "beelzebuuth": {
       "action": "summon",
       "kind": "beelzebuuth"
