@@ -1,7 +1,7 @@
 {
   "spritesheet": "blobs/robot.png",
   "animations": {
-    "idle": {
+    "static": {
       "frames": [
         {
           "duration": 200,

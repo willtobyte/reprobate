@@ -1,0 +1,28 @@
+{
+  "spritesheet": "blobs/playboy.png",
+  "animations": {
+    "static": {
+      "hitbox": {
+        "x": 339,
+        "y": 211,
+        "width": 36,
+        "height": 18
+      },
+      "frames": [
+        {
+          "duration": 0,
+          "offset": {
+            "x": 339,
+            "y": 211
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 42,
+            "height": 19
+          }
+        }
+      ]
+    }
+  }
+}

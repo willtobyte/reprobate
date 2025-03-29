@@ -58,7 +58,7 @@
         }
       ]
     },
-    "idle": {
+    "static": {
       "frames": [
         {
           "duration": 200,

@@ -12,11 +12,11 @@
       "kind": "crucifix"
     },
     "bear": {
-      "action": "idle",
+      "action": "static",
       "kind": "bear"
     },
     "clown": {
-      "action": "idle",
+      "action": "static",
       "kind": "clown"
     },
     "gijoe": {
@@ -32,7 +32,7 @@
       "kind": "playboy"
     },
     "robot": {
-      "action": "shake",
+      "action": "static",
       "kind": "robot"
     }
   }
