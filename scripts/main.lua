@@ -25,6 +25,8 @@ local pool            = {}
 function setup()
   resourcemanager:prefetch({
     "blobs/babyroom.png",
+    "blobs/bear.png",
+    "blobs/beelzebuuth.png",
     "blobs/clown.png",
     "fonts/fixedsys.json",
     "blobs/horn.png",

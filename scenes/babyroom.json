@@ -3,13 +3,17 @@
   "width": 480,
   "height": 270,
   "entities": {
-    "clown": {
-      "action": "idle",
-      "kind": "clown"
-    },
     "beelzebuuth": {
       "action": "shake",
       "kind": "beelzebuuth"
+    },
+    "bear": {
+      "action": "idle",
+      "kind": "bear"
+    },
+    "clown": {
+      "action": "idle",
+      "kind": "clown"
     }
   }
 }
