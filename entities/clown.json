@@ -2,6 +2,7 @@
   "spritesheet": "blobs/clown.png",
   "animations": {
     "blink": {
+      "next": "static",
       "oneshot": true,
       "frames": [
         {

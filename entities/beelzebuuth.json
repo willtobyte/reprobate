@@ -5,7 +5,7 @@
       "oneshot": true,
       "frames": [
         {
-          "duration": 100,
+          "duration": 200,
           "offset": {
             "x": 403,
             "y": 106
@@ -18,7 +18,7 @@
           }
         },
         {
-          "duration": 100,
+          "duration": 200,
           "offset": {
             "x": 401,
             "y": 105
@@ -31,7 +31,7 @@
           }
         },
         {
-          "duration": 100,
+          "duration": 200,
           "offset": {
             "x": 403,
             "y": 107
@@ -44,7 +44,7 @@
           }
         },
         {
-          "duration": 100,
+          "duration": 200,
           "offset": {
             "x": 402,
             "y": 108

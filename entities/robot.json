@@ -19,6 +19,8 @@
       ]
     },
     "shake": {
+      "next": "static",
+      "oneshot": true,
       "frames": [
         {
           "duration": 200,
