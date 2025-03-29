@@ -1,0 +1,67 @@
+{
+  "spritesheet": "blobs/beelzebuuth.png",
+  "scale": 1,
+  "size": {
+    "width": 25,
+    "height": 30
+  },
+  "animations": {
+    "shake": {
+      "oneshot": true,
+      "frames": [
+        {
+          "duration": 100,
+          "offset": {
+            "x": 403,
+            "y": 106
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 28
+          }
+        },
+        {
+          "duration": 100,
+          "offset": {
+            "x": 401,
+            "y": 105
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 28
+          }
+        },
+        {
+          "duration": 100,
+          "offset": {
+            "x": 403,
+            "y": 107
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 28
+          }
+        },
+        {
+          "duration": 100,
+          "offset": {
+            "x": 402,
+            "y": 108
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 28
+          }
+        }
+      ]
+    }
+  }
+}

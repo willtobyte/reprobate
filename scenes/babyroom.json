@@ -1,0 +1,15 @@
+{
+  "background": "blobs/babyroom.png",
+  "width": 480,
+  "height": 270,
+  "entities": {
+    "clown": {
+      "action": "idle",
+      "kind": "clown"
+    },
+    "beelzebuuth": {
+      "action": "shake",
+      "kind": "beelzebuuth"
+    }
+  }
+}

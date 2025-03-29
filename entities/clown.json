@@ -1,0 +1,78 @@
+{
+  "spritesheet": "blobs/clown.png",
+  "animations": {
+    "blink": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 278,
+            "y": 98
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 32,
+            "height": 37
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 278,
+            "y": 98
+          },
+          "rect": {
+            "x": 35,
+            "y": 1,
+            "width": 32,
+            "height": 37
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 278,
+            "y": 98
+          },
+          "rect": {
+            "x": 35,
+            "y": 1,
+            "width": 32,
+            "height": 37
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 278,
+            "y": 98
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 32,
+            "height": 37
+          }
+        }
+      ]
+    },
+    "idle": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 278,
+            "y": 98
+          },
+          "rect": {
+            "x": 1,
+            "y": 1,
+            "width": 32,
+            "height": 37
+          }
+        }
+      ]
+    }
+  }
+}
