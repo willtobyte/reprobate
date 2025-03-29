@@ -7,6 +7,10 @@
       "action": "shake",
       "kind": "beelzebuuth"
     },
+    "crucifix": {
+      "action": "static",
+      "kind": "crucifix"
+    },
     "bear": {
       "action": "idle",
       "kind": "bear"
@@ -14,6 +18,18 @@
     "clown": {
       "action": "idle",
       "kind": "clown"
+    },
+    "gijoe": {
+      "action": "static",
+      "kind": "gijoe"
+    },
+    "nintendo": {
+      "action": "static",
+      "kind": "nintendo"
+    },
+    "playboy": {
+      "action": "static",
+      "kind": "playboy"
     },
     "robot": {
       "action": "shake",

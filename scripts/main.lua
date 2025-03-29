@@ -28,12 +28,39 @@ function setup()
     "blobs/bear.png",
     "blobs/beelzebuuth.png",
     "blobs/clown.png",
+    "blobs/crucifix.png",
     "fonts/fixedsys.json",
+    "blobs/gijoe.png",
     "blobs/horn.png",
+    "blobs/nintendo.png",
+    "blobs/playboy.png",
     "blobs/robot.png",
   })
 
   overlay.cursor:set("horn")
+
+  scenemanager:on_enter("babyroom", function()
+    pool.crucifix = scenemanager:grab("crucifix")
+    pool.crucifix:on_touch(function()
+      overlay:dispatch(Widget.cursor, "damage")
+      pool.crucifix.action:unset()
+    end)
+
+    pool.gijoe = scenemanager:grab("gijoe")
+    pool.gijoe:on_touch(function()
+      pool.gijoe.action:unset()
+    end)
+
+    pool.nintendo = scenemanager:grab("nintendo")
+    pool.nintendo:on_touch(function()
+      pool.nintendo.action:unset()
+    end)
+
+    pool.playboy = scenemanager:grab("playboy")
+    pool.playboy:on_touch(function()
+      pool.playboy.action:unset()
+    end)
+  end)
 
   scenemanager:on_leave("babyroom", function()
     for key in pairs(pool) do
