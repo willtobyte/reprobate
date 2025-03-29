@@ -13,12 +13,9 @@ _G.engine             = EngineFactory.new()
     :with_fullscreen(true)
     :create()
 
-local entitymanager   = engine:entitymanager()
-local fontfactory     = engine:fontfactory()
 local resourcemanager = engine:resourcemanager()
 local scenemanager    = engine:scenemanager()
 local overlay         = engine:overlay()
-local canvas          = engine:canvas()
 
 local pool            = {}
 
@@ -43,22 +40,22 @@ function setup()
     pool.crucifix = scenemanager:grab("crucifix")
     pool.crucifix:on_touch(function()
       overlay:dispatch(Widget.cursor, "damage")
-      pool.crucifix.action:unset()
+      pool.crucifix:hide()
     end)
 
     pool.gijoe = scenemanager:grab("gijoe")
     pool.gijoe:on_touch(function()
-      pool.gijoe.action:unset()
+      pool.gijoe:hide()
     end)
 
     pool.nintendo = scenemanager:grab("nintendo")
     pool.nintendo:on_touch(function()
-      pool.nintendo.action:unset()
+      pool.nintendo:hide()
     end)
 
     pool.playboy = scenemanager:grab("playboy")
     pool.playboy:on_touch(function()
-      pool.playboy.action:unset()
+      pool.playboy:hide()
     end)
   end)
 
@@ -71,7 +68,7 @@ function setup()
   scenemanager:set("babyroom")
 end
 
-function loop(delta)
+function loop()
 end
 
 function run()
