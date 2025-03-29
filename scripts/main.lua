@@ -30,6 +30,7 @@ function setup()
     "blobs/clown.png",
     "fonts/fixedsys.json",
     "blobs/horn.png",
+    "blobs/robot.png",
   })
 
   overlay.cursor:set("horn")

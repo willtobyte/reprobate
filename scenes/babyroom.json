@@ -14,6 +14,10 @@
     "clown": {
       "action": "idle",
       "kind": "clown"
+    },
+    "robot": {
+      "action": "shake",
+      "kind": "robot"
     }
   }
 }

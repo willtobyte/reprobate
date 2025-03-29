@@ -1,10 +1,5 @@
 {
   "spritesheet": "blobs/beelzebuuth.png",
-  "scale": 1,
-  "size": {
-    "width": 25,
-    "height": 30
-  },
   "animations": {
     "shake": {
       "oneshot": true,
