@@ -9,7 +9,7 @@
       "oneshot": true,
       "frames": [
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 9
@@ -22,7 +22,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 10
@@ -35,7 +35,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 11
@@ -48,7 +48,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 11
@@ -61,7 +61,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 10
@@ -74,7 +74,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 9
@@ -87,7 +87,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 7
@@ -100,7 +100,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 7
@@ -113,7 +113,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 80,
           "offset": {
             "x": 17,
             "y": 7
