@@ -20,7 +20,6 @@ local resourcemanager = engine:resourcemanager()
 local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
-local counter = 0
 local pool = {}
 
 function setup()
@@ -44,6 +43,10 @@ function setup()
     babyroom.on_enter(scenemanager, cassete)
   end)
 
+  scenemanager:on_loop("babyroom", function(delta)
+    babyroom.on_loop(delta)
+  end)
+
   scenemanager:on_leave("babyroom", function()
     babyroom.on_leave(scenemanager, cassete)
   end)
@@ -52,13 +55,6 @@ function setup()
 end
 
 function loop()
-  counter = counter + 1
-
-  if counter % 666 == 0 then
-    if pool.beelzebuuth then
-      pool.beelzebuuth.action:set("summon")
-    end
-  end
 end
 
 function run()

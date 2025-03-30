@@ -5,6 +5,7 @@ local pool = {}
 local timemanager = TimeManager.new()
 
 function module.on_enter(scenemanager, cassete)
+  pool.counter = 0
   pool.timers = {}
 
   local objects = {
@@ -49,7 +50,14 @@ function module.on_enter(scenemanager, cassete)
   pool.beelzebuuth = scenemanager:grab("beelzebuuth")
 end
 
-function module.on_update(delta)
+function module.on_loop(delta)
+  pool.counter = pool.counter + 1
+
+  if pool.counter % 666 == 0 then
+    if pool.beelzebuuth then
+      pool.beelzebuuth.action:set("summon")
+    end
+  end
 end
 
 function module.on_leave(scenemanager, cassete)
