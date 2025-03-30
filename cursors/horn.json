@@ -306,7 +306,7 @@
         }
       ]
     },
-    "idle": {
+    "default": {
       "frames": [
         {
           "duration": 200,

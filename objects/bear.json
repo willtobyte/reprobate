@@ -2,7 +2,7 @@
   "spritesheet": "blobs/bear.png",
   "animations": {
     "blink": {
-      "next": "idle",
+      "next": "default",
       "oneshot": true,
       "frames": [
         {
@@ -59,7 +59,7 @@
         }
       ]
     },
-    "idle": {
+    "default": {
       "frames": [
         {
           "duration": 200,

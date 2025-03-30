@@ -5,8 +5,7 @@ local pool = {}
 local scenemanager = engine:scenemanager()
 local cassete = engine:cassete()
 local overlay = engine:overlay()
-
-local timermanager = TimerManager.new()
+local timermanager = engine:timermanager()
 
 function scene.on_enter()
   pool.counter = 0

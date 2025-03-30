@@ -1,7 +1,7 @@
 {
   "spritesheet": "blobs/crucifix.png",
   "animations": {
-    "idle": {
+    "default": {
       "hitbox": {
         "x": 364,
         "y": 76,

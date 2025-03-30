@@ -1,7 +1,7 @@
 {
   "spritesheet": "blobs/nintendo.png",
   "animations": {
-    "idle": {
+    "default": {
       "hitbox": {
         "x": 48,
         "y": 200,

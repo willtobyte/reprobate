@@ -1,7 +1,7 @@
 {
   "spritesheet": "blobs/robot.png",
   "animations": {
-    "idle": {
+    "default": {
       "frames": [
         {
           "duration": 200,
@@ -19,7 +19,7 @@
       ]
     },
     "shake": {
-      "next": "idle",
+      "next": "default",
       "oneshot": true,
       "frames": [
         {

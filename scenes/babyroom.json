@@ -8,31 +8,31 @@
       "kind": "beelzebuuth"
     },
     "crucifix": {
-      "action": "idle",
+      "action": "default",
       "kind": "crucifix"
     },
     "bear": {
-      "action": "idle",
+      "action": "default",
       "kind": "bear"
     },
     "clown": {
-      "action": "idle",
+      "action": "default",
       "kind": "clown"
     },
     "gijoe": {
-      "action": "idle",
+      "action": "default",
       "kind": "gijoe"
     },
     "nintendo": {
-      "action": "idle",
+      "action": "default",
       "kind": "nintendo"
     },
     "playboy": {
-      "action": "idle",
+      "action": "default",
       "kind": "playboy"
     },
     "robot": {
-      "action": "idle",
+      "action": "default",
       "kind": "robot"
     }
   }
