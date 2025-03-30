@@ -2,7 +2,7 @@ local module = {}
 
 local pool = {}
 
-local timemanager = TimeManager.new()
+local timermanager = TimerManager.new()
 
 function module.on_enter(scenemanager, cassete, overlay)
   pool.counter = 0
@@ -17,7 +17,7 @@ function module.on_enter(scenemanager, cassete, overlay)
   for _, o in ipairs(objects) do
     pool[o.name] = scenemanager:grab(o.name)
     local delay = math.random(o.minimum, o.maximum) * 1000
-    local id = timemanager:set(delay, function()
+    local id = timermanager:set(delay, function()
       pool[o.name].action:set(o.act)
     end)
 
@@ -63,7 +63,7 @@ end
 
 function module.on_leave(scenemanager, cassete)
   for _, id in ipairs(pool.timers) do
-    timemanager:clear(id)
+    timermanager:clear(id)
   end
 
   for key in pairs(pool) do
