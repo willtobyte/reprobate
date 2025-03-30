@@ -20,8 +20,6 @@ local resourcemanager = engine:resourcemanager()
 local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
-local pool = {}
-
 function setup()
   resourcemanager:prefetch({
     "blobs/babyroom.png",
