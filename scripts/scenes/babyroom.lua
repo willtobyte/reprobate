@@ -4,7 +4,11 @@ local pool = {}
 
 local timermanager = TimerManager.new()
 
-function module.on_enter(scenemanager, cassete, overlay)
+function module.on_enter()
+  local scenemanager = engine:scenemanager()
+  local cassete = engine:cassete()
+  local overlay = engine:overlay()
+
   pool.counter = 0
   pool.timers = {}
 

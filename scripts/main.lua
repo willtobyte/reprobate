@@ -5,8 +5,6 @@
 -- If you’d like to chat, feel free to email me at rodrigo@delduca.org.
 --
 
-local babyroom = require("scenes/babyroom")
-
 _G.engine = EngineFactory.new()
     :with_title("Reprobate")
     :with_width(1920)
@@ -37,17 +35,7 @@ function setup()
 
   overlay.cursor:set("horn")
 
-  scenemanager:on_enter("babyroom", function()
-    babyroom.on_enter(scenemanager, cassete, overlay)
-  end)
-
-  scenemanager:on_loop("babyroom", function(delta)
-    babyroom.on_loop(delta)
-  end)
-
-  scenemanager:on_leave("babyroom", function()
-    babyroom.on_leave(scenemanager, cassete)
-  end)
+  scenemanager:register("babyroom")
 
   scenemanager:set("babyroom")
 end
