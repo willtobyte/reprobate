@@ -2,7 +2,7 @@
   "spritesheet": "blobs/clown.png",
   "animations": {
     "blink": {
-      "next": "static",
+      "next": "idle",
       "oneshot": true,
       "frames": [
         {
@@ -59,7 +59,7 @@
         }
       ]
     },
-    "static": {
+    "idle": {
       "frames": [
         {
           "duration": 200,

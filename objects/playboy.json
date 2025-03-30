@@ -1,7 +1,7 @@
 {
   "spritesheet": "blobs/playboy.png",
   "animations": {
-    "static": {
+    "idle": {
       "hitbox": {
         "x": 339,
         "y": 211,

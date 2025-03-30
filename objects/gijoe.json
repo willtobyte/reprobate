@@ -1,7 +1,7 @@
 {
   "spritesheet": "blobs/gijoe.png",
   "animations": {
-    "static": {
+    "idle": {
       "hitbox": {
         "x": 208,
         "y": 203,
