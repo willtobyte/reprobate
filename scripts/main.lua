@@ -1,10 +1,3 @@
----@diagnostic disable: undefined-global, undefined-field, lowercase-global
-
---
--- Hello, magnificent curious one! Thank you for stopping by.
--- If you’d like to chat, feel free to email me at rodrigo@delduca.org.
---
-
 _G.engine = EngineFactory.new()
     :with_title("Reprobate")
     :with_width(1920)
