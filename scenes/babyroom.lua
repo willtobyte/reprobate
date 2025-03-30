@@ -1,4 +1,4 @@
-local module = {}
+local scene = {}
 
 local pool = {}
 
@@ -8,7 +8,7 @@ local overlay = engine:overlay()
 
 local timermanager = TimerManager.new()
 
-function module.on_enter()
+function scene.on_enter()
   pool.counter = 0
   pool.timers = {}
 
@@ -19,7 +19,7 @@ function module.on_enter()
   }
 
   for _, o in ipairs(objects) do
-    pool[o.name] = scenemanager:grab(o.name)
+    pool[o.name] = scene:get(o.name)
     local delay = math.random(o.minimum, o.maximum) * 1000
     local id = timermanager:set(delay, function()
       pool[o.name].action:set(o.act)
@@ -37,7 +37,7 @@ function module.on_enter()
   }
 
   for _, i in ipairs(interactive) do
-    pool[i.name] = scenemanager:grab(i.name)
+    pool[i.name] = scene:get(i.name)
     if cassete:get(i.key, false) then
       pool[i.name]:hide()
     else
@@ -52,10 +52,10 @@ function module.on_enter()
     end
   end
 
-  pool.beelzebuuth = scenemanager:grab("beelzebuuth")
+  pool.beelzebuuth = scene:get("beelzebuuth")
 end
 
-function module.on_loop(delta)
+function scene.on_loop(delta)
   pool.counter = pool.counter + 1
 
   if pool.counter % 666 == 0 then
@@ -65,7 +65,7 @@ function module.on_loop(delta)
   end
 end
 
-function module.on_leave(scenemanager, cassete)
+function scene.on_leave(scenemanager, cassete)
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
   end
@@ -75,4 +75,4 @@ function module.on_leave(scenemanager, cassete)
   end
 end
 
-return module
+return scene
