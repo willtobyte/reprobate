@@ -40,7 +40,7 @@ function setup()
   overlay.cursor:set("horn")
 
   scenemanager:on_enter("babyroom", function()
-    babyroom.on_enter(scenemanager, cassete)
+    babyroom.on_enter(scenemanager, cassete, overlay)
   end)
 
   scenemanager:on_loop("babyroom", function(delta)

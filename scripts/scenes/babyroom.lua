@@ -4,7 +4,7 @@ local pool = {}
 
 local timemanager = TimeManager.new()
 
-function module.on_enter(scenemanager, cassete)
+function module.on_enter(scenemanager, cassete, overlay)
   pool.counter = 0
   pool.timers = {}
 
@@ -24,11 +24,12 @@ function module.on_enter(scenemanager, cassete)
     table.insert(pool.timers, id)
   end
 
+  local prefix = "babyroom/"
   local interactive = {
-    {name = "crucifix", key = "babyroom/crucifix", damage = true},
-    {name = "gijoe",    key = "babyroom/gijoe"},
-    {name = "nintendo", key = "babyroom/nintendo"},
-    {name = "playboy",  key = "babyroom/playboy"}
+    {name = "crucifix", key = prefix .. "crucifix", damage = true},
+    {name = "gijoe",    key = prefix .. "gijoe"},
+    {name = "nintendo", key = prefix .. "nintendo"},
+    {name = "playboy",  key = prefix .. "playboy"}
   }
 
   for _, i in ipairs(interactive) do
