@@ -6,26 +6,11 @@ _G.engine = EngineFactory.new()
     :with_fullscreen(false)
     :create()
 
-local resourcemanager = engine:resourcemanager()
 local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 local canvas = engine:canvas()
 
 function setup()
-  resourcemanager:prefetch({
-    "blobs/babyroom.png",
-    "blobs/bear.png",
-    "blobs/beelzebuuth.png",
-    "blobs/clown.png",
-    "blobs/crucifix.png",
-    "fonts/fixedsys.json",
-    "blobs/gijoe.png",
-    "blobs/horn.png",
-    "blobs/nintendo.png",
-    "blobs/playboy.png",
-    "blobs/robot.png",
-  })
-
   overlay.cursor:set("horn")
 
   scenemanager:register("babyroom")
