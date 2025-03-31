@@ -35,9 +35,9 @@ jobs:
         run: |
           wget -O rcedit.exe https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
 
-      - name: Update Executable Icon
-        run: |
-          wine rcedit.exe carimbo.exe --set-icon icon.ico
+      # - name: Update Executable Icon
+      #   run: |
+      #     wine rcedit.exe carimbo.exe --set-icon icon.ico
 
       - name: Copy files
         run: |
