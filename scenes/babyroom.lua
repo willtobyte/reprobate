@@ -52,6 +52,7 @@ function scene.on_enter()
   end
 
   pool.beelzebuuth = scene:get("beelzebuuth")
+  pool.beelzebuuth.action:unset()
 end
 
 function scene.on_loop()
