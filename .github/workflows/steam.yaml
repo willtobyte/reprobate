@@ -16,6 +16,12 @@ jobs:
       - name: Clone the repository
         uses: actions/checkout@v4
 
+      - name: Instalar Wine
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install --yes wine64
+
       - name: Install 7zip
         run: sudo apt install p7zip-full
 
@@ -29,6 +35,14 @@ jobs:
 
       - name: Extract Carimbo runtime
         run: 7z x Windows.zip -o.
+
+      - name: Download rcedit.exe
+        run: |
+          wget -O rcedit.exe https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
+
+      - name: Update Executable Icon
+        run: |
+          wine rcedit.exe carimbo.exe --set-icon icon.ico
 
       - name: Copy files
         run: |
