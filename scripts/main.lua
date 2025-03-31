@@ -9,6 +9,7 @@ _G.engine = EngineFactory.new()
 local resourcemanager = engine:resourcemanager()
 local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
+local canvas = engine:canvas()
 
 function setup()
   resourcemanager:prefetch({
