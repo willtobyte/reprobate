@@ -16,14 +16,9 @@ jobs:
       - name: Clone the repository
         uses: actions/checkout@v4
 
-      - name: Instalar Wine
+      - name: Install dependencies
         run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt-get install --yes wine64
-
-      - name: Install 7zip
-        run: sudo apt install p7zip-full
+          sudo apt-get install --yes p7zip-full wine64
 
       - name: Create bundle
         run: 7z a -xr'!.git/*' -xr'!.git' -xr'!.*' -t7z -m0=lzma -mx=6 -mfb=64 -md=32m -ms=on bundle.7z .
