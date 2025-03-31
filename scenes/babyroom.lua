@@ -3,7 +3,7 @@ local scene = {}
 local pool = {}
 
 local scenemanager = engine:scenemanager()
-local cassete = engine:cassete()
+local cassette = engine:cassette()
 local overlay = engine:overlay()
 local timermanager = engine:timermanager()
 
@@ -12,9 +12,9 @@ function scene.on_enter()
   pool.timers = {}
 
   local objects = {
-    {name = "bear", minimum = 2, maximum = 4, act = "blink"},
-    {name = "clown", minimum = 6, maximum = 8, act = "blink"},
-    {name = "robot", minimum = 3, maximum = 6, act = "shake"}
+    { name = "bear",  minimum = 2, maximum = 4, act = "blink" },
+    { name = "clown", minimum = 6, maximum = 8, act = "blink" },
+    { name = "robot", minimum = 3, maximum = 6, act = "shake" }
   }
 
   for _, o in ipairs(objects) do
@@ -29,15 +29,15 @@ function scene.on_enter()
 
   local prefix = "babyroom/"
   local interactive = {
-    {name = "crucifix", key = prefix .. "crucifix", damage = true},
-    {name = "gijoe",    key = prefix .. "gijoe"},
-    {name = "nintendo", key = prefix .. "nintendo"},
-    {name = "playboy",  key = prefix .. "playboy"}
+    { name = "crucifix", key = prefix .. "crucifix", damage = true },
+    { name = "gijoe",    key = prefix .. "gijoe" },
+    { name = "nintendo", key = prefix .. "nintendo" },
+    { name = "playboy",  key = prefix .. "playboy" }
   }
 
   for _, i in ipairs(interactive) do
     pool[i.name] = scene:get(i.name)
-    if cassete:get(i.key, false) then
+    if cassette:get(i.key, false) then
       pool[i.name]:hide()
     else
       pool[i.name]:on_touch(function()
@@ -46,7 +46,7 @@ function scene.on_enter()
         end
 
         pool[i.name]:hide()
-        cassete:set(i.key, true)
+        cassette:set(i.key, true)
       end)
     end
   end
@@ -54,7 +54,7 @@ function scene.on_enter()
   pool.beelzebuuth = scene:get("beelzebuuth")
 end
 
-function scene.on_loop(delta)
+function scene.on_loop()
   pool.counter = pool.counter + 1
 
   if pool.counter % 666 == 0 then
@@ -64,7 +64,7 @@ function scene.on_loop(delta)
   end
 end
 
-function scene.on_leave(scenemanager, cassete)
+function scene.on_leave()
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
   end

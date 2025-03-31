@@ -6,7 +6,6 @@ _G.engine = EngineFactory.new()
     :with_fullscreen(false)
     :create()
 
-local cassete = engine:cassete()
 local resourcemanager = engine:resourcemanager()
 local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
