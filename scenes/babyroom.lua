@@ -6,6 +6,7 @@ local scenemanager = engine:scenemanager()
 local cassette = engine:cassette()
 local overlay = engine:overlay()
 local timermanager = engine:timermanager()
+local soundmanager = engine:soundmanager()
 
 function scene.on_enter()
   pool.counter = 0
@@ -29,10 +30,10 @@ function scene.on_enter()
 
   local prefix = "babyroom/"
   local interactive = {
-    { name = "crucifix", key = prefix .. "crucifix", damage = true },
-    { name = "gijoe",    key = prefix .. "gijoe" },
-    { name = "nintendo", key = prefix .. "nintendo" },
-    { name = "playboy",  key = prefix .. "playboy" }
+    { name = "crucifix", key = prefix .. "crucifix", sound = "wind", damage = true },
+    { name = "gijoe",    key = prefix .. "gijoe", sound = "door" },
+    { name = "nintendo", key = prefix .. "nintendo", sound = "chair" },
+    { name = "playboy",  key = prefix .. "playboy", sound = "gore" }
   }
 
   for _, i in ipairs(interactive) do
@@ -45,6 +46,9 @@ function scene.on_enter()
           overlay:dispatch(Widget.cursor, "damage")
         end
 
+        if i.sound then
+          soundmanager:play(i.sound)
+        end
         pool[i.name]:hide()
         cassette:set(i.key, true)
       end)
@@ -58,9 +62,11 @@ end
 function scene.on_loop()
   pool.counter = pool.counter + 1
 
-  if pool.counter % 666 == 0 then
+  if pool.counter >= 666 then
+    pool.counter = 0
     if pool.beelzebuuth then
       pool.beelzebuuth.action:set("summon")
+      soundmanager:play("scream")
     end
   end
 end
