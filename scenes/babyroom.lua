@@ -49,6 +49,7 @@ function scene.on_enter()
         if i.sound then
           soundmanager:play(i.sound)
         end
+
         pool[i.name]:hide()
         cassette:set(i.key, true)
       end)
