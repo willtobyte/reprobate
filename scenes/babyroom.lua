@@ -9,7 +9,6 @@ local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
 
 function scene.on_enter()
-  pool.counter = 0
   pool.timers = {}
 
   local objects = {
@@ -58,18 +57,14 @@ function scene.on_enter()
 
   pool.beelzebuuth = scene:get("beelzebuuth")
   pool.beelzebuuth.action:unset()
+  pool.beelzebuuth:on_nthtick(666 * 10 + 540, function ()
+    print("Beelzebuuth is here...")
+    pool.beelzebuuth.action:set("summon")
+    soundmanager:play("scream")
+  end)
 end
 
 function scene.on_loop()
-  pool.counter = pool.counter + 1
-
-  if pool.counter >= 666 then
-    pool.counter = 0
-    if pool.beelzebuuth then
-      pool.beelzebuuth.action:set("summon")
-      soundmanager:play("scream")
-    end
-  end
 end
 
 function scene.on_leave()
