@@ -32,7 +32,7 @@ function scene.on_enter()
   local interactive = {
     { name = "crucifix", key = prefix .. "crucifix", sound = "wind", damage = true },
     { name = "gijoe",    key = prefix .. "gijoe", sound = "door" },
-    { name = "nintendo", key = prefix .. "nintendo", sound = "chair" },
+    { name = "nintendo", key = prefix .. "nintendo", sound = "metal" },
     { name = "playboy",  key = prefix .. "playboy", sound = "gore" }
   }
 
