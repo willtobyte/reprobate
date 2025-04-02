@@ -21,7 +21,7 @@ jobs:
           sudo apt-get install --yes imagemagick p7zip-full wine64
 
       - name: Create bundle
-        run: 7z a -xr'!icon.svg' -xr'!.git/*' -xr'!.git' -xr'!.*' -t7z -m0=lzma -mx=6 -mfb=64 -md=32m -ms=on bundle.7z .
+        run: 7z a -xr'!icon.png' -xr'!.git/*' -xr'!.git' -xr'!.*' -t7z -m0=lzma -mx=6 -mfb=64 -md=32m -ms=on bundle.7z .
 
       - name: Download Carimbo runtime
         env:
@@ -35,9 +35,9 @@ jobs:
         run: |
           wget -O rcedit.exe https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
 
-      - name: Convert SVG to ICO
+      - name: Convert PNG to ICO
         run: |
-          convert -background none icon.svg -define icon:auto-resize=256,128,64,48,32,16 icon.ico
+          convert icon.png -define icon:auto-resize=256,128,64,48,32,16 icon.ico
 
       - name: Update Executable Icon
         run: |
