@@ -18,10 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install --yes p7zip-full wine64
-
-      - name: Create bundle
-        run: 7z a -xr'!.git/*' -xr'!.git' -xr'!.*' -t7z -m0=lzma -mx=6 -mfb=64 -md=32m -ms=on bundle.7z .
+          sudo apt-get install --yes imagemagick p7zip-full wine64
 
       - name: Download Carimbo runtime
         env:
@@ -31,13 +28,20 @@ jobs:
       - name: Extract Carimbo runtime
         run: 7z x Windows.zip -o.
 
+      - name: Create bundle
+        run: 7z a -xr'!icon.svg' -xr'!.git/*' -xr'!.git' -xr'!.*' -t7z -m0=lzma -mx=6 -mfb=64 -md=32m -ms=on bundle.7z .
+
       - name: Download rcedit.exe
         run: |
           wget -O rcedit.exe https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe
 
-      # - name: Update Executable Icon
-      #   run: |
-      #     wine rcedit.exe carimbo.exe --set-icon icon.ico
+      - name: Convert SVG to ICO
+        run: |
+          convert -background none icon.svg -define icon:auto-resize=256,128,64,48,32,16 icon.ico
+
+      - name: Update Executable Icon
+        run: |
+          wine rcedit.exe carimbo.exe --set-icon icon.ico
 
       - name: Copy files
         run: |
