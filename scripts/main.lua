@@ -12,24 +12,7 @@ local overlay = engine:overlay()
 -- local canvas = engine:canvas()
 
 function setup()
-  resourcemanager:prefetch({
-    "blobs/babyroom.png",
-    "blobs/bear.png",
-    "blobs/beelzebuuth.png",
-    "blobs/clown.png",
-    "blobs/crucifix.png",
-    "blobs/door.ogg",
-    "fonts/fixedsys.json",
-    "blobs/gijoe.png",
-    "blobs/gore.ogg",
-    "blobs/horn.png",
-    "blobs/metal.ogg",
-    "blobs/nintendo.png",
-    "blobs/playboy.png",
-    "blobs/robot.png",
-    "blobs/scream.ogg",
-    "blobs/wind.ogg",
-  })
+  resourcemanager:prefetch()
 
   overlay.cursor:set("horn")
 
