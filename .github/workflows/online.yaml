@@ -129,11 +129,11 @@ jobs:
             CMD ["python", "-m", "http.server", "8000"]
           EOF
 
-      - name: Build Docker image with tag "web"
-        env:
-          DOCKER_HOST: ssh://root@${{ secrets.HETZNER_IP }}
-        run: |
-          docker build -t web .
+      # - name: Build Docker image with tag "web"
+      #   env:
+      #     DOCKER_HOST: ssh://root@${{ secrets.HETZNER_IP }}
+      #   run: |
+      #     docker build -t web .
 
       - name: Create docker-compose.yaml file
         run: |
@@ -142,7 +142,6 @@ jobs:
             web:
               build:
                 context: .
-                dockerfile: Dockerfile
               restart: unless-stopped
 
             cloudflare:
@@ -165,3 +164,13 @@ jobs:
           docker compose up --build --force-recreate --detach
 
           docker ps -a
+
+      - name: Purge Cloudflare Cache
+        env:
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+                -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+                -H "Content-Type: application/json" \
+                --data '{"purge_everything":true}'
