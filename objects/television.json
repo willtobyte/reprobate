@@ -4,7 +4,7 @@
     "static": {
       "frames": [
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -23,7 +23,7 @@
       "next": "static",
       "frames": [
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -36,7 +36,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -49,7 +49,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -62,7 +62,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -75,7 +75,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -88,7 +88,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -101,7 +101,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -114,7 +114,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -127,7 +127,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -140,7 +140,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -153,7 +153,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -166,7 +166,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -179,7 +179,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -192,7 +192,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -205,7 +205,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -218,7 +218,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -231,7 +231,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -244,7 +244,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -257,7 +257,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -270,7 +270,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -283,7 +283,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -296,7 +296,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -309,7 +309,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -322,7 +322,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -335,7 +335,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -348,7 +348,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -361,7 +361,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -374,7 +374,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -387,7 +387,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -400,7 +400,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -413,7 +413,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -426,7 +426,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -439,7 +439,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -452,7 +452,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -465,7 +465,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -478,7 +478,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -491,7 +491,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -504,7 +504,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -517,7 +517,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -530,7 +530,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -543,7 +543,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -556,7 +556,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -569,7 +569,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -582,7 +582,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -595,7 +595,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -608,7 +608,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -621,7 +621,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -634,7 +634,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -647,7 +647,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -660,7 +660,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
@@ -673,7 +673,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 100,
           "offset": {
             "x": 12,
             "y": 145
