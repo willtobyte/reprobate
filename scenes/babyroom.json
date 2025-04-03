@@ -34,6 +34,10 @@
     "robot": {
       "action": "default",
       "kind": "robot"
+    },
+    "television": {
+      "action": "poltergeist",
+      "kind": "television"
     }
   }
 }
