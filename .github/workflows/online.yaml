@@ -124,7 +124,7 @@ jobs:
           cat > Dockerfile <<'EOF'
             FROM python:3.13-slim
             WORKDIR /app
-            COPY output/ .
+            COPY output/index.html .
             EXPOSE 8000
             CMD ["python", "-m", "http.server", "8000"]
           EOF
@@ -140,8 +140,9 @@ jobs:
           cat << 'EOF' > docker-compose.yaml
           services:
             web:
-              build: .
-              image: web
+              build:
+                context: .
+                dockerfile: Dockerfile
               restart: unless-stopped
 
             cloudflare:
