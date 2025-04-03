@@ -129,12 +129,6 @@ jobs:
             CMD ["python", "-m", "http.server", "8000"]
           EOF
 
-      # - name: Build Docker image with tag "web"
-      #   env:
-      #     DOCKER_HOST: ssh://root@${{ secrets.HETZNER_IP }}
-      #   run: |
-      #     docker build -t web .
-
       - name: Create docker-compose.yaml file
         run: |
           cat << 'EOF' > docker-compose.yaml
