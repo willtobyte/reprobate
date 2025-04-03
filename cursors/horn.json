@@ -240,7 +240,7 @@
       "oneshot": true,
       "frames": [
         {
-          "duration": 60,
+          "duration": 100,
           "offset": {
             "x": 17,
             "y": 13
@@ -253,7 +253,7 @@
           }
         },
         {
-          "duration": 60,
+          "duration": 100,
           "offset": {
             "x": 17,
             "y": 10
@@ -266,7 +266,7 @@
           }
         },
         {
-          "duration": 60,
+          "duration": 100,
           "offset": {
             "x": 17,
             "y": 1
@@ -279,7 +279,7 @@
           }
         },
         {
-          "duration": 60,
+          "duration": 100,
           "offset": {
             "x": 17,
             "y": 1
@@ -292,7 +292,7 @@
           }
         },
         {
-          "duration": 60,
+          "duration": 300,
           "offset": {
             "x": 17,
             "y": 1
