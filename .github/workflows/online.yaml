@@ -57,6 +57,11 @@ jobs:
               restart: unless-stopped
           EOF
 
+      - name: Add remote host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
+
       - name: Deploy Docker Compose
         env:
           DOCKER_HOST: ssh://root@${{ secrets.HETZNER_IP }}
