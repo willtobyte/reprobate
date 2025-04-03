@@ -112,6 +112,13 @@ jobs:
           </html>
           EOF
 
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
+
       - name: Create Dockerfile
         run: |
           cat > Dockerfile <<'EOF'
@@ -143,13 +150,6 @@ jobs:
               command: tunnel --no-autoupdate run
               restart: unless-stopped
           EOF
-
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
 
       - name: Deploy Docker Compose
         env:
