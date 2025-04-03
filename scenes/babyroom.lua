@@ -36,6 +36,8 @@ function scene.on_enter()
     { name = "playboy",  key = prefix .. "playboy", sound = "gore" }
   }
 
+  pool.television = scene:get("television")
+
   for _, i in ipairs(interactive) do
     pool[i.name] = scene:get(i.name)
     if cassette:get(i.key, false) then
@@ -51,6 +53,7 @@ function scene.on_enter()
         end
 
         pool[i.name]:hide()
+        pool.television.action:set("poltergeist")
         cassette:set(i.key, true)
       end)
     end

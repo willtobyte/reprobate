@@ -1,7 +1,26 @@
 {
   "spritesheet": "blobs/television.png",
   "animations": {
+    "static": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 12,
+            "y": 145
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 805,
+            "width": 55,
+            "height": 65
+          }
+        }
+      ]
+    },
     "poltergeist": {
+      "oneshot": true,
+      "next": "static",
       "frames": [
         {
           "duration": 200,
@@ -654,7 +673,7 @@
           }
         },
         {
-          "duration": 12000,
+          "duration": 200,
           "offset": {
             "x": 12,
             "y": 145
