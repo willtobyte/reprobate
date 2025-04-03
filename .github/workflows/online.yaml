@@ -124,7 +124,7 @@ jobs:
           cat > Dockerfile <<'EOF'
             FROM python:3.13-slim
             WORKDIR /app
-            COPY output/index.html .
+            COPY output/ .
             EXPOSE 8000
             CMD ["python", "-m", "http.server", "8000"]
           EOF
