@@ -112,17 +112,27 @@ jobs:
           </html>
           EOF
 
-      - name: Criar arquivo docker-compose.yml localmente
+      - name: Create Dockerfile
         run: |
-          cat << 'EOF' > docker-compose.yml
+          cat > Dockerfile <<'EOF'
+            FROM python:3.13-slim
+            WORKDIR /app
+            COPY output/ .
+            EXPOSE 8000
+            CMD ["python", "-m", "http.server", "8000"]
+          EOF
+      
+      - name: Build Docker image with tag "web"
+        run: |
+          docker build -t web .
+
+      - name: Create docker-compose.yaml file
+        run: |
+          cat << 'EOF' > docker-compose.yaml
           services:
             web:
-              image: python:3.13-slim
-              command: python -m http.server 8000
+              image: web
               restart: unless-stopped
-              working_dir: /app
-              volumes:
-                - ./output:/app
 
             cloudflare:
               image: cloudflare/cloudflared:latest
