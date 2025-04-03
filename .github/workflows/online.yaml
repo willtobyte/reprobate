@@ -37,6 +37,81 @@ jobs:
           mv bundle.7z output/
           mv carimbo.js output/
           mv carimbo.wasm output/
+
+      - name: Create HTML index file
+        run: |
+          cat << 'EOF' > output/index.html
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+              <style>
+                *,
+                *::before,
+                *::after {
+                  box-sizing: border-box;
+                }
+
+                * {
+                  margin: 0;
+                }
+
+                body {
+                  margin: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  height: 100vh;
+                }
+
+                .container {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+
+                canvas {
+                  display: block;
+                  width: 100%;
+                  max-width: 100vw;
+                  max-height: 100vh;
+                  aspect-ratio: 16 / 9;
+                }
+              </style>
+            </head>
+
+            <body>
+              <div class="container">
+                <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+              </div>
+
+              <script type="module">
+                const canvas = document.getElementById("canvas");
+
+                const response = await fetch("bundle.7z");
+                const bundle = await response.arrayBuffer();
+
+                window.Module = {
+                  canvas,
+                  noInitialRun: true,
+                  onRuntimeInitialized: () => {
+                    FS.writeFile("/bundle.7z", new Uint8Array(bundle));
+                    Module.callMain();
+                  },
+                };
+
+                const script = document.createElement("script");
+                script.src = "carimbo.js";
+                script.defer = true;
+                document.body.appendChild(script);
+              </script>
+            </body>
+          </html>
+          EOF
+
       - name: Criar arquivo docker-compose.yml localmente
         run: |
           cat << 'EOF' > docker-compose.yml
