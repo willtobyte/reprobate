@@ -3,22 +3,22 @@
   "animations": {
     "default": {
       "hitbox": {
-        "x": 339,
-        "y": 211,
-        "width": 36,
+        "x": 352,
+        "y": 210,
+        "width": 32,
         "height": 18
       },
       "frames": [
         {
-          "duration": 0,
+          "duration": 200,
           "offset": {
-            "x": 339,
-            "y": 211
+            "x": 352,
+            "y": 210
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 42,
+            "width": 37,
             "height": 19
           }
         }
