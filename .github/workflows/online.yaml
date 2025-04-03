@@ -129,11 +129,11 @@ jobs:
             CMD ["python", "-m", "http.server", "8000"]
           EOF
 
-      # - name: Build Docker image with tag "web"
-      #   env:
-      #     DOCKER_HOST: ssh://root@${{ secrets.HETZNER_IP }}
-      #   run: |
-      #     docker build -t web .
+      - name: Build Docker image with tag "web"
+        env:
+          DOCKER_HOST: ssh://root@${{ secrets.HETZNER_IP }}
+        run: |
+          docker build -t web .
 
       - name: Create docker-compose.yaml file
         run: |
@@ -141,6 +141,7 @@ jobs:
           services:
             web:
               build: .
+              image: web
               restart: unless-stopped
 
             cloudflare:
