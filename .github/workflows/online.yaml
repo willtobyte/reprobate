@@ -129,7 +129,7 @@ jobs:
             CMD ["python", "-m", "http.server", "8000"]
           EOF
 
-      - name: Create docker-compose.yaml file
+      - name: Create Docker Compose file
         run: |
           cat << 'EOF' > docker-compose.yaml
           services:
