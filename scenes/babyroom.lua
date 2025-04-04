@@ -59,7 +59,6 @@ function scene.on_enter()
   end
 
   pool.beelzebuuth = scene:get("beelzebuuth")
-  pool.beelzebuuth.action:unset()
   local id = timermanager:set(666000, function()
     pool.beelzebuuth.action:set("summon")
   end)
