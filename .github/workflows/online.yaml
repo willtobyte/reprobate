@@ -118,24 +118,15 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Create Dockerfile
-        run: |
-          cat > Dockerfile <<'EOF'
-            FROM python:3.13-slim
-            WORKDIR /app
-            COPY output/ .
-            EXPOSE 8000
-            CMD ["python", "-m", "http.server", "8000"]
-          EOF
-
       - name: Create Docker Compose file
         run: |
           cat << 'EOF' > docker-compose.yaml
           services:
-            web:
-              build:
-                context: .
+            nginx:
+              image: nginx:alpine
               restart: unless-stopped
+              volumes:
+                - ./output:/usr/share/nginx/html:ro
 
             cloudflare:
               image: cloudflare/cloudflared:latest
