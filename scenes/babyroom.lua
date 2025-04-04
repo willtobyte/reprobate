@@ -60,11 +60,11 @@ function scene.on_enter()
 
   pool.beelzebuuth = scene:get("beelzebuuth")
   pool.beelzebuuth.action:unset()
-  pool.beelzebuuth:on_nthtick(666 * 10 + 540, function ()
-    print("Beelzebuuth is here...")
+  local id = timermanager:set(666000, function()
     pool.beelzebuuth.action:set("summon")
-    soundmanager:play("scream")
   end)
+
+  table.insert(pool.timers, id)
 end
 
 function scene.on_loop()
