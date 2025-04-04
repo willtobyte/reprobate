@@ -120,12 +120,13 @@ jobs:
 
       - name: Create Docker Compose file
         run: |
+          chmod -R a+rX output
+
           cat << 'EOF' > docker-compose.yaml
           services:
             nginx:
               image: nginx:alpine
               restart: unless-stopped
-              user: root
               volumes:
                 - ./output:/usr/share/nginx/html:ro
 
