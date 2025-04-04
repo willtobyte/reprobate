@@ -51,8 +51,8 @@ function scene.on_enter()
           soundmanager:play(i.sound)
         end
 
-        pool[i.name]:hide()
         pool.television.action:set("poltergeist")
+        pool[i.name]:hide()
         cassette:set(i.key, true)
       end)
     end
