@@ -133,8 +133,6 @@ jobs:
               build:
                 context: .
               restart: unless-stopped
-              volumes:
-                - /root/reprobate/output:/usr/share/nginx/html:ro
 
             cloudflare:
               image: cloudflare/cloudflared:latest
