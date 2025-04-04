@@ -125,6 +125,7 @@ jobs:
             nginx:
               image: nginx:alpine
               restart: unless-stopped
+              user: root
               volumes:
                 - ./output:/usr/share/nginx/html:ro
 
