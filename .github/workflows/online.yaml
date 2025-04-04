@@ -118,22 +118,20 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Create remote directory
+      - name: Build Nginx Docker image remotely
         run: |
-          ssh root@${{ secrets.HETZNER_IP }} 'mkdir -p /root/reprobate/output'
-
-      - name: Sync static files to remote server
-        run: |
-          rsync -avz --delete ./output/ root@${{ secrets.HETZNER_IP }}:/root/reprobate/output/
+          cat << EOF > Dockerfile
+          FROM nginx:alpine
+          COPY ./output /usr/share/nginx/html
+          EOF
 
       - name: Create Docker Compose file
         run: |
-          chmod -R a+rX output
-
           cat << 'EOF' > docker-compose.yaml
           services:
             nginx:
-              image: nginx:alpine
+              build:
+                context .
               restart: unless-stopped
               volumes:
                 - /root/reprobate/output:/usr/share/nginx/html:ro
