@@ -118,6 +118,10 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
 
+      - name: Create remote directory
+        run: |
+          ssh root@${{ secrets.HETZNER_IP }} 'mkdir -p /root/reprobate/output'
+
       - name: Sync static files to remote server
         run: |
           rsync -avz --delete ./output/ root@${{ secrets.HETZNER_IP }}:/root/reprobate/output/
