@@ -131,7 +131,7 @@ jobs:
           services:
             nginx:
               build:
-                context .
+                context: .
               restart: unless-stopped
               volumes:
                 - /root/reprobate/output:/usr/share/nginx/html:ro
