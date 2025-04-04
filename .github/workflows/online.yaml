@@ -118,7 +118,7 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Build Nginx Docker image remotely
+      - name: Create Nginx Dockerfile
         run: |
           cat << EOF > Dockerfile
           FROM nginx:alpine
