@@ -37,10 +37,11 @@ jobs:
 
       - name: Copy files
         run: |
-          mkdir -p output
-          mv bundle.7z output/
-          mv carimbo output/
-          mv carimbo.exe output/
+          mkdir -p output/{macos,windows}
+          cp bundle.7z output/macos/
+          cp bundle.7z output/windows/
+          mv carimbo.exe output/windows/
+          mv carimbo output/macos/
 
       - name: Upload build to Steam
         uses: game-ci/steam-deploy@v3
@@ -50,5 +51,8 @@ jobs:
           buildDescription: ${{ github.ref_name }}
           appId: ${{ secrets.STEAM_APP_ID }}
           rootPath: output
-          depot1Path: "."
+          depot1Path: windows
+          depot1Id: ${{ secrets.STEAM_DEPOT_ID_WINDOWS }}
+          depot2Path: macos
+          depot2Id: ${{ secrets.STEAM_DEPOT_ID_MACOS }}
           releaseBranch: alpha
