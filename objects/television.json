@@ -1,7 +1,7 @@
 {
   "spritesheet": "blobs/television.png",
   "animations": {
-    "static": {
+    "default": {
       "frames": [
         {
           "duration": 100,
