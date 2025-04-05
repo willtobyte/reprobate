@@ -79,4 +79,8 @@ function scene.on_leave()
   end
 end
 
+function scene.on_click()
+  print("click")
+end
+
 return scene

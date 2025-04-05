@@ -20,7 +20,7 @@
     },
     "poltergeist": {
       "oneshot": true,
-      "next": "static",
+      "next": "default",
       "frames": [
         {
           "duration": 100,
