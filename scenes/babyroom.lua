@@ -80,7 +80,6 @@ function scene.on_leave()
 end
 
 function scene.on_click()
-  print("click")
 end
 
 return scene
