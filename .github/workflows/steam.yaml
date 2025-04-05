@@ -7,7 +7,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
-      CARIMBO_TAG: "v1.1.9"
+      CARIMBO_TAG: "v1.1.10"
 
     permissions:
       contents: write
@@ -42,8 +42,6 @@ jobs:
           cp bundle.7z output/windows/
           mv carimbo.exe output/windows/
           mv carimbo output/macos/
-          ls -lah output/windows/
-          ls -lah output/macos/
 
       - name: Upload build to Steam
         uses: game-ci/steam-deploy@v3
