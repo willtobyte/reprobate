@@ -5,7 +5,7 @@ local canvas = engine:canvas()
 local w, h = 480, 270
 local pixels = {}
 local start = nil
-local duration = 3000
+local duration = 1200
 
 function effect.init()
   start = ticks()
