@@ -1,3 +1,5 @@
+local effect = require("effect")
+
 local scene = {}
 
 local pool = {}
@@ -67,9 +69,12 @@ function scene.on_enter()
   end)
 
   table.insert(pool.timers, id)
+
+  effect.on_loop()
 end
 
 function scene.on_loop()
+  effect.on_loop()
 end
 
 function scene.on_leave()
