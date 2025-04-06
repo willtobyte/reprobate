@@ -2,10 +2,13 @@ local effect = {}
 
 local canvas = engine:canvas()
 
-local w, h = 480, 270
+local width, height = 480, 270
 local pixels = {}
 local start = nil
 local duration = 1000
+
+local floor = math.floor
+local random = math.random
 
 function effect.init()
   start = ticks()
@@ -13,28 +16,28 @@ end
 
 function effect.loop()
   local elapsed = ticks() - start
-  local alpha
-
-  if elapsed < duration then
-    alpha = math.floor(255 * (1 - elapsed / duration))
-  else
-    alpha = 0
-  end
+  local alpha = elapsed < duration and floor(255 * (1 - elapsed / duration)) or 0
 
   if alpha == 0 then
     return
   end
 
-  for y = 0, h - 1 do
-    local base = y * w
-    for x = 0, w - 1 do
-      local intensity = math.random(0, 255)
+  local a_offset = alpha * 0x01000000
+  local base, intensity, index
 
-      if y % 2 == 0 then
-        intensity = math.floor(intensity * 0.7)
+  for y = 0, height - 1 do
+    base = y * width
+    local multiplier = (y % 2 == 0) and 0.7 or 1.0
+
+    for x = 0, width - 1 do
+      intensity = random(0, 255)
+
+      if multiplier ~= 1.0 then
+        intensity = floor(intensity * multiplier)
       end
 
-      pixels[base + x + 1] = alpha * 0x01000000 + intensity * 0x010101
+      index = base + x + 1
+      pixels[index] = a_offset + intensity * 0x010101
     end
   end
 
