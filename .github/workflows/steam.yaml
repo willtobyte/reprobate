@@ -35,13 +35,21 @@ jobs:
           7z x Windows.zip -o.
           tar -xzf macOS.tar.gz
 
+      - name: Create VERSION file
+        run: |
+          echo "carimbo: $CARIMBO_TAG" > VERSION
+          echo "game: ${{ github.ref_name }}" >> VERSION
+          echo "https://github.com/willtobyte/carimbo" >> VERSION
+
       - name: Copy files
         run: |
           mkdir -p output/{macos,windows}
           cp bundle.7z output/macos/
           cp bundle.7z output/windows/
-          mv carimbo.exe output/windows/
-          mv carimbo output/macos/
+          cp carimbo.exe output/windows/
+          cp carimbo output/macos/
+          cp VERSION output/windows/
+          cp VERSION output/macos/
 
       - name: Upload build to Steam
         uses: game-ci/steam-deploy@v3
