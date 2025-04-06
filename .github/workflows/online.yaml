@@ -20,6 +20,10 @@ jobs:
         run: |
           sudo apt-get install --yes p7zip-full
 
+      - name: Enforce non-fullscreen
+        run: |
+          sed -i -E 's/^(\s*:with_fullscreen\s*)\(true\)/\1(false)/' scripts/main.lua
+
       - name: Create bundle
         run: 7z a -xr'!icon.png' -xr'!.git/*' -xr'!.git' -xr'!.*' -t7z -m0=lzma -mx=6 -mfb=64 -md=32m -ms=on bundle.7z .
 
