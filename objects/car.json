@@ -1,0 +1,80 @@
+{
+  "spritesheet": "blobs/car.png",
+  "animations": {
+    "default": {
+      "frames": [
+        {
+          "duration": 100,
+          "offset": {
+            "x": 370,
+            "y": 163
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 11
+          }
+        }
+      ]
+    },
+    "run": {
+      "oneshot": true,
+      "next": "default",
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 370,
+            "y": 163
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 11
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 369,
+            "y": 163
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 11
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 368,
+            "y": 163
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 11
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 369,
+            "y": 163
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 23,
+            "height": 11
+          }
+        }
+      ]
+    }
+  }
+}
