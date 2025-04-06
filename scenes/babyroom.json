@@ -6,6 +6,10 @@
     "beelzebuuth": {
       "kind": "beelzebuuth"
     },
+    "car": {
+      "action": "default",
+      "kind": "car"
+    },
     "crucifix": {
       "action": "default",
       "kind": "crucifix"

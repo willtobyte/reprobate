@@ -12,6 +12,7 @@ function scene.on_enter()
   pool.timers = {}
 
   local objects = {
+    { name = "car",  minimum = 3, maximum = 8, act = "run" },
     { name = "bear",  minimum = 2, maximum = 4, act = "blink" },
     { name = "clown", minimum = 6, maximum = 8, act = "blink" },
     { name = "robot", minimum = 3, maximum = 6, act = "shake" },
