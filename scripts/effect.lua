@@ -22,7 +22,7 @@ function effect.loop()
     return
   end
 
-  local a_offset = alpha * 0x01000000
+  local offset = alpha * 0x01000000
   local base, intensity, index
 
   for y = 0, height - 1 do
@@ -37,7 +37,7 @@ function effect.loop()
       end
 
       index = base + x + 1
-      pixels[index] = a_offset + intensity * 0x010101
+      pixels[index] = offset + intensity * 0x010101
     end
   end
 
