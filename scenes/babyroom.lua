@@ -60,7 +60,8 @@ function scene.on_enter()
   end
 
   pool.beelzebuuth = scene:get("beelzebuuth")
-  local damnation = (666 * 600) / 60000
+  pool.beelzebuuth.action:unset()
+  local damnation = 6.66 * 60000
   local id = timermanager:set(damnation, function()
     pool.beelzebuuth.action:set("summon")
   end)
