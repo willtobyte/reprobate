@@ -70,14 +70,16 @@ function scene.on_enter()
 
   table.insert(pool.timers, id)
 
-  effect.on_loop()
+  effect.init()
 end
 
 function scene.on_loop()
-  effect.on_loop()
+  effect.loop()
 end
 
 function scene.on_leave()
+  effect.teardown()
+
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
   end
