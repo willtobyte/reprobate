@@ -5,7 +5,7 @@ local canvas = engine:canvas()
 local w, h = 480, 270
 local pixels = {}
 local start = nil
-local duration = 1200
+local duration = 1000
 
 function effect.init()
   start = ticks()
@@ -29,9 +29,11 @@ function effect.loop()
     local base = y * w
     for x = 0, w - 1 do
       local intensity = math.random(0, 255)
+
       if y % 2 == 0 then
         intensity = math.floor(intensity * 0.7)
       end
+
       pixels[base + x + 1] = alpha * 0x01000000 + intensity * 0x010101
     end
   end
