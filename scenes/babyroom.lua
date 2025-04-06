@@ -79,7 +79,8 @@ function scene.on_leave()
   end
 end
 
-function scene.on_click()
+function scene.on_touch()
+  print("on touch")
 end
 
 return scene
