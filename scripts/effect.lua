@@ -13,7 +13,7 @@ local random = math.random
 function effect.init()
   start = ticks()
 end
-
+s
 function effect.loop()
   local elapsed = ticks() - start
   local alpha = elapsed < duration and floor(255 * (1 - elapsed / duration)) or 0
