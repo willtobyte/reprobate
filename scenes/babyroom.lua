@@ -14,17 +14,17 @@ function scene.on_enter()
   pool.timers = {}
 
   local objects = {
-    { name = "car",  minimum = 3, maximum = 8, act = "run" },
-    { name = "bear",  minimum = 2, maximum = 4, act = "blink" },
-    { name = "clown", minimum = 6, maximum = 8, act = "blink" },
-    { name = "robot", minimum = 3, maximum = 6, act = "shake" },
+    { name = "car",  minimum = 3, maximum = 8, action = "run" },
+    { name = "bear",  minimum = 2, maximum = 4, action = "blink" },
+    { name = "clown", minimum = 6, maximum = 8, action = "blink" },
+    { name = "robot", minimum = 3, maximum = 6, action = "shake" },
   }
 
   for _, o in ipairs(objects) do
     pool[o.name] = scene:get(o.name)
     local delay = math.random(o.minimum, o.maximum) * 1000
     local id = timermanager:set(delay, function()
-      pool[o.name].action:set(o.act)
+      pool[o.name].action:set(o.action)
     end)
 
     table.insert(pool.timers, id)
