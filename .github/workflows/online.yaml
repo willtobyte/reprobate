@@ -52,7 +52,6 @@ jobs:
           <html lang="en">
             <head>
               <meta charset="UTF-8" />
-              <title>Carimbo - ${GIT_SHORT_HASH}</title>
               <style>
                 *,
                 *::before,
@@ -95,6 +94,8 @@ jobs:
               </div>
 
               <script type="module">
+                console.log(${GIT_SHORT_HASH});
+
                 const canvas = document.getElementById("canvas");
 
                 const response = await fetch("bundle.7z");
