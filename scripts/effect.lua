@@ -31,17 +31,13 @@ function effect.loop()
   for y = 0, height - 1 do
     local multiplier = (y % 2 == 0) and 0.7 or 1.0
 
-    if multiplier == 1.0 then
-      for x = 0, width - 1 do
-        pixels[index] = offset + random(0, 255) * MAX_COLOR
-        index = index + 1
+    for x = 0, width - 1 do
+      local intensity = random(0, 255)
+      if multiplier ~= 1.0 then
+        intensity = floor(intensity * multiplier)
       end
-    else
-      for x = 0, width - 1 do
-        local intensity = floor(random(0, 255) * multiplier)
-        pixels[index] = offset + intensity * MAX_COLOR
-        index = index + 1
-      end
+      pixels[index] = offset + intensity * MAX_COLOR
+      index = index + 1
     end
   end
 
