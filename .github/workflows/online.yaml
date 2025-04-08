@@ -94,7 +94,7 @@ jobs:
               </div>
 
               <script type="module">
-                console.log(${GIT_SHORT_HASH});
+                console.log("${GIT_SHORT_HASH}");
 
                 const canvas = document.getElementById("canvas");
 
