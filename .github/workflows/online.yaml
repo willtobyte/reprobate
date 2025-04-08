@@ -43,7 +43,7 @@ jobs:
           mv carimbo.wasm output/
 
       - name: Set short commit hash
-        run: echo "GIT_SHORT_HASH=${{ github.sha::7 }}" >> $GITHUB_ENV
+        run: echo "GIT_SHORT_HASH=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Create HTML index file
         run: |
