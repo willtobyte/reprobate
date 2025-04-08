@@ -10,6 +10,9 @@ local duration = 1000
 local floor = math.floor
 local random = math.random
 
+local MAX_COLOR = 0x010101
+local ALPHA_SHIFT = 0x01000000
+
 function effect.init()
   start = ticks()
 end
@@ -22,22 +25,23 @@ function effect.loop()
     return
   end
 
-  local offset = alpha * 0x01000000
-  local base, intensity, index
+  local offset = alpha * ALPHA_SHIFT
+  local index = 1
 
   for y = 0, height - 1 do
-    base = y * width
     local multiplier = (y % 2 == 0) and 0.7 or 1.0
 
-    for x = 0, width - 1 do
-      intensity = random(0, 255)
-
-      if multiplier ~= 1.0 then
-        intensity = floor(intensity * multiplier)
+    if multiplier == 1.0 then
+      for x = 0, width - 1 do
+        pixels[index] = offset + random(0, 255) * MAX_COLOR
+        index = index + 1
       end
-
-      index = base + x + 1
-      pixels[index] = offset + intensity * 0x010101
+    else
+      for x = 0, width - 1 do
+        local intensity = floor(random(0, 255) * multiplier)
+        pixels[index] = offset + intensity * MAX_COLOR
+        index = index + 1
+      end
     end
   end
 
