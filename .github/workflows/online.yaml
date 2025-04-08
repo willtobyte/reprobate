@@ -42,6 +42,9 @@ jobs:
           mv carimbo.js output/
           mv carimbo.wasm output/
 
+      - name: Set short commit hash
+        run: echo "GIT_SHORT_HASH=${{ github.sha::7 }}" >> $GITHUB_ENV
+
       - name: Create HTML index file
         run: |
           cat << 'EOF' > output/index.html
@@ -49,7 +52,7 @@ jobs:
           <html lang="en">
             <head>
               <meta charset="UTF-8" />
-              <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+              <title>Carimbo - ${GIT_SHORT_HASH}</title>
               <style>
                 *,
                 *::before,
