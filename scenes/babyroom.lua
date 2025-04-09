@@ -91,7 +91,6 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-  print("on touch")
 end
 
 return scene
