@@ -25,7 +25,14 @@ jobs:
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(true\)/\1(false)/' scripts/main.lua
 
       - name: Create bundle
-        run: 7z a -xr'!icon.png' -xr'!.git/*' -xr'!.git' -xr'!.*' -t7z -m0=lzma2 -mx=1 -mfb=8 -md=32k -ms=off bundle.7z .
+        run: |
+          7z a -t7z -mx=0 -ms=off -mmt=off bundle.7z \
+            $(find . -type f \( -iname '*.png' -o -iname '*.ogg' \) \
+              ! -path './.git/*' ! -path './.git' ! -name 'icon.png' ! -name '.*')
+
+          7z a -t7z -m0=lzma2 -mx=1 -mfb=8 -md=32k -ms=off -mmt=off bundle.7z \
+            $(find . -type f ! \( -iname '*.png' -o -iname '*.ogg' \) \
+              ! -path './.git/*' ! -path './.git' ! -name 'icon.png' ! -name '.*')
 
       - name: Download Carimbo WebAssembly runtime
         env:
