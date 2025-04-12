@@ -1,4 +1,4 @@
-local effect = require("effect")
+local noise = require("effects/noise")
 
 local scene = {}
 
@@ -71,15 +71,15 @@ function scene.on_enter()
 
   table.insert(pool.timers, id)
 
-  effect.init()
+  noise.init()
 end
 
 function scene.on_loop()
-  effect.loop()
+  noise.loop()
 end
 
 function scene.on_leave()
-  effect.teardown()
+  noise.teardown()
 
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
