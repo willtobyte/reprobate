@@ -16,8 +16,8 @@ local label = nil
 
 function setup()
   label = overlay:create(WidgetType.label)
-  label.font = fontfactory:get("verminvibes")
-  -- label:set("Rodrigo Delduca! [6]66", 0, 0)
+  label.font = fontfactory:get("ghastlypanic")
+  label:set("Rodrigo Delduca! [6]66", 0, 0)
 
   resourcemanager:prefetch()
 
