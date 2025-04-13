@@ -37,7 +37,7 @@ end
 
 function scene.on_enter()
   pool.label = overlay:create(WidgetType.label)
-  pool.label.font = fontfactory:get("kreepykrawly")
+  pool.label.font = fontfactory:get("evilvampire") -- "kreepykrawly"
 
   pool.timers = {}
 
@@ -82,16 +82,16 @@ function scene.on_enter()
   pool.beelzebuuth = scene:get("beelzebuuth")
   pool.beelzebuuth.action:unset()
 
-  local id = timermanager:set(6.66 * 6000, function()
-    soundmanager:play("scream")
-    pool.beelzebuuth.action:set("summon")
-  end)
-  table.insert(pool.timers, id)
+  -- local id = timermanager:set(6.66 * 6000, function()
+  --   soundmanager:play("scream")
+  --   pool.beelzebuuth.action:set("summon")
+  -- end)
+  -- table.insert(pool.timers, id)
 
   noise.init()
 
   noise.on_end(function ()
-    write("I drown your holiness in the Acheron of my soul", 47, 5)
+    write("I drown your holiness in the Acheron of my soul", 2, 3) -- 47
   end)
 end
 
@@ -109,6 +109,8 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
+  -- Depois de 3-5 touchs aparece o beelzebuuth
+
   pool.label:clear()
 
   if pool.timer then
