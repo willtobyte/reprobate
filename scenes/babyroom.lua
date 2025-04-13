@@ -11,7 +11,7 @@ local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
 
-local label
+pool.label = nil
 
 local function write(text, x, y)
   if pool.timer then
@@ -21,11 +21,11 @@ local function write(text, x, y)
 
   pool.text = text
   pool.index = 0
-  label:set("", x, y)
+  pool.label:set("", x, y)
 
   local function tick()
     pool.index = pool.index + 1
-    label:set(text:sub(1, pool.index), x, y)
+    pool.label:set(text:sub(1, pool.index), x, y)
     if pool.index >= #text then
       timermanager:clear(pool.timer)
       pool.timer = nil
@@ -36,8 +36,8 @@ local function write(text, x, y)
 end
 
 function scene.on_enter()
-  label = overlay:create(WidgetType.label)
-  label.font = fontfactory:get("kreepykrawly")
+  pool.label = overlay:create(WidgetType.label)
+  pool.label.font = fontfactory:get("kreepykrawly")
 
   pool.timers = {}
 
@@ -109,12 +109,12 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-  label:clear()
+  pool.label:clear()
 
-  -- if pool.timer then
-  --   timermanager:clear(pool.timer)
-  --   pool.timer = nil
-  -- end
+  if pool.timer then
+    timermanager:clear(pool.timer)
+    pool.timer = nil
+  end
 end
 
 return scene
