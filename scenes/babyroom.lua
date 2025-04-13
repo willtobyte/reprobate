@@ -91,7 +91,7 @@ function scene.on_enter()
   noise.init()
 
   noise.on_end(function ()
-    write("I drown your holiness in the Acheron of my soul", 2, 3) -- 47
+    write("I drown your holiness in the Acheron of my soul", 3, 3) -- 47
   end)
 end
 
