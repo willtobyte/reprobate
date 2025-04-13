@@ -111,10 +111,10 @@ end
 function scene.on_touch()
   label:clear()
 
-  if pool.timer then
-    timermanager:clear(pool.timer)
-    pool.timer = nil
-  end
+  -- if pool.timer then
+  --   timermanager:clear(pool.timer)
+  --   pool.timer = nil
+  -- end
 end
 
 return scene

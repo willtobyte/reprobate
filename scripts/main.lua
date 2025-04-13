@@ -8,16 +8,11 @@ _G.engine = EngineFactory.new()
 
 local resourcemanager = engine:resourcemanager()
 local scenemanager = engine:scenemanager()
-local overlay = engine:overlay()
-local fontfactory = engine:fontfactory()
-local overlay = engine:overlay()
-
-local label = nil
 
 function setup()
   resourcemanager:prefetch()
 
-  overlay.cursor:set("horn")
+  -- overlay.cursor:set("horn")
 
   scenemanager:register("babyroom")
 
