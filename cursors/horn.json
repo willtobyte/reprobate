@@ -1,8 +1,8 @@
 {
   "spritesheet": "blobs/horn.png",
   "point": {
-    "x": 17,
-    "y": 8
+    "x": 18,
+    "y": 9
   },
   "animations": {
     "left": {

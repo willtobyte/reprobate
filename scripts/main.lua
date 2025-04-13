@@ -15,10 +15,6 @@ local overlay = engine:overlay()
 local label = nil
 
 function setup()
-  label = overlay:create(WidgetType.label)
-  label.font = fontfactory:get("ghastlypanic")
-  label:set("Rodrigo Delduca! [6]66", 0, 0)
-
   resourcemanager:prefetch()
 
   overlay.cursor:set("horn")
