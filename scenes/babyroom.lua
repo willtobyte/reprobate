@@ -91,11 +91,7 @@ function scene.on_enter()
   noise.init()
 
   noise.on_end(function ()
-    write([[
-We are fallen gods from a nonexistent paradise
-Calling the occult through dark alchemy
-I drown your holiness in the Acheron of my soul
-    ]], 5, 5)
+    write("I drown your holiness in the Acheron of my soul", 47, 5)
   end)
 end
 
