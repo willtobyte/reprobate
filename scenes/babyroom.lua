@@ -60,7 +60,7 @@ function scene.on_enter()
       writter.clear()
     end
     writter.write("I drown your holiness in the Acheron of my soul", 3, 3)
-    writter.on_finish(3000, callback)
+    writter.on_finish(12000, callback)
   end)
 end
 

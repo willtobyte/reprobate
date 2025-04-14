@@ -44,6 +44,7 @@ function writter.write(text, x, y)
       timermanager:clear(pool.timer)
       pool.timer = nil
       if pool.callback then
+        print('call callback')
         timermanager:singleshot(pool.timeout, pool.callback)
       end
     end
