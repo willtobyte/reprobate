@@ -6,6 +6,7 @@ local writter = require("helpers/writter")
 local pool = {}
 
 local cassette = engine:cassette()
+local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
