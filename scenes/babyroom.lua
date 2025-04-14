@@ -5,7 +5,7 @@ local scribe = require("helpers/scribe")
 
 local pool = {}
 
-local prefix = prefix
+local prefix = "babyroom/"
 
 local cassette = engine:cassette()
 local overlay = engine:overlay()
@@ -101,7 +101,7 @@ function scene.on_touch()
   local candidates = {}
 
   for name, _ in pairs(hints) do
-    local key =  .. name
+    local key = prefix .. name
     if not cassette:get(key, false) then
       table.insert(candidates, name)
     end
