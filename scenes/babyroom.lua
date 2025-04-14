@@ -91,7 +91,7 @@ function scene.on_touch()
 
   scribe.clear()
 
-  local messages = {
+  local hints = {
     crucifix = "The sacred burns when held by the unworthy",
     gijoe = "Plastic warriors fall silent in cursed halls",
     nintendo = "Joy bleeds through rusted circuits",
@@ -100,7 +100,7 @@ function scene.on_touch()
 
   local candidates = {}
 
-  for name, _ in pairs(messages) do
+  for name, _ in pairs(hints) do
     local key =  .. name
     if not cassette:get(key, false) then
       table.insert(candidates, name)
@@ -110,7 +110,7 @@ function scene.on_touch()
   if #candidates == 0 then return end
 
   local chosen = candidates[math.random(#candidates)]
-  scribe.write(messages[chosen], 3, 3)
+  scribe.write(hints[chosen], 3, 3)
   scribe.on_finish(6000, scribe.clear)
 end
 
