@@ -85,7 +85,7 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-  -- if math.random() > 0.3 then return end
+  if math.random() > 0.3 then return end
 
   scribe.clear()
 
