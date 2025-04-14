@@ -19,6 +19,16 @@ function writter.on_finish(timeout, callback)
   pool.callback = callback
 end
 
+function clear()
+  if pool.timer then
+    timermanager:clear(pool.timer)
+    pool.timer = nil
+  end
+
+  pool.index = 0
+  pool.label:clear()
+end
+
 function writter.write(text, x, y)
   if pool.timer then
     timermanager:clear(pool.timer)

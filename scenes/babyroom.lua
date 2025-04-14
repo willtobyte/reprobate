@@ -63,6 +63,7 @@ function scene.on_enter()
 
   noise.on_end(function()
     writter.write("I drown your holiness in the Acheron of my soul", 3, 3)
+    writter.on_finish(3000, writter.clear)
   end)
 end
 
@@ -81,11 +82,6 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-  pool.label:clear()
-  if pool.timer then
-    timermanager:clear(pool.timer)
-    pool.timer = nil
-  end
 end
 
 return scene
