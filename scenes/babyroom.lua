@@ -1,7 +1,7 @@
 local scene = {}
 
 local noise = require("effects/noise")
-local writter = require("helpers/writter")
+local scribe = require("helpers/scribe")
 
 local pool = {}
 
@@ -45,8 +45,14 @@ function scene.on_enter()
       pool[item.name]:hide()
     else
       pool[item.name]:on_touch(function()
-        if item.damage then overlay:dispatch(Widget.cursor, "damage") end
-        if item.sound then soundmanager:play(item.sound) end
+        if item.damage then
+          overlay:dispatch(Widget.cursor, "damage")
+        end
+
+        if item.sound then
+          soundmanager:play(item.sound)
+        end
+
         pool.television.action:set("poltergeist")
         pool[item.name]:hide()
         cassette:set(key, true)
@@ -57,8 +63,8 @@ function scene.on_enter()
   pool.beelzebuuth = scene:get("beelzebuuth")
 
   noise.on_finish(function()
-    writter.write("I drown your holiness in the Acheron of my soul", 3, 3)
-    writter.on_finish(12000, writter.clear)
+    scribe.write("I drown your holiness in the Acheron of my soul", 3, 3)
+    scribe.on_finish(12000, scribe.clear)
   end)
 end
 
@@ -73,13 +79,36 @@ function scene.on_leave()
     timermanager:clear(id)
   end
 
-  table.clear(pool)
-  -- for k in pairs(pool) do
-  --   pool[k] = nil
-  -- end
+  for k in pairs(pool) do
+    pool[k] = nil
+  end
 end
 
 function scene.on_touch()
+  if math.random() > 0.1 then return end
+
+  scribe.clear()
+
+  local messages = {
+    crucifix = "The sacred burns when held by the unworthy",
+    gijoe = "Plastic warriors fall silent in cursed halls",
+    nintendo = "Joy bleeds through rusted circuits",
+    playboy = "Desire decays beneath forgotten pages",
+  }
+
+  local candidates = {}
+
+  for name, _ in pairs(messages) do
+    if not cassette:get(name, false) then
+      table.insert(candidates, name)
+    end
+  end
+
+  if #candidates == 0 then return end
+
+  local chosen = candidates[math.random(#candidates)]
+  scribe.write(messages[chosen], 3, 3)
+  scribe.on_finish(6000, scribe.clear)
 end
 
 return scene
