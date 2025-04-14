@@ -17,13 +17,13 @@ function scene.on_enter()
   pool.timers = {}
 
   for _, o in ipairs({
-    { name = "car", min = 3, max = 8, action = "run" },
-    { name = "bear", min = 2, max = 4, action = "blink" },
-    { name = "clown", min = 6, max = 8, action = "blink" },
-    { name = "robot", min = 3, max = 6, action = "shake" },
+    { name = "car", minimum = 3, maximum = 8, action = "run" },
+    { name = "bear", minimum = 2, maximum = 4, action = "blink" },
+    { name = "clown", minimum = 6, maximum = 8, action = "blink" },
+    { name = "robot", minimum = 3, maximum = 6, action = "shake" },
   }) do
     pool[o.name] = scene:get(o.name)
-    local delay = math.random(o.min, o.max) * 1000
+    local delay = math.random(o.minimum, o.maximum) * 1000
     local id = timermanager:set(delay, function()
       pool[o.name].action:set(o.action)
     end)
