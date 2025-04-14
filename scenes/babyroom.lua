@@ -62,8 +62,12 @@ function scene.on_enter()
   -- table.insert(pool.timers, id)
 
   noise.on_end(function()
+    function callback()
+      print("on callback")
+      writter.clear()
+    end)
     writter.write("I drown your holiness in the Acheron of my soul", 3, 3)
-    writter.on_finish(3000, writter.clear)
+    writter.on_finish(3000, callback)
   end)
 end
 

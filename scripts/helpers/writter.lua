@@ -15,18 +15,18 @@ pool.label = overlay:create(WidgetType.label)
 pool.label.font = fontfactory:get("evilvampire")
 
 function writter.on_finish(timeout, callback)
+  assert(type(timeout) == "number", "timeout must be a number")
+  assert(type(callback) == "function", "callback must be a function")
+
   pool.timeout = timeout
   pool.callback = callback
 end
 
-function clear()
-  if pool.timer then
-    timermanager:clear(pool.timer)
-    pool.timer = nil
-  end
-
-  pool.index = 0
-  pool.label:clear()
+function writter.clear()
+  print("clear")
+  -- pool.index = 0
+  -- pool.label:clear()
+  print("afeter")
 end
 
 function writter.write(text, x, y)
@@ -45,7 +45,6 @@ function writter.write(text, x, y)
     if pool.index >= #text then
       timermanager:clear(pool.timer)
       pool.timer = nil
-
       if pool.callback then
         timermanager:singleshot(pool.timeout, pool.callback)
       end
