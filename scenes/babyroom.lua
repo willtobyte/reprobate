@@ -5,6 +5,8 @@ local scribe = require("helpers/scribe")
 
 local pool = {}
 
+local prefix = prefix
+
 local cassette = engine:cassette()
 local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
@@ -38,7 +40,7 @@ function scene.on_enter()
     { name = "nintendo", sound = "metal" },
     { name = "playboy", sound = "gore" },
   }) do
-    local key = "babyroom/" .. item.name
+    local key = prefix .. item.name
     pool[item.name] = scene:get(item.name)
 
     if cassette:get(key, false) then
@@ -99,7 +101,7 @@ function scene.on_touch()
   local candidates = {}
 
   for name, _ in pairs(messages) do
-    local key = "babyroom/" .. name
+    local key =  .. name
     if not cassette:get(key, false) then
       table.insert(candidates, name)
     end
