@@ -1,7 +1,8 @@
+local scene = {}
+
 local noise = require("effects/noise")
 local writter = require("helpers/writter")
 
-local scene = {}
 local pool = {}
 
 local cassette = engine:cassette()
@@ -54,18 +55,10 @@ function scene.on_enter()
 
   pool.beelzebuuth = scene:get("beelzebuuth")
 
-  -- Uncomment to enable the beelzebuuth summon event after 6.66*6000ms
-  -- local id = timermanager:set(6.66 * 6000, function()
-  --   soundmanager:play("scream")
-  --   pool.beelzebuuth.action:set("summon")
-  -- end)
-  -- table.insert(pool.timers, id)
-
   noise.on_end(function()
     function callback()
-      print("on callback")
       writter.clear()
-    end)
+    end
     writter.write("I drown your holiness in the Acheron of my soul", 3, 3)
     writter.on_finish(3000, callback)
   end)

@@ -23,10 +23,8 @@ function writter.on_finish(timeout, callback)
 end
 
 function writter.clear()
-  print("clear")
-  -- pool.index = 0
-  -- pool.label:clear()
-  print("afeter")
+  pool.index = 0
+  pool.label:clear()
 end
 
 function writter.write(text, x, y)
