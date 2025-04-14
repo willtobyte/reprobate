@@ -4,53 +4,48 @@ local fontfactory = engine:fontfactory()
 local overlay = engine:overlay()
 local timermanager = engine:timermanager()
 
-local pool = {}
+local label = overlay:create(WidgetType.label)
+label.font = fontfactory:get("evilvampire")
 
-pool.label = nil
-pool.timer = nil
-pool.timeout = nil
-pool.callback = nil
+local text = ""
+local index = 0
+local timer = nil
+local timeout = nil
+local callback = nil
 
-pool.label = overlay:create(WidgetType.label)
-pool.label.font = fontfactory:get("evilvampire")
-
-function writter.on_finish(timeout, callback)
-  assert(type(timeout) == "number", "timeout must be a number")
-  assert(type(callback) == "function", "callback must be a function")
-
-  pool.timeout = timeout
-  pool.callback = callback
+function writter.on_finish(t, cb)
+  assert(type(t) == "number", "timeout must be a number")
+  assert(type(cb) == "function", "callback must be a function")
+  timeout = t
+  callback = cb
 end
 
 function writter.clear()
-  pool.index = 0
-  pool.label:clear()
+  index = 0
+  label:clear()
 end
 
-function writter.write(text, x, y)
-  if pool.timer then
-    timermanager:clear(pool.timer)
-    pool.timer = nil
-  end
+function writter.write(t, x, y)
+  if timer then timermanager:clear(timer) end
 
-  pool.text = text
-  pool.index = 0
-  pool.label:set("", x, y)
+  text = t
+  index = 0
+  label:set("", x, y)
 
   local function tick()
-    pool.index = pool.index + 1
-    pool.label:set(text:sub(1, pool.index), x, y)
-    if pool.index >= #text then
-      timermanager:clear(pool.timer)
-      pool.timer = nil
-      if pool.callback then
-        timermanager:singleshot(pool.timeout, pool.callback)
+    index = index + 1
+    label:set(text:sub(1, index), x, y)
+
+    if index >= #text then
+      timermanager:clear(timer)
+      timer = nil
+      if callback then
+        timermanager:singleshot(timeout, callback)
       end
     end
   end
 
-  local timeout = 100
-  pool.timer = timermanager:set(timeout, tick)
+  timer = timermanager:set(100, tick)
 end
 
 return writter
