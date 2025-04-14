@@ -52,7 +52,7 @@ end
 function effect.teardown()
 end
 
-function effect.on_end(callback)
+function effect.on_finish(callback)
   end_callback = callback
 end
 

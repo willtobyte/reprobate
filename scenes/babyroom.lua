@@ -56,12 +56,9 @@ function scene.on_enter()
 
   pool.beelzebuuth = scene:get("beelzebuuth")
 
-  noise.on_end(function()
-    function callback()
-      writter.clear()
-    end
+  noise.on_finish(function()
     writter.write("I drown your holiness in the Acheron of my soul", 3, 3)
-    writter.on_finish(12000, callback)
+    writter.on_finish(12000, writter.clear)
   end)
 end
 
@@ -71,12 +68,15 @@ end
 
 function scene.on_leave()
   noise.teardown()
+
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
   end
-  for k in pairs(pool) do
-    pool[k] = nil
-  end
+
+  table.clear(pool)
+  -- for k in pairs(pool) do
+  --   pool[k] = nil
+  -- end
 end
 
 function scene.on_touch()
