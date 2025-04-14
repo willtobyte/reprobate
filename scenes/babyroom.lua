@@ -85,7 +85,7 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-  if math.random() > 0.1 then return end
+  -- if math.random() > 0.3 then return end
 
   scribe.clear()
 
@@ -99,7 +99,8 @@ function scene.on_touch()
   local candidates = {}
 
   for name, _ in pairs(messages) do
-    if not cassette:get(name, false) then
+    local key = "babyroom/" .. name
+    if not cassette:get(key, false) then
       table.insert(candidates, name)
     end
   end
