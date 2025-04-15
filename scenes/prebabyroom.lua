@@ -17,9 +17,8 @@ Anarchist to the core
 Satanic to the bone
   ]], 3, 3)
 
-  function callback()
+  local function callback()
     pool.ready = true
-    scribe.clear()
     overlay.cursor:set("horn")
   end
 
@@ -28,6 +27,7 @@ end
 
 function scene.on_touch()
   if pool.ready then
+    scribe.clear()
     scenemanager:set("babyroom")
   end
 end
