@@ -32,4 +32,7 @@ function scene.on_touch()
   end
 end
 
+function scene.on_motion(x, y)
+  print(tostring(x) .. " " .. tostring(y))
+end
 return scene
