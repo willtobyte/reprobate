@@ -87,7 +87,15 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-  if math.random() > 0.2 then return end
+  if math.random() > 0.2 then
+    return
+  end
+
+  if math.random() > 0.6 then
+    pool.beelzebuuth.action:set("summon")
+    soundmanager:play("scream")
+    return
+  end
 
   scribe.clear()
 

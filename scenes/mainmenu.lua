@@ -8,4 +8,7 @@ end
 function scene.on_touch()
 end
 
+function scene.on_motion(x, y)
+end
+
 return scene
