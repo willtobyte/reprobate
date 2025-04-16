@@ -16,6 +16,8 @@ local soundmanager = engine:soundmanager()
 function scene.on_enter()
   noise.init()
 
+  pool.lock = false
+
   pool.timers = {}
 
   for _, o in ipairs({
@@ -87,7 +89,12 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
+  if pool.lock then
+    return
+  end
+
   pool.touches = (pool.touches or 0) + 1
+
   pool.threshold = pool.threshold or math.random(3, 6)
 
   if pool.touches < pool.threshold then
@@ -95,6 +102,7 @@ function scene.on_touch()
   end
 
   pool.touches = 0
+
   pool.threshold = math.random(3, 6)
 
   if math.random() < 1 / 3 then
@@ -120,9 +128,14 @@ function scene.on_touch()
   if #candidates == 0 then return end
 
   local chosen = candidates[math.random(#candidates)]
+
+  pool.lock = true
   scribe.clear()
   scribe.write(hints[chosen], 3, 3)
-  scribe.on_finish(6000, scribe.clear)
+  scribe.on_finish(6000, function()
+    scribe.clear()
+    pool.lock = false
+  end)
 end
 
 return scene
