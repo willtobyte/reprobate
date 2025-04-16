@@ -94,15 +94,12 @@ function scene.on_touch()
   end
 
   pool.touches = (pool.touches or 0) + 1
-
   pool.threshold = pool.threshold or math.random(3, 6)
-
   if pool.touches < pool.threshold then
     return
   end
 
   pool.touches = 0
-
   pool.threshold = math.random(3, 6)
 
   if math.random() < 1 / 3 then
