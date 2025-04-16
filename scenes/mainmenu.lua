@@ -13,9 +13,6 @@ function scene.on_enter()
   pool.headbanger = scene:get("headbanger")
 end
 
-function scene.on_touch()
-end
-
 function scene.on_motion(x, y)
   if x > 240 then -- 480 / 2
     pool.headbanger.action:set("right")
