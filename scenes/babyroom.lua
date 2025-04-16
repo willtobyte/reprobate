@@ -102,41 +102,41 @@ function scene.on_touch()
   pool.touches = 0
   pool.threshold = math.random(3, 6)
 
-  if math.random() < 1 / 3 then
-    pool.beelzebuuth.action:set("summon")
-    soundmanager:play("scream")
-    return
-  end
-
   local hints = {
-    crucifix = "The sacred burns when held by the unworthy",
-    gijoe = "Plastic warriors fall silent in cursed halls",
-    nintendo = "Joy bleeds through rusted circuits",
-    playboy = "Desire decays beneath forgotten pages",
+    crucifix = "He never bled for you",
+    gijoe = "No war in Hell. Only feeding",
+    nintendo = "Fun is dead. Code writhes",
+    playboy = "Flesh rots. Desire remains",
   }
 
   local candidates = {}
-  for name in pairs(hints) do
+  for name, _ in pairs(hints) do
     if not cassette:get(prefix .. name, false) then
       table.insert(candidates, name)
     end
   end
 
-  if #candidates == 0 then return end
+  local want_hint = math.random() < 0.5
+  local can_hint = #candidates > 0
 
-  pool.hint = pool.hint or 1
-  table.sort(candidates)
+  if want_hint and can_hint then
+    pool.hint = pool.hint or 1
+    table.sort(candidates)
+    local chosen = candidates[pool.hint]
+    pool.hint = pool.hint % #candidates + 1
 
-  local chosen = candidates[pool.hint]
-  pool.hint = pool.hint % #candidates + 1
-
-  pool.lock = true
-  scribe.clear()
-  scribe.write(hints[chosen], 3, 3)
-  scribe.on_finish(6000, function()
+    pool.lock = true
     scribe.clear()
-    pool.lock = false
-  end)
+    scribe.write(hints[chosen], 3, 3)
+    scribe.on_finish(3000, function()
+      scribe.clear()
+      pool.lock = false
+    end)
+    return
+  end
+
+  pool.beelzebuuth.action:set("summon")
+  soundmanager:play("scream")
 end
 
 return scene
