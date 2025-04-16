@@ -87,17 +87,21 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-  if math.random() > 0.2 then
+  pool.touches = (pool.touches or 0) + 1
+  pool.threshold = pool.threshold or math.random(3, 6)
+
+  if pool.touches < pool.threshold then
     return
   end
 
-  if math.random() > 0.6 then
+  pool.touches = 0
+  pool.threshold = math.random(3, 6)
+
+  if math.random() < 1 / 3 then
     pool.beelzebuuth.action:set("summon")
     soundmanager:play("scream")
     return
   end
-
-  scribe.clear()
 
   local hints = {
     crucifix = "The sacred burns when held by the unworthy",
@@ -107,10 +111,8 @@ function scene.on_touch()
   }
 
   local candidates = {}
-
-  for name, _ in pairs(hints) do
-    local key = prefix .. name
-    if not cassette:get(key, false) then
+  for name in pairs(hints) do
+    if not cassette:get(prefix .. name, false) then
       table.insert(candidates, name)
     end
   end
@@ -118,6 +120,7 @@ function scene.on_touch()
   if #candidates == 0 then return end
 
   local chosen = candidates[math.random(#candidates)]
+  scribe.clear()
   scribe.write(hints[chosen], 3, 3)
   scribe.on_finish(6000, scribe.clear)
 end
