@@ -1,0 +1,39 @@
+{
+  "spritesheet": "blobs/headbanger.png",
+  "animations": {
+    "left": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 136,
+            "y": 24
+          },
+          "rectangle": {
+            "x": 224,
+            "y": 249,
+            "width": 222,
+            "height": 246
+          }
+        }
+      ]
+    },
+    "right": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 137,
+            "y": 25
+          },
+          "rectangle": {
+            "x": 224,
+            "y": 991,
+            "width": 221,
+            "height": 245
+          }
+        }
+      ]
+    }
+  }
+}
