@@ -1,0 +1,28 @@
+{
+  "spritesheet": "blobs/credits.png",
+  "animations": {
+    "default": {
+      "hitbox": {
+        "x": 330,
+        "y": 10,
+        "width": 90,
+        "height": 110
+      },
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 332,
+            "y": 9
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 84,
+            "height": 110
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "spritesheet": "blobs/play.png",
+  "animations": {
+    "default": {
+      "hitbox": {
+        "x": 56,
+        "y": 15,
+        "width": 120,
+        "height": 106
+      },
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 54,
+            "y": 15
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 114,
+            "height": 105
+          }
+        }
+      ]
+    }
+  }
+}

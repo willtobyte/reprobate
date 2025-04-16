@@ -1,5 +1,15 @@
 {
   "background": "blobs/mainmenu.png",
   "width": 480,
-  "height": 270
+  "height": 270,
+  "objects": {
+    "play": {
+      "kind": "play",
+      "action": "default"
+    },
+    "credits": {
+      "kind": "credits",
+      "action": "default"
+    }
+  }
 }

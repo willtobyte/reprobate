@@ -13,14 +13,14 @@ local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
 function setup()
-  overlay.cursor:hide()
-
   resourcemanager:prefetch()
 
-  scenemanager:register("prebabyroom")
+  overlay.cursor:set("horn")
+
+  scenemanager:register("mainmenu")
   scenemanager:register("babyroom")
 
-  scenemanager:set("prebabyroom")
+  scenemanager:set("mainmenu")
 end
 
 function loop()
