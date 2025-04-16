@@ -4,16 +4,16 @@
     "left": {
       "frames": [
         {
-          "duration": 200,
+          "duration": 1000,
           "offset": {
-            "x": 136,
-            "y": 24
+            "x": 137,
+            "y": 22
           },
           "rectangle": {
-            "x": 224,
-            "y": 249,
-            "width": 222,
-            "height": 246
+            "x": 1,
+            "y": 1,
+            "width": 221,
+            "height": 248
           }
         }
       ]
@@ -21,14 +21,14 @@
     "right": {
       "frames": [
         {
-          "duration": 200,
+          "duration": 1000,
           "offset": {
             "x": 137,
             "y": 25
           },
           "rectangle": {
-            "x": 224,
-            "y": 991,
+            "x": 1,
+            "y": 251,
             "width": 221,
             "height": 245
           }
