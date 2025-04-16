@@ -127,7 +127,11 @@ function scene.on_touch()
 
   if #candidates == 0 then return end
 
-  local chosen = candidates[math.random(#candidates)]
+  pool.hint = pool.hint or 1
+  table.sort(candidates)
+
+  local chosen = candidates[pool.hint]
+  pool.hint = pool.hint % #candidates + 1
 
   pool.lock = true
   scribe.clear()
