@@ -119,7 +119,6 @@ function scene.on_touch()
   if want and can then
     local chosen = candidates[math.random(#candidates)]
 
-    pool.lock = true
     scribe.clear()
     scribe.write(hints[chosen], 3, 3)
     scribe.on_finish(3000, function()
