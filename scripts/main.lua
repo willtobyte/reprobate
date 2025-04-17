@@ -6,6 +6,8 @@ _G.engine = EngineFactory.new()
     :with_fullscreen(true)
     :create()
 
+local cassette = engine:cassette()
+
 local resourcemanager = engine:resourcemanager()
 
 local scenemanager = engine:scenemanager()
@@ -22,7 +24,9 @@ function setup()
   scenemanager:register("mainmenu")
   scenemanager:register("babyroom")
 
-  scenemanager:set("mainmenu")
+  local stage = cassette:get("system/stage", "mainmenu")
+
+  scenemanager:set(stage)
 end
 
 function loop()

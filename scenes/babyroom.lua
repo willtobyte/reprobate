@@ -15,7 +15,7 @@ local soundmanager = engine:soundmanager()
 
 function scene.on_enter()
   noise.init()
-
+  cassette:set("system/stage", "babyroom")
   pool.timers = {}
 
   for _, object in ipairs({
