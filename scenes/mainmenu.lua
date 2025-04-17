@@ -1,5 +1,7 @@
 local scene = {}
 
+local cassette = engine:cassette()
+
 local scenemanager = engine:scenemanager()
 
 local pool = {}
@@ -7,7 +9,9 @@ local pool = {}
 function scene.on_enter()
   local play = scene:get("play")
   play:on_touch(function ()
-    scenemanager:set("babyroom")
+    local stage = cassette:get("system/stage", "babyroom")
+
+    scenemanager:set(stage)
   end)
 
   pool.headbanger = scene:get("headbanger")

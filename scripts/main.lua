@@ -24,9 +24,7 @@ function setup()
   scenemanager:register("mainmenu")
   scenemanager:register("babyroom")
 
-  local stage = cassette:get("system/stage", "mainmenu")
-
-  scenemanager:set(stage)
+  scenemanager:set("mainmenu")
 end
 
 function loop()
