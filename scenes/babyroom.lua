@@ -116,10 +116,9 @@ function scene.on_touch()
     end
   end
 
-  local want_hint = math.random() < 0.5
-  local can_hint = #candidates > 0
-
-  if want_hint and can_hint then
+  local want = math.random() < 0.5
+  local can = #candidates > 0
+  if want and can then
     pool.hint = pool.hint or 1
     table.sort(candidates)
     local chosen = candidates[pool.hint]
