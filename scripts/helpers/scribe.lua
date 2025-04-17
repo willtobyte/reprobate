@@ -26,7 +26,11 @@ function writter.clear()
 end
 
 function writter.write(t, x, y)
-  if timer then timermanager:clear(timer) end
+  assert(type(t) == "string", ("scribe.write: expected string, got %s"):format(type(t)))
+
+  if timer then
+    timermanager:clear(timer)
+  end
 
   text = t
   index = 0
