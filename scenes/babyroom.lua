@@ -117,6 +117,7 @@ function scene.on_touch()
   local want = math.random() < 0.5
   local can = #candidates > 0
   if want and can then
+    pool.lock = true
     local chosen = candidates[math.random(#candidates)]
 
     scribe.clear()
