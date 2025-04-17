@@ -114,7 +114,7 @@ function scene.on_touch()
     end
   end
 
-  local want = math.random() < 0.5
+  local want = math.random() < 0.8
   local can = #candidates > 0
   if want and can then
     pool.lock = true

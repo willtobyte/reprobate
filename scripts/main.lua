@@ -13,6 +13,8 @@ local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
 function setup()
+  math.randomseed(os.time())
+
   resourcemanager:prefetch()
 
   overlay.cursor:set("horn")
