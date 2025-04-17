@@ -3,10 +3,10 @@
   "animations": {
     "default": {
       "hitbox": {
-        "x": 330,
-        "y": 10,
-        "width": 90,
-        "height": 110
+        "x": 322,
+        "y": 8,
+        "width": 100,
+        "height": 112
       },
       "frames": [
         {
@@ -19,7 +19,7 @@
             "x": 1,
             "y": 1,
             "width": 84,
-            "height": 110
+            "height": 106
           }
         }
       ]
