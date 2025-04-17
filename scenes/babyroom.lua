@@ -16,8 +16,6 @@ local soundmanager = engine:soundmanager()
 function scene.on_enter()
   noise.init()
 
-  pool.lock = false
-
   pool.timers = {}
 
   for _, object in ipairs({
