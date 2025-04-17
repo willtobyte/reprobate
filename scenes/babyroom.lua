@@ -20,16 +20,16 @@ function scene.on_enter()
 
   pool.timers = {}
 
-  for _, o in ipairs({
+  for _, object in ipairs({
     { name = "car", minimum = 3, maximum = 8, action = "run" },
     { name = "bear", minimum = 2, maximum = 4, action = "blink" },
     { name = "clown", minimum = 6, maximum = 8, action = "blink" },
     { name = "robot", minimum = 3, maximum = 6, action = "shake" },
   }) do
-    pool[o.name] = scene:get(o.name)
-    local delay = math.random(o.minimum, o.maximum) * 1000
+    pool[object.name] = scene:get(object.name)
+    local delay = math.random(object.minimum, object.maximum) * 1000
     local id = timermanager:set(delay, function()
-      pool[o.name].action:set(o.action)
+      pool[object.name].action:set(object.action)
     end)
     table.insert(pool.timers, id)
   end
@@ -103,10 +103,10 @@ function scene.on_touch()
   pool.threshold = math.random(3, 6)
 
   local hints = {
-    crucifix = "He never bled for you",
-    gijoe = "No war in Hell. Only feeding",
-    nintendo = "Fun is dead. Code writhes",
-    playboy = "Flesh rots. Desire remains",
+    crucifix = "His sacrifice means nothing",
+    gijoe    = "Covert missions demand unbreakable resolve",
+    nintendo = "Joy fades leaving glitching code",
+    playboy  = "Velvet whispers ignite hidden passions",
   }
 
   local candidates = {}
