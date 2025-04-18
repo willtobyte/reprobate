@@ -32,6 +32,10 @@ function scene.on_enter()
 
   pool.timers = {}
 
+  pool.television = scene:get("television")
+
+  pool.beelzebuuth = scene:get("beelzebuuth")
+
   for name, config in pairs(timed) do
     pool[name] = scene:get(name)
     local delay = math.random(config.minimum, config.maximum) * 1000
@@ -42,9 +46,9 @@ function scene.on_enter()
   end
 
   for name, config in pairs(items) do
-    local key   = prefix .. name
-    local object   = scene:get(name)
-    pool[name]  = obj
+    local key = prefix .. name
+    local object = scene:get(name)
+    pool[name] = object
 
     local done = cassette:get(key, false)
     if done then
@@ -66,10 +70,6 @@ function scene.on_enter()
       end)
     end
   end
-
-  pool.television = scene:get("television")
-
-  pool.beelzebuuth = scene:get("beelzebuuth")
 
   noise.on_finish(function()
     scribe.write("I drown your holiness in the Acheron of my soul", 3, 3)
