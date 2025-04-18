@@ -36,13 +36,13 @@ function scene.on_enter()
 
   pool.beelzebuuth = scene:get("beelzebuuth")
 
-  for name, config in pairs(timed) do
+  for name, configuration in pairs(timed) do
     pool[name] = scene:get(name)
 
-    local delay = math.random(config.minimum, config.maximum) * 1000
+    local delay = math.random(configuration.minimum, configuration.maximum) * 1000
 
     local id = timermanager:set(delay, function()
-      pool[name].action:set(config.action)
+      pool[name].action:set(configuration.action)
     end)
 
     table.insert(pool.timers, id)
