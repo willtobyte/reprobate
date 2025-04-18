@@ -4,6 +4,7 @@ local noise = require("effects/noise")
 local scribe = require("helpers/scribe")
 
 local pool = {}
+local lock = false
 local prefix = "babyroom/"
 
 local cassette = engine:cassette()
@@ -100,7 +101,7 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-  if pool.lock then
+  if lock then
     return
   end
 
@@ -122,7 +123,7 @@ function scene.on_touch()
   end
 
   if math.random() < 0.8 and #candidates > 0 then
-    pool.lock = true
+    lock = true
 
     local chosen = candidates[math.random(#candidates)]
 
@@ -130,7 +131,7 @@ function scene.on_touch()
     scribe.write(items[chosen].hint, 3, 3)
     scribe.on_finish(3000, function()
       scribe.clear()
-      pool.lock = false
+      lock = false
     end)
 
     return
