@@ -1,13 +1,13 @@
 local scene = {}
 
-local noise       = require("effects/noise")
-local scribe      = require("helpers/scribe")
+local noise = require("effects/noise")
+local scribe = require("helpers/scribe")
 
-local pool        = {}
-local prefix      = "babyroom/"
+local pool = {}
+local prefix = "babyroom/"
 
-local cassette    = engine:cassette()
-local overlay     = engine:overlay()
+local cassette = engine:cassette()
+local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
@@ -34,34 +34,40 @@ function scene.on_enter()
 
   for name, config in pairs(timed) do
     pool[name] = scene:get(name)
-    local delay     = math.random(config.minimum, config.maximum) * 1000
-    local handle    = timermanager:set(delay, function()
+    local delay = math.random(config.minimum, config.maximum) * 1000
+    local handle = timermanager:set(delay, function()
       pool[name].action:set(config.action)
     end)
     table.insert(pool.timers, handle)
   end
 
-  pool.television = scene:get("television")
-
   for name, config in pairs(items) do
-    local key      = prefix .. name
-    pool[name]     = scene:get(name)
-    if cassette:get(key, false) then
-      pool[name]:hide()
-    else
-      pool[name]:on_touch(function()
+    local key   = prefix .. name
+    local object   = scene:get(name)
+    pool[name]  = obj
+
+    local done = cassette:get(key, false)
+    if done then
+      object:hide()
+    end
+
+    if not done then
+      object:on_touch(function(self)
         if config.damage then
           overlay:dispatch(Widget.cursor, "damage")
         end
         if config.sound then
           soundmanager:play(config.sound)
         end
+
         pool.television.action:set("poltergeist")
-        pool[name]:hide()
+        self:hide()
         cassette:set(key, true)
       end)
     end
   end
+
+  pool.television = scene:get("television")
 
   pool.beelzebuuth = scene:get("beelzebuuth")
 
@@ -77,9 +83,11 @@ end
 
 function scene.on_leave()
   noise.teardown()
+
   for _, handle in ipairs(pool.timers) do
     timermanager:clear(handle)
   end
+
   for key in pairs(pool) do
     pool[key] = nil
   end
@@ -90,14 +98,14 @@ function scene.on_touch()
     return
   end
 
-  pool.touches    = (pool.touches or 0) + 1
-  pool.threshold  = pool.threshold or math.random(3, 6)
+  pool.touches = (pool.touches or 0) + 1
+  pool.threshold = pool.threshold or math.random(3, 6)
 
   if pool.touches < pool.threshold then
     return
   end
 
-  pool.touches   = 0
+  pool.touches = 0
   pool.threshold = math.random(3, 6)
 
   local candidates = {}
