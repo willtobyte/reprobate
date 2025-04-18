@@ -38,11 +38,14 @@ function scene.on_enter()
 
   for name, config in pairs(timed) do
     pool[name] = scene:get(name)
+
     local delay = math.random(config.minimum, config.maximum) * 1000
-    local handle = timermanager:set(delay, function()
+
+    local id = timermanager:set(delay, function()
       pool[name].action:set(config.action)
     end)
-    table.insert(pool.timers, handle)
+
+    table.insert(pool.timers, id)
   end
 
   for name, config in pairs(items) do
@@ -84,13 +87,13 @@ end
 function scene.on_leave()
   noise.teardown()
 
-  for _, handle in ipairs(pool.timers) do
-    timermanager:clear(handle)
+  for _, id in ipairs(pool.timers) do
+    timermanager:clear(id)
   end
 
-  for key in pairs(pool) do
-    pool[key] = nil
-  end
+  pool.timers = {}
+
+  pool = {}
 end
 
 function scene.on_touch()
