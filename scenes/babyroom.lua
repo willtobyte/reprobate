@@ -48,7 +48,7 @@ function scene.on_enter()
     table.insert(pool.timers, id)
   end
 
-  for name, config in pairs(items) do
+  for name, configuration in pairs(items) do
     local key = prefix .. name
     local object = scene:get(name)
     pool[name] = object
@@ -60,16 +60,19 @@ function scene.on_enter()
 
     if not done then
       object:on_touch(function(self)
-        if config.damage then
+        if configuration.damage then
           overlay:dispatch(Widget.cursor, "damage")
         end
-        if config.sound then
-          soundmanager:play(config.sound)
+
+        if configuration.sound then
+          soundmanager:play(configuration.sound)
         end
 
         pool.television.action:set("poltergeist")
-        self:hide()
+
         cassette:set(key, true)
+
+        self:hide()
       end)
     end
   end
