@@ -37,7 +37,9 @@ function Writter:clear()
 end
 
 function Writter:write(text, x, y)
-  assert(type(text) == "string", ("writter:write: expected string, got %s"):format(type(t)))
+  assert(type(text) == "string", ("Writter:write: expected string, got %s"):format(type(t)))
+  assert(type(x) == "number", ("Writter:write: expected number for x, got %s"):format(type(x)))
+  assert(type(y) == "number", ("Writter:write: expected number for y, got %s"):format(type(y)))
 
   if self.timer then
     self.timermanager:clear(self.timer)
