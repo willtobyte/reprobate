@@ -1,25 +1,25 @@
 {
-  "spritesheet": "blobs/nintendo.png",
+  "spritesheet": "blobs/babyroom/crucifix.png",
   "animations": {
     "default": {
       "hitbox": {
-        "x": 48,
-        "y": 200,
-        "width": 24,
-        "height": 18
+        "x": 364,
+        "y": 76,
+        "width": 32,
+        "height": 40
       },
       "frames": [
         {
           "duration": 0,
           "offset": {
-            "x": 48,
-            "y": 200
+            "x": 364,
+            "y": 76
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 48,
-            "height": 41
+            "width": 33,
+            "height": 39
           }
         }
       ]

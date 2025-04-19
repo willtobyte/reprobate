@@ -1,25 +1,25 @@
 {
-  "spritesheet": "blobs/gijoe.png",
+  "spritesheet": "blobs/babyroom/nintendo.png",
   "animations": {
     "default": {
       "hitbox": {
-        "x": 208,
-        "y": 203,
-        "width": 22,
-        "height": 10
+        "x": 48,
+        "y": 200,
+        "width": 24,
+        "height": 18
       },
       "frames": [
         {
           "duration": 0,
           "offset": {
-            "x": 208,
-            "y": 203
+            "x": 48,
+            "y": 200
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 22,
-            "height": 11
+            "width": 48,
+            "height": 41
           }
         }
       ]

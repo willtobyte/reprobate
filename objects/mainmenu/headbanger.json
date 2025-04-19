@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/headbanger.png",
+  "spritesheet": "blobs/mainmenu/headbanger.png",
   "animations": {
     "left": {
       "frames": [

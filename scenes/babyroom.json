@@ -1,46 +1,52 @@
 {
-  "background": "blobs/babyroom.png",
+  "background": "blobs/babyroom/background.png",
   "width": 480,
   "height": 270,
+  "effects": [
+    "babyroom/wind",
+    "babyroom/door",
+    "babyroom/metal",
+    "babyroom/gore"
+  ],
   "objects": {
     "beelzebuuth": {
-      "kind": "beelzebuuth"
+      "kind": "babyroom/beelzebuuth"
     },
     "car": {
-      "action": "default",
-      "kind": "car"
+      "kind": "babyroom/car",
+      "action": "default"
     },
     "crucifix": {
-      "action": "default",
-      "kind": "crucifix"
+      "kind": "babyroom/crucifix",
+      "action": "default"
     },
     "bear": {
-      "action": "default",
-      "kind": "bear"
+      "kind": "babyroom/bear",
+      "action": "default"
     },
     "clown": {
-      "action": "default",
-      "kind": "clown"
+      "kind": "babyroom/clown",
+      "action": "default"
     },
     "gijoe": {
-      "action": "default",
-      "kind": "gijoe"
+      "kind": "babyroom/gijoe",
+      "action": "default"
     },
     "nintendo": {
-      "action": "default",
-      "kind": "nintendo"
+      "kind": "babyroom/nintendo",
+      "action": "default"
     },
     "playboy": {
-      "action": "default",
-      "kind": "playboy"
+      "kind": "babyroom/playboy",
+      "action": "default"
     },
     "robot": {
-      "action": "default",
-      "kind": "robot"
+      "kind": "babyroom/robot",
+      "action": "default"
     },
     "television": {
-      "action": "default",
-      "kind": "television"
+      "kind": "babyroom/television",
+      "action": "default"
     }
   }
 }

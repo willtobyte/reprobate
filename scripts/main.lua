@@ -6,16 +6,12 @@ _G.engine = EngineFactory.new()
     :with_fullscreen(true)
     :create()
 
-local resourcemanager = engine:resourcemanager()
-
 local scenemanager = engine:scenemanager()
 
 local overlay = engine:overlay()
 
 function setup()
   math.randomseed(os.time())
-
-  resourcemanager:prefetch()
 
   overlay.cursor:set("horn")
 

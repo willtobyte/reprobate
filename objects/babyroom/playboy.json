@@ -1,25 +1,25 @@
 {
-  "spritesheet": "blobs/crucifix.png",
+  "spritesheet": "blobs/babyroom/playboy.png",
   "animations": {
     "default": {
       "hitbox": {
-        "x": 364,
-        "y": 76,
+        "x": 352,
+        "y": 210,
         "width": 32,
-        "height": 40
+        "height": 18
       },
       "frames": [
         {
-          "duration": 0,
+          "duration": 200,
           "offset": {
-            "x": 364,
-            "y": 76
+            "x": 352,
+            "y": 210
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 33,
-            "height": 39
+            "width": 37,
+            "height": 19
           }
         }
       ]

@@ -1,6 +1,6 @@
 {
   "glyphs": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
-  "spritesheet": "blobs/evilvampire.png",
+  "spritesheet": "blobs/overlay/evilvampire.png",
   "spacing": -5,
   "leading": 3
 }

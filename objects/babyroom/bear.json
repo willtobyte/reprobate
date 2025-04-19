@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/clown.png",
+  "spritesheet": "blobs/babyroom/bear.png",
   "animations": {
     "blink": {
       "next": "default",
@@ -8,53 +8,53 @@
         {
           "duration": 200,
           "offset": {
-            "x": 278,
-            "y": 98
+            "x": 118,
+            "y": 119
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 32,
-            "height": 37
+            "width": 27,
+            "height": 36
           }
         },
         {
           "duration": 200,
           "offset": {
-            "x": 278,
-            "y": 98
+            "x": 118,
+            "y": 119
           },
           "rectangle": {
-            "x": 35,
-            "y": 1,
-            "width": 32,
-            "height": 37
+            "x": 1,
+            "y": 39,
+            "width": 27,
+            "height": 36
           }
         },
         {
           "duration": 200,
           "offset": {
-            "x": 278,
-            "y": 98
+            "x": 118,
+            "y": 119
           },
           "rectangle": {
-            "x": 35,
-            "y": 1,
-            "width": 32,
-            "height": 37
+            "x": 1,
+            "y": 77,
+            "width": 27,
+            "height": 36
           }
         },
         {
           "duration": 200,
           "offset": {
-            "x": 278,
-            "y": 98
+            "x": 118,
+            "y": 119
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 32,
-            "height": 37
+            "width": 27,
+            "height": 36
           }
         }
       ]
@@ -64,14 +64,14 @@
         {
           "duration": 200,
           "offset": {
-            "x": 278,
-            "y": 98
+            "x": 118,
+            "y": 119
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 32,
-            "height": 37
+            "width": 27,
+            "height": 36
           }
         }
       ]

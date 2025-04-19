@@ -12,6 +12,7 @@ local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
+local resourcemanager = engine:resourcemanager()
 
 local timed = {
   car   = { minimum = 3, maximum = 8, action = "run"   },
@@ -21,14 +22,15 @@ local timed = {
 }
 
 local items = {
-  crucifix = { sound = "wind",  damage = true,  hint = "His sacrifice means nothing" },
-  gijoe    = { sound = "door",  damage = false, hint = "Covert missions demand unbreakable resolve" },
-  nintendo = { sound = "metal", damage = false, hint = "Joy fades leaving glitching code" },
-  playboy  = { sound = "gore",  damage = false, hint = "Velvet whispers ignite hidden passions" },
+  crucifix = { sound = prefix .. "wind",  damage = true,  hint = "His sacrifice means nothing" },
+  gijoe    = { sound = prefix .. "door",  damage = false, hint = "Covert missions demand unbreakable resolve" },
+  nintendo = { sound = prefix .. "metal", damage = false, hint = "Joy fades leaving glitching code" },
+  playboy  = { sound = prefix .. "gore",  damage = false, hint = "Velvet whispers ignite hidden passions" },
 }
 
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
+
   noise.init()
 
   pool.timers = {}

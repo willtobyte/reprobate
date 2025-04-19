@@ -1,25 +1,25 @@
 {
-  "spritesheet": "blobs/play.png",
+  "spritesheet": "blobs/mainmenu/credits.png",
   "animations": {
     "default": {
       "hitbox": {
-        "x": 60,
-        "y": 10,
-        "width": 112,
+        "x": 322,
+        "y": 8,
+        "width": 100,
         "height": 112
       },
       "frames": [
         {
           "duration": 200,
           "offset": {
-            "x": 67,
-            "y": 15
+            "x": 332,
+            "y": 9
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 101,
-            "height": 101
+            "width": 84,
+            "height": 106
           }
         }
       ]

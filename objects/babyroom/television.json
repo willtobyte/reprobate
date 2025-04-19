@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/television.png",
+  "spritesheet": "blobs/babyroom/television.png",
   "animations": {
     "default": {
       "frames": [

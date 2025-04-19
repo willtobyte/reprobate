@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/robot.png",
+  "spritesheet": "blobs/babyroom/robot.png",
   "animations": {
     "default": {
       "frames": [

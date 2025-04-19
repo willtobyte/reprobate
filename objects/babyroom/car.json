@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/car.png",
+  "spritesheet": "blobs/babyroom/car.png",
   "animations": {
     "default": {
       "frames": [
