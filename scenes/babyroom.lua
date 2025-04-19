@@ -83,8 +83,8 @@ function scene.on_enter()
   end
 
   noise.on_finish(function()
-    scribe.write("I drown your divinity in the Acheron of my soul", 3, 3)
-    scribe.on_finish(12000, scribe.clear)
+    scribe:write("I drown your divinity in the Acheron of my soul", 3, 3)
+    scribe:on_finish(12000, function() scribe:clear() end)
   end)
 end
 
@@ -131,10 +131,10 @@ function scene.on_touch()
 
     local chosen = candidates[math.random(#candidates)]
 
-    scribe.clear()
-    scribe.write(items[chosen].hint, 3, 3)
-    scribe.on_finish(3000, function()
-      scribe.clear()
+    scribe:clear()
+    scribe:write(items[chosen].hint, 3, 3)
+    scribe:on_finish(3000, function()
+      scribe:clear()
       lock = false
     end)
 

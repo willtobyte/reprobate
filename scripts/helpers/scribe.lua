@@ -1,55 +1,67 @@
-local writter = {}
-
 local fontfactory = engine:fontfactory()
 local overlay = engine:overlay()
 local timermanager = engine:timermanager()
 
-local label = overlay:create(WidgetType.label)
-label.font = fontfactory:get("evilvampire")
+local Writter = {}
+Writter.__index = Writter
 
-local text = ""
-local index = 0
-local timer = nil
-local timeout = nil
-local callback = nil
+function Writter:new()
+  local self = setmetatable({}, Writter)
 
-function writter.on_finish(t, cb)
-  assert(type(t) == "number", "timeout must be a number")
-  assert(type(cb) == "function", "callback must be a function")
-  timeout = t
-  callback = cb
+  self.fontfactory = fontfactory
+  self.overlay = overlay
+  self.timermanager = timermanager
+
+  self.label = self.overlay:create(WidgetType.label)
+  self.label.font = self.fontfactory:get("evilvampire")
+
+  self.text = ""
+  self.index = 0
+  self.timer = nil
+  self.timeout = nil
+  self.callback = nil
+
+  return self
 end
 
-function writter.clear()
-  index = 0
-  label:clear()
+function Writter:on_finish(timeout, callback)
+  assert(type(timeout) == "number", "timeout must be a number")
+  assert(type(callback) == "function", "callback must be a function")
+  self.timeout = timeout
+  self.callback = callback
 end
 
-function writter.write(t, x, y)
-  assert(type(t) == "string", ("scribe.write: expected string, got %s"):format(type(t)))
+function Writter:clear()
+  self.index = 0
+  self.label:clear()
+end
 
-  if timer then
-    timermanager:clear(timer)
+function Writter:write(text, x, y)
+  assert(type(text) == "string", ("writter:write: expected string, got %s"):format(type(t)))
+
+  if self.timer then
+    self.timermanager:clear(self.timer)
   end
 
-  text = t
-  index = 0
-  label:set("", x, y)
+  self.text = text
+  self.index = 0
+  self.label:set("", x, y)
 
   local function tick()
-    index = index + 1
-    label:set(text:sub(1, index), x, y)
+    self.index = self.index + 1
+    self.label:set(self.text:sub(1, self.index), x, y)
 
-    if index >= #text then
-      timermanager:clear(timer)
-      timer = nil
-      if callback then
-        timermanager:singleshot(timeout, callback)
+    if self.index >= #self.text then
+      self.timermanager:clear(self.timer)
+      self.timer = nil
+      if self.callback then
+        self.timermanager:singleshot(self.timeout, self.callback)
       end
     end
   end
 
-  timer = timermanager:set(100, tick)
+  self.timer = self.timermanager:set(100, tick)
 end
 
-return writter
+local instance = Writter:new()
+return instance
