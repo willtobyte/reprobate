@@ -1,3 +1,6 @@
+local MAX_COLOR = 0x010101
+local ALPHA_SHIFT = 0x01000000
+
 local NoiseEffect = {}
 NoiseEffect.__index = NoiseEffect
 
@@ -14,9 +17,6 @@ function NoiseEffect:new(width, height, duration)
 
   self.floor = math.floor
   self.random = math.random
-
-  self.MAX_COLOR = 0x010101
-  self.ALPHA_SHIFT = 0x01000000
 
   return self
 end
@@ -41,7 +41,7 @@ function NoiseEffect:loop()
     return
   end
 
-  local offset = alpha * self.ALPHA_SHIFT
+  local offset = alpha * ALPHA_SHIFT
   local index = 1
 
   for y = 0, self.height - 1 do
@@ -52,7 +52,7 @@ function NoiseEffect:loop()
       if multiplier ~= 1.0 then
         intensity = self.floor(intensity * multiplier)
       end
-      self.pixels[index] = offset + intensity * self.MAX_COLOR
+      self.pixels[index] = offset + intensity * MAX_COLOR
       index = index + 1
     end
   end
