@@ -12,6 +12,7 @@ local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
+local resourcemanager = engine:resourcemanager()
 
 local timed = {
   car   = { minimum = 3, maximum = 8, action = "run"   },
@@ -29,7 +30,8 @@ local items = {
 
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
-  scenemanager:destroy("mainmenu")
+  -- scenemanager:destroy("mainmenu")
+  -- resourcemanager:flush()
 
   noise.init()
 
