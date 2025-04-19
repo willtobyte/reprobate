@@ -1,18 +1,18 @@
 {
-  "background": "blobs/mainmenu/background.png",
+  "background": "background",
   "width": 480,
   "height": 270,
   "objects": {
     "play": {
-      "kind": "mainmenu/play",
+      "kind": "play",
       "action": "default"
     },
     "credits": {
-      "kind": "mainmenu/credits",
+      "kind": "credits",
       "action": "default"
     },
     "headbanger": {
-      "kind": "mainmenu/headbanger",
+      "kind": "headbanger",
       "action": "left"
     }
   }

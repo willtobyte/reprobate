@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/babyroom/beelzebuuth.png",
+  "spritesheet": "beelzebuuth",
   "animations": {
     "summon": {
       "oneshot": true,

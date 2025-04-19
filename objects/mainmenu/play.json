@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/mainmenu/play.png",
+  "spritesheet": "play",
   "animations": {
     "default": {
       "hitbox": {

@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/babyroom/nintendo.png",
+  "spritesheet": "nintendo",
   "animations": {
     "default": {
       "hitbox": {

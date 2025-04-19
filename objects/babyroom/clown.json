@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/babyroom/clown.png",
+  "spritesheet": "clown",
   "animations": {
     "blink": {
       "next": "default",

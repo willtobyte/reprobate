@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/babyroom/gijoe.png",
+  "spritesheet": "gijoe",
   "animations": {
     "default": {
       "hitbox": {

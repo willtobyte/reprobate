@@ -1,5 +1,5 @@
 {
-  "spritesheet": "blobs/babyroom/crucifix.png",
+  "spritesheet": "crucifix",
   "animations": {
     "default": {
       "hitbox": {
