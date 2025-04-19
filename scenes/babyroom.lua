@@ -30,8 +30,8 @@ local items = {
 
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
-  -- scenemanager:destroy("mainmenu")
-  -- resourcemanager:flush()
+  scenemanager:destroy("mainmenu")
+  resourcemanager:flush()
 
   noise.init()
 
@@ -83,7 +83,7 @@ function scene.on_enter()
   end
 
   noise.on_finish(function()
-    scribe.write("I drown your holiness in the Acheron of my soul", 3, 3)
+    scribe.write("I drown your divinity in the Acheron of my soul", 3, 3)
     scribe.on_finish(12000, scribe.clear)
   end)
 end
