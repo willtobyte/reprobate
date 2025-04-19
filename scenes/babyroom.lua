@@ -30,8 +30,8 @@ local items = {
 
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
-  -- scenemanager:destroy("mainmenu")
-  -- resourcemanager:flush()
+  scenemanager:destroy("mainmenu")
+  resourcemanager:flush()
 
   noise:init()
 
