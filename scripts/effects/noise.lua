@@ -6,7 +6,7 @@ local width, height = 480, 270
 local pixels = {}
 local start = nil
 local duration = 1000
-local end_callback = nil
+local callback = nil
 
 local floor = math.floor
 local random = math.random
@@ -23,9 +23,9 @@ function effect.loop()
   local alpha = elapsed < duration and floor(255 * (1 - elapsed / duration)) or 0
 
   if alpha == 0 then
-    if end_callback then
-      end_callback()
-      end_callback = nil
+    if callback then
+      callback()
+      callback = nil
     end
     return
   end
@@ -53,7 +53,7 @@ function effect.teardown()
 end
 
 function effect.on_finish(callback)
-  end_callback = callback
+  callback = callback
 end
 
 return effect
