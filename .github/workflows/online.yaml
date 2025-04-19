@@ -98,12 +98,17 @@ jobs:
 
                 const canvas = document.getElementById("canvas");
 
-                const response = await fetch("bundle.7z");
+                const response = await fetch("bundle.7z?v=${GIT_SHORT_HASH}");
                 const bundle = await response.arrayBuffer();
 
                 window.Module = {
                   canvas,
                   noInitialRun: true,
+                  locateFile: (path) => {
+                    if (path.endsWith('.wasm')) {
+                      return path + '?v=${GIT_SHORT_HASH}';
+                    }
+                  },
                   onRuntimeInitialized: () => {
                     FS.writeFile("/bundle.7z", new Uint8Array(bundle));
                     Module.callMain();
@@ -111,7 +116,7 @@ jobs:
                 };
 
                 const script = document.createElement("script");
-                script.src = "carimbo.js";
+                script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
                 script.defer = true;
                 document.body.appendChild(script);
               </script>
