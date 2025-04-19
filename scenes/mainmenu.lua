@@ -14,6 +14,11 @@ function scene.on_enter()
     scenemanager:set(stage)
   end)
 
+  local credits = scene:get("credits")
+  credits:on_touch(function ()
+    openurl("https://rodrigodelduca.org")
+  end)
+
   pool.headbanger = scene:get("headbanger")
 end
 
