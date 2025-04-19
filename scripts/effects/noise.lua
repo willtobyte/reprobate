@@ -1,59 +1,66 @@
-local effect = {}
+local NoiseEffect = {}
+NoiseEffect.__index = NoiseEffect
 
-local canvas = engine:canvas()
+function NoiseEffect:new(width, height, duration)
+  local instance = setmetatable({}, self)
 
-local width, height = 480, 270
-local pixels = {}
-local start = nil
-local duration = 1000
-local callback = nil
+  instance.canvas = engine:canvas()
+  instance.width = width or 480
+  instance.height = height or 270
+  instance.pixels = {}
+  instance.start_time = nil
+  instance.duration = duration or 1000
+  instance.callback = nil
 
-local floor = math.floor
-local random = math.random
+  instance.floor = math.floor
+  instance.random = math.random
 
-local MAX_COLOR = 0x010101
-local ALPHA_SHIFT = 0x01000000
+  instance.MAX_COLOR = 0x010101
+  instance.ALPHA_SHIFT = 0x01000000
 
-function effect.init()
-  start = ticks()
+  return instance
 end
 
-function effect.loop()
-  local elapsed = ticks() - start
-  local alpha = elapsed < duration and floor(255 * (1 - elapsed / duration)) or 0
+function NoiseEffect:init()
+  self.start_time = ticks()
+end
+
+function NoiseEffect:on_finish(callback)
+  self.callback = callback
+end
+
+function NoiseEffect:loop()
+  local elapsed = ticks() - self.start_time
+  local alpha = (elapsed < self.duration) and self.floor(255 * (1 - elapsed / self.duration)) or 0
 
   if alpha == 0 then
-    if callback then
-      callback()
-      callback = nil
+    if self.callback then
+      self.callback()
+      self.callback = nil
     end
     return
   end
 
-  local offset = alpha * ALPHA_SHIFT
+  local offset = alpha * self.ALPHA_SHIFT
   local index = 1
 
-  for y = 0, height - 1 do
+  for y = 0, self.height - 1 do
     local multiplier = (y % 2 == 0) and 0.7 or 1.0
 
-    for x = 0, width - 1 do
-      local intensity = random(0, 255)
+    for x = 0, self.width - 1 do
+      local intensity = self.random(0, 255)
       if multiplier ~= 1.0 then
-        intensity = floor(intensity * multiplier)
+        intensity = self.floor(intensity * multiplier)
       end
-      pixels[index] = offset + intensity * MAX_COLOR
+      self.pixels[index] = offset + intensity * self.MAX_COLOR
       index = index + 1
     end
   end
 
-  canvas.pixels = pixels
+  self.canvas.pixels = self.pixels
 end
 
-function effect.teardown()
+function NoiseEffect:teardown()
 end
 
-function effect.on_finish(cb)
-  callback = cb
-end
-
-return effect
+return NoiseEffect:new()

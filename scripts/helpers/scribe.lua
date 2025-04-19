@@ -65,5 +65,4 @@ function Writter:write(text, x, y)
   self.timer = self.timermanager:set(100, tick)
 end
 
-local instance = Writter:new()
-return instance
+return Writter:new()

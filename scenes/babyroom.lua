@@ -30,10 +30,10 @@ local items = {
 
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
-  scenemanager:destroy("mainmenu")
-  resourcemanager:flush()
+  -- scenemanager:destroy("mainmenu")
+  -- resourcemanager:flush()
 
-  noise.init()
+  noise:init()
 
   pool.timers = {}
 
@@ -82,18 +82,18 @@ function scene.on_enter()
     end
   end
 
-  noise.on_finish(function()
+  noise:on_finish(function()
     scribe:write("I drown your divinity in the Acheron of my soul", 3, 3)
     scribe:on_finish(12000, function() scribe:clear() end)
   end)
 end
 
 function scene.on_loop()
-  noise.loop()
+  noise:loop()
 end
 
 function scene.on_leave()
-  noise.teardown()
+  noise:teardown()
 
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
