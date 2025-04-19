@@ -1,5 +1,4 @@
 {
-  "spritesheet": "clown",
   "animations": {
     "blink": {
       "next": "default",

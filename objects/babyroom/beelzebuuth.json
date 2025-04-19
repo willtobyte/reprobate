@@ -1,5 +1,4 @@
 {
-  "spritesheet": "beelzebuuth",
   "animations": {
     "summon": {
       "oneshot": true,

@@ -1,12 +1,12 @@
 {
-  "background": "background",
   "width": 480,
   "height": 270,
   "effects": [
     "wind",
     "door",
     "metal",
-    "gore"
+    "gore",
+    "scream"
   ],
   "objects": {
     "beelzebuuth": {

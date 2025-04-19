@@ -139,7 +139,7 @@ function scene.on_touch()
   end
 
   pool.beelzebuuth.action:set("summon")
-  soundmanager:play("scream")
+  soundmanager:play(prefix .. "scream")
 end
 
 return scene

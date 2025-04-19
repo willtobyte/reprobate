@@ -1,5 +1,4 @@
 {
-  "spritesheet": "play",
   "animations": {
     "default": {
       "hitbox": {

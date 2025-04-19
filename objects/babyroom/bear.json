@@ -1,5 +1,4 @@
 {
-  "spritesheet": "bear",
   "animations": {
     "blink": {
       "next": "default",
