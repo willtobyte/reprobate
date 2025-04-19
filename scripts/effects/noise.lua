@@ -2,23 +2,23 @@ local NoiseEffect = {}
 NoiseEffect.__index = NoiseEffect
 
 function NoiseEffect:new(width, height, duration)
-  local instance = setmetatable({}, self)
+  local self = setmetatable({}, NoiseEffect)
 
-  instance.canvas = engine:canvas()
-  instance.width = width or 480
-  instance.height = height or 270
-  instance.pixels = {}
-  instance.start_time = nil
-  instance.duration = duration or 1000
-  instance.callback = nil
+  self.canvas = engine:canvas()
+  self.width = width or 480
+  self.height = height or 270
+  self.pixels = {}
+  self.start_time = nil
+  self.duration = duration or 1000
+  self.callback = nil
 
-  instance.floor = math.floor
-  instance.random = math.random
+  self.floor = math.floor
+  self.random = math.random
 
-  instance.MAX_COLOR = 0x010101
-  instance.ALPHA_SHIFT = 0x01000000
+  self.MAX_COLOR = 0x010101
+  self.ALPHA_SHIFT = 0x01000000
 
-  return instance
+  return self
 end
 
 function NoiseEffect:init()
