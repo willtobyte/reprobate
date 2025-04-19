@@ -29,7 +29,7 @@ local items = {
 
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
-  -- scenemanager:destroy("mainmenu")
+  scenemanager:destroy("mainmenu")
 
   noise.init()
 
