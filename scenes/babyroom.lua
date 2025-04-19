@@ -12,7 +12,6 @@ local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
-local resourcemanager = engine:resourcemanager()
 
 local timed = {
   car   = { minimum = 3, maximum = 8, action = "run"   },
@@ -22,10 +21,10 @@ local timed = {
 }
 
 local items = {
-  crucifix = { sound = prefix .. "wind",  damage = true,  hint = "His sacrifice means nothing" },
-  gijoe    = { sound = prefix .. "door",  damage = false, hint = "Covert missions demand unbreakable resolve" },
-  nintendo = { sound = prefix .. "metal", damage = false, hint = "Joy fades leaving glitching code" },
-  playboy  = { sound = prefix .. "gore",  damage = false, hint = "Velvet whispers ignite hidden passions" },
+  crucifix = { effect = "wind",  damage = true,  hint = "His sacrifice means nothing" },
+  gijoe    = { effect = "door",  damage = false, hint = "Covert missions demand unbreakable resolve" },
+  nintendo = { effect = "metal", damage = false, hint = "Joy fades leaving glitching code" },
+  playboy  = { effect = "gore",  damage = false, hint = "Velvet whispers ignite hidden passions" },
 }
 
 function scene.on_enter()
@@ -67,8 +66,8 @@ function scene.on_enter()
           overlay:dispatch(Widget.cursor, "damage")
         end
 
-        if configuration.sound then
-          soundmanager:play(configuration.sound)
+        if configuration.effect then
+          soundmanager:play(prefix .. configuration.effect)
         end
 
         pool.television.action:set("poltergeist")
