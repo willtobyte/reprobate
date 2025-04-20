@@ -8,12 +8,8 @@ Writter.__index = Writter
 function Writter:new()
   local self = setmetatable({}, Writter)
 
-  self.fontfactory = fontfactory
-  self.overlay = overlay
-  self.timermanager = timermanager
-
-  self.label = self.overlay:create(WidgetType.label)
-  self.label.font = self.fontfactory:get("evilvampire")
+  self.label = overlay:create(WidgetType.label)
+  self.label.font = fontfactory:get("evilvampire")
 
   self.text = ""
   self.index = 0
@@ -42,7 +38,7 @@ function Writter:write(text, x, y)
   assert(type(y) == "number", ("Writter:write: expected number for y, got %s"):format(type(y)))
 
   if self.timer then
-    self.timermanager:clear(self.timer)
+    timermanager:clear(self.timer)
   end
 
   self.text = text
@@ -54,15 +50,15 @@ function Writter:write(text, x, y)
     self.label:set(self.text:sub(1, self.index), x, y)
 
     if self.index >= #self.text then
-      self.timermanager:clear(self.timer)
+      timermanager:clear(self.timer)
       self.timer = nil
       if self.callback then
-        self.timermanager:singleshot(self.timeout, self.callback)
+        timermanager:singleshot(self.timeout, self.callback)
       end
     end
   end
 
-  self.timer = self.timermanager:set(100, tick)
+  self.timer = timermanager:set(100, tick)
 end
 
 return Writter:new()
