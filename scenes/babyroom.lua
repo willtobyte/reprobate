@@ -14,7 +14,7 @@ local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
 local resourcemanager = engine:resourcemanager()
 
-slocal timed = {
+local timed = {
   car   = { minimum = 3, maximum = 8, action = "run"   },
   bear  = { minimum = 2, maximum = 4, action = "blink" },
   clown = { minimum = 6, maximum = 8, action = "blink" },
