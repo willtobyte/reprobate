@@ -28,6 +28,11 @@ local items = {
   playboy  = { effect = "gore",  damage = false, hint = "Velvet whispers ignite hidden passions" },
 }
 
+local function summon()
+  pool.beelzebuuth.action:set("summon")
+  soundmanager:play(prefix .. "scream")
+end
+
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
   scenemanager:destroy("mainmenu")
@@ -141,8 +146,7 @@ function scene.on_touch()
     return
   end
 
-  pool.beelzebuuth.action:set("summon")
-  soundmanager:play(prefix .. "scream")
+  summon()
 end
 
 return scene
