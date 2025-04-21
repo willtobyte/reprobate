@@ -11,13 +11,6 @@ local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
 function setup()
-  if type(jit) == "table" then
-    print("LuaJIT detected")
-    print("Version:", jit.version)
-  else
-    print("Standard Lua (PUC-Rio) detected")
-  end
-
   math.randomseed(os.time())
 
   overlay.cursor:set("horn")
