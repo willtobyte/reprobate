@@ -42,6 +42,25 @@ function scene.on_enter()
 
   pool.timers = {}
 
+  pool.skull = scene:get("skull")
+  pool.skull.action:unset()
+  pool.skull.alpha = 0
+  pool.alpha = 0
+  local id = timermanager:set(30, function ()
+    pool.skull.action:set("default")
+    local dx = math.random(-3, 3)
+    local dy = math.random(-3, 3)
+
+    pool.skull.placement:set(dx, dy)
+
+    if pool.alpha < 255 then
+      pool.alpha = pool.alpha + 10
+      pool.skull.alpha = math.min(pool.alpha, 255)
+    end
+  end)
+
+  table.insert(pool.timers, id)
+
   pool.television = scene:get("television")
 
   pool.beelzebuuth = scene:get("beelzebuuth")

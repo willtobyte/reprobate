@@ -1,18 +1,9 @@
 {
   "width": 480,
   "height": 270,
-  "objects": {
-    "play": {
-      "kind": "play",
-      "action": "default"
-    },
-    "credits": {
-      "kind": "credits",
-      "action": "default"
-    },
-    "headbanger": {
-      "kind": "headbanger",
-      "action": "left"
-    }
-  }
+  "objects": [
+    { "name": "play", "kind": "play", "action": "default" },
+    { "name": "credits", "kind": "credits", "action": "default" },
+    { "name": "headbanger", "kind": "headbanger", "action": "left" }
+  ]
 }

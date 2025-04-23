@@ -1,52 +1,61 @@
 {
   "width": 480,
   "height": 270,
-  "effects": [
-    "wind",
-    "door",
-    "metal",
-    "gore",
-    "scream"
-  ],
-  "objects": {
-    "beelzebuuth": {
+  "effects": ["wind", "door", "metal", "gore", "scream"],
+  "objects": [
+    {
+      "name": "beelzebuuth",
       "kind": "beelzebuuth"
     },
-    "car": {
+    {
+      "name": "car",
       "kind": "car",
       "action": "default"
     },
-    "crucifix": {
+    {
+      "name": "crucifix",
       "kind": "crucifix",
       "action": "default"
     },
-    "bear": {
+    {
+      "name": "bear",
       "kind": "bear",
       "action": "default"
     },
-    "clown": {
+    {
+      "name": "clown",
       "kind": "clown",
       "action": "default"
     },
-    "gijoe": {
+    {
+      "name": "gijoe",
       "kind": "gijoe",
       "action": "default"
     },
-    "nintendo": {
+    {
+      "name": "nintendo",
       "kind": "nintendo",
       "action": "default"
     },
-    "playboy": {
+    {
+      "name": "playboy",
       "kind": "playboy",
       "action": "default"
     },
-    "robot": {
+    {
+      "name": "robot",
       "kind": "robot",
       "action": "default"
     },
-    "television": {
+    {
+      "name": "television",
       "kind": "television",
       "action": "default"
+    },
+    {
+      "name": "skull",
+      "kind": "skull",
+      "action": "default"
     }
-  }
+  ]
 }
