@@ -14,6 +14,8 @@ local timermanager = engine:timermanager()
 local soundmanager = engine:soundmanager()
 local resourcemanager = engine:resourcemanager()
 
+local postalservice = PostalService.new()
+
 local timed = {
   car   = { minimum = 3, maximum = 8, action = "run"   },
   bear  = { minimum = 2, maximum = 4, action = "blink" },
@@ -46,7 +48,7 @@ function scene.on_enter()
   pool.skull.action:unset()
   pool.skull.alpha = 0
   pool.alpha = 0
-  local id = timermanager:set(30, function ()
+  local sid = timermanager:set(30, function ()
     pool.skull.action:set("default")
     local dx = math.random(-3, 3)
     local dy = math.random(-3, 3)
@@ -57,9 +59,16 @@ function scene.on_enter()
       pool.alpha = pool.alpha + 10
       pool.skull.alpha = math.min(pool.alpha, 255)
     end
+
+    if pool.alpha >= 255 then
+      postalservice:post(Mail.new(pool.skull, nil, "end"))
+    end
   end)
 
-  table.insert(pool.timers, id)
+  pool.skull:on_mail(function(self, message)
+    pool.skull.action:unset()
+    timermanager:clear(sid)
+  end)
 
   pool.television = scene:get("television")
 
