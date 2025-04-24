@@ -43,10 +43,14 @@ local function jumpscare()
   delay = timermanager:set(3000, function()
     timermanager:clear(delay)
 
+    soundmanager:play(prefix .. "skull")
+
+    pool.skull.action:set("default")
+    pool.alpha = 0
+
     local direction = 1
     local loop
     loop = timermanager:set(30, function()
-      pool.skull.action:set("default")
 
       local dx = math.random(-3, 3)
       local dy = math.random(-3, 3)
@@ -108,12 +112,12 @@ function scene.on_enter()
     pool[name] = object
 
     local done = cassette:get(key, false)
+
     pool.collected[name] = done
+
     if done then
       object:hide()
-    end
-
-    if not done then
+    else
       object:on_touch(function(self)
         if configuration.damage then
           overlay:dispatch(Widget.cursor, "damage")
