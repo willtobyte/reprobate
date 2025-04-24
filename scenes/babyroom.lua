@@ -35,6 +35,42 @@ local function summon()
   soundmanager:play(prefix .. "scream")
 end
 
+local function jumpscare()
+  pool.alpha = 0
+  pool.skull.alpha = 0
+
+  local delay
+  delay = timermanager:set(3000, function()
+    timermanager:clear(delay)
+
+    local direction = 1
+    local loop
+    loop = timermanager:set(30, function()
+      pool.skull.action:set("default")
+
+      local dx = math.random(-3, 3)
+      local dy = math.random(-3, 3)
+      pool.skull.placement:set(dx, dy)
+
+      pool.alpha = pool.alpha + (10 * direction)
+      pool.alpha = math.max(0, math.min(pool.alpha, 255))
+      pool.skull.alpha = pool.alpha
+
+      if direction == 1 and pool.alpha >= 255 then
+        direction = -1
+      elseif direction == -1 and pool.alpha <= 0 then
+        timermanager:clear(loop)
+        postalservice:post(Mail.new(pool.skull, nil, "end"))
+      end
+    end)
+
+    pool.skull:on_mail(function(self, message)
+      pool.skull.action:unset()
+      timermanager:clear(loop)
+    end)
+  end)
+end
+
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
   scenemanager:destroy("mainmenu")
@@ -43,32 +79,12 @@ function scene.on_enter()
   noise:init()
 
   pool.timers = {}
+  pool.collected = {}
 
   pool.skull = scene:get("skull")
   pool.skull.action:unset()
   pool.skull.alpha = 0
   pool.alpha = 0
-  local sid = timermanager:set(30, function ()
-    pool.skull.action:set("default")
-    local dx = math.random(-3, 3)
-    local dy = math.random(-3, 3)
-
-    pool.skull.placement:set(dx, dy)
-
-    if pool.alpha < 255 then
-      pool.alpha = pool.alpha + 10
-      pool.skull.alpha = math.min(pool.alpha, 255)
-    end
-
-    if pool.alpha >= 255 then
-      postalservice:post(Mail.new(pool.skull, nil, "end"))
-    end
-  end)
-
-  pool.skull:on_mail(function(self, message)
-    pool.skull.action:unset()
-    timermanager:clear(sid)
-  end)
 
   pool.television = scene:get("television")
 
@@ -92,6 +108,7 @@ function scene.on_enter()
     pool[name] = object
 
     local done = cassette:get(key, false)
+    pool.collected[name] = done
     if done then
       object:hide()
     end
@@ -109,8 +126,16 @@ function scene.on_enter()
         pool.television.action:set("poltergeist")
 
         cassette:set(key, true)
-
+        pool.collected[name] = true
         self:hide()
+
+        for _, collected in pairs(pool.collected) do
+          if not collected then
+            return
+          end
+        end
+
+        jumpscare()
       end)
     end
   end
