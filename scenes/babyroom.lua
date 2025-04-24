@@ -39,10 +39,7 @@ local function jumpscare()
   pool.alpha = 0
   pool.skull.alpha = 0
 
-  local delay
-  delay = timermanager:set(3000, function()
-    timermanager:clear(delay)
-
+  timermanager:singleshot(3000, function()
     soundmanager:play(prefix .. "skull")
 
     pool.skull.action:set("default")
