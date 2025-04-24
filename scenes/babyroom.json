@@ -53,13 +53,12 @@
       "action": "default"
     },
     {
-      "name": "skull",
-      "kind": "skull",
-      "action": "default"
-    },
-    {
       "name": "door",
       "kind": "door"
+    },
+    {
+      "name": "skull",
+      "kind": "skull"
     }
   ]
 }

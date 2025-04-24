@@ -27,7 +27,6 @@ function scene.on_leave()
 end
 
 function scene.on_motion(x, y)
-  print("x " .. tostring(x) .. " y " .. tostring(y))
   if x > 240 then -- 480 / 2
     pool.headbanger.action:set("right")
   else

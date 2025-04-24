@@ -89,12 +89,7 @@ function scene.on_enter()
   pool.collected = {}
 
   pool.skull = scene:get("skull", SceneType.object)
-  pool.skull.action:unset()
-  pool.skull.alpha = 0
-  pool.alpha = 0
-
   pool.television = scene:get("television", SceneType.object)
-
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
   for name, configuration in pairs(timed) do
