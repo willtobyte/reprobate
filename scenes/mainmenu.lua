@@ -7,19 +7,19 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
-  local play = scene:get("play")
+  local play = scene:get("play", SceneType.object)
   play:on_touch(function ()
     local stage = cassette:get("system/stage", "babyroom")
 
     scenemanager:set(stage)
   end)
 
-  local credits = scene:get("credits")
+  local credits = scene:get("credits", SceneType.object)
   credits:on_touch(function ()
     openurl("https://rodrigodelduca.org")
   end)
 
-  pool.headbanger = scene:get("headbanger")
+  pool.headbanger = scene:get("headbanger", SceneType.object)
 end
 
 function scene.on_leave()

@@ -11,7 +11,6 @@ local cassette = engine:cassette()
 local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
-local soundmanager = engine:soundmanager()
 local resourcemanager = engine:resourcemanager()
 
 local postalservice = PostalService.new()
@@ -32,7 +31,8 @@ local items = {
 
 local function summon()
   pool.beelzebuuth.action:set("summon")
-  soundmanager:play(prefix .. "scream")
+  local effect = scene:get("scream", SceneType.effect)
+  effect:play()
 end
 
 local function jumpscare()
@@ -40,7 +40,8 @@ local function jumpscare()
   pool.skull.alpha = 0
 
   timermanager:singleshot(3000, function()
-    soundmanager:play(prefix .. "skull")
+    local effect = scene:get("skull", SceneType.effect)
+    effect:play()
 
     pool.skull.action:set("default")
     pool.alpha = 0
@@ -82,17 +83,17 @@ function scene.on_enter()
   pool.timers = {}
   pool.collected = {}
 
-  pool.skull = scene:get("skull")
+  pool.skull = scene:get("skull", SceneType.object)
   pool.skull.action:unset()
   pool.skull.alpha = 0
   pool.alpha = 0
 
-  pool.television = scene:get("television")
+  pool.television = scene:get("television", SceneType.object)
 
-  pool.beelzebuuth = scene:get("beelzebuuth")
+  pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
   for name, configuration in pairs(timed) do
-    pool[name] = scene:get(name)
+    pool[name] = scene:get(name, SceneType.object)
 
     local delay = math.random(configuration.minimum, configuration.maximum) * 1000
 
@@ -105,7 +106,7 @@ function scene.on_enter()
 
   for name, configuration in pairs(items) do
     local key = prefix .. name
-    local object = scene:get(name)
+    local object = scene:get(name, SceneType.object)
     pool[name] = object
 
     local done = cassette:get(key, false)
@@ -121,7 +122,8 @@ function scene.on_enter()
         end
 
         if configuration.effect then
-          soundmanager:play(prefix .. configuration.effect)
+          local effect = scene:get(configuration.effect, SceneType.effect)
+          effect:play()
         end
 
         pool.television.action:set("poltergeist")
