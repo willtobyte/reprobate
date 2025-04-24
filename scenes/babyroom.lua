@@ -120,7 +120,7 @@ function scene.on_enter()
     else
       object:on_touch(function(self)
         if configuration.damage then
-          overlay:dispatch(Widget.cursor, "damage")
+          overlay:dispatch(WidgetType.cursor, "damage")
         end
 
         if configuration.effect then
