@@ -59,8 +59,7 @@
     },
     {
       "name": "door",
-      "kind": "door",
-      "action": "default"
+      "kind": "door"
     }
   ]
 }

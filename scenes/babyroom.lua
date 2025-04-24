@@ -69,6 +69,11 @@ local function jumpscare()
     pool.skull:on_mail(function(self, message)
       pool.skull.action:unset()
       timermanager:clear(loop)
+
+      timermanager:singleshot(1000, function ()
+        local door = scene:get("door", SceneType.object)
+        door.action:set("default")
+      end)
     end)
   end)
 end
