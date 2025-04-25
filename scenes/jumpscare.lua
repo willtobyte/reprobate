@@ -15,12 +15,12 @@ function scene.on_enter()
 
   timermanager:singleshot(1000, function ()
     pool.skull = scene:get("skull", SceneType.object)
+    pool.alpha = 0
+    pool.skull.alpha = 0
+    pool.skull.action:set("default")
 
     local effect = scene:get("skull", SceneType.effect)
     effect:play()
-
-    pool.skull.action:set("default")
-    pool.alpha = 0
 
     local direction = 1
     pool.loop = timermanager:set(30, function()
