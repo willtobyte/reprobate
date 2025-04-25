@@ -1,6 +1,12 @@
 {
   "animations": {
     "default": {
+      "hitbox": {
+        "x": 430,
+        "y": 60,
+        "width": 50,
+        "height": 180
+      },
       "frames": [
         {
           "duration": 100,

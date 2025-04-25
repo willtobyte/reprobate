@@ -1,7 +1,7 @@
 {
   "width": 480,
   "height": 270,
-  "effects": ["skull", "wind", "door", "metal", "gore", "scream"],
+  "effects": ["wind", "door", "metal", "gore", "scream"],
   "objects": [
     {
       "name": "beelzebuuth",
@@ -55,10 +55,6 @@
     {
       "name": "door",
       "kind": "door"
-    },
-    {
-      "name": "skull",
-      "kind": "skull"
     }
   ]
 }

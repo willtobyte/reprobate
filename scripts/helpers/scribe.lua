@@ -30,6 +30,10 @@ end
 function Writter:clear()
   self.index = 0
   self.label:clear()
+  if self.timer then
+    timermanager:clear(self.timer)
+    self.timer = nil
+  end
 end
 
 function Writter:write(text, x, y)
