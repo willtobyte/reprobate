@@ -82,7 +82,31 @@ function scene.on_enter()
 
         cassette:set(key, true)
         pool.collected[name] = true
-        self:hide()
+
+        local duration = 500
+        local interval = 32
+        local steps = math.floor(duration / interval)
+        local step = 0
+
+        local is = self.scale
+        local fs = is * 1.2
+
+        local ia = self.alpha
+        local fa = 0
+
+        local id
+        id = timermanager:set(interval, function()
+          step = step + 1
+
+          local t = step / steps
+          self.scale = is + (fs - is) * t
+          self.alpha = math.floor(ia + (fa - ia) * t)
+
+          if step >= steps then
+            timermanager:clear(id)
+            self:hide()
+          end
+        end)
 
         for _, collected in pairs(pool.collected) do
           if not collected then
