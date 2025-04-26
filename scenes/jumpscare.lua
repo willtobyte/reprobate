@@ -5,11 +5,24 @@ local pool = {}
 local cassette = engine:cassette()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
+local overlay = engine:overlay()
+local resourcemanager = engine:resourcemanager()
+local fontfactory = engine:fontfactory()
 
 function scene.on_enter()
   cassette:set("system/stage", "jumpscare")
-  -- scenemanager:destroy("babyroom")
-  -- resourcemanager:flush()
+  scenemanager:destroy("babyroom")
+  resourcemanager:flush()
+
+  local font = fontfactory:get("evilvampire")
+
+  pool.label1 = overlay:create(WidgetType.label)
+  pool.label1.font = font
+  pool.label1:set("They said that light is the path of the eyes", 14, 3)
+
+  pool.label2 = overlay:create(WidgetType.label)
+  pool.label2.font = font
+  pool.label2:set("Then darkness comes and erases such a path", 20, 250)
 
   pool.timers = {}
 
