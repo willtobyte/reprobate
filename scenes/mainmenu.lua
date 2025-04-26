@@ -7,6 +7,8 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
+  scenemanager:register("babyroom")
+
   local play = scene:get("play", SceneType.object)
   play:on_touch(function ()
     local stage = cassette:get("system/stage", "babyroom")

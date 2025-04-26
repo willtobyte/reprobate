@@ -1,7 +1,7 @@
 {
   "width": 480,
   "height": 270,
-  "effects": ["wind", "door", "metal", "gore", "scream"],
+  "effects": ["foggy", "scream"],
   "objects": [
     {
       "name": "beelzebuuth",

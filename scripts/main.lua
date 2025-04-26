@@ -15,8 +15,6 @@ function setup()
 
   overlay.cursor:set("horn")
 
-  scenemanager:register("jumpscare")
-  scenemanager:register("babyroom")
   scenemanager:register("mainmenu")
 
   scenemanager:set("mainmenu")

@@ -21,15 +21,16 @@ local timed = {
 }
 
 local items = {
-  crucifix = { effect = "wind",  damage = true,  hint = "His sacrifice means nothing" },
-  gijoe    = { effect = "door",  damage = false, hint = "Covert missions demand unbreakable resolve" },
-  nintendo = { effect = "metal", damage = false, hint = "Joy fades leaving glitching code" },
-  playboy  = { effect = "gore",  damage = false, hint = "Velvet whispers ignite hidden passions" },
+  crucifix = { damage = true,  hint = "His sacrifice means nothing" },
+  gijoe    = { damage = false, hint = "Covert missions demand unbreakable resolve" },
+  nintendo = { damage = false, hint = "Joy fades leaving glitching code" },
+  playboy  = { damage = false, hint = "Velvet whispers ignite hidden passions" },
 }
 
 function scene.on_enter()
   cassette:set("system/stage", "babyroom")
   scenemanager:destroy("mainmenu")
+  scenemanager:register("jumpscare")
   resourcemanager:flush()
 
   noise:init()
@@ -37,6 +38,7 @@ function scene.on_enter()
   pool.timers = {}
   pool.collected = {}
 
+  pool.foggy = scene:get("foggy", SceneType.effect)
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
   pool.door = scene:get("door", SceneType.object)
@@ -74,10 +76,7 @@ function scene.on_enter()
           overlay:dispatch(WidgetType.cursor, "damage")
         end
 
-        if configuration.effect then
-          local effect = scene:get(configuration.effect, SceneType.effect)
-          effect:play()
-        end
+        pool.foggy:play()
 
         pool.television.action:set("poltergeist")
 
