@@ -11,8 +11,6 @@ local fontfactory = engine:fontfactory()
 
 function scene.on_enter()
   cassette:set("system/stage", "jumpscare")
-  scenemanager:destroy("babyroom")
-  resourcemanager:flush()
 
   local font = fontfactory:get("evilvampire")
 
