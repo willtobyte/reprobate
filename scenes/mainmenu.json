@@ -1,6 +1,7 @@
 {
   "width": 480,
   "height": 270,
+  "effects": [],
   "objects": [
     { "name": "play", "kind": "play", "action": "default" },
     { "name": "credits", "kind": "credits", "action": "default" },
