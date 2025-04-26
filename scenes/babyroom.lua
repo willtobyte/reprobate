@@ -83,7 +83,6 @@ function scene.on_enter()
 
         cassette:set(key, true)
         pool.collected[name] = true
-
         touch.disappear(self)
 
         for _, collected in pairs(pool.collected) do
