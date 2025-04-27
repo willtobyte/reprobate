@@ -39,8 +39,9 @@ function scene.on_enter()
   pool.foggy = scene:get("foggy", SceneType.effect)
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
-  pool.door = scene:get("door", SceneType.object)
-  pool.door:on_touch(function ()
+
+  local door = scene:get("door", SceneType.object)
+  door:on_touch(function ()
     scribe:clear()
     scenemanager:set("jumpscare")
   end)
@@ -75,11 +76,9 @@ function scene.on_enter()
         end
 
         pool.foggy:play()
-
         pool.television.action:set("poltergeist")
-
-        cassette:set(key, true)
         pool.collected[name] = true
+        cassette:set(key, true)
         touch.disappear(self)
 
         for _, collected in pairs(pool.collected) do
@@ -89,7 +88,12 @@ function scene.on_enter()
         end
 
         timermanager:singleshot(1000, function ()
-          pool.door.action:set("default")
+          local door = scene:get("door", SceneType.object)
+          local effect = scene:get("door", SceneType.effect)
+          door.action:set("default")
+          timermanager:singleshot(3000, function ()
+            effect:play()
+          end)
         end)
       end)
     end
