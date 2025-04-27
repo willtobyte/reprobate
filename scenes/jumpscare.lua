@@ -10,8 +10,6 @@ local resourcemanager = engine:resourcemanager()
 local fontfactory = engine:fontfactory()
 
 function scene.on_enter()
-  cassette:set("system/stage", "jumpscare")
-
   local font = fontfactory:get("evilvampire")
 
   pool.label1 = overlay:create(WidgetType.label)

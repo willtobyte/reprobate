@@ -29,8 +29,6 @@ local items = {
 }
 
 function scene.on_enter()
-  cassette:set("system/stage", "babyroom")
-
   noise:init()
 
   pool.timers = {}
@@ -87,8 +85,9 @@ function scene.on_enter()
           end
         end
 
+        cassette:set("system/stage", "jumpscare")
+
         timermanager:singleshot(1000, function ()
-          local door = scene:get("door", SceneType.object)
           local effect = scene:get("door", SceneType.effect)
           door.action:set("default")
           timermanager:singleshot(3000, function ()
