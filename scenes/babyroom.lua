@@ -40,6 +40,14 @@ function scene.on_enter()
 
   pool.inventory = Inventory.new(scene:get("inventory", SceneType.object))
 
+  pool.television:on_touch(function ()
+    scribe:clear()
+    scribe:write("This house is haunted-can you feel it?", 3, 3)
+    scribe:on_finish(6000, function()
+      scribe:clear()
+    end)
+  end)
+
   for name, config in pairs(timed) do
     local object = scene:get(name, SceneType.object)
 
@@ -52,7 +60,7 @@ function scene.on_enter()
     object:on_touch(function ()
       scribe:clear()
       scribe:write(config.message, 3, 3)
-      scribe:on_finish(3000, function()
+      scribe:on_finish(6000, function()
         scribe:clear()
       end)
     end)
