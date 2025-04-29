@@ -55,6 +55,11 @@
     {
       "name": "door",
       "kind": "door"
+    },
+    {
+      "name": "inventory",
+      "kind": "inventory",
+      "action": "default"
     }
   ]
 }

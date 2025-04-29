@@ -17,7 +17,7 @@ function setup()
 
   scenemanager:register("mainmenu")
   scenemanager:register("babyroom")
-  scenemanager:register("jumpscare")
+  scenemanager:register("endgame")
 
   scenemanager:set("mainmenu")
 end

@@ -39,9 +39,9 @@ function scene.on_enter()
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
   local door = scene:get("door", SceneType.object)
-  door:on_touch(function ()
+  door:on_touch(function()
     scribe:clear()
-    scenemanager:set("jumpscare")
+    scenemanager:set("endgame")
   end)
 
   for name, configuration in pairs(timed) do
@@ -67,7 +67,9 @@ function scene.on_enter()
 
     if done then
       object:hide()
-    else
+    end
+
+    if not done then
       object:on_touch(function(self)
         if configuration.damage then
           overlay:dispatch(WidgetType.cursor, "damage")
@@ -85,7 +87,7 @@ function scene.on_enter()
           end
         end
 
-        cassette:set("system/stage", "jumpscare")
+        cassette:set("system/stage", "endgame")
 
         timermanager:singleshot(1000, function ()
           local effect = scene:get("door", SceneType.effect)
@@ -96,11 +98,14 @@ function scene.on_enter()
         end)
       end)
     end
+      ::continue::
   end
 
   noise:on_finish(function()
     scribe:write("I drown your divinity in the Acheron of my soul", 3, 3)
-    scribe:on_finish(12000, function() scribe:clear() end)
+    scribe:on_finish(12000, function()
+      scribe:clear()
+    end)
   end)
 end
 
