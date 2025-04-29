@@ -3,6 +3,7 @@ local scene = {}
 local noise = require("effects/noise")
 local scribe = require("helpers/scribe")
 local touch = require("helpers/touch")
+local Inventory = require("overlay/inventory")
 
 local pool = {}
 local lock = false
@@ -12,10 +13,9 @@ local cassette = engine:cassette()
 local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
-local resourcemanager = engine:resourcemanager()
 
 local timed = {
-  car   = { minimum = 3, maximum = 8, action = "run"   },
+  car   = { minimum = 3, maximum = 8, action = "run", message = "Bla bla car" },
   bear  = { minimum = 2, maximum = 4, action = "blink" },
   clown = { minimum = 6, maximum = 8, action = "blink" },
   robot = { minimum = 3, maximum = 6, action = "shake" },
@@ -38,25 +38,31 @@ function scene.on_enter()
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
-  local door = scene:get("door", SceneType.object)
-  door:on_touch(function()
-    scribe:clear()
-    scenemanager:set("endgame")
-  end)
+  pool.inventory = Inventory.new(scene:get("inventory", SceneType.object))
 
-  for name, configuration in pairs(timed) do
-    pool[name] = scene:get(name, SceneType.object)
+  for name, config in pairs(timed) do
+    local object = scene:get(name, SceneType.object)
 
-    local delay = math.random(configuration.minimum, configuration.maximum) * 1000
+    local delay = math.random(config.minimum, config.maximum) * 1000
 
     local id = timermanager:set(delay, function()
-      pool[name].action:set(configuration.action)
+      object.action:set(config.action)
     end)
+
+    object:on_touch(function ()
+      scribe:clear()
+      scribe:write(config.message, 3, 3)
+      scribe:on_finish(3000, function()
+        scribe:clear()
+      end)
+    end)
+
+    pool[name] = object
 
     table.insert(pool.timers, id)
   end
 
-  for name, configuration in pairs(items) do
+  for name, config in pairs(items) do
     local key = prefix .. name
     local object = scene:get(name, SceneType.object)
     pool[name] = object
@@ -66,81 +72,79 @@ function scene.on_enter()
     pool.collected[name] = done
 
     if done then
-      object:hide()
+      touch.disappear(object)
     end
 
     if not done then
       object:on_touch(function(self)
-        if configuration.damage then
+        if config.damage then
           overlay:dispatch(WidgetType.cursor, "damage")
         end
 
         pool.foggy:play()
         pool.television.action:set("poltergeist")
         pool.collected[name] = true
+
         cassette:set(key, true)
+
         touch.disappear(self)
 
         for _, collected in pairs(pool.collected) do
-          if not collected then
-            return
-          end
+          if not collected then return end
         end
 
         cassette:set("system/stage", "endgame")
 
-        timermanager:singleshot(1000, function ()
+        timermanager:singleshot(1000, function()
           local effect = scene:get("door", SceneType.effect)
-          door.action:set("default")
-          timermanager:singleshot(3000, function ()
-            effect:play()
+          local door = scene:get("door", SceneType.object)
+          door:on_touch(function()
+            scribe:clear()
+            scenemanager:set("endgame")
           end)
+
+          door.action:set("default")
+
+          timermanager:singleshot(3000, function() effect:play() end)
         end)
       end)
     end
-      ::continue::
   end
 
   noise:on_finish(function()
     scribe:write("I drown your divinity in the Acheron of my soul", 3, 3)
-    scribe:on_finish(12000, function()
-      scribe:clear()
-    end)
+    scribe:on_finish(12000, function() scribe:clear() end)
   end)
 end
 
-function scene.on_loop()
+function scene.on_loop(delta)
   noise:loop()
+  pool.inventory:update(delta)
 end
 
 function scene.on_leave()
   noise:teardown()
 
+  pool.inventory:cleanup()
+
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
   end
-
-  pool.timers = {}
 
   pool = {}
 end
 
 function scene.on_touch()
-  if lock then
-    return
-  end
+  if lock then return end
 
   pool.touches = (pool.touches or 0) + 1
   pool.threshold = pool.threshold or math.random(3, 6)
-
-  if pool.touches < pool.threshold then
-    return
-  end
-
+  if pool.touches < pool.threshold then return end
   pool.touches = 0
   pool.threshold = math.random(3, 6)
 
   local candidates = {}
+
   for name in pairs(items) do
     if not cassette:get(prefix .. name, false) then
       table.insert(candidates, name)
@@ -158,13 +162,16 @@ function scene.on_touch()
       scribe:clear()
       lock = false
     end)
-
     return
   end
 
   pool.beelzebuuth.action:set("summon")
   local effect = scene:get("scream", SceneType.effect)
   effect:play()
+end
+
+function scene.on_motion(x, y)
+  pool.inventory:on_motion(x, y)
 end
 
 return scene

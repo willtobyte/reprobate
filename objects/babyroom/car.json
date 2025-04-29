@@ -1,6 +1,12 @@
 {
   "animations": {
     "default": {
+      "hitbox": {
+        "x": 365,
+        "y": 162,
+        "width": 24,
+        "height": 12
+      },
       "frames": [
         {
           "duration": 100,
@@ -20,6 +26,12 @@
     "run": {
       "oneshot": true,
       "next": "default",
+      "hitbox": {
+        "x": 365,
+        "y": 162,
+        "width": 24,
+        "height": 12
+      },
       "frames": [
         {
           "duration": 200,
