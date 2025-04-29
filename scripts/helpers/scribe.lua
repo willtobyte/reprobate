@@ -1,48 +1,64 @@
 local fontfactory = engine:fontfactory()
 local overlay = engine:overlay()
-local timermanager = engine:timermanager()
+local timemanager = engine:timermanager()
 
-local Writter = {}
-Writter.__index = Writter
+local writter = {}
+writter.__index = writter
 
-function Writter:new()
-  local self = setmetatable({}, Writter)
+function writter:new()
+  local instance = setmetatable({}, writter)
 
-  self.label = overlay:create(WidgetType.label)
-  self.label.font = fontfactory:get("evilvampire")
+  instance.label = overlay:create(WidgetType.label)
+  instance.label.font = fontfactory:get("evilvampire")
 
-  self.text = ""
-  self.index = 0
-  self.timer = nil
-  self.timeout = nil
-  self.callback = nil
+  instance.text = ""
+  instance.index = 0
 
-  return self
+  instance.tick_timer = nil
+  instance.finish_timer = nil
+
+  instance.timeout = 0
+  instance.callback = nil
+
+  return instance
 end
 
-function Writter:on_finish(timeout, callback)
-  assert(type(timeout) == "number", "timeout must be a number")
-  assert(type(callback) == "function", "callback must be a function")
+function writter:on_finish(timeout, callback)
+  assert(type(timeout) == "number")
+  assert(type(callback) == "function")
+
   self.timeout = timeout
   self.callback = callback
 end
 
-function Writter:clear()
+function writter:clear()
   self.index = 0
   self.label:clear()
-  if self.timer then
-    timermanager:clear(self.timer)
-    self.timer = nil
+
+  if self.tick_timer then
+    timemanager:clear(self.tick_timer)
+    self.tick_timer = nil
+  end
+
+  if self.finish_timer then
+    timemanager:clear(self.finish_timer)
+    self.finish_timer = nil
   end
 end
 
-function Writter:write(text, x, y)
-  assert(type(text) == "string", ("Writter:write: expected string, got %s"):format(type(t)))
-  assert(type(x) == "number", ("Writter:write: expected number for x, got %s"):format(type(x)))
-  assert(type(y) == "number", ("Writter:write: expected number for y, got %s"):format(type(y)))
+function writter:write(text, x, y)
+  assert(type(text) == "string")
+  assert(type(x) == "number")
+  assert(type(y) == "number")
 
-  if self.timer then
-    timermanager:clear(self.timer)
+  if self.tick_timer then
+    timemanager:clear(self.tick_timer)
+    self.tick_timer = nil
+  end
+
+  if self.finish_timer then
+    timemanager:clear(self.finish_timer)
+    self.finish_timer = nil
   end
 
   self.text = text
@@ -51,18 +67,26 @@ function Writter:write(text, x, y)
 
   local function tick()
     self.index = self.index + 1
-    self.label:set(self.text:sub(1, self.index), x, y)
+    local substring = self.text:sub(1, self.index)
+    self.label:set(substring, x, y)
 
     if self.index >= #self.text then
-      timermanager:clear(self.timer)
-      self.timer = nil
+      timemanager:clear(self.tick_timer)
+      self.tick_timer = nil
+
       if self.callback then
-        timermanager:singleshot(self.timeout, self.callback)
+        self.finish_timer = timemanager:singleshot(
+          self.timeout,
+          function()
+            self.callback()
+            self.finish_timer = nil
+          end
+        )
       end
     end
   end
 
-  self.timer = timermanager:set(100, tick)
+  self.tick_timer = timemanager:set(100, tick)
 end
 
-return Writter:new()
+return writter:new()

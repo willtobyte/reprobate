@@ -133,8 +133,6 @@ end
 function scene.on_leave()
   noise:teardown()
 
-  pool.inventory:cleanup()
-
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
   end
@@ -146,9 +144,15 @@ function scene.on_touch()
   if lock then return end
 
   pool.touches = (pool.touches or 0) + 1
+
   pool.threshold = pool.threshold or math.random(3, 6)
-  if pool.touches < pool.threshold then return end
+
+  if pool.touches < pool.threshold then
+    return
+  end
+
   pool.touches = 0
+
   pool.threshold = math.random(3, 6)
 
   local candidates = {}
@@ -176,6 +180,11 @@ function scene.on_touch()
   pool.beelzebuuth.action:set("summon")
   local effect = scene:get("scream", SceneType.effect)
   effect:play()
+
+  lock = true
+  timermanager:singleshot(1000, function()
+    lock = false
+  end)
 end
 
 function scene.on_motion(x, y)
