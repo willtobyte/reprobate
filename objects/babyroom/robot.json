@@ -1,6 +1,12 @@
 {
   "animations": {
     "default": {
+      "hitbox": {
+        "x": 130,
+        "y": 90,
+        "width": 20,
+        "height": 24
+      },
       "frames": [
         {
           "duration": 200,
@@ -20,6 +26,12 @@
     "shake": {
       "next": "default",
       "oneshot": true,
+      "hitbox": {
+        "x": 130,
+        "y": 90,
+        "width": 20,
+        "height": 24
+      },
       "frames": [
         {
           "duration": 200,

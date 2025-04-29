@@ -3,6 +3,12 @@
     "blink": {
       "next": "default",
       "oneshot": true,
+      "hitbox": {
+        "x": 116,
+        "y": 119,
+        "width": 28,
+        "height": 36
+      },
       "frames": [
         {
           "duration": 200,
@@ -59,6 +65,12 @@
       ]
     },
     "default": {
+      "hitbox": {
+        "x": 116,
+        "y": 119,
+        "width": 28,
+        "height": 36
+      },
       "frames": [
         {
           "duration": 200,
