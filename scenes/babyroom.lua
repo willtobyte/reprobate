@@ -1,9 +1,9 @@
 local scene = {}
 
-local noise = require("effects/noise")
-local scribe = require("helpers/scribe")
-local touch = require("helpers/touch")
-local Inventory = require("overlay/inventory")
+local noise = require "effects/noise"
+local scribe = require "helpers/scribe"
+local touch = require "helpers/touch"
+local Inventory = require "overlay/inventory"
 
 local pool = {}
 local lock = false
