@@ -23,7 +23,7 @@
         }
       ]
     },
-    "shake": {
+    "shrug": {
       "next": "default",
       "oneshot": true,
       "hitbox": {

@@ -18,7 +18,7 @@ local timed = {
   car   = { minimum = 3, maximum = 8, action = "run", message = "Ready, set... zoom like RC!" },
   bear  = { minimum = 2, maximum = 4, action = "blink", message = "Every heart needs a teddy bear to lean on" },
   clown = { minimum = 6, maximum = 8, action = "blink", message = "Cosmic clown's eyes track you" },
-  robot = { minimum = 3, maximum = 6, action = "shake", message = "Beep boop, need more input!" },
+  robot = { minimum = 3, maximum = 6, action = "shrug", message = "Beep boop, need more input!" },
 }
 
 local items = {
