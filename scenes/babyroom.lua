@@ -16,8 +16,8 @@ local timermanager = engine:timermanager()
 
 local timed = {
   car   = { minimum = 3, maximum = 8, action = "run", message = "Ready, set... zoom like RC!" },
-  bear  = { minimum = 2, maximum = 4, action = "blink", message = "Every heart needs a teddy bear to lean on" },
-  clown = { minimum = 6, maximum = 8, action = "blink", message = "Cosmic clown's eyes track you" },
+  bear  = { minimum = 2, maximum = 4, action = "blink", message = "Do you want to play for five nights?" },
+  clown = { minimum = 6, maximum = 8, action = "blink", message = "A Killer Klown from Outer Space is stalking you" },
   robot = { minimum = 3, maximum = 6, action = "shrug", message = "Beep boop, need more input!" },
 }
 
