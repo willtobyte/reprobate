@@ -18,14 +18,14 @@ local timed = {
   car   = { minimum = 3, maximum = 8, action = "run", message = "Twisted dream. Metal price" },
   bear  = { minimum = 2, maximum = 4, action = "blink", message = "Do you want to play for five nights?" },
   clown = { minimum = 6, maximum = 8, action = "blink", message = "A cosmic clown is closing in. Not here for laughs" },
-  robot = { minimum = 3, maximum = 6, action = "shrug", message = "Glow fades... Need more input!" },
+  robot = { minimum = 3, maximum = 6, action = "shrug", message = "Need more input!" },
 }
 
 local items = {
   crucifix = { damage = true,  hint = "His sacrifice means nothing" },
-  gijoe    = { damage = false, hint = "Covert missions demand unbreakable resolve" },
-  nintendo = { damage = false, hint = "Joy fades leaving glitching code" },
-  playboy  = { damage = false, hint = "Velvet whispers ignite hidden passions" },
+  gijoe    = { damage = false, hint = "Plastic bones beneath the dust of war" },
+  nintendo = { damage = false, hint = "Wires like veins, still twitching" },
+  playboy  = { damage = false, hint = "Paper temptations sealed behind sin" },
 }
 
 function scene.on_enter()
