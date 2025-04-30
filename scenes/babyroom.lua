@@ -15,10 +15,10 @@ local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
 local timed = {
-  car   = { minimum = 3, maximum = 8, action = "run", message = "Ready, set... zoom like RC!" },
+  car   = { minimum = 3, maximum = 8, action = "run", message = "Twisted dream. Metal price" },
   bear  = { minimum = 2, maximum = 4, action = "blink", message = "Do you want to play for five nights?" },
-  clown = { minimum = 6, maximum = 8, action = "blink", message = "A Killer Klown from Outer Space is stalking you" },
-  robot = { minimum = 3, maximum = 6, action = "shrug", message = "Beep boop, need more input!" },
+  clown = { minimum = 6, maximum = 8, action = "blink", message = "A cosmic clown is closing in. Not here for laughs" },
+  robot = { minimum = 3, maximum = 6, action = "shrug", message = "Glow fades... Need more input!" },
 }
 
 local items = {
