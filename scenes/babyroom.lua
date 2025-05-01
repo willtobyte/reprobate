@@ -37,7 +37,7 @@ local items = {
     end
   },
   playboy  = { damage = false, hint = "Paper temptations sealed behind sin", onpick = function ()
-      postalservice:post(Mail.new(pool.iplayboy, nil, "found"))
+      postalservice:post(Mail.new(pool.iplayboy, nil, "default"))
     end
   },
 }
@@ -52,17 +52,6 @@ function scene.on_enter()
   pool.foggy = scene:get("foggy", SceneType.effect)
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
-
-  pool.iplayboy = scene:get("iplayboy", SceneType.object)
-  pool.iplayboy:on_mail(function (self, message)
-    self.action:set(message)
-  end)
-
-  local layout = scene:get("layout", SceneType.object)
-  local character = scene:get("boy", SceneType.object)
-  local objects = { pool.iplayboy }
-
-  pool.inventory = Inventory.new(layout, character, objects)
 
   pool.television:on_touch(function ()
     scribe:clear()
@@ -94,10 +83,20 @@ function scene.on_enter()
     table.insert(pool.timers, id)
   end
 
+  local objects = {}
   for name, settings in pairs(items) do
     local key = prefix .. name
     local object = scene:get(name, SceneType.object)
     pool[name] = object
+
+    local iname = "iplayboy"
+    local inventory = scene:get(iname, SceneType.object)
+    pool[iname] = inventory
+    inventory:on_mail(function (self)
+      self.action:set("default")
+    end)
+
+    table.insert(objects, inventory)
 
     local done = cassette:get(key, false)
 
@@ -105,6 +104,7 @@ function scene.on_enter()
 
     if done then
       touch.disappear(object)
+      inventory.action:set("default")
     end
 
     if not done then
@@ -143,6 +143,10 @@ function scene.on_enter()
       end)
     end
   end
+
+  local layout = scene:get("layout", SceneType.object)
+  local character = scene:get("boy", SceneType.object)
+  pool.inventory = Inventory.new(layout, character, objects)
 
   noise:on_finish(function()
     scribe:write("I drown your divinity in the Acheron of my soul", 3, 3)
