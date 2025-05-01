@@ -3,17 +3,23 @@ Inventory.__index = Inventory
 
 local ANIMATION_DURATION = 0.2
 
-function Inventory.new(object, character)
+function Inventory.new(layout, character, objects)
     local self = setmetatable({}, Inventory)
-    self.object              = object
+    self.layout              = layout
     self.character           = character
-    self.original_y_position = object.y
-    self.object.y            = self.original_y_position + 40
-    self.character.y         = self.object.y
-    self.is_animating        = false
-    self.start_y             = self.object.y
-    self.delta               = 0
-    self.progress            = 0
+    self.objects             = objects
+    self.original_y_position = layout.y
+    self.layout.y            = self.original_y_position + 40
+    self.character.y         = self.layout.y
+
+    for i = 1, #self.objects do
+        self.objects[i].y = self.layout.y
+    end
+
+    self.is_animating = false
+    self.start_y      = self.layout.y
+    self.delta        = 0
+    self.progress     = 0
     return self
 end
 
@@ -24,13 +30,13 @@ function Inventory:on_motion(x, y)
 
     local target_y = y > 180 and self.original_y_position or self.original_y_position + 40
 
-    if target_y == self.object.y then
+    if target_y == self.layout.y then
         return
     end
 
-    self.start_y     = self.object.y
-    self.delta       = target_y - self.start_y
-    self.progress    = 0
+    self.start_y      = self.layout.y
+    self.delta        = target_y - self.start_y
+    self.progress     = 0
     self.is_animating = true
 end
 
@@ -44,14 +50,25 @@ function Inventory:update(delta)
     local ratio = self.progress / ANIMATION_DURATION
 
     if ratio >= 1 then
-        self.object.y = self.start_y + self.delta
-        self.character.y = self.object.y
+        self.layout.y     = self.start_y + self.delta
+        self.character.y  = self.layout.y
+
+        for i = 1, #self.objects do
+            self.objects[i].y = self.layout.y
+        end
+
         self.is_animating = false
         return
     end
 
-    self.object.y = self.start_y + self.delta * ratio
-    self.character.y = self.object.y
+    local current_y = self.start_y + self.delta * ratio
+
+    self.layout.y    = current_y
+    self.character.y = current_y
+
+    for i = 1, #self.objects do
+        self.objects[i].y = current_y
+    end
 end
 
 return Inventory

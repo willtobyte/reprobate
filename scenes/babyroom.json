@@ -57,14 +57,19 @@
       "kind": "door"
     },
     {
-      "name": "inventory",
-      "kind": "inventory",
+      "name": "layout",
+      "kind": "layout",
       "action": "default"
     },
     {
       "name": "boy",
       "kind": "boy",
       "action": "default"
+    },
+    {
+      "name": "iplayboy",
+      "kind": "iplayboy",
+      "action": "shadow"
     }
   ]
 }

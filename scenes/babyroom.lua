@@ -14,7 +14,9 @@ local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
-local timed = {
+local postalservice = PostalService.new()
+
+local animations = {
   car   = { minimum = 3, maximum = 8, action = "run", message = "Twisted dream. Metal price" },
   bear  = { minimum = 2, maximum = 4, action = "blink", message = "Do you want to play for five nights at my house?" },
   clown = { minimum = 6, maximum = 8, action = "blink", message = "A cosmic clown is closing in. Not here for laughs" },
@@ -22,10 +24,22 @@ local timed = {
 }
 
 local items = {
-  crucifix = { damage = true,  hint = "His sacrifice means nothing" },
-  gijoe    = { damage = false, hint = "Plastic bones beneath the dust of war" },
-  nintendo = { damage = false, hint = "Wires like veins, still twitching" },
-  playboy  = { damage = false, hint = "Paper temptations sealed behind sin" },
+  crucifix = { damage = true,  hint = "His sacrifice means nothing", onpick = function ()
+
+    end
+  },
+  gijoe    = { damage = false, hint = "Plastic bones beneath the dust of war", onpick = function ()
+
+    end
+  },
+  nintendo = { damage = false, hint = "Wires like veins, still twitching", onpick = function ()
+
+    end
+  },
+  playboy  = { damage = false, hint = "Paper temptations sealed behind sin", onpick = function ()
+      postalservice:post(Mail.new(pool.iplayboy, nil, "found"))
+    end
+  },
 }
 
 function scene.on_enter()
@@ -33,14 +47,22 @@ function scene.on_enter()
 
   pool.timers = {}
   pool.collected = {}
+  pool.inventory = {}
 
   pool.foggy = scene:get("foggy", SceneType.effect)
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
-  local inventory = scene:get("inventory", SceneType.object)
+  pool.iplayboy = scene:get("iplayboy", SceneType.object)
+  pool.iplayboy:on_mail(function (self, message)
+    self.action:set(message)
+  end)
+
+  local layout = scene:get("layout", SceneType.object)
   local character = scene:get("boy", SceneType.object)
-  pool.inventory = Inventory.new(inventory, character)
+  local objects = { pool.iplayboy }
+
+  pool.inventory = Inventory.new(layout, character, objects)
 
   pool.television:on_touch(function ()
     scribe:clear()
@@ -50,18 +72,18 @@ function scene.on_enter()
     end)
   end)
 
-  for name, config in pairs(timed) do
+  for name, settings in pairs(animations) do
     local object = scene:get(name, SceneType.object)
 
-    local delay = math.random(config.minimum, config.maximum) * 1000
+    local delay = math.random(settings.minimum, settings.maximum) * 1000
 
     local id = timermanager:set(delay, function()
-      object.action:set(config.action)
+      object.action:set(settings.action)
     end)
 
     object:on_touch(function ()
       scribe:clear()
-      scribe:write(config.message, 3, 3)
+      scribe:write(settings.message, 3, 3)
       scribe:on_finish(6000, function()
         scribe:clear()
       end)
@@ -72,7 +94,7 @@ function scene.on_enter()
     table.insert(pool.timers, id)
   end
 
-  for name, config in pairs(items) do
+  for name, settings in pairs(items) do
     local key = prefix .. name
     local object = scene:get(name, SceneType.object)
     pool[name] = object
@@ -87,10 +109,11 @@ function scene.on_enter()
 
     if not done then
       object:on_touch(function(self)
-        if config.damage then
+        if settings.damage then
           overlay:dispatch(WidgetType.cursor, "damage")
         end
 
+        settings:onpick()
         pool.foggy:play()
         pool.television.action:set("poltergeist")
         pool.collected[name] = true
