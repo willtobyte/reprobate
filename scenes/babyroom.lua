@@ -38,7 +38,9 @@ function scene.on_enter()
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
-  pool.inventory = Inventory.new(scene:get("inventory", SceneType.object))
+  local inventory = scene:get("inventory", SceneType.object)
+  local character = scene:get("boy", SceneType.object)
+  pool.inventory = Inventory.new(inventory, character)
 
   pool.television:on_touch(function ()
     scribe:clear()

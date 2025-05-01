@@ -5,14 +5,14 @@
         {
           "duration": -1,
           "offset": {
-            "x": 87,
-            "y": 228
+            "x": 119,
+            "y": 223
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 302,
-            "height": 42
+            "width": 242,
+            "height": 47
           }
         }
       ]

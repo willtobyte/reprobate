@@ -60,6 +60,11 @@
       "name": "inventory",
       "kind": "inventory",
       "action": "default"
+    },
+    {
+      "name": "boy",
+      "kind": "boy",
+      "action": "default"
     }
   ]
 }
