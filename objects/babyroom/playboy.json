@@ -9,7 +9,7 @@
       },
       "frames": [
         {
-          "duration": 200,
+          "duration": -1,
           "offset": {
             "x": 352,
             "y": 210

@@ -70,6 +70,21 @@
       "name": "iplayboy",
       "kind": "iplayboy",
       "action": "shadow"
+    },
+    {
+      "name": "igijoe",
+      "kind": "igijoe",
+      "action": "shadow"
+    },
+    {
+      "name": "inintendo",
+      "kind": "inintendo",
+      "action": "shadow"
+    },
+    {
+      "name": "icrucifix",
+      "kind": "icrucifix",
+      "action": "shadow"
     }
   ]
 }

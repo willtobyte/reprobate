@@ -1,0 +1,38 @@
+{
+  "animations": {
+    "shadow": {
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 318,
+            "y": 230
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 36,
+            "height": 35
+          }
+        }
+      ]
+    },
+    "default": {
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 318,
+            "y": 230
+          },
+          "rectangle": {
+            "x": 39,
+            "y": 1,
+            "width": 36,
+            "height": 35
+          }
+        }
+      ]
+    }
+  }
+}

@@ -24,22 +24,10 @@ local animations = {
 }
 
 local items = {
-  crucifix = { damage = true,  hint = "His sacrifice means nothing", onpick = function ()
-
-    end
-  },
-  gijoe    = { damage = false, hint = "Plastic bones beneath the dust of war", onpick = function ()
-
-    end
-  },
-  nintendo = { damage = false, hint = "Wires like veins, still twitching", onpick = function ()
-
-    end
-  },
-  playboy  = { damage = false, hint = "Paper temptations sealed behind sin", onpick = function ()
-      postalservice:post(Mail.new(pool.iplayboy, nil, "default"))
-    end
-  },
+  crucifix = { damage = true,  hint = "His sacrifice means nothing" },
+  gijoe    = { damage = false, hint = "Plastic bones beneath the dust of war" },
+  nintendo = { damage = false, hint = "Wires like veins, still twitching" },
+  playboy  = { damage = false, hint = "Paper temptations sealed behind sin" },
 }
 
 function scene.on_enter()
@@ -47,7 +35,6 @@ function scene.on_enter()
 
   pool.timers = {}
   pool.collected = {}
-  pool.inventory = {}
 
   pool.foggy = scene:get("foggy", SceneType.effect)
   pool.television = scene:get("television", SceneType.object)
@@ -89,12 +76,9 @@ function scene.on_enter()
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
-    local iname = "iplayboy"
+    local iname = "i" .. name
     local inventory = scene:get(iname, SceneType.object)
     pool[iname] = inventory
-    inventory:on_mail(function (self)
-      self.action:set("default")
-    end)
 
     table.insert(objects, inventory)
 
@@ -113,7 +97,6 @@ function scene.on_enter()
           overlay:dispatch(WidgetType.cursor, "damage")
         end
 
-        settings:onpick()
         pool.foggy:play()
         pool.television.action:set("poltergeist")
         pool.collected[name] = true
@@ -121,6 +104,7 @@ function scene.on_enter()
         cassette:set(key, true)
 
         touch.disappear(self)
+        pool[iname].action:set("default")
 
         for _, collected in pairs(pool.collected) do
           if not collected then return end
