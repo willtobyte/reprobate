@@ -132,10 +132,10 @@ function scene.on_enter()
   local character = scene:get("boy", SceneType.object)
   pool.inventory = Inventory.new(layout, character, objects)
 
-  noise:on_finish(function()
-    scribe:write("I drown your divinity in the Acheron of my soul", 3, 3)
-    scribe:on_finish(12000, function() scribe:clear() end)
-  end)
+  -- noise:on_finish(function()
+  --   scribe:write("I drown your divinity in the Acheron of my soul", 3, 3)
+  --   scribe:on_finish(12000, function() scribe:clear() end)
+  -- end)
 end
 
 function scene.on_loop(delta)
