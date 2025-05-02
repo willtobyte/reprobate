@@ -16,7 +16,7 @@ function scene.on_enter()
 
   local credits = scene:get("credits", SceneType.object)
   credits:on_touch(function ()
-    openurl("https://rodrigodelduca.org")
+    scenemanager:set("whobuilt")
   end)
 
   pool.headbanger = scene:get("headbanger", SceneType.object)

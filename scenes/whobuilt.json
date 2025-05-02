@@ -1,0 +1,11 @@
+{
+  "width": 480,
+  "height": 270,
+  "objects": [
+    {
+      "name": "backbutton",
+      "kind": "backbutton",
+      "action": "default"
+    }
+  ]
+}

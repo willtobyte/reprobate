@@ -1,0 +1,27 @@
+{
+  "animations": {
+    "default": {
+      "hitbox": {
+        "x": 114,
+        "y": 133,
+        "width": 40,
+        "height": 40
+      },
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 115,
+            "y": 134
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 38,
+            "height": 38
+          }
+        }
+      ]
+    }
+  }
+}
