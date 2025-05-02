@@ -52,6 +52,8 @@ jobs:
           cp bundle.7z output/windows/
           cp carimbo.exe output/windows/
           cp carimbo output/macos/
+          cp LICENSES output/windows/
+          cp LICENSES output/macos/
           cp VERSION output/windows/
           cp VERSION output/macos/
 
