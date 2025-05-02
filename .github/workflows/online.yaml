@@ -133,18 +133,27 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Create Nginx Dockerfile
+      - name: Configure Caddy
         run: |
+          cat << EOF > Caddyfile
+          :80
+
+          root * /srv
+          encode gzip zstd
+          file_server
+          EOF
+
           cat << EOF > Dockerfile
-          FROM nginx:alpine
-          COPY ./output /usr/share/nginx/html
+          FROM caddy:alpine
+          COPY ./output /srv
+          COPY Caddyfile /etc/caddy/Caddyfile
           EOF
 
       - name: Create Docker Compose file
         run: |
           cat << 'EOF' > docker-compose.yaml
           services:
-            nginx:
+            caddy:
               build:
                 context: .
               restart: unless-stopped
