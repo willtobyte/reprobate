@@ -47,6 +47,8 @@ jobs:
 
       - name: Copy files
         run: |
+          chmod -x LICENSES
+          chmod -x VERSION
           mkdir -p output/{macos,windows}
           cp bundle.7z output/macos/
           cp bundle.7z output/windows/
