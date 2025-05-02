@@ -47,7 +47,6 @@ jobs:
 
       - name: Copy files
         run: |
-          ls -lah
           mkdir -p output/{macos,windows}
           cp bundle.7z output/macos/
           cp bundle.7z output/windows/
