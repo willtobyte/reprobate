@@ -17,17 +17,17 @@ local timermanager = engine:timermanager()
 local postalservice = PostalService.new()
 
 local animations = {
-  car   = { minimum = 3, maximum = 8, action = "run", message = "Twisted dream. Metal price" },
-  bear  = { minimum = 2, maximum = 4, action = "blink", message = "Do you want to play for five nights at my house?" },
-  clown = { minimum = 6, maximum = 8, action = "blink", message = "A cosmic clown is closing in. Not here for laughs" },
-  robot = { minimum = 3, maximum = 6, action = "shrug", message = "Need more input!" },
+  car   = { minimum = 3, maximum = 8, action = "run", message = _("Twisted dream. Metal price") },
+  bear  = { minimum = 2, maximum = 4, action = "blink", message = _("Do you want to play for five nights at my house?") },
+  clown = { minimum = 6, maximum = 8, action = "blink", message = _("A cosmic clown is closing in. Not here for laughs") },
+  robot = { minimum = 3, maximum = 6, action = "shrug", message = _("Need more input!") },
 }
 
 local items = {
-  crucifix = { damage = true,  hint = "His sacrifice means nothing" },
-  gijoe    = { damage = false, hint = "Plastic bones beneath the dust of war" },
-  nintendo = { damage = false, hint = "Wires like veins, still twitching" },
-  playboy  = { damage = false, hint = "Paper temptations sealed behind sin" },
+  crucifix = { damage = true,  hint = _("His sacrifice means nothing") },
+  gijoe    = { damage = false, hint = _("Plastic bones beneath the dust of war") },
+  nintendo = { damage = false, hint = _("Wires like veins, still twitching") },
+  playboy  = { damage = false, hint = _("Paper temptations sealed behind sin") },
 }
 
 function scene.on_enter()
@@ -42,7 +42,7 @@ function scene.on_enter()
 
   pool.television:on_touch(function ()
     scribe:clear()
-    scribe:write("This house is haunted-can you feel it?", 3, 3)
+    scribe:write(_("This house is haunted-can you feel it?"), 3, 3)
     scribe:on_finish(6000, function()
       scribe:clear()
     end)
