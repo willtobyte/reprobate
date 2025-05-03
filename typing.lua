@@ -6,9 +6,9 @@
 
 -- Core globals
 ---@type string
-_ = ""
+_ = fun()
 ---@type number
-ticks = 0
+ticks = func()
 
 -- Core functions
 ---@param url string
@@ -146,7 +146,8 @@ CursorProxy = {}
 ---@class Overlay
 ---@field create fun(self:Overlay, type:WidgetType):Label
 ---@field destroy fun(self:Overlay, widget:Widget)
----@field dispatch fun(self:Overlay, event:string, ...:any)
+---@overload fun(self:Overlay, event:string, ...:any)
+---@field dispatch fun(self:Overlay, widgetType:WidgetType, event:string, ...:any)
 ---@field cursor CursorProxy
 Overlay = {}
 
@@ -232,6 +233,7 @@ Mail = {}
 
 ---@class PostalService
 ---@field post fun(self:PostalService, mail:Mail)
+---@field new fun():PostalService
 PostalService = {}
 
 ---@class TimerManager
