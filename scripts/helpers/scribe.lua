@@ -9,7 +9,7 @@ function writter:new()
   local instance = setmetatable({}, writter)
 
   instance.label = overlay:create(WidgetType.label)
-  instance.label.font = fontfactory:get("evilvampire")
+  instance.label.font = fontfactory:get("fixedsys")
 
   instance.text = ""
   instance.index = 0
