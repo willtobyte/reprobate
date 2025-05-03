@@ -8,16 +8,11 @@
 ---@type string
 _ = fun()
 ---@type number
-ticks = func()
+moment = func()
 
 -- Core functions
 ---@param url string
 function openurl(url) end
-
----@param state any
----@param module string
----@return function
-function searcher(state, module) end
 
 -- JSON utilities
 ---@class JSON
@@ -119,7 +114,7 @@ ObjectManager = {}
 
 ---@class ResourceManager
 ---@field flush fun(self:ResourceManager)
----@field prefetch fun(self:ResourceManager, ...:string|table):void
+---@field prefetch fun(self:ResourceManager, ...:string|table):nil
 ResourceManager = {}
 
 ---@class PlayerWrapper

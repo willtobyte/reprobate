@@ -22,7 +22,7 @@ function NoiseEffect:new(width, height, duration)
 end
 
 function NoiseEffect:init()
-	self.start_time = ticks()
+	self.start_time = moment()
 end
 
 function NoiseEffect:on_finish(callback)
@@ -30,7 +30,7 @@ function NoiseEffect:on_finish(callback)
 end
 
 function NoiseEffect:loop()
-	local elapsed = ticks() - self.start_time
+	local elapsed = moment() - self.start_time
 	local alpha = (elapsed < self.duration) and self.floor(255 * (1 - elapsed / self.duration)) or 0
 
 	if alpha == 0 then
