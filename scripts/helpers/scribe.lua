@@ -1,92 +1,83 @@
 local fontfactory = engine:fontfactory()
 local overlay = engine:overlay()
-local timemanager = engine:timermanager()
 
-local writter = {}
-writter.__index = writter
+local Writer = {}
+Writer.__index = Writer
 
-function writter:new()
-  local instance = setmetatable({}, writter)
+local INTERVAL = 0.08
 
-  instance.label = overlay:create(WidgetType.label)
-  instance.label.font = fontfactory:get("fixedsys")
-
-  instance.text = ""
-  instance.index = 0
-
-  instance.tick_timer = nil
-  instance.finish_timer = nil
-
-  instance.timeout = 0
-  instance.callback = nil
-
-  return instance
+function Writer.new()
+	local self = setmetatable({}, Writer)
+	self.label = overlay:create(WidgetType.label)
+	self.label.font = fontfactory:get("fixedsys")
+	self.text = ""
+	self.index = 0
+	self.accumulator = 0
+	self.is_writing = false
+	self.finish_delay = 0
+	self.finish_countdown = nil
+	self.callback = nil
+	self.x, self.y = 0, 0
+	return self
 end
 
-function writter:on_finish(timeout, callback)
-  assert(type(timeout) == "number")
-  assert(type(callback) == "function")
-
-  self.timeout = timeout
-  self.callback = callback
+function Writer:on_finish(timeout, callback)
+	assert(type(timeout) == "number")
+	assert(type(callback) == "function")
+	self.finish_delay = timeout
+	self.callback = callback
 end
 
-function writter:clear()
-  self.index = 0
-  self.label:clear()
-
-  if self.tick_timer then
-    timemanager:clear(self.tick_timer)
-    self.tick_timer = nil
-  end
-
-  if self.finish_timer then
-    timemanager:clear(self.finish_timer)
-    self.finish_timer = nil
-  end
+function Writer:clear()
+	self.index = 0
+	self.text = ""
+	self.accumulator = 0
+	self.is_writing = false
+	self.finish_countdown = nil
+	self.callback = nil
+	self.label:clear()
 end
 
-function writter:write(text, x, y)
-  assert(type(text) == "string")
-  assert(type(x) == "number")
-  assert(type(y) == "number")
+function Writer:write(text, x, y)
+	assert(type(text) == "string")
+	assert(type(x) == "number")
+	assert(type(y) == "number")
 
-  if self.tick_timer then
-    timemanager:clear(self.tick_timer)
-    self.tick_timer = nil
-  end
+	self.text = text
+	self.index = 0
+	self.accumulator = 0
+	self.is_writing = true
+	self.finish_countdown = nil
+	self.x, self.y = x, y
 
-  if self.finish_timer then
-    timemanager:clear(self.finish_timer)
-    self.finish_timer = nil
-  end
-
-  self.text = text
-  self.index = 0
-  self.label:set("", x, y)
-
-  local function tick()
-    self.index = self.index + 1
-    local substring = self.text:sub(1, self.index)
-    self.label:set(substring, x, y)
-
-    if self.index >= #self.text then
-      timemanager:clear(self.tick_timer)
-      self.tick_timer = nil
-
-      if self.callback then
-        self.finish_timer = timemanager:singleshot(
-          self.timeout,
-          function()
-            self.callback()
-            self.finish_timer = nil
-          end
-        )
-      end
-    end
-  end
-
-  self.tick_timer = timemanager:set(100, tick)
+	self.label:set("", x, y)
 end
 
-return writter:new()
+function Writer:loop(delta)
+	if self.is_writing then
+		self.accumulator = self.accumulator + delta
+		while self.accumulator >= INTERVAL do
+			self.accumulator = self.accumulator - INTERVAL
+			self.index = self.index + 1
+			local substr = self.text:sub(1, self.index)
+			self.label:set(substr, self.x, self.y)
+			if self.index >= #self.text then
+				self.is_writing = false
+				self.finish_countdown = self.finish_delay
+				break
+			end
+		end
+	end
+
+	if not self.is_writing and self.finish_countdown then
+		self.finish_countdown = self.finish_countdown - delta
+		if self.finish_countdown <= 0 then
+			self.finish_countdown = nil
+			if self.callback then
+				self.callback()
+			end
+		end
+	end
+end
+
+return Writer.new()

@@ -7,31 +7,31 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
-  local play = scene:get("play", SceneType.object)
-  play:on_touch(function ()
-    local stage = cassette:get("system/stage", "babyroom")
+	local play = scene:get("play", SceneType.object)
+	play:on_touch(function()
+		local stage = cassette:get("system/stage", "babyroom")
 
-    scenemanager:set(stage)
-  end)
+		scenemanager:set(stage)
+	end)
 
-  local credits = scene:get("credits", SceneType.object)
-  credits:on_touch(function ()
-    scenemanager:set("whobuilt")
-  end)
+	local credits = scene:get("credits", SceneType.object)
+	credits:on_touch(function()
+		scenemanager:set("whobuilt")
+	end)
 
-  pool.headbanger = scene:get("headbanger", SceneType.object)
+	pool.headbanger = scene:get("headbanger", SceneType.object)
 end
 
 function scene.on_leave()
-  pool = {}
+	pool = {}
 end
 
 function scene.on_motion(x, y)
-  if x > 240 then -- 480 / 2
-    pool.headbanger.action:set("right")
-  else
-    pool.headbanger.action:set("left")
-  end
+	if x > 240 then -- 480 / 2
+		pool.headbanger.action:set("right")
+	else
+		pool.headbanger.action:set("left")
+	end
 end
 
 return scene
