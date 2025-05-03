@@ -1,5 +1,7 @@
 {
-  "diagnostics": {
-    "disable": ["undefined-global"]
+  "workspace": {
+    "library": [
+      "typing.lua"
+    ]
   }
 }
