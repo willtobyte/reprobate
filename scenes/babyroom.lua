@@ -164,9 +164,12 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
+	print("> lock")
 	if lock then
 		return
 	end
+
+	lock = true
 
 	pool.touches = (pool.touches or 0) + 1
 
@@ -206,7 +209,6 @@ function scene.on_touch()
 	local effect = scene:get("scream", SceneType.effect)
 	effect:play()
 
-	lock = true
 	timermanager:singleshot(1000, function()
 		lock = false
 	end)
