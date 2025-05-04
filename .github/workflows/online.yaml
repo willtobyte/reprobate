@@ -112,17 +112,12 @@ jobs:
 
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
-                const response = await fetch("bundle.7z?v=${GIT_SHORT_HASH}");
+                const response = await fetch("bundle.7z");
                 const bundle = await response.arrayBuffer();
 
                 window.Module = {
                   canvas,
                   noInitialRun: true,
-                  locateFile: (path) => {
-                    if (path.endsWith('.wasm')) {
-                      return path + '?v=${GIT_SHORT_HASH}';
-                    }
-                  },
                   onRuntimeInitialized: () => {
                     loading.remove();
                     FS.writeFile("/bundle.7z", new Uint8Array(bundle));
@@ -131,67 +126,13 @@ jobs:
                 };
 
                 const script = document.createElement("script");
-                script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
+                script.src = "carimbo.js";
                 script.defer = true;
                 document.body.appendChild(script);
               </script>
             </body>
           </html>
           EOF
-
-      # - name: Set up SSH key
-      #   run: |
-      #     mkdir -p ~/.ssh
-      #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-      #     chmod 600 ~/.ssh/id_ed25519
-      #     ssh-keyscan -H ${{ secrets.HETZNER_IP }} >> ~/.ssh/known_hosts
-
-      # - name: Configure Caddy
-      #   run: |
-      #     cat << EOF > Caddyfile
-      #     :80
-
-      #     root * /srv
-      #     encode gzip zstd
-      #     file_server
-      #     EOF
-
-      #     cat << EOF > Dockerfile
-      #     FROM caddy:alpine
-      #     COPY ./output /srv
-      #     COPY Caddyfile /etc/caddy/Caddyfile
-      #     EOF
-
-      # - name: Create Docker Compose file
-      #   run: |
-      #     cat << 'EOF' > docker-compose.yaml
-      #     services:
-      #       caddy:
-      #         build:
-      #           context: .
-      #         restart: unless-stopped
-
-      #       cloudflare:
-      #         image: cloudflare/cloudflared:latest
-      #         command: tunnel --no-autoupdate run
-      #         environment:
-      #           - TUNNEL_TOKEN=${CLOUDFLARE_TOKEN}
-      #         restart: unless-stopped
-      #     EOF
-
-      # - name: Deploy Docker Compose
-      #   env:
-      #     DOCKER_HOST: ssh://root@${{ secrets.HETZNER_IP }}
-      #     CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
-      #   run: |
-      #     set -e
-
-      #     docker compose down --remove-orphans
-      #     docker system prune --all --force
-      #     docker compose up --build --force-recreate --detach
-
-      #     docker ps -a
-
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
