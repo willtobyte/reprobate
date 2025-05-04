@@ -1,254 +1,209 @@
--- catimbo_typings.lua
----@meta
+---@type fun():string
+moment = moment
 
--- Globals provided by C++ via sol2
+---@type fun(url:string)
+openurl = openurl
 
--- Core globals
----@type string
-_ = function() end
----@type number
-moment = function() end
+---@type fun(state:userdata, module:string):fun
+searcher = searcher
 
--- Core functions
----@param url string
-function openurl(url) end
+---@type JSON
+JSON = JSON
 
--- JSON utilities
----@class JSON
----@field parse function(json:string):table
----@field stringify function(tbl:table):string
-JSON = {}
-
--- Enums
----@enum SceneType
-SceneType = { object = 0, effect = 1 }
-
----@enum Controller
-Controller = { up = 0, down = 1, left = 2, right = 3, triangle = 4, circle = 5, cross = 6, square = 7 }
-
----@enum Anchor
-Anchor = { top = 0, bottom = 1, left = 2, right = 3, none = 4 }
-
----@enum Reflection
-Reflection = { none = 0, horizontal = 1, vertical = 2, both = 3 }
-
----@enum Player
-Player = { one = 0, two = 1 }
+---@type any
+_ = _
 
 ---@enum WidgetType
-WidgetType = { cursor = 0, label = 1 }
+WidgetType = {
+	cursor = 0,
+	label = 1,
+}
 
----@enum KeyEvent
-KeyEvent = { up = 0, left = 1, down = 2, right = 3, space = 4 }
-
--- Usertype definitions
----@class SoundFX
----@field play fun(self:SoundFX, loop?:boolean)
----@field stop fun(self:SoundFX)
-SoundFX = {}
-
----@class SoundManager
----@field play fun(self:SoundManager, name:string, loop?:boolean)
----@field stop fun(self:SoundManager)
-SoundManager = {}
-
----@class ReflectionProxy
----@field set fun(self:ReflectionProxy, value:Reflection)
----@field unset fun(self:ReflectionProxy)
-ReflectionProxy = {}
-
----@class ActionProxy
----@field set fun(self:ActionProxy, value:string)
----@field get fun(self:ActionProxy):string
----@field unset fun(self:ActionProxy)
-ActionProxy = {}
-
----@class PlacementProxy
----@field set fun(self:PlacementProxy, x:number, y:number)
----@field get fun(self:PlacementProxy):Point
-PlacementProxy = {}
-
----@class VelocityProxy
----@field set fun(self:VelocityProxy, x:number, y:number)
----@field get fun(self:VelocityProxy):Vector2D
----@field x number
----@field y number
-VelocityProxy = {}
-
----@class KeyValue
----@field get fun(self:KeyValue, key:string, default:any):any
----@field set fun(self:KeyValue, key:string, new_value:any)
----@field subscribe fun(self:KeyValue, key:string, callback:fun(value:any))
-KeyValue = {}
-
----@class Object
----@field id number
----@field x number
----@field y number
----@field alpha number
----@field scale number
----@field hide fun(self:Object)
----@field move fun(self:Object, x:number, y:number)
----@field on_update fun(self:Object, callback:fun(delta:number))
----@field on_animationfinished fun(self:Object, callback:fun())
----@field on_mail fun(self:Object, callback:fun(mail:Mail))
----@field on_touch fun(self:Object, callback:fun(x:number, y:number))
----@field on_motion fun(self:Object, callback:fun(x:number, y:number))
----@field on_hover fun(self:Object, callback:fun())
----@field on_unhover fun(self:Object, callback:fun())
----@field on_collision fun(self:Object, callback:fun(other:Object))
----@field on_nthtick fun(self:Object, callback:fun(n:number))
----@field reflection ReflectionProxy
----@field action ActionProxy
----@field placement PlacementProxy
----@field velocity VelocityProxy
----@field kv KeyValue
-Object = {}
-
----@class ObjectManager
----@field create fun(self:ObjectManager, ...):Object
----@field clone fun(self:ObjectManager, obj:Object):Object
----@field destroy fun(self:ObjectManager, obj:Object)
-ObjectManager = {}
-
----@class ResourceManager
----@field flush fun(self:ResourceManager)
----@field prefetch fun(self:ResourceManager, ...:string|table):nil
-ResourceManager = {}
-
----@class PlayerWrapper
----@field on fun(self:PlayerWrapper, type:number):boolean
-PlayerWrapper = {}
-
----@class StateManager
----@field collides fun(self:StateManager, id:number, type:number):boolean
----@field players table<number,PlayerWrapper>
----@field player fun(self:StateManager, player:Player):PlayerWrapper
-StateManager = {}
-
----@class SceneManager
----@field set fun(self:SceneManager, name:string)
----@field destroy fun(self:SceneManager, name:string)
----@field register fun(self:SceneManager, name:string)
-SceneManager = {}
-
----@class CursorProxy
----@field set fun(self:CursorProxy, name:string)
----@field hide fun(self:CursorProxy)
-CursorProxy = {}
-
----@class Overlay
----@field create fun(self:Overlay, type:WidgetType):Label
----@field destroy fun(self:Overlay, widget:Widget)
----@overload fun(self:Overlay, event:string, ...:any)
----@field dispatch fun(self:Overlay, widgetType:WidgetType, event:string, ...:any)
----@field cursor CursorProxy
-Overlay = {}
-
----@class Engine
----@field canvas fun(self:Engine):Canvas
----@field cassette fun(self:Engine):Cassette
----@field objectmanager fun(self:Engine):ObjectManager
----@field fontfactory fun(self:Engine):FontFactory
----@field overlay fun(self:Engine):Overlay
----@field resourcemanager fun(self:Engine):ResourceManager
----@field soundmanager fun(self:Engine):SoundManager
----@field statemanager fun(self:Engine):StateManager
----@field scenemanager fun(self:Engine):SceneManager
----@field timermanager fun(self:Engine):TimerManager
----@field run fun(self:Engine)
-Engine = {}
+---@enum SceneType
+SceneType = {
+	object = 0,
+	effect = 1,
+}
 
 ---@class EngineFactory
----@field with_title fun(self:EngineFactory, title:string):EngineFactory
----@field with_width fun(self:EngineFactory, width:number):EngineFactory
----@field with_height fun(self:EngineFactory, height:number):EngineFactory
----@field with_scale fun(self:EngineFactory, scale:number):EngineFactory
----@field with_gravity fun(self:EngineFactory, x:number, y:number):EngineFactory
----@field with_fullscreen fun(self:EngineFactory, fullscreen:boolean):EngineFactory
----@field create fun(self:EngineFactory):Engine
----@field new fun(...):EngineFactory
-EngineFactory = {}
-
----@class Font
-Font = {}
-
----@class FontFactory
----@field get fun(self:FontFactory, name:string):Font
-FontFactory = {}
-
----@class Canvas
----@field pixels table<number,number>
-Canvas = {}
-
----@class Point
----@field x number
----@field y number
----@field set fun(self:Point, x:number, y:number)
-Point = {}
-
----@class Size
----@field width number
----@field height number
-Size = {}
-
----@class Widget
-Widget = {}
-
----@class Label:Widget
----@field font Font
----@field set fun(self:Label, text:string, size?:number, alignment?:number)
----@field clear fun(self:Label)
-Label = {}
-
----@class Cassette
----@field clear fun(self:Cassette)
----@field set fun(self:Cassette, key:string, value:any)
----@field get fun(self:Cassette, key:string, default:any):any
-Cassette = {}
-
----@class Socket
----@field connect fun(self:Socket, address:string):boolean
----@field emit fun(self:Socket, event:string, data:table)
----@field on fun(self:Socket, event:string, callback:fun(data:table))
----@field rpc fun(self:Socket, method:string, args:table, callback:fun(response:table))
-Socket = {}
-
----@class Color
----@field r number
----@field g number
----@field b number
----@field a number
-Color = {}
-
----@class Mail
----@field new fun(sender:Object, receiver?:Object, message:string):Mail
-Mail = {}
+---@field new fun():EngineFactory Constructor for EngineFactory
+EngineFactory = EngineFactory
 
 ---@class PostalService
----@field post fun(self:PostalService, mail:Mail)
----@field new fun():PostalService
-PostalService = {}
+---@field new fun():PostalService Constructor for PostalService
+PostalService = PostalService
+
+---@type Engine engine
+---@class Overlay
+---@field create fun(self:Overlay, widgetType:WidgetType):Label Create a widget instance of the specified type and return it.
+---@field destroy fun(self:Overlay, widgetId:number) Destroy a widget by ID.
+---@field dispatch fun(self:Overlay, widgetType:WidgetType, eventName:string):boolean Dispatch an event of `eventName` for the specified widget type.
+---@field cursor CursorProxy Proxy to manage the overlay cursor.
+---@type Overlay overlay
+---@class SceneManager
+---@field set fun(self:SceneManager, name:string) Switch to the named scene.
+---@field register fun(self:SceneManager, name:string) Load and register a scene from scripts/<name>.lua.
+---@field destroy fun(self:SceneManager, name:string) Destroy the named scene.
+---@type SceneManager scenemanager
 
 ---@class TimerManager
----@field set fun(self:TimerManager, interval:number, callback:fun())
----@field singleshot fun(self:TimerManager, delay:number, callback:fun())
----@field clear fun(self:TimerManager, id:number)
-TimerManager = {}
+---@field set fun(self:TimerManager, interval:number, callback:fun()):number Schedule a repeating callback; returns timer ID.
+---@field singleshot fun(self:TimerManager, delay:number, callback:fun()):number Schedule a one-time callback; returns timer ID.
+---@field clear fun(self:TimerManager, id:number) Clear the specified scheduled callback by its timer ID.
+---@type TimerManager timermanager
 
----@class Vector2D
----@field x number
----@field y number
----@field set fun(self:Vector2D, x:number, y:number)
----@field magnitude fun(self:Vector2D):number
----@field unit fun(self:Vector2D):Vector2D
----@field dot fun(self:Vector2D, other:Vector2D):number
----@field add_assign fun(self:Vector2D, other:Vector2D)
----@field sub_assign fun(self:Vector2D, other:Vector2D)
----@field mul_assign fun(self:Vector2D, scalar:number)
----@field div_assign fun(self:Vector2D, scalar:number)
----@field zero fun():Vector2D
----@field moving fun():Vector2D
----@field right fun():Vector2D
----@field left fun():Vector2D
-Vector2D = {}
+---@meta
+--- Type definitions for the Ultratech Lua Script Engine Binding
+--- Autogenerated from C++ `scriptengine` bindings for improved editor IntelliSense and documentation.
+
+---@class ActionProxy
+---Proxy to manage an object's action property.
+---@field set fun(self:ActionProxy, value:string) Sets the action on the object.
+---@field get fun(self:ActionProxy):string Retrieves the current action of the object.
+---@field unset fun(self:ActionProxy) Unsets the object's action.
+
+---@enum Anchor
+---Anchor enumeration for object alignment (framework.anchor).
+Anchor = {
+	---Align to the top.
+	top = 0,
+	---Align to the bottom.
+	bottom = 1,
+	---Align to the left.
+	left = 2,
+	---Align to the right.
+	right = 3,
+	---No anchoring.
+	none = 4,
+}
+
+---@class Canvas
+---Canvas for direct pixel manipulation.
+---Use the `pixels` property to update pixel data.
+---@field pixels fun(self:Canvas, data:table) Sets the pixel data from a sequential table of RGBA values.
+
+---@class Cassette
+---Persistent key-value storage interface.
+---@field clear fun(self:Cassette) Clears all stored key-value pairs.
+---@field set fun(self:Cassette, key:string, value:any) Stores a value under the given key.
+---@field get fun(self:Cassette, key:string, default:any):any Retrieves a value or returns the provided default.
+
+---@class Color
+---RGBA color representation.
+---@overload fun(color:string):Color Constructs a Color from a hex string (e.g., "#RRGGBB").
+---@field r number Red channel (0–255).
+---@field g number Green channel (0–255).
+---@field b number Blue channel (0–255).
+---@field a number Alpha channel (0–255).
+
+---@class Controller
+---Gamepad controller button codes (input.event.gamepad.button).
+---@field up number The "up" button code.
+---@field down number The "down" button code.
+---@field left number The "left" button code.
+---@field right number The "right" button code.
+---@field triangle number The "triangle" button code.
+---@field circle number The "circle" button code.
+---@field cross number The "cross" button code.
+---@field square number The "square" button code.
+
+---@class CursorProxy
+---Proxy for overlay cursor control.
+---@field set fun(self:CursorProxy, name:string) Sets the current cursor by name.
+---@field hide fun(self:CursorProxy) Hides the cursor.
+
+---@class Engine
+---Core engine instance for running scenes and loops.
+---@field canvas fun(self:Engine):Canvas Access the main drawing canvas.
+---@field cassette fun(self:Engine):Cassette Access the persistent storage cassette.
+---@field objectmanager fun(self:Engine):ObjectManager Manage scene objects.
+---@field fontfactory fun(self:Engine):FontFactory Retrieve Font objects.
+---@field overlay fun(self:Engine):Overlay Manage UI overlays.
+---@field resourcemanager fun(self:Engine):ResourceManager Prefetch and flush resources.
+---@field soundmanager fun(self:Engine):SoundManager Play and stop sounds.
+---@field statemanager fun(self:Engine):StateManager Query input and collisions.
+---@field scenemanager fun(self:Engine):SceneManager Load and register scenes.
+---@field timermanager fun(self:Engine):TimerManager Schedule timed callbacks.
+---@field run fun(self:Engine) Starts the engine's run loop.
+
+---@class EngineFactory
+---Builder for creating Engine instances with custom settings.
+---@overload fun():EngineFactory Creates a new EngineFactory.
+---@field with_fullscreen fun(self:EngineFactory, fullscreen:boolean):EngineFactory Enable or disable fullscreen mode.
+---@field with_gravity fun(self:EngineFactory, x:number, y:number):EngineFactory Set world gravity vector.
+---@field with_height fun(self:EngineFactory, height:number):EngineFactory Set window height in pixels.
+---@field with_scale fun(self:EngineFactory, scale:number):EngineFactory Set rendering scale factor.
+---@field with_title fun(self:EngineFactory, title:string):EngineFactory Set window title.
+---@field with_width fun(self:EngineFactory, width:number):EngineFactory Set window width in pixels.
+---@field create fun(self:EngineFactory):Engine Creates and returns a configured Engine.
+
+---@class Font
+---Font object for rendering text labels.
+---@field effect FontEffect Assign a rendering effect to the font (setter proxy).
+---Font object for rendering text labels.
+---@field effect fun(self:Font, effect:FontEffect) Applies a font rendering effect.
+
+---@enum FontEffect
+---Text rendering effects (graphics.fonteffect.type).
+FontEffect = {
+	---Fade-in effect for text.
+	fadein = 0,
+}
+
+---@class FontFactory
+---Factory to retrieve Font instances.
+---@field get fun(self:FontFactory, name:string):Font Retrieves a font by its identifier.
+
+---@class JSON
+---JSON encoding and decoding utilities.
+---@field parse fun(json:string):table Parses a JSON string into a Lua table.
+---@field stringify fun(tbl:table):string Serializes a Lua table into a JSON string.
+
+---@enum KeyEvent
+---Keyboard key event codes (input.event.keyboard.key).
+KeyEvent = {
+	up = 0,
+	left = 1,
+	down = 2,
+	right = 3,
+	space = 4,
+}
+
+---@class KeyValue
+---Key-value interface attached to objects.
+---@field get fun(self:KeyValue, key:string, default:any):any Retrieves stored value or default.
+---@field set fun(self:KeyValue, key:string, value:any) Stores a new value.
+---@field subscribe fun(self:KeyValue, key:string, callback:fun(newValue:any)) Subscribe to key changes.
+
+---@class Label
+---Text label widget (inherits from Widget).
+---@field font Font Property to set the label's font.
+---@field set fun(self:Label, text:string, x:number, y:number) Set the displayed text at position (x, y).
+---@field clear fun(self:Label) Clear the text.
+
+---@class Mail
+---Mail object for inter-object messaging.
+---@overload fun(src:Object, dest:Object|nil, message:string):Mail Constructs a new Mail instance.
+
+---@class MemoryKV
+---Alias type for Key-Value storage on objects.
+---@field get fun(self:MemoryKV, key:string, default:any):any
+---@field set fun(self:MemoryKV, key:string, value:any)
+---@field subscribe fun(self:MemoryKV, key:string, callback:fun(newValue:any))
+
+---@class Object
+---Core scene object with position, scaling, and event callbacks.
+---@field id number Unique object identifier.
+---@field x number X position in pixels.
+---@field y number Y position in pixels.
+---@field alpha number Transparency (0.0–1.0).
+---@field scale number Uniform scale factor.
+---@field hide fun(self:Object) Hide the object from view.
+---@field move fun(self:Object, x:number, y:number) Instantly move the object.
+---@field on_update fun(self:Object, callback:fun(dt:number)) Register update callback.
+---@field on_animationfinished fun(self:Object, callback:fun()) Register callback on animation end.
+---@field on_collision fun(self:Object, callback:fun(other:Object)) Register collision callback.
+---@field on_hover fun(self:Object, callback:fun()) Register hover callback.
+---@field on_unhover fun(self:Object, callback:fun()) Register unhover callback.
+---@field on_touch fun(self:Object, callback:fun(x:number, y:number)) Register touch callback.
+---@field on_motion fun(self:Object, callback:fun(dx:number, dy:number)) Register motion callback.
