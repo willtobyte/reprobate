@@ -9,7 +9,9 @@ local INTERVAL = 0.08
 function Writer.new()
 	local self = setmetatable({}, Writer)
 	self.label = overlay:create(WidgetType.label)
-	self.label.font = fontfactory:get("fixedsys")
+	local font = fontfactory:get("fixedsys")
+	font.effect = FontEffect.fadein
+	self.label.font = font
 	self.text = ""
 	self.index = 0
 	self.accumulator = 0

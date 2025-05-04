@@ -1,14 +1,13 @@
--- sol2_typings.lua
+-- catimbo_typings.lua
 ---@meta
----@diagnostic disable: undefined-global, undefined-field
 
 -- Globals provided by C++ via sol2
 
 -- Core globals
 ---@type string
-_ = fun()
+_ = function() end
 ---@type number
-moment = func()
+moment = function() end
 
 -- Core functions
 ---@param url string
@@ -16,8 +15,8 @@ function openurl(url) end
 
 -- JSON utilities
 ---@class JSON
----@field parse fun(json:string):table
----@field stringify fun(tbl:table):string
+---@field parse function(json:string):table
+---@field stringify function(tbl:table):string
 JSON = {}
 
 -- Enums
