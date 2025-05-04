@@ -111,6 +111,7 @@ jobs:
                 console.log("${GIT_SHORT_HASH}");
 
                 const canvas = document.getElementById("canvas");
+                const loading = document.getElementById("loading");
                 const response = await fetch("bundle.7z?v=${GIT_SHORT_HASH}");
                 const bundle = await response.arrayBuffer();
 
@@ -123,6 +124,7 @@ jobs:
                     }
                   },
                   onRuntimeInitialized: () => {
+                    loading.remove();
                     FS.writeFile("/bundle.7z", new Uint8Array(bundle));
                     Module.callMain();
                   },
