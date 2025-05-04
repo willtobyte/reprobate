@@ -44,14 +44,12 @@ function Writer:write(text, x, y)
 	assert(type(text) == "string")
 	assert(type(x) == "number")
 	assert(type(y) == "number")
-
 	self.text = text
 	self.index = 0
 	self.accumulator = 0
 	self.is_writing = true
 	self.finish_countdown = nil
 	self.x, self.y = x, y
-
 	self.label:set("", x, y)
 end
 
@@ -65,19 +63,17 @@ function Writer:loop(delta)
 			self.label:set(substr, self.x, self.y)
 			if self.index >= #self.text then
 				self.is_writing = false
-				self.finish_countdown = self.finish_delay
+				self.finish_countdown = moment() + self.finish_delay
 				break
 			end
 		end
 	end
 
 	if not self.is_writing and self.finish_countdown then
-		self.finish_countdown = self.finish_countdown - delta
-		if self.finish_countdown <= 0 then
-			self.finish_countdown = nil
-			if self.callback then
-				self.callback()
-			end
+		if moment() >= self.finish_countdown then
+			local cb = self.callback
+			self:clear()
+			return cb()
 		end
 	end
 end

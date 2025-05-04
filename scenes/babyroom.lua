@@ -63,10 +63,16 @@ function scene.on_enter()
 		end)
 
 		object:on_touch(function()
+			if lock then
+				return
+			end
+
+			lock = true
 			scribe:clear()
 			scribe:write(settings.message, 3, 3)
-			scribe:on_finish(6000, function()
+			scribe:on_finish(3000, function()
 				scribe:clear()
+				lock = false
 			end)
 		end)
 
@@ -164,38 +170,30 @@ function scene.on_leave()
 end
 
 function scene.on_touch()
-	print("> lock")
 	if lock then
 		return
 	end
 
-	lock = true
-
 	pool.touches = (pool.touches or 0) + 1
-
 	pool.threshold = pool.threshold or math.random(3, 6)
 
 	if pool.touches < pool.threshold then
 		return
 	end
 
-	pool.touches = 0
-
 	pool.threshold = math.random(3, 6)
+	pool.touches = 0
+	lock = true
 
 	local candidates = {}
-
 	for name in pairs(items) do
 		if not cassette:get(prefix .. name, false) then
 			table.insert(candidates, name)
 		end
 	end
 
-	if math.random() < 0.8 and #candidates > 0 then
-		lock = true
-
+	if #candidates > 0 and math.random() < 0.8 then
 		local chosen = candidates[math.random(#candidates)]
-
 		scribe:clear()
 		scribe:write(items[chosen].hint, 3, 3)
 		scribe:on_finish(3000, function()
@@ -208,7 +206,6 @@ function scene.on_touch()
 	pool.beelzebuuth.action:set("summon")
 	local effect = scene:get("scream", SceneType.effect)
 	effect:play()
-
 	timermanager:singleshot(1000, function()
 		lock = false
 	end)
