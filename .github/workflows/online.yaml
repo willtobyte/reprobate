@@ -198,7 +198,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./output --environment=production --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+          command: pages deploy ./output --branch=main --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Purge Cloudflare Cache
