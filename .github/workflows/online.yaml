@@ -32,7 +32,6 @@ jobs:
             -xr!.git/* \
             -xr!.git \
             -xr!.* \
-            -xr!typing.lua \
             -t7z \
             -m0=lzma2 \
             -mx=2 \
