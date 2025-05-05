@@ -25,7 +25,21 @@ jobs:
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(false\)/\1(true)/' scripts/main.lua
 
       - name: Create bundle
-        run: 7z a -xr'!icon.png' -xr'!.git/*' -xr'!.git' -xr'!.*' -xr'typing.lua' -t7z -m0=lzma2 -mx=2 -mfb=8 -md=32k -ms=off -mmt=off bundle.7z .
+        run: |
+          7z a bundle.7z \
+            . \
+            -xr!icon.png \
+            -xr!.git/* \
+            -xr!.git \
+            -xr!.* \
+            -xr!typing.lua \
+            -t7z \
+            -m0=lzma2 \
+            -mx=2 \
+            -mfb=8 \
+            -md=32k \
+            -ms=off \
+            -mmt=off
 
       - name: Download Carimbo runtime
         env:
