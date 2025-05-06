@@ -7,8 +7,6 @@ function scene.on_enter()
 
 	button:on_hover(function(self)
 		print("on hover")
-		error("Something went wrong!")
-		error("Bad input", 2)
 	end)
 
 	button:on_unhover(function(self)
