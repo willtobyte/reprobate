@@ -4,9 +4,6 @@ moment = moment
 ---@type fun(url:string)
 openurl = openurl
 
----@type fun(state:userdata, module:string):fun
-searcher = searcher
-
 ---@type JSON
 JSON = JSON
 
