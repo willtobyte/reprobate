@@ -79,6 +79,13 @@ jobs:
                 type="application/wasm"
                 crossorigin
               />
+              <link
+                rel="preload"
+                href="bundle.7z?v=${GIT_SHORT_HASH}"
+                as="fetch"
+                type="application/octet-stream"
+                crossorigin
+              />
               <style>
                 *,
                 *::before,
