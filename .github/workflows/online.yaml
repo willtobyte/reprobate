@@ -67,6 +67,18 @@ jobs:
           <html lang="en">
             <head>
               <meta charset="UTF-8" />
+              <link
+                rel="preload"
+                href="carimbo.js?v=${GIT_SHORT_HASH}"
+                as="script"
+              />
+              <link
+                rel="preload"
+                href="carimbo.wasm?v=${GIT_SHORT_HASH}"
+                as="fetch"
+                type="application/wasm"
+                crossorigin
+              />
               <style>
                 *,
                 *::before,
