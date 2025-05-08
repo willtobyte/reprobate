@@ -41,6 +41,9 @@ function scene.on_enter()
 	pool.timers = {}
 	pool.collected = {}
 
+	pool.theme = scene:get("theme", SceneType.effect)
+	pool.theme:play(true)
+
 	pool.foggy = scene:get("foggy", SceneType.effect)
 	pool.television = scene:get("television", SceneType.object)
 	pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
@@ -161,6 +164,8 @@ end
 
 function scene.on_leave()
 	noise:teardown()
+
+	pool.theme:stop()
 
 	for _, id in ipairs(pool.timers) do
 		timermanager:clear(id)

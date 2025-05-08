@@ -1,90 +1,95 @@
 {
-  "width": 480,
+  "effects": [
+    "door",
+    "foggy",
+    "scream",
+    "theme"
+  ],
   "height": 270,
-  "effects": ["door", "foggy", "scream"],
   "objects": [
     {
-      "name": "beelzebuuth",
-      "kind": "beelzebuuth"
+      "kind": "beelzebuuth",
+      "name": "beelzebuuth"
     },
     {
-      "name": "car",
+      "action": "default",
       "kind": "car",
-      "action": "default"
+      "name": "car"
     },
     {
-      "name": "crucifix",
+      "action": "default",
       "kind": "crucifix",
-      "action": "default"
+      "name": "crucifix"
     },
     {
-      "name": "bear",
+      "action": "default",
       "kind": "bear",
-      "action": "default"
+      "name": "bear"
     },
     {
-      "name": "clown",
+      "action": "default",
       "kind": "clown",
-      "action": "default"
+      "name": "clown"
     },
     {
-      "name": "gijoe",
+      "action": "default",
       "kind": "gijoe",
-      "action": "default"
+      "name": "gijoe"
     },
     {
-      "name": "nintendo",
+      "action": "default",
       "kind": "nintendo",
-      "action": "default"
+      "name": "nintendo"
     },
     {
-      "name": "playboy",
+      "action": "default",
       "kind": "playboy",
-      "action": "default"
+      "name": "playboy"
     },
     {
-      "name": "robot",
+      "action": "default",
       "kind": "robot",
-      "action": "default"
+      "name": "robot"
     },
     {
-      "name": "television",
+      "action": "default",
       "kind": "television",
-      "action": "default"
+      "name": "television"
     },
     {
-      "name": "door",
-      "kind": "door"
+      "kind": "door",
+      "name": "door"
     },
     {
-      "name": "layout",
+      "action": "default",
       "kind": "layout",
-      "action": "default"
+      "name": "layout"
     },
     {
-      "name": "boy",
+      "action": "default",
       "kind": "boy",
-      "action": "default"
+      "name": "boy"
     },
     {
-      "name": "iplayboy",
+      "action": "shadow",
       "kind": "iplayboy",
-      "action": "shadow"
+      "name": "iplayboy"
     },
     {
-      "name": "igijoe",
+      "action": "shadow",
       "kind": "igijoe",
-      "action": "shadow"
+      "name": "igijoe"
     },
     {
-      "name": "inintendo",
+      "action": "shadow",
       "kind": "inintendo",
-      "action": "shadow"
+      "name": "inintendo"
     },
     {
-      "name": "icrucifix",
+      "action": "shadow",
       "kind": "icrucifix",
-      "action": "shadow"
+      "name": "icrucifix"
     }
-  ]
+  ],
+  "width": 480
 }
