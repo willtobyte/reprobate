@@ -7,6 +7,9 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
+	local music = scene:get("theme", SceneType.effect)
+	music:play(true)
+
 	local play = scene:get("play", SceneType.object)
 	play:on_touch(function()
 		local stage = cassette:get("system/stage", "babyroom")
@@ -23,7 +26,9 @@ function scene.on_enter()
 end
 
 function scene.on_leave()
-	pool = {}
+	for o in pairs(pool) do
+		pool[o] = nil
+	end
 end
 
 function scene.on_motion(x, y)
