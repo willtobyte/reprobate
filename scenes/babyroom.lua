@@ -14,8 +14,6 @@ local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
-local postalservice = PostalService.new()
-
 local animations = {
 	car = { minimum = 3, maximum = 8, action = "run", message = "Twisted dream. Metal price" },
 	bear = { minimum = 2, maximum = 4, action = "blink", message = "Do you want to play for five nights at my house?" },
