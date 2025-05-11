@@ -60,6 +60,9 @@ jobs:
       - name: Create _headers file
         run: |
           cat << EOF > output/_headers
+          /index.html
+            Cache-Control: no-cache, no-store, must-revalidate
+
           /*
             Cache-Control: public, max-age=86400, immutable
           EOF
