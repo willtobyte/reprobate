@@ -7,7 +7,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
-      CARIMBO_TAG: "v1.2.13"
+      CARIMBO_TAG: "v1.2.14"
 
     permissions:
       contents: write
@@ -56,6 +56,13 @@ jobs:
           mv bundle.7z output/
           mv carimbo.js output/
           mv carimbo.wasm output/
+
+      - name: Create _headers file
+        run: |
+          cat << EOF > output/_headers
+          /*
+            Cache-Control: public, max-age=86400, immutable
+          EOF
 
       - name: Set short commit hash
         run: echo "GIT_SHORT_HASH=${GITHUB_SHA::7}" >> $GITHUB_ENV

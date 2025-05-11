@@ -24,7 +24,3 @@ function setup()
 end
 
 function loop() end
-
-function run()
-	engine:run()
-end
