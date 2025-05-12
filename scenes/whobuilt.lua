@@ -21,26 +21,30 @@ function scene.on_enter()
 
   local aline = scene:get("aline", SceneType.object)
 
+  local rodrigo = scene:get("rodrigo", SceneType.object)
+
   aline:on_hover(function(self)
     self.action:set("hover")
   end)
 
   aline:on_unhover(function(self)
-    self.action:set("burning")
+    aline.action:set("burning")
+    rodrigo.action:unset()
+    rodrigo.action:set("burning")
   end)
 
   aline:on_touch(function(self)
     openurl("https://linktr.ee/dandelion.pixelart")
   end)
 
-  local rodrigo = scene:get("rodrigo", SceneType.object)
-
   rodrigo:on_hover(function(self)
     self.action:set("hover")
   end)
 
   rodrigo:on_unhover(function(self)
-    self.action:set("burning")
+    rodrigo.action:set("burning")
+    aline.action:unset()
+    aline.action:set("burning")
   end)
 
   rodrigo:on_touch(function(self)
