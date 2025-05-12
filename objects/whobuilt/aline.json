@@ -3,7 +3,7 @@
     "burning": {
       "frames": [
         {
-          "duration": 200,
+          "duration": 120,
           "offset": {
             "x": 279,
             "y": 59
@@ -16,7 +16,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 120,
           "offset": {
             "x": 279,
             "y": 59
@@ -29,7 +29,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 120,
           "offset": {
             "x": 279,
             "y": 59
@@ -42,7 +42,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 120,
           "offset": {
             "x": 279,
             "y": 59
@@ -65,7 +65,7 @@
     "hover": {
       "frames": [
         {
-          "duration": 200,
+          "duration": 120,
           "offset": {
             "x": 279,
             "y": 59
