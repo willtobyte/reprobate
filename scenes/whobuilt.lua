@@ -23,31 +23,31 @@ function scene.on_enter()
 
   local rodrigo = scene:get("rodrigo", SceneType.object)
 
-  aline:on_hover(function(self)
-    self.action:set("hover")
+  aline:on_hover(function()
+    aline.action:set("hover")
   end)
 
-  aline:on_unhover(function(self)
+  aline:on_unhover(function()
     aline.action:set("burning")
     rodrigo.action:unset()
     rodrigo.action:set("burning")
   end)
 
-  aline:on_touch(function(self)
+  aline:on_touch(function()
     openurl("https://linktr.ee/dandelion.pixelart")
   end)
 
-  rodrigo:on_hover(function(self)
-    self.action:set("hover")
+  rodrigo:on_hover(function()
+    rodrigo.action:set("hover")
   end)
 
-  rodrigo:on_unhover(function(self)
+  rodrigo:on_unhover(function()
     rodrigo.action:set("burning")
     aline.action:unset()
     aline.action:set("burning")
   end)
 
-  rodrigo:on_touch(function(self)
+  rodrigo:on_touch(function()
     openurl("https://rodrigodelduca.org")
   end)
 end
