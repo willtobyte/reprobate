@@ -23,4 +23,13 @@ repos:
     rev: v9.1.5
     hooks:
       - id: oxipng
-        args: ["--strip", "safe", "--alpha", "--verbose", "--verbose", "--opt", "max"]
+        args:
+          [
+            "--strip",
+            "safe",
+            "--alpha",
+            "--verbose",
+            "--verbose",
+            "--opt",
+            "max",
+          ]

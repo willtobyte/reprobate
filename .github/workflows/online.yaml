@@ -40,7 +40,6 @@ jobs:
             -ms=off \
             -mmt=off
 
-
       - name: Download Carimbo WebAssembly runtime
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

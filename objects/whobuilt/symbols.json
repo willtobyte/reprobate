@@ -1,0 +1,60 @@
+{
+  "animations": {
+    "blaspheming": {
+      "frames": [
+        {
+          "duration": 120,
+          "offset": {
+            "x": 43,
+            "y": 8
+          },
+          "rectangle": {
+            "height": 157,
+            "width": 397,
+            "x": 1,
+            "y": 1
+          }
+        },
+        {
+          "duration": 120,
+          "offset": {
+            "x": 43,
+            "y": 8
+          },
+          "rectangle": {
+            "height": 157,
+            "width": 397,
+            "x": 400,
+            "y": 1
+          }
+        },
+        {
+          "duration": 120,
+          "offset": {
+            "x": 43,
+            "y": 8
+          },
+          "rectangle": {
+            "height": 157,
+            "width": 397,
+            "x": 1,
+            "y": 1
+          }
+        },
+        {
+          "duration": 120,
+          "offset": {
+            "x": 43,
+            "y": 8
+          },
+          "rectangle": {
+            "height": 157,
+            "width": 397,
+            "x": 400,
+            "y": 1
+          }
+        }
+      ]
+    }
+  }
+}

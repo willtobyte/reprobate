@@ -1,0 +1,60 @@
+{
+  "animations": {
+    "default": {
+      "frames": [
+        {
+          "duration": 120,
+          "offset": {
+            "x": 0,
+            "y": 143
+          },
+          "rectangle": {
+            "height": 127,
+            "width": 480,
+            "x": 1,
+            "y": 425
+          }
+        },
+        {
+          "duration": 120,
+          "offset": {
+            "x": 0,
+            "y": 136
+          },
+          "rectangle": {
+            "height": 134,
+            "width": 480,
+            "x": 1,
+            "y": 289
+          }
+        },
+        {
+          "duration": 120,
+          "offset": {
+            "x": 0,
+            "y": 127
+          },
+          "rectangle": {
+            "height": 143,
+            "width": 480,
+            "x": 1,
+            "y": 1
+          }
+        },
+        {
+          "duration": 120,
+          "offset": {
+            "x": 0,
+            "y": 129
+          },
+          "rectangle": {
+            "height": 141,
+            "width": 480,
+            "x": 1,
+            "y": 146
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,11 +1,41 @@
 {
-  "width": 480,
   "height": 270,
   "objects": [
     {
-      "name": "backbutton",
+      "action": "default",
+      "kind": "backflames",
+      "name": "backflames"
+    },
+    {
+      "action": "default",
       "kind": "backbutton",
-      "action": "default"
+      "name": "backbutton"
+    },
+    {
+      "action": "blaspheming",
+      "kind": "symbols",
+      "name": "symbols"
+    },
+    {
+      "action": "burning",
+      "kind": "aline",
+      "name": "aline"
+    },
+    {
+      "action": "burning",
+      "kind": "rodrigo",
+      "name": "rodrigo"
+    },
+    {
+      "action": "default",
+      "kind": "frontflames",
+      "name": "frontflames"
+    },
+    {
+      "action": "display",
+      "kind": "who",
+      "name": "who"
     }
-  ]
+  ],
+  "width": 480
 }

@@ -1,0 +1,89 @@
+{
+  "animations": {
+    "burning": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 96,
+            "y": 39
+          },
+          "rectangle": {
+            "height": 231,
+            "width": 96,
+            "x": 1,
+            "y": 1
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 96,
+            "y": 39
+          },
+          "rectangle": {
+            "height": 231,
+            "width": 96,
+            "x": 1,
+            "y": 234
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 96,
+            "y": 39
+          },
+          "rectangle": {
+            "height": 231,
+            "width": 96,
+            "x": 1,
+            "y": 467
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 96,
+            "y": 39
+          },
+          "rectangle": {
+            "height": 231,
+            "width": 96,
+            "x": 1,
+            "y": 700
+          }
+        }
+      ],
+      "hitbox": {
+        "height": 230,
+        "width": 96,
+        "x": 96,
+        "y": 40
+      }
+    },
+    "hover": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 96,
+            "y": 39
+          },
+          "rectangle": {
+            "height": 231,
+            "width": 96,
+            "x": 1,
+            "y": 1
+          }
+        }
+      ],
+      "hitbox": {
+        "height": 230,
+        "width": 96,
+        "x": 96,
+        "y": 40
+      }
+    }
+  }
+}

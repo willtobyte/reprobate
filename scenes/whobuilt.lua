@@ -1,21 +1,55 @@
 local scene = {}
 
+local scenemanager = engine:scenemanager()
+
 local pool = {}
 
 function scene.on_enter()
-	local button = scene:get("backbutton", SceneType.object)
+  local back = scene:get("backbutton", SceneType.object)
 
-	button:on_hover(function(self)
-		print("on hover")
-	end)
+  back:on_hover(function(self)
+    self.action:set("hover")
+  end)
 
-	button:on_unhover(function(self)
-		print("on unhover")
-	end)
+  back:on_unhover(function(self)
+    self.action:set("default")
+  end)
+
+  back:on_touch(function(self)
+    scenemanager:set("mainmenu")
+  end)
+
+  local aline = scene:get("aline", SceneType.object)
+
+  aline:on_hover(function(self)
+    self.action:set("hover")
+  end)
+
+  aline:on_unhover(function(self)
+    self.action:set("burning")
+  end)
+
+  aline:on_touch(function(self)
+    openurl("https://linktr.ee/dandelion.pixelart")
+  end)
+
+  local rodrigo = scene:get("rodrigo", SceneType.object)
+
+  rodrigo:on_hover(function(self)
+    self.action:set("hover")
+  end)
+
+  rodrigo:on_unhover(function(self)
+    self.action:set("burning")
+  end)
+
+  rodrigo:on_touch(function(self)
+    openurl("https://rodrigodelduca.org")
+  end)
 end
 
 function scene.on_leave()
-	pool = {}
+  pool = {}
 end
 
 return scene
