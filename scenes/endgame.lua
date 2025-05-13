@@ -35,7 +35,7 @@ function scene.on_enter()
     pool.loop = timermanager:set(30, function()
       local dx = math.random(-3, 3)
       local dy = math.random(-3, 3)
-      pool.skull.placement:set(dx, dy)
+      pool.skull.placement = { dx, dy }
 
       pool.alpha = pool.alpha + (10 * direction)
       pool.alpha = math.max(0, math.min(pool.alpha, 255))
