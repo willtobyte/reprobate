@@ -3,14 +3,14 @@
     "blaspheming": {
       "frames": [
         {
-          "duration": 200,
+          "duration": -1,
           "offset": {
-            "x": 78,
+            "x": 32,
             "y": 7
           },
           "rectangle": {
             "height": 147,
-            "width": 322,
+            "width": 416,
             "x": 1,
             "y": 1
           }
