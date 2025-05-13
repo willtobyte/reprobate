@@ -3,54 +3,15 @@
     "blaspheming": {
       "frames": [
         {
-          "duration": 120,
+          "duration": 200,
           "offset": {
-            "x": 43,
-            "y": 8
+            "x": 78,
+            "y": 7
           },
           "rectangle": {
-            "height": 157,
-            "width": 397,
+            "height": 147,
+            "width": 322,
             "x": 1,
-            "y": 1
-          }
-        },
-        {
-          "duration": 120,
-          "offset": {
-            "x": 43,
-            "y": 8
-          },
-          "rectangle": {
-            "height": 157,
-            "width": 397,
-            "x": 400,
-            "y": 1
-          }
-        },
-        {
-          "duration": 120,
-          "offset": {
-            "x": 43,
-            "y": 8
-          },
-          "rectangle": {
-            "height": 157,
-            "width": 397,
-            "x": 1,
-            "y": 1
-          }
-        },
-        {
-          "duration": 120,
-          "offset": {
-            "x": 43,
-            "y": 8
-          },
-          "rectangle": {
-            "height": 157,
-            "width": 397,
-            "x": 400,
             "y": 1
           }
         }

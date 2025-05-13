@@ -7,15 +7,15 @@ local pool = {}
 function scene.on_enter()
   local back = scene:get("backbutton", SceneType.object)
 
-  back:on_hover(function(self)
-    self.action:set("hover")
+  back:on_hover(function()
+    back.action:set("hover")
   end)
 
-  back:on_unhover(function(self)
-    self.action:set("default")
+  back:on_unhover(function()
+    back.action:set("default")
   end)
 
-  back:on_touch(function(self)
+  back:on_touch(function()
     scenemanager:set("mainmenu")
   end)
 
@@ -42,6 +42,8 @@ function scene.on_enter()
   end)
 
   rodrigo:on_unhover(function()
+    rodrigo.action = "burning"
+    rodrigo.action = nil
     rodrigo.action:set("burning")
     aline.action:unset()
     aline.action:set("burning")
