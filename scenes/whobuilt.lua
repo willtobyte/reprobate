@@ -42,8 +42,6 @@ function scene.on_enter()
   end)
 
   rodrigo:on_unhover(function()
-    rodrigo.action = "burning"
-    rodrigo.action = nil
     rodrigo.action:set("burning")
     aline.action:unset()
     aline.action:set("burning")

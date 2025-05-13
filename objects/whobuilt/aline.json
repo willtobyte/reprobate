@@ -28,7 +28,36 @@
             "y": 214
           }
         }
-      ]
+      ],
+      "hitbox": {
+        "height": 211,
+        "width": 113,
+        "x": 279,
+        "y": 59
+      }
+    },
+    "hover": {
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 279,
+            "y": 59
+          },
+          "rectangle": {
+            "height": 211,
+            "width": 113,
+            "x": 1,
+            "y": 1
+          }
+        }
+      ],
+      "hitbox": {
+        "height": 211,
+        "width": 113,
+        "x": 279,
+        "y": 59
+      }
     }
   }
 }
