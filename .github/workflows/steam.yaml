@@ -7,7 +7,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
-      CARIMBO_TAG: "v1.2.14"
+      CARIMBO_TAG: "v1.2.19"
 
     permissions:
       contents: write

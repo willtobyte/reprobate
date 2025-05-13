@@ -55,7 +55,7 @@ function scene.on_enter()
     local delay = math.random(settings.minimum, settings.maximum) * 1000
 
     local id = timermanager:set(delay, function()
-      object.action:set(settings.action)
+      object.action = settings.action
     end)
 
     object:on_touch(function()
@@ -95,7 +95,7 @@ function scene.on_enter()
 
     if done then
       touch.disappear(object)
-      inventory.action:set("default")
+      inventory.action = "default"
     end
 
     if not done then
@@ -105,13 +105,13 @@ function scene.on_enter()
         end
 
         pool.foggy:play()
-        pool.television.action:set("poltergeist")
+        pool.television.action = "poltergeist"
         pool.collected[name] = true
 
         cassette:set(key, true)
 
         touch.disappear(self)
-        pool[iname].action:set("default")
+        pool[iname].action = "default"
 
         for _, collected in pairs(pool.collected) do
           if not collected then
@@ -129,7 +129,7 @@ function scene.on_enter()
             scenemanager:set("endgame")
           end)
 
-          door.action:set("default")
+          door.action = "default"
 
           timermanager:singleshot(3000, function()
             effect:play()
@@ -204,7 +204,7 @@ function scene.on_touch()
     return
   end
 
-  pool.beelzebuuth.action:set("summon")
+  pool.beelzebuuth.action = "summon"
   local effect = scene:get("scream", SceneType.effect)
   effect:play()
   timermanager:singleshot(1000, function()

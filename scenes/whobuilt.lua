@@ -8,11 +8,11 @@ function scene.on_enter()
   local back = scene:get("backbutton", SceneType.object)
 
   back:on_hover(function()
-    back.action:set("hover")
+    back.action = "hover"
   end)
 
   back:on_unhover(function()
-    back.action:set("default")
+    back.action = "default"
   end)
 
   back:on_touch(function()
@@ -24,13 +24,13 @@ function scene.on_enter()
   local rodrigo = scene:get("rodrigo", SceneType.object)
 
   aline:on_hover(function()
-    aline.action:set("hover")
+    aline.action = "hover"
   end)
 
   aline:on_unhover(function()
-    aline.action:set("burning")
-    rodrigo.action:unset()
-    rodrigo.action:set("burning")
+    aline.action = "burning"
+    rodrigo.action = nil
+    rodrigo.action = "burning"
   end)
 
   aline:on_touch(function()
@@ -38,13 +38,13 @@ function scene.on_enter()
   end)
 
   rodrigo:on_hover(function()
-    rodrigo.action:set("hover")
+    rodrigo.action = "hover"
   end)
 
   rodrigo:on_unhover(function()
-    rodrigo.action:set("burning")
-    aline.action:unset()
-    aline.action:set("burning")
+    rodrigo.action = "burning"
+    aline.action = nil
+    aline.action = "burning"
   end)
 
   rodrigo:on_touch(function()
