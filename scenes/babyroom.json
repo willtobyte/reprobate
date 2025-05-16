@@ -1,11 +1,12 @@
 {
+  "width": 480,
+  "height": 270,
   "effects": [
     "door",
     "foggy",
     "scream",
     "theme"
   ],
-  "height": 270,
   "objects": [
     {
       "kind": "beelzebuuth",
@@ -90,6 +91,5 @@
       "kind": "icrucifix",
       "name": "icrucifix"
     }
-  ],
-  "width": 480
+  ]
 }

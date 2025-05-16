@@ -1,5 +1,9 @@
 {
+  "width": 480,
   "height": 270,
+  "effects": [
+    "theme"
+  ],
   "objects": [
     {
       "action": "default",
@@ -36,6 +40,5 @@
       "kind": "who",
       "name": "who"
     }
-  ],
-  "width": 480
+  ]
 }

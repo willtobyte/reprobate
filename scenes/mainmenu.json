@@ -1,8 +1,9 @@
 {
+  "width": 480,
+  "height": 270,
   "effects": [
     "theme"
   ],
-  "height": 270,
   "objects": [
     {
       "action": "default",
@@ -19,6 +20,5 @@
       "kind": "headbanger",
       "name": "headbanger"
     }
-  ],
-  "width": 480
+  ]
 }

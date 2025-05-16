@@ -5,6 +5,9 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
+  local music = scene:get("theme", SceneType.effect)
+  music:play(true)
+
   local back = scene:get("backbutton", SceneType.object)
 
   back:on_hover(function()
