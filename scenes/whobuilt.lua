@@ -8,6 +8,12 @@ function scene.on_enter()
   local music = scene:get("theme", SceneType.effect)
   music:play(true)
 
+  local symbols = scene:get("symbols", SceneType.object)
+  local goat = scene:get("goat", SceneType.effect)
+  symbols:on_touch(function()
+    goat:play()
+  end)
+
   local back = scene:get("backbutton", SceneType.object)
 
   back:on_hover(function()
