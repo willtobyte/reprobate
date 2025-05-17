@@ -36,7 +36,7 @@ jobs:
       - name: Compile .lua to bytecode
         run: |
           find . -name "*.lua" -type f | while read -r file; do
-            luajit -b "$file" "${file%.lua}.luajit"
+            luajit -b "$file" "${file%.lua}.luac"
             rm "$file"
           done
 
