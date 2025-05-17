@@ -1,3 +1,5 @@
+name: Publish Steam
+
 on:
   push:
     tags:
