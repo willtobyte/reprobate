@@ -16,13 +16,43 @@ jobs:
       - name: Clone the repository
         uses: actions/checkout@v4
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
       - name: Install dependencies
         run: |
-          sudo apt-get install --yes p7zip-full
+          sudo apt-get install --yes lua5.4 p7zip-full
 
       - name: Enforce non-fullscreen
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(true\)/\1(false)/' scripts/main.lua
+
+      - name: Install cbor2 dependency
+        run: pip install cbor2
+
+      - name: Convert JSON to CBOR
+        run: |
+          python3 - <<EOF
+          import json
+          import cbor2
+          from pathlib import Path
+
+          for path in Path('.').rglob('*.json'):
+              with path.open('r', encoding='utf-8') as f:
+                  data = json.load(f)
+              with path.with_suffix('.cbor').open('wb') as f:
+                  cbor2.dump(data, f)
+              path.unlink()
+          EOF
+
+      - name: Compile .lua to bytecode
+        run: |
+          find . -name "*.lua" -type f | while read -r file; do
+            luac -o "${file%.lua}.luac" "$file"
+            rm "$file"
+          done
 
       - name: Create bundle
         run: |

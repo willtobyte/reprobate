@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CARIMBO_TAG: "v1.2.36"
+      CARIMBO_TAG: "v1.2.38"
 
     permissions:
       contents: write
@@ -33,7 +33,7 @@ jobs:
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(false\)/\1(true)/' scripts/main.lua
 
-      - name: Compile .lua to .luajit and delete originals
+      - name: Compile .lua to bytecode
         run: |
           find . -name "*.lua" -type f | while read -r file; do
             luajit -b "$file" "${file%.lua}.luajit"
