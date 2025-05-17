@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install --yes lua5.4 p7zip-full
+          sudo apt-get install --yes p7zip-full
 
       - name: Enforce non-fullscreen
         run: |
