@@ -11,6 +11,8 @@ jobs:
 
     env:
       CARIMBO_TAG: "v1.3.31"
+      ANDROID_API_LEVEL: "34"
+      BUILD_TOOLS_VERSION: "34.0.0"
 
     permissions:
       contents: write
@@ -28,20 +30,14 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install latest Android SDK components
+      - name: Install Android SDK components
         run: |
-          yes | sdkmanager --licenses                         # accept licenses
-          LATEST_PLATFORM=$(sdkmanager --list | \
-            grep -Eo 'platforms;android-[0-9]+' | sort -t- -k2 -n | tail -n1)
+          yes | sdkmanager --licenses
 
-          LATEST_BUILD_TOOLS=$(sdkmanager --list | \
-            grep -Eo 'build-tools;[0-9]+\.[0-9]+\.[0-9]+' | sort -t\; -k2 -V | tail -n1)
+          sdkmanager "platform-tools" "platforms;android-${ANDROID_API_LEVEL}" "build-tools;${BUILD_TOOLS_VERSION}"
 
-          sdkmanager "platform-tools" "$LATEST_PLATFORM" "$LATEST_BUILD_TOOLS"
+          PLATFORM_DIR="$ANDROID_SDK_ROOT/platforms/android-${ANDROID_API_LEVEL}"
 
-
-          PLATFORM_DIR="$ANDROID_SDK_ROOT/$LATEST_PLATFORM"
-          BUILD_TOOLS_VERSION="${LATEST_BUILD_TOOLS##build-tools;}"
           echo "PLATFORM_DIR=$PLATFORM_DIR" >> "$GITHUB_ENV"
           echo "BUILD_TOOLS_VERSION=$BUILD_TOOLS_VERSION" >> "$GITHUB_ENV"
           echo "$ANDROID_SDK_ROOT/build-tools/$BUILD_TOOLS_VERSION" >> "$GITHUB_PATH"
