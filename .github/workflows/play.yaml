@@ -75,11 +75,11 @@ jobs:
 
       - name: Download SDL sources (.java)
         run: |
-          curl -L -o SDLAndroid https://github.com/libsdl-org/SDL/archive/refs/heads/main.zip
-          unzip -q SDLAndroid.zip "SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java" -d tmp
+          curl -L -o SDLAndroid.zip https://github.com/libsdl-org/SDL/archive/refs/heads/main.zip
+          unzip -q SDLAndroid.zip "SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java" -d workdir
           mkdir -p src/org/libsdl/app
-          mv tmp/SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java src/org/libsdl/app/
-          rm -rf tmp SDLAndroid
+          mv workdir/SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java src/org/libsdl/app/
+          rm -rf workdir SDLAndroid.zip
 
       - name: Create AndroidManifest.xml
         run: |
