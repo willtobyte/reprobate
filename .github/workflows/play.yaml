@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CARIMBO_TAG: "v1.3.37"
+      CARIMBO_TAG: "v1.3.38"
       ANDROID_API_LEVEL: "34"
       BUILD_TOOLS_VERSION: "34.0.0"
 
