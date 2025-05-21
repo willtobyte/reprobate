@@ -52,20 +52,20 @@ jobs:
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(false\)/\1(true)/' scripts/main.lua
 
-      - name: Create bundle
-        run: |
-          7z a bundle.7z \
-            . \
-            -xr!icon.png \
-            -xr!.git \
-            -xr!.* \
-            -t7z \
-            -m0=lzma2 \
-            -mx=2 \
-            -mfb=8 \
-            -md=32k \
-            -ms=off \
-            -mmt=off
+      # - name: Create bundle
+      #   run: |
+      #     7z a bundle.7z \
+      #       . \
+      #       -xr!icon.png \
+      #       -xr!.git \
+      #       -xr!.* \
+      #       -t7z \
+      #       -m0=lzma2 \
+      #       -mx=2 \
+      #       -mfb=8 \
+      #       -md=32k \
+      #       -ms=off \
+      #       -mmt=off
 
       - name: Download Carimbo runtime
         env:
@@ -120,7 +120,6 @@ jobs:
 
           aapt package -f \
                       -M build/AndroidManifest.xml \
-                      -S res -A assets \
                       -I "$PLATFORM_DIR/android.jar" \
                       -F app.unaligned.apk \
                       -0 arsc
