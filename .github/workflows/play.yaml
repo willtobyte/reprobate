@@ -57,7 +57,7 @@ jobs:
 
       - name: Debug android.jar presence
         run: |
-          ls -l $ANDROID_SDK_ROOT/platforms/android-36/android.jar
+          ls -l $ANDROID_SDK_ROOT/platforms/android-34/android.jar
 
       - name: Enforce fullscreen
         run: |
@@ -87,7 +87,6 @@ jobs:
       - name: Extract Carimbo runtime
         run: |
           tar -xzf Android.tar.gz
-          ls -lah
           mkdir -p lib/armeabi-v7a
           mv carimbo lib/armeabi-v7a/libmain.so
 
@@ -107,7 +106,7 @@ jobs:
               package="org.example.app"
               android:versionCode="1"
               android:versionName="1.0">
-              <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="36" />
+              <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="34" />
               <application android:label="MyApp" android:hasCode="true">
                   <activity android:name="org.libsdl.app.SDLActivity"
                       android:label="MyApp"
