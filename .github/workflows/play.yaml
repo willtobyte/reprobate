@@ -87,6 +87,7 @@ jobs:
       - name: Extract Carimbo runtime
         run: |
           tar -xzf Android.tar.gz
+          ls -lah
           mkdir -p libs/armeabi-v7a
           mv carimbo lib/armeabi-v7a/libmain.so
 
