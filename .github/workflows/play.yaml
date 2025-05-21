@@ -28,15 +28,31 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android SDK components
+      - name: Install latest Android SDK components
         run: |
-          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+          yes | sdkmanager --licenses
 
-      - name: Add build-tools to PATH
+          LATEST_PLATFORM=$(sdkmanager --list | \
+                            grep -Eo 'platforms;android-[0-9]+' | \
+                            sort -t- -k2 -n | tail -n 1)
+
+          LATEST_BUILD_TOOLS=$(sdkmanager --list | \
+                               grep -Eo 'build-tools;[0-9]+\.[0-9]+\.[0-9]+' | \
+                               sort -t\; -k2 -V | tail -n 1)
+
+          echo "LATEST_PLATFORM=$LATEST_PLATFORM" >> $GITHUB_ENV
+          echo "LATEST_BUILD_TOOLS=$LATEST_BUILD_TOOLS" >> $GITHUB_ENV
+
+          sdkmanager "platform-tools" "$LATEST_PLATFORM" "$LATEST_BUILD_TOOLS"
+
+      - name: Add build-tools & platform to PATH
         run: |
-          BUILD_TOOLS_VERSION=$(ls -d $ANDROID_SDK_ROOT/build-tools/* | sort -V | tail -n 1 | xargs basename)
+          BUILD_TOOLS_VERSION=${{ env.LATEST_BUILD_TOOLS#build-tools; }}
+          PLATFORM_DIR="$ANDROID_SDK_ROOT/${{ env.LATEST_PLATFORM }}"
+
           echo "BUILD_TOOLS_VERSION=$BUILD_TOOLS_VERSION" >> $GITHUB_ENV
           echo "$ANDROID_SDK_ROOT/build-tools/$BUILD_TOOLS_VERSION" >> $GITHUB_PATH
+          echo "PLATFORM_DIR=$PLATFORM_DIR" >> $GITHUB_ENV
 
       - name: Debug android.jar presence
         run: |
@@ -71,7 +87,7 @@ jobs:
         run: |
           tar -xzf Android.tar.gz
           mkdir -p libs/armeabi-v7a
-          mv carimbo libs/armeabi-v7a/libmain.so
+          mv carimbo lib/armeabi-v7a/libmain.so
 
       - name: Download SDL sources (.java)
         run: |
@@ -116,18 +132,22 @@ jobs:
           cp bundle.7z assets/
 
           aapt package -f -m -J gen -M build/AndroidManifest.xml -S res \
-                       -I $ANDROID_SDK_ROOT/platforms/android-36/android.jar
+                       -I "$PLATFORM_DIR/android.jar"
 
-          javac -bootclasspath $ANDROID_SDK_ROOT/platforms/android-36/android.jar \
+          javac -bootclasspath "$PLATFORM_DIR/android.jar" \
                 -d obj \
                 -source 1.8 -target 1.8 \
                 gen/org/example/app/R.java \
                 $(find src -name '*.java')
 
-          d8 --output . $(find obj -type f -name '*.class')
+          d8 --release \
+             --min-api 16 \
+             --output . \
+             --lib "$PLATFORM_DIR/android.jar" \
+             $(find obj -type f -name '*.class')
 
           aapt package -f -M build/AndroidManifest.xml -S res -A assets \
-                       -I $ANDROID_SDK_ROOT/platforms/android-36/android.jar \
+                       -I "$PLATFORM_DIR/android.jar" \
                        -F app.unaligned.apk
 
           aapt add app.unaligned.apk classes.dex

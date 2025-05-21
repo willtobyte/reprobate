@@ -8,6 +8,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: false
     env:
       CARIMBO_TAG: "v1.3.31"
 
