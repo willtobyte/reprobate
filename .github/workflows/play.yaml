@@ -31,6 +31,11 @@ jobs:
       - name: Add additional packages
         run: sdkmanager tools platform-tools
 
+      - name: Add build-tools to PATH
+        run: |
+          BUILD_TOOLS_DIR=$(ls -d $ANDROID_SDK_ROOT/build-tools/* | sort -V | tail -n 1)
+          echo "$BUILD_TOOLS_DIR" >> $GITHUB_PATH
+
       - name: Enforce fullscreen
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(false\)/\1(true)/' scripts/main.lua
