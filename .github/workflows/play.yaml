@@ -150,6 +150,9 @@ jobs:
           aapt add app.unaligned.apk classes.dex
           zip -r app.unaligned.apk lib
 
-          apksigner sign --ks my-release-key.jks --ks-key-alias alias_name \
-                         --ks-pass pass:password --key-pass pass:password \
-                         --out app.apk app.unaligned.apk
+          # apksigner sign --ks my-release-key.jks --ks-key-alias alias_name \
+          #                --ks-pass pass:password --key-pass pass:password \
+          #                --out app.apk app.unaligned.apk
+
+      - name: Debug
+        run: ls -lah
