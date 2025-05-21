@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CARIMBO_TAG: "v1.3.38"
+      CARIMBO_TAG: "v1.3.45"
       ANDROID_API_LEVEL: "34"
       BUILD_TOOLS_VERSION: "34.0.0"
 
@@ -75,15 +75,7 @@ jobs:
         run: |
           tar -xzf Android.tar.gz
           mkdir -p lib/arm64-v8a
-          mv carimbo lib/arm64-v8a/libmain.so
-
-      # - name: Download SDL sources (.java)
-      #   run: |
-      #     curl -L -o SDLAndroid.zip https://github.com/libsdl-org/SDL/archive/refs/heads/main.zip
-      #     unzip -q SDLAndroid.zip "SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java" -d workdir
-      #     mkdir -p src/org/libsdl/app
-      #     mv workdir/SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java src/org/libsdl/app/
-      #     rm -rf workdir SDLAndroid.zip
+          mv libcarimbo.so lib/arm64-v8a/libmain.so
 
       - name: Create AndroidManifest.xml
         run: |
