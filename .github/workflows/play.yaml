@@ -77,30 +77,34 @@ jobs:
           mkdir -p lib/arm64-v8a
           mv carimbo lib/arm64-v8a/libmain.so
 
-      - name: Download SDL sources (.java)
-        run: |
-          curl -L -o SDLAndroid.zip https://github.com/libsdl-org/SDL/archive/refs/heads/main.zip
-          unzip -q SDLAndroid.zip "SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java" -d workdir
-          mkdir -p src/org/libsdl/app
-          mv workdir/SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java src/org/libsdl/app/
-          rm -rf workdir SDLAndroid.zip
+      # - name: Download SDL sources (.java)
+      #   run: |
+      #     curl -L -o SDLAndroid.zip https://github.com/libsdl-org/SDL/archive/refs/heads/main.zip
+      #     unzip -q SDLAndroid.zip "SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java" -d workdir
+      #     mkdir -p src/org/libsdl/app
+      #     mv workdir/SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java src/org/libsdl/app/
+      #     rm -rf workdir SDLAndroid.zip
 
       - name: Create AndroidManifest.xml
         run: |
           mkdir -p build
           cat <<EOF > build/AndroidManifest.xml
           <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-              package="org.example.app"
+              package="run.carimbo.reprobate"
               android:versionCode="1"
               android:versionName="1.0">
               <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="34" />
-              <application android:label="MyApp" android:hasCode="true">
-                  <activity android:name="org.libsdl.app.SDLActivity"
-                      android:label="MyApp"
-                      android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                      android:configChanges="keyboardHidden|orientation|screenSize"
-                      android:launchMode="singleInstance"
-                      android:exported="true">
+              <application android:label="Carimbo" android:hasCode="false"
+                          android:allowBackup="true"
+                          android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+                  <activity android:name="android.app.NativeActivity"
+                            android:label="Carimbo"
+                            android:configChanges="orientation|keyboardHidden"
+                            android:launchMode="singleTask"
+                            android:screenOrientation="landscape"
+                            android:exported="true">
+                      <meta-data android:name="android.app.lib_name"
+                                android:value="main" />
                       <intent-filter>
                           <action android:name="android.intent.action.MAIN" />
                           <category android:name="android.intent.category.LAUNCHER" />
@@ -114,37 +118,20 @@ jobs:
         run: |
           mkdir -p res/values
           echo '<resources><string name="app_name">Carimbo</string></resources>' > res/values/strings.xml
-# …
+
       - name: Build APK
         run: |
           set -e
-          mkdir -p gen obj assets
+          mkdir -p assets
           cp bundle.7z assets/
 
-          aapt package -f -m -J gen \
-                       -M build/AndroidManifest.xml \
-                       -S res \
-                       -I "$PLATFORM_DIR/android.jar" \
-                       -0 arsc
-
-          javac -bootclasspath "$PLATFORM_DIR/android.jar" \
-                -d obj \
-                -source 1.8 -target 1.8 \
-                gen/org/example/app/R.java \
-                $(find src -name '*.java')
-
-          d8 --release --min-api 16 --output . \
-             --lib "$PLATFORM_DIR/android.jar" \
-             $(find obj -type f -name '*.class')
-
           aapt package -f \
-                       -M build/AndroidManifest.xml \
-                       -S res -A assets \
-                       -I "$PLATFORM_DIR/android.jar" \
-                       -F app.unaligned.apk \
-                       -0 arsc
+                      -M build/AndroidManifest.xml \
+                      -S res -A assets \
+                      -I "$PLATFORM_DIR/android.jar" \
+                      -F app.unaligned.apk \
+                      -0 arsc
 
-          aapt add app.unaligned.apk classes.dex
           zip -r app.unaligned.apk lib
 
           zipalign -p -f 4 app.unaligned.apk app.aligned.apk
