@@ -5,6 +5,12 @@ local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
 function setup()
+  if jit then
+    print("JIT is enabled: " .. jit.version)
+  else
+    print("JIT is not available")
+  end
+
   math.randomseed(os.time())
 
   overlay.cursor:set("horn")

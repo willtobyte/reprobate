@@ -18,10 +18,6 @@ jobs:
       - name: Clone the repository
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get install --yes p7zip-full
-
       - name: Enforce non-fullscreen
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(true\)/\1(false)/' scripts/main.lua

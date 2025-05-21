@@ -1,0 +1,104 @@
+name: Publish Play
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    env:
+      CARIMBO_TAG: "v1.3.30"
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Clone the repository
+        uses: actions/checkout@v4
+
+      - name: Enforce fullscreen
+        run: |
+          sed -i -E 's/^(\s*:with_fullscreen\s*)\(false\)/\1(true)/' scripts/main.lua
+
+      - name: Create bundle
+        run: |
+          7z a bundle.7z \
+            . \
+            -xr!icon.png \
+            -xr!.git \
+            -xr!.* \
+            -t7z \
+            -m0=lzma2 \
+            -mx=2 \
+            -mfb=8 \
+            -md=32k \
+            -ms=off \
+            -mmt=off
+
+      - name: Download Carimbo runtime
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "Android.tar.gz"
+
+      - name: Extract Carimbo runtime
+        run: |
+          tar -xzf Android.tar.gz
+          mkdir -p libs/armeabi-v7a
+          mv carimbo libs/armeabi-v7a/libmain.so
+
+      - name: Download SDLActivity.java
+        run: |
+          mkdir -p src/org/libsdl/app
+          curl -o src/org/libsdl/app/SDLActivity.java https://raw.githubusercontent.com/libsdl-org/SDL/main/android-project/app/src/main/java/org/libsdl/app/SDLActivity.java
+
+      - name: Create AndroidManifest.xml
+        run: |
+          mkdir -p build
+          cat <<EOF > build/AndroidManifest.xml
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+              package="org.example.app"
+              android:versionCode="1"
+              android:versionName="1.0">
+              <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="30" />
+              <application android:label="MyApp" android:hasCode="true">
+                  <activity android:name="org.libsdl.app.SDLActivity"
+                      android:label="MyApp"
+                      android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                      android:configChanges="keyboardHidden|orientation|screenSize"
+                      android:launchMode="singleInstance">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+                  </activity>
+              </application>
+          </manifest>
+          EOF
+
+      - name: Build APK
+        run: |
+          mkdir -p gen
+          mkdir -p res
+          mkdir -p assets
+          cp bundle.7z assets/
+
+          aapt package -f -m -J gen -M build/AndroidManifest.xml -S res -I $ANDROID_HOME/platforms/android-30/android.jar
+
+          javac -bootclasspath $ANDROID_HOME/platforms/android-30/android.jar \
+                -d obj \
+                -source 1.8 -target 1.8 \
+                gen/org/example/app/R.java \
+                src/org/libsdl/app/SDLActivity.java
+
+          dx --dex --output=classes.dex obj
+
+          aapt package -f -M build/AndroidManifest.xml -S res -A assets -I $ANDROID_HOME/platforms/android-30/android.jar -F app.unaligned.apk
+
+          aapt add app.unaligned.apk classes.dex
+          zip -r app.unaligned.apk lib
+
+          apksigner sign --ks my-release-key.jks --ks-key-alias alias_name --ks-pass pass:password --key-pass pass:password --out app.apk app.unaligned.apk
