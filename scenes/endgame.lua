@@ -10,7 +10,7 @@ local resourcemanager = engine:resourcemanager()
 local fontfactory = engine:fontfactory()
 
 function scene.on_enter()
-  local font = fontfactory:get("test")
+  local font = fontfactory:get("fixedsys")
 
   pool.label1 = overlay:create(WidgetType.label)
   pool.label1.font = font

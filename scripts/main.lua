@@ -1,4 +1,10 @@
-_G.engine = EngineFactory.new():with_title("Reprobate"):with_width(1920):with_height(1080):with_scale(4.0):with_fullscreen(true):create()
+_G.engine = EngineFactory.new()
+  :with_title("Reprobate")
+  :with_width(1920)
+  :with_height(1080)
+  :with_scale(4.0)
+  :with_fullscreen(true)
+  :create()
 
 local scenemanager = engine:scenemanager()
 
@@ -10,8 +16,6 @@ function setup()
   else
     print("JIT is not available")
   end
-
-  math.randomseed(os.time())
 
   overlay.cursor:set("horn")
 
