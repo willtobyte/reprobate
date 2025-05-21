@@ -28,6 +28,9 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Add additional packages
+        run: sdkmanager tools platform-tools
+
       - name: Enforce fullscreen
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(false\)/\1(true)/' scripts/main.lua
