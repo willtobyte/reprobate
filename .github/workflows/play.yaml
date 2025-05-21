@@ -8,9 +8,11 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: false
+
+    if: true
+
     env:
-      CARIMBO_TAG: "v1.3.45"
+      CARIMBO_TAG: "v1.3.52"
       ANDROID_API_LEVEL: "34"
       BUILD_TOOLS_VERSION: "34.0.0"
 
