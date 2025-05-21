@@ -114,14 +114,18 @@ jobs:
         run: |
           mkdir -p res/values
           echo '<resources><string name="app_name">Carimbo</string></resources>' > res/values/strings.xml
-
+# …
       - name: Build APK
         run: |
+          set -e
           mkdir -p gen obj assets
           cp bundle.7z assets/
 
-          aapt package -f -m -J gen -M build/AndroidManifest.xml -S res \
-                       -I "$PLATFORM_DIR/android.jar"
+          aapt package -f -m -J gen \
+                       -M build/AndroidManifest.xml \
+                       -S res \
+                       -I "$PLATFORM_DIR/android.jar" \
+                       -0 arsc
 
           javac -bootclasspath "$PLATFORM_DIR/android.jar" \
                 -d obj \
@@ -129,19 +133,21 @@ jobs:
                 gen/org/example/app/R.java \
                 $(find src -name '*.java')
 
-          d8 --release \
-             --min-api 16 \
-             --output . \
+          d8 --release --min-api 16 --output . \
              --lib "$PLATFORM_DIR/android.jar" \
              $(find obj -type f -name '*.class')
 
-          aapt package -f -M build/AndroidManifest.xml -S res -A assets \
+          aapt package -f \
+                       -M build/AndroidManifest.xml \
+                       -S res -A assets \
                        -I "$PLATFORM_DIR/android.jar" \
-                       -F app.unaligned.apk
+                       -F app.unaligned.apk \
+                       -0 arsc
 
           aapt add app.unaligned.apk classes.dex
           zip -r app.unaligned.apk lib
 
+          zipalign -p -f 4 app.unaligned.apk app.aligned.apk
 
       - name: Decode keystore
         run: |
@@ -154,7 +160,7 @@ jobs:
             --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
             --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} \
             --key-pass pass:${{ secrets.KEY_PASSWORD }} \
-            --out app.apk app.unaligned.apk
+            --out app.apk app.aligned.apk
 
       - name: Verify APK Signature
         run: |
