@@ -1,4 +1,4 @@
-name: Publish Steam
+name: Publish Online
 
 on:
   push:

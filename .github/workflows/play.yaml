@@ -1,4 +1,4 @@
-name: Publish Play
+name: Publish Google Play
 
 on:
   push:
