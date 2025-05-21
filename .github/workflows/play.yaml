@@ -84,10 +84,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y unzip openjdk-11-jdk wget
 
+          mkdir -p $HOME/android-sdk/cmdline-tools
           wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O cmdline-tools.zip
-          unzip cmdline-tools.zip -d $HOME/android-sdk
-          mkdir -p $HOME/android-sdk/cmdline-tools/latest
-          mv $HOME/android-sdk/cmdline-tools/* $HOME/android-sdk/cmdline-tools/latest/
+          unzip cmdline-tools.zip -d $HOME/android-sdk/cmdline-tools/temp
+
+          mv $HOME/android-sdk/cmdline-tools/temp/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
 
           yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/android-sdk \
             "platform-tools" "platforms;android-30" "build-tools;30.0.3"
