@@ -73,10 +73,13 @@ jobs:
           mkdir -p libs/armeabi-v7a
           mv carimbo libs/armeabi-v7a/libmain.so
 
-      - name: Download SDLActivity.java
+      - name: Download SDL sources (.java)
         run: |
+          curl -L -o SDLAndroid https://github.com/libsdl-org/SDL/archive/refs/heads/main.zip
+          unzip -q SDLAndroid.zip "SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java" -d tmp
           mkdir -p src/org/libsdl/app
-          curl -o src/org/libsdl/app/SDLActivity.java https://raw.githubusercontent.com/libsdl-org/SDL/main/android-project/app/src/main/java/org/libsdl/app/SDLActivity.java
+          mv tmp/SDL-main/android-project/app/src/main/java/org/libsdl/app/*.java src/org/libsdl/app/
+          rm -rf tmp SDLAndroid
 
       - name: Create AndroidManifest.xml
         run: |
@@ -112,19 +115,24 @@ jobs:
           mkdir -p gen obj assets
           cp bundle.7z assets/
 
-          aapt package -f -m -J gen -M build/AndroidManifest.xml -S res -I $ANDROID_SDK_ROOT/platforms/android-36/android.jar
+          aapt package -f -m -J gen -M build/AndroidManifest.xml -S res \
+                       -I $ANDROID_SDK_ROOT/platforms/android-36/android.jar
 
           javac -bootclasspath $ANDROID_SDK_ROOT/platforms/android-36/android.jar \
                 -d obj \
                 -source 1.8 -target 1.8 \
                 gen/org/example/app/R.java \
-                src/org/libsdl/app/SDLActivity.java
+                $(find src -name '*.java')
 
           dx --dex --output=classes.dex obj
 
-          aapt package -f -M build/AndroidManifest.xml -S res -A assets -I $ANDROID_SDK_ROOT/platforms/android-36/android.jar -F app.unaligned.apk
+          aapt package -f -M build/AndroidManifest.xml -S res -A assets \
+                       -I $ANDROID_SDK_ROOT/platforms/android-36/android.jar \
+                       -F app.unaligned.apk
 
           aapt add app.unaligned.apk classes.dex
           zip -r app.unaligned.apk lib
 
-          apksigner sign --ks my-release-key.jks --ks-key-alias alias_name --ks-pass pass:password --key-pass pass:password --out app.apk app.unaligned.apk
+          apksigner sign --ks my-release-key.jks --ks-key-alias alias_name \
+                         --ks-pass pass:password --key-pass pass:password \
+                         --out app.apk app.unaligned.apk
