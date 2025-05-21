@@ -124,7 +124,7 @@ jobs:
                 gen/org/example/app/R.java \
                 $(find src -name '*.java')
 
-          dx --dex --output=classes.dex obj
+          d8 --output . $(find obj -type f -name '*.class')
 
           aapt package -f -M build/AndroidManifest.xml -S res -A assets \
                        -I $ANDROID_SDK_ROOT/platforms/android-36/android.jar \
