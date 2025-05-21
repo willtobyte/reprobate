@@ -33,8 +33,9 @@ jobs:
 
       - name: Add build-tools to PATH
         run: |
-          BUILD_TOOLS_DIR=$(ls -d $ANDROID_SDK_ROOT/build-tools/* | sort -V | tail -n 1)
-          echo "$BUILD_TOOLS_DIR" >> $GITHUB_PATH
+          BUILD_TOOLS_VERSION=$(ls -d $ANDROID_SDK_ROOT/build-tools/* | sort -V | tail -n 1 | xargs basename)
+          echo "BUILD_TOOLS_VERSION=$BUILD_TOOLS_VERSION" >> $GITHUB_ENV
+          echo "$ANDROID_SDK_ROOT/build-tools/$BUILD_TOOLS_VERSION" >> $GITHUB_PATH
 
       - name: Enforce fullscreen
         run: |
