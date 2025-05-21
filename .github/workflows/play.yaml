@@ -150,12 +150,26 @@ jobs:
           aapt add app.unaligned.apk classes.dex
           zip -r app.unaligned.apk lib
 
-          # apksigner sign --ks my-release-key.jks --ks-key-alias alias_name \
-          #                --ks-pass pass:password --key-pass pass:password \
-          #                --out app.apk app.unaligned.apk
+
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > release-key.jks
+
+      - name: Sign APK
+        run: |
+          apksigner sign \
+            --ks release-key.jks \
+            --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
+            --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} \
+            --key-pass pass:${{ secrets.KEY_PASSWORD }} \
+            --out app.apk app.unaligned.apk
+
+      - name: Verify APK Signature
+        run: |
+          apksigner verify --verbose app.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-unaligned
-          path: app.unaligned.apk
+          name: app
+          path: app.apk
