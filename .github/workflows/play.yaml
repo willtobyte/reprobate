@@ -27,11 +27,6 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          packages: |
-            platform-tools
-            build-tools;30.0.3
-            platforms;android-30
 
       - name: Enforce fullscreen
         run: |
