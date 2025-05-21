@@ -154,5 +154,8 @@ jobs:
           #                --ks-pass pass:password --key-pass pass:password \
           #                --out app.apk app.unaligned.apk
 
-      - name: Debug
-        run: ls -lah
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-unaligned
+          path: app.unaligned.apk
