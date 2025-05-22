@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v1.3.60"
+      CARIMBO_TAG: "v1.3.61"
       ANDROID_API_LEVEL: "34"
       BUILD_TOOLS_VERSION: "34.0.0"
 
