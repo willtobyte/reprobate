@@ -71,8 +71,8 @@ jobs:
         run: |
           set -e
           mkdir -p assets
-          cp -r $(ls -A | grep -vE '^(\.git|\.github|\.gitignore|build|lib|.*\.apk|.*\.jks|.*\.tar\.gz|.*\.7z|.*\.so|scripts|icon\.png|res)$') root_files/
-          cp -r scripts root_files/
+          cp -r $(ls -A | grep -vE '^(\.git|\.github|\.gitignore|build|lib|.*\.apk|.*\.jks|.*\.tar\.gz|.*\.7z|.*\.so|scripts|icon\.png|res)$') assets/
+          cp -r scripts assets/
 
           find assets
 
