@@ -97,8 +97,10 @@ jobs:
               android:versionCode="1"
               android:versionName="1.0">
               <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="34" />
-              <application android:label="Carimbo" android:hasCode="false"
+              <application android:label="Carimbo"
+                          android:hasCode="true"
                           android:allowBackup="true"
+                          android:exported="true"
                           android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
                   <activity android:name="android.app.NativeActivity"
                             android:label="Carimbo"
