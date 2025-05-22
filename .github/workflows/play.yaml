@@ -119,10 +119,10 @@ jobs:
           </manifest>
           EOF
 
-      # - name: Create minimal resource
-      #   run: |
-      #     mkdir -p res/values
-      #     echo '<resources><string name="app_name">Carimbo</string></resources>' > res/values/strings.xml
+      - name: Create minimal resource
+        run: |
+          mkdir -p res/values
+          echo '<resources><string name="app_name">Carimbo</string></resources>' > res/values/strings.xml
 
       - name: Build APK
         run: |
@@ -139,7 +139,7 @@ jobs:
             zip -r ../app.unaligned.apk ./*
           )
 
-          zip -r app.unaligned.apk lib
+          aapt add app.unaligned.apk $(find lib -type f)
 
           zipalign -p -f 4 app.unaligned.apk app.aligned.apk
 
