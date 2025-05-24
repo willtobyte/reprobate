@@ -39,4 +39,8 @@ function scene.on_motion(x, y)
   end
 end
 
+function scene.on_text(text)
+  print("> " .. text)
+end
+
 return scene
