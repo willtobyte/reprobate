@@ -36,11 +36,16 @@ function scene.on_keypress(code)
   if code == KeyEvent.backspace and #pool.program > 0 then
     pool.program = pool.program:sub(1, -2)
 
-    print("Backspace")
-
-    pool.label:set("")
     pool.label:set(pool.program)
-    end
+    return
+  end
+
+  if code == KeyEvent.space then
+    pool.program = pool.program .. " "
+
+    pool.label:set(pool.program)
+    return
+  end
 end
 
 return scene
