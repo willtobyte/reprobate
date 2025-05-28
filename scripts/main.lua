@@ -11,12 +11,6 @@ local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
 function setup()
-  if jit then
-    print("JIT is enabled: " .. jit.version)
-  else
-    print("JIT is not available")
-  end
-
   overlay.cursor:set("horn")
 
   scenemanager:register("mainmenu")
@@ -25,7 +19,7 @@ function setup()
   scenemanager:register("pearintosh")
   scenemanager:register("endgame")
 
-  scenemanager:set("pearintosh")
+  scenemanager:set("mainmenu")
 end
 
 function loop() end
