@@ -8,7 +8,7 @@ local pool = {}
 
 function scene.on_enter()
   pool.prelude = [[
-PHOSPHORUS SOFTWARE 1983 (C)
+MORNING STAR SOFTWARE 1983 (C)
 BASIC V1.6.3
 96128 BYTES FREE
 
