@@ -8,8 +8,8 @@ local pool = {}
 
 function scene.on_enter()
   pool.prelude = [[
-MORNING STAR SOFTWARE 1983 (C)
-BASIC V1.6.3
+MORNING STAR SOFTWARE 1986 (C)
+BASIC V1.6.6
 96128 BYTES FREE
 
 ]]
