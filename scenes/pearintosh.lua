@@ -16,15 +16,32 @@ BASIC V1.6.6
 
   pool.program = ""
 
+  pool.cursor = {
+    visible = true,
+    timer = moment(),
+    blink_interval = 400
+  }
+
   pool.label = overlay:create(WidgetType.label)
   local font = fontfactory:get("fixedsys")
-  font.effect = FontEffect.cursor
   pool.label.font = font
 
-  pool.label:set(pool.prelude .. pool.program)
+  --pool.label:set(pool.prelude .. pool.program)
 end
 
 function scene.on_loop(delta)
+  local now = moment()
+  if now - pool.cursor.timer >= pool.cursor.blink_interval then
+    pool.cursor.visible = not pool.cursor.visible
+    pool.cursor.timer = now
+  end
+
+  local display_text = pool.prelude .. pool.program
+  if pool.cursor.visible then
+    display_text = display_text .. "O"
+  end
+
+  pool.label:set(display_text)
 end
 
 function scene.on_leave()
@@ -33,25 +50,21 @@ end
 
 function scene.on_text(text)
   pool.program = pool.program .. text
-  pool.label:set(pool.prelude .. pool.program)
 end
 
 function scene.on_keypress(code)
   if code == KeyEvent.backspace and #pool.program > 0 then
     pool.program = pool.program:sub(1, -2)
-    pool.label:set(pool.prelude .. pool.program)
     return
   end
 
   if code == KeyEvent.space then
     pool.program = pool.program .. " "
-    pool.label:set(pool.prelude .. pool.program)
     return
   end
 
   if code == KeyEvent.enter then
     pool.program = pool.program .. "\n"
-    pool.label:set(pool.prelude .. pool.program)
     return
   end
 end
