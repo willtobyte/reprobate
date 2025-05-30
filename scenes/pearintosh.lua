@@ -1,72 +1,66 @@
 local scene = {}
 
-local scenemanager = engine:scenemanager()
-local fontfactory = engine:fontfactory()
 local overlay = engine:overlay()
+local font = engine:fontfactory():get("fixedsys")
 
-local pool = {}
-
-function scene.on_enter()
-  pool.prelude = [[
+local pool = {
+  prelude = [[
 MORNING STAR SOFTWARE 1986 (C)
 BASIC V1.6.6
 96128 BYTES FREE
 
-]]
-
-  pool.program = ""
-
-  pool.cursor = {
+]],
+  program = "",
+  cursor = {
     visible = true,
-    timer = moment(),
-    blink_interval = 400
-  }
+    timer = 0,
+    interval = 0.5
+  },
+  typing = false
+}
 
+function scene.on_enter()
   pool.label = overlay:create(WidgetType.label)
-  local font = fontfactory:get("fixedsys")
   pool.label.font = font
-
-  --pool.label:set(pool.prelude .. pool.program)
 end
 
 function scene.on_loop(delta)
-  local now = moment()
-  if now - pool.cursor.timer >= pool.cursor.blink_interval then
-    pool.cursor.visible = not pool.cursor.visible
-    pool.cursor.timer = now
+  local cursor = pool.cursor
+
+  if pool.typing then
+    cursor.visible = false
+    cursor.timer = 0
+    pool.typing = false
+  else
+    cursor.timer = cursor.timer + delta
+    if cursor.timer >= cursor.interval then
+      cursor.visible = not cursor.visible
+      cursor.timer = 0
+    end
   end
 
-  local display_text = pool.prelude .. pool.program
-  if pool.cursor.visible then
-    display_text = display_text .. "O"
-  end
-
-  pool.label:set(display_text)
-end
-
-function scene.on_leave()
-  pool = {}
+  local text = pool.prelude .. pool.program .. (cursor.visible and "O" or "")
+  pool.label:set(text)
 end
 
 function scene.on_text(text)
   pool.program = pool.program .. text
+  pool.typing = true
 end
 
 function scene.on_keypress(code)
-  if code == KeyEvent.backspace and #pool.program > 0 then
+  if code == KeyEvent.backspace then
     pool.program = pool.program:sub(1, -2)
-    return
-  end
-
-  if code == KeyEvent.space then
+  elseif code == KeyEvent.space then
     pool.program = pool.program .. " "
-    return
-  end
-
-  if code == KeyEvent.enter then
+  elseif code == KeyEvent.enter then
     pool.program = pool.program .. "\n"
-    return
   end
+  pool.typing = true
+end
+
+function scene.on_leave()
+  pool = {}
 end
 
 return scene
