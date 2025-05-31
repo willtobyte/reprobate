@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v1.3.78"
+      CARIMBO_TAG: "v1.3.80"
 
     permissions:
       contents: write
@@ -39,7 +39,7 @@ jobs:
             -mfb=8 \
             -md=32k \
             -ms=off \
-            -mmt=off
+            -mmt=on
 
       - name: Download Carimbo WebAssembly runtime
         env:

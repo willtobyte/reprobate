@@ -10,8 +10,8 @@ function Writer.new()
   local self = setmetatable({}, Writer)
   self.label = overlay:create(WidgetType.label)
   local font = fontfactory:get("rpgfont")
-  font.effect = FontEffect.fadein
   self.label.font = font
+  self.label.effect = FontEffect.fadein
   self.text = ""
   self.index = 0
   self.accumulator = 0

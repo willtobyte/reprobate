@@ -1,7 +1,6 @@
 local scene = {}
 
 local overlay = engine:overlay()
-local font = engine:fontfactory():get("fixedsys")
 
 local pool = {
   prelude = [[
@@ -20,6 +19,7 @@ BASIC V1.6.6
 }
 
 function scene.on_enter()
+  local font = engine:fontfactory():get("fixedsys")
   pool.label = overlay:create(WidgetType.label)
   pool.label.font = font
 end
