@@ -67,11 +67,13 @@ jobs:
         run: |
           chmod -x LICENSES || true
           chmod -x VERSION || true
+          echo "3582880" > steam_appid.txt
           mkdir -p output/macos output/windows
           cp bundle.7z output/macos/
           cp bundle.7z output/windows/
           cp carimbo.exe output/windows/
           cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
+          cp steam_appid.txt output/windows/
           cp carimbo output/macos/
           cp LICENSES output/windows/
           cp LICENSES output/macos/
