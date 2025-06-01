@@ -67,7 +67,7 @@ jobs:
         run: |
           chmod -x LICENSES || true
           chmod -x VERSION || true
-          echo "3582880" > steam_appid.txt
+          echo "480" > steam_appid.txt
           mkdir -p output/macos output/windows
           cp bundle.7z output/macos/
           cp bundle.7z output/windows/
