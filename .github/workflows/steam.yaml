@@ -44,13 +44,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "SteamMacOS.tar.gz"
-          gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "SteamWindows.zip"
+          gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "macOS.tar.gz"
+          gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "Windows.zip"
 
       - name: Extract Carimbo runtime
         run: |
-          7z x SteamWindows.zip -o.
-          tar -xzf SteamMacOS.tar.gz
+          7z x Windows.zip -o.
+          tar -xzf macOS.tar.gz
 
       - name: Clone Steam SDK
         run: gh repo clone willtobyte/steamworks steamworks
