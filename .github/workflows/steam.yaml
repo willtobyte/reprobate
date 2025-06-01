@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v1.3.85"
+      CARIMBO_TAG: "v1.3.88"
 
     permissions:
       contents: write
@@ -44,13 +44,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "Windows.zip"
+          gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "Steam.zip"
           gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "macOS.tar.gz"
 
       - name: Extract Carimbo runtime
         run: |
-          7z x Windows.zip -o.
+          7z x Steam.zip -o.
           tar -xzf macOS.tar.gz
+
+      - name: Clone Steam SDK
+        run: gh repo clone willtobyte/steamworks steamworks
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Create VERSION file
         run: |
@@ -66,6 +71,7 @@ jobs:
           cp bundle.7z output/macos/
           cp bundle.7z output/windows/
           cp carimbo.exe output/windows/
+          cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
           cp carimbo output/macos/
           cp LICENSES output/windows/
           cp LICENSES output/macos/

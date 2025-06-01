@@ -29,6 +29,8 @@ local items = {
 }
 
 function scene.on_enter()
+  achievement:unlock("NEW_ACHIEVEMENT_1_0")
+
   noise:init()
 
   pool.timers = {}

@@ -19,7 +19,7 @@ function setup()
   scenemanager:register("pearintosh")
   scenemanager:register("endgame")
 
-  -- scenemanager:set("pearintosh")
+  --scenemanager:set("pearintosh")
   scenemanager:set("mainmenu")
 end
 
