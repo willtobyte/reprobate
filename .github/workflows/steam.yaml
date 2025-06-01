@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v1.3.92"
+      CARIMBO_TAG: "v1.3.103"
 
     permissions:
       contents: write
@@ -67,20 +67,22 @@ jobs:
         run: |
           chmod -x LICENSES || true
           chmod -x VERSION || true
-          echo "480" > steam_appid.txt
+
           mkdir -p output/macos output/windows
+
           cp bundle.7z output/macos/
           cp bundle.7z output/windows/
-          cp carimbo.exe output/windows/
-          cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
-          cp steam_appid.txt output/windows/
+
           cp carimbo output/macos/
-          cp steamworks/redistributable_bin/osx/libsteam_api.dylib output/macos/
-          cp steam_appid.txt output/macos/
-          cp LICENSES output/windows/
+          cp carimbo.exe output/windows/
+
+          cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
+
           cp LICENSES output/macos/
-          cp VERSION output/windows/
+          cp LICENSES output/windows/
+
           cp VERSION output/macos/
+          cp VERSION output/windows/
 
       - name: Upload build to Steam
         uses: game-ci/steam-deploy@v3
