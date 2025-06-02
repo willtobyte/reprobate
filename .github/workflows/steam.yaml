@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v1.3.123"
+      CARIMBO_TAG: "v1.3.124"
 
     permissions:
       contents: write
@@ -75,6 +75,9 @@ jobs:
 
           cp carimbo output/macos/
           cp carimbo.exe output/windows/
+
+          echo "3582880" > output/macos/steam_appid.txt
+          cp steamworks/redistributable_bin/osx/libsteam_api.dylib output/macos/
 
           echo "3582880" > output/windows/steam_appid.txt
           cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
