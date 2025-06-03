@@ -9,10 +9,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
-    if: false
+    if: true
 
     env:
-      CARIMBO_TAG: "v1.3.119"
+      CARIMBO_TAG: "v1.3.130"
 
     permissions:
       contents: write
