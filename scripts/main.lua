@@ -19,8 +19,9 @@ function setup()
   scenemanager:register("pearintosh")
   scenemanager:register("endgame")
 
+  local stage = queryparam("stage", "mainmenu")
   --scenemanager:set("pearintosh")
-  scenemanager:set("mainmenu")
+  scenemanager:set(stage)
 end
 
 function loop() end
