@@ -56,9 +56,9 @@ function scene.on_leave()
     timermanager:clear(id)
   end
 
-  pool.timers = {}
-
-  pool = {}
+  for o in pairs(pool) do
+    pool[o] = nil
+  end
 end
 
 return scene

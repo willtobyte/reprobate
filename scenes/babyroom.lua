@@ -158,18 +158,6 @@ function scene.on_loop(delta)
   pool.inventory:loop(delta)
 end
 
-function scene.on_leave()
-  noise:teardown()
-
-  pool.theme:stop()
-
-  for _, id in ipairs(pool.timers) do
-    timermanager:clear(id)
-  end
-
-  pool = {}
-end
-
 function scene.on_touch()
   if lock then
     return
@@ -214,6 +202,18 @@ end
 
 function scene.on_motion(x, y)
   pool.inventory:on_motion(x, y)
+end
+
+function scene.on_leave()
+  noise:teardown()
+
+  for _, id in ipairs(pool.timers) do
+    timermanager:clear(id)
+  end
+
+  for o in pairs(pool) do
+    pool[o] = nil
+  end
 end
 
 return scene

@@ -60,7 +60,9 @@ function scene.on_keypress(code)
 end
 
 function scene.on_leave()
-  pool = {}
+  for o in pairs(pool) do
+    pool[o] = nil
+  end
 end
 
 return scene

@@ -25,12 +25,6 @@ function scene.on_enter()
   pool.headbanger = scene:get("headbanger", SceneType.object)
 end
 
-function scene.on_leave()
-  for o in pairs(pool) do
-    pool[o] = nil
-  end
-end
-
 function scene.on_motion(x, y)
   if x > 240 then -- 480 / 2
     pool.headbanger.action = "right"
@@ -41,6 +35,12 @@ end
 
 function scene.on_text(text)
   print("> " .. text)
+end
+
+function scene.on_leave()
+  for o in pairs(pool) do
+    pool[o] = nil
+  end
 end
 
 return scene
