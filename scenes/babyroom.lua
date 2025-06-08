@@ -38,7 +38,6 @@ function scene.on_enter()
   pool.theme = scene:get("theme", SceneType.effect)
   pool.theme:play(true)
 
-  --pool.foggy = scene:get("foggy", SceneType.effect)
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
@@ -107,7 +106,6 @@ function scene.on_enter()
           overlay:dispatch(WidgetType.cursor, "damage")
         end
 
-        -- pool.foggy:play()
         pool.television.action = "poltergeist"
         pool.collected[name] = true
 

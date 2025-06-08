@@ -3,8 +3,6 @@
   "height": 270,
   "effects": [
     "door",
-    "foggy",
-    "scream",
     "theme"
   ],
   "objects": [
