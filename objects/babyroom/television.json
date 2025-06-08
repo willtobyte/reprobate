@@ -24,6 +24,7 @@
       ]
     },
     "poltergeist": {
+      "effect": "foggy",
       "oneshot": true,
       "next": "default",
       "frames": [
