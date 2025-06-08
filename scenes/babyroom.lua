@@ -31,6 +31,7 @@ local items = {
 function scene.on_enter()
   noise:init()
 
+  pool.missclicks = 0
   pool.timers = {}
   pool.collected = {}
 
@@ -47,12 +48,6 @@ function scene.on_enter()
     scribe:on_finish(6000, function()
       scribe:clear()
     end)
-  end)
-
-  local id = timermanager:set(33660, function()
-    pool.beelzebuuth.action = "summon"
-    local effect = scene:get("scream", SceneType.effect)
-    effect:play()
   end)
 
   table.insert(pool.timers, id)
@@ -167,6 +162,14 @@ function scene.on_loop(delta)
 end
 
 function scene.on_touch()
+  pool.missclicks = pool.missclicks + 1
+  if pool.missclicks >= 6 then
+    pool.beelzebuuth.action = "summon"
+    local effect = scene:get("scream", SceneType.effect)
+    effect:play()
+    pool.missclicks = 0
+  end
+
   if lock then
     return
   end
