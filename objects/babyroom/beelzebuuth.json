@@ -2,6 +2,7 @@
   "animations": {
     "summon": {
       "oneshot": true,
+      "effect": "scream",
       "frames": [
         {
           "duration": 200,

@@ -165,8 +165,6 @@ function scene.on_touch()
   pool.missclicks = pool.missclicks + 1
   if pool.missclicks >= 6 then
     pool.beelzebuuth.action = "summon"
-    local effect = scene:get("scream", SceneType.effect)
-    effect:play()
     pool.missclicks = 0
   end
 
