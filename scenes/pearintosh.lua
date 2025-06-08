@@ -57,8 +57,34 @@ function scene.on_keypress(code)
     pool.program = pool.program .. " "
   elseif code == KeyEvent.enter then
     pool.program = pool.program .. "\n"
-  end
+
+    if pool.program:match("\nRUN%s*\n$") or pool.program:match("^RUN%s*\n$") then
+      pool.output = {}
+      local program = "10 PRINT \"OLA MUNDO\"\n"
+
+      local function stdout(message)
+        print(message)
+        -- table.insert(pool.output, message:upper() .. "\n")
+      end
+
+      local function stderr(message)
+        print(message)
+        -- table.insert(pool.output, "ERROR: " .. message:upper() .. "\n")
+      end
+
+      local ok, err = pcall(function()
+        print("AQUI")
+        basic(program, stdout, stderr)
+      end)
+
+      if not ok then
+        stderr(err)
+      end
+
+      pool.program = ""
+    end
   pool.typing = true
+  end
 end
 
 function scene.on_leave()

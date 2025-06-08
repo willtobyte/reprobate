@@ -6,14 +6,37 @@ local function interpreter(program, stdout, stderr)
   local for_stack = {}
 
   local function eval(expression)
-    expression = expression:gsub("([A-Z][A-Z0-9]*)", function(variable)
-      return tostring(variables[variable] or 0)
+    local protected_strings = {}
+    local i = 0
+
+    expression = expression:gsub('"(.-)"', function(str)
+      i = i + 1
+      local key = "__STR" .. i .. "__"
+      protected_strings[key] = '"' .. str .. '"'
+      return key
     end)
-    local ok, result = pcall(function() return assert(load("return " .. expression))() end)
+
+    expression = expression:gsub("([A-Z][A-Z0-9]*)", function(var)
+      if var:match("^STR%d+$") then return var end
+      return tostring(variables[var] or 0)
+    end)
+
+    expression = expression:gsub("(__STR%d+__)", function(key)
+      return protected_strings[key] or '""'
+    end)
+
+    local chunk, load_err = load("return " .. expression)
+    if not chunk then
+      stderr("EVALUATION ERROR: " .. tostring(load_err):upper())
+      return 0
+    end
+
+    local ok, result = pcall(chunk)
     if not ok then
       stderr("EVALUATION ERROR: " .. tostring(result):upper())
       return 0
     end
+
     return result
   end
 
@@ -48,7 +71,8 @@ local function interpreter(program, stdout, stderr)
         pc = pc + 1
         goto continue
       end
-      stdout(tostring(eval(expr)):upper())
+      local value = eval(expr)
+      stdout((type(value) == "string" and value:upper()) or tostring(value))
 
     elseif code:match("^IF") then
       local condition, target = code:match("^IF%s+(.+)%s+THEN%s+(%d+)$")
