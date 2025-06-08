@@ -10,9 +10,10 @@ MORNING STAR SOFTWARE 1986 (C)
 BASIC V1.6.6
 49152 BYTES FREE
 
+ERR 0x02: FLOPPY READ FAILURE SECTOR 13h [SIGIL]
+...
 REM CODE TRANSMITTED THROUGH A CRT SEANCE
 REM ANOMALIES MAY OCCUR
-
 ]],
   program = "",
   cursor = {
@@ -63,7 +64,15 @@ function scene.on_keypress(code)
 
     if pool.program:match("\nRUN%s*\n$") or pool.program:match("^RUN%s*\n$") then
       pool.output = {}
-      local program = "10 PRINT \"OLA MUNDO\"\n"
+      local program = [[
+10 LET N = 6
+20 FOR I = 1 TO 3
+30 PRINT N
+40 NEXT I
+50 GOTO 70
+60 PRINT "THIS LINE WILL BE SKIPPED"
+70 PRINT "HELLO"
+      ]]
 
       local function stdout(message)
         print(message)
@@ -76,7 +85,6 @@ function scene.on_keypress(code)
       end
 
       local ok, err = pcall(function()
-        print("AQUI")
         basic(program, stdout, stderr)
       end)
 

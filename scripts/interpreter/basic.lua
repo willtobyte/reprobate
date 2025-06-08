@@ -112,7 +112,7 @@ local function interpreter(program, stdout, stderr)
         goto continue
       end
       variables[var] = eval(start)
-      table.insert(for_stack, { var = var, stop = stop, step = step, return_to = pc })
+      table.insert(for_stack, { var = var, stop = stop, step = step, return_to = pc + 1 })
 
     elseif code:match("^NEXT") then
       local var = code:match("^NEXT%s+([A-Z][A-Z0-9]*)$")
