@@ -49,6 +49,14 @@ function scene.on_enter()
     end)
   end)
 
+  local id = timermanager:set(33660, function()
+    pool.beelzebuuth.action = "summon"
+    local effect = scene:get("scream", SceneType.effect)
+    effect:play()
+  end)
+
+  table.insert(pool.timers, id)
+
   for name, settings in pairs(animations) do
     local object = scene:get(name, SceneType.object)
 
@@ -192,9 +200,6 @@ function scene.on_touch()
     return
   end
 
-  pool.beelzebuuth.action = "summon"
-  local effect = scene:get("scream", SceneType.effect)
-  effect:play()
   timermanager:singleshot(1000, function()
     lock = false
   end)
