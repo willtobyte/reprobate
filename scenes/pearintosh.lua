@@ -1,3 +1,5 @@
+local basic = require("interpreter/basic")
+
 local scene = {}
 
 local overlay = engine:overlay()
