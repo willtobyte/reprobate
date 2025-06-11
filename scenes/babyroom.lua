@@ -96,7 +96,7 @@ function scene.on_enter()
     pool.collected[name] = done
 
     if done then
-      touch.disappear(object)
+      object:hide()
       inventory.action = "default"
     end
 
