@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v1.4.3"
+      CARIMBO_TAG: "v1.4.5"
 
     permissions:
       contents: write
@@ -147,7 +147,7 @@ jobs:
 
             <body>
               <div class="container">
-                <div id="loading">Shining pixels and brushing up bytes...</div>
+                <div id="loading">Whispers from the abyss echo… Preparing your passage into the void...</div>
                 <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
               </div>
 
