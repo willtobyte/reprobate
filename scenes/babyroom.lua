@@ -15,10 +15,10 @@ local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
 local animations = {
-  car = { minimum = 3, maximum = 8, action = "run", message = "Twisted dream. Metal price." },
-  bear = { minimum = 2, maximum = 4, action = "blink", message = "Do you want to play for five nights at my house?" },
-  clown = { minimum = 6, maximum = 8, action = "blink", message = "A cosmic clown is closing in. Not here for laughs." },
-  robot = { minimum = 3, maximum = 6, action = "shrug", message = "Need more input!" },
+  car = { minimum = 5, maximum = 12, action = "run", message = "Twisted dream. Metal price." },
+  bear = { minimum = 4, maximum = 10, action = "blink", message = "Do you want to play for five nights at my house?" },
+  clown = { minimum = 6, maximum = 18, action = "blink", message = "A cosmic clown is closing in. Not here for laughs." },
+  robot = { minimum = 3, maximum = 13, action = "shrug", message = "Need more input!" },
 }
 
 local items = {
