@@ -4,6 +4,11 @@
   "objects": [
     {
       "action": "default",
+      "kind": "switch",
+      "name": "switch"
+    },
+    {
+      "action": "default",
       "kind": "web",
       "name": "web"
     }
