@@ -1,4 +1,11 @@
 {
   "width": 480,
-  "height": 270
+  "height": 270,
+  "objects": [
+    {
+      "action": "default",
+      "kind": "web",
+      "name": "web"
+    }
+  ]
 }

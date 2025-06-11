@@ -60,7 +60,6 @@ function scene.on_keypress(code)
   elseif code == KeyEvent.space then
     pool.program = pool.program .. " "
   elseif code == KeyEvent.enter then
-    print("enter")
     pool.program = pool.program .. "\n"
 
     if pool.program:match("\nRUN%s*\n$") or pool.program:match("^RUN%s*\n$") then
