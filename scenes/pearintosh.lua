@@ -12,7 +12,7 @@ BASIC V1.6.6
 
 CODE TRANSMITTED THROUGH A CRT SEANCE
 ANOMALIES MAY OCCUR
-ERR 0x02: FLOPPY READ FAILURE SECTOR 13h [SIGIL]
+ERR 0x02: FLOPPY READ FAILURE SECTOR 13h
 ]],
   program = "",
   cursor = {
@@ -24,7 +24,7 @@ ERR 0x02: FLOPPY READ FAILURE SECTOR 13h [SIGIL]
 }
 
 function scene.on_enter()
-  local font = engine:fontfactory():get("fixedsys")
+  local font = engine:fontfactory():get("retro")
   pool.label = overlay:create(WidgetType.label)
   pool.label.font = font
 end
@@ -44,8 +44,8 @@ function scene.on_loop(delta)
     end
   end
 
-  local text = pool.prelude .. pool.program .. (cursor.visible and "O" or "")
-  pool.label:set(text)
+  local text = pool.prelude .. pool.program .. (cursor.visible and "_" or "")
+  pool.label:set(text, 105, 20)
 end
 
 function scene.on_text(text)
@@ -54,11 +54,13 @@ function scene.on_text(text)
 end
 
 function scene.on_keypress(code)
+  print(code)
   if code == KeyEvent.backspace then
     pool.program = pool.program:sub(1, -2)
   elseif code == KeyEvent.space then
     pool.program = pool.program .. " "
   elseif code == KeyEvent.enter then
+    print("enter")
     pool.program = pool.program .. "\n"
 
     if pool.program:match("\nRUN%s*\n$") or pool.program:match("^RUN%s*\n$") then

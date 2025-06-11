@@ -3,7 +3,7 @@ _G.engine = EngineFactory.new()
   :with_width(1920)
   :with_height(1080)
   :with_scale(4.0)
-  :with_fullscreen(false)
+  :with_fullscreen(true)
   :create()
 
 local scenemanager = engine:scenemanager()
@@ -20,7 +20,7 @@ function setup()
   scenemanager:register("pearintosh")
   scenemanager:register("endgame")
 
-  local stage = queryparam("stage", "mainmenu")
+  local stage = queryparam("stage", "pearintosh")
   scenemanager:set(stage)
 end
 
