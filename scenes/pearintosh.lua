@@ -12,7 +12,8 @@ BASIC V1.6.6
 
 CODE TRANSMITTED THROUGH A CRT SEANCE
 ANOMALIES MAY OCCUR
-ERR 0x02: FLOPPY READ FAILURE SECTOR 13h
+ERR 0x42: FLOPPY READ FAILURE SECTOR 13h
+
 ]],
   program = "",
   cursor = {
@@ -64,35 +65,24 @@ function scene.on_keypress(code)
 
     if pool.program:match("\nRUN%s*\n$") or pool.program:match("^RUN%s*\n$") then
       pool.output = {}
-      local program = [[
-10 LET N = 6
-20 FOR I = 1 TO 3
-30 PRINT N
-40 NEXT I
-50 GOTO 70
-60 PRINT "THIS LINE WILL BE SKIPPED"
-70 PRINT "HELLO"
-      ]]
 
       local function stdout(message)
-        print(message)
-        -- table.insert(pool.output, message:upper() .. "\n")
+        pool.program = pool.program .. "\n" .. message .. "\n"
       end
 
       local function stderr(message)
-        print(message)
-        -- table.insert(pool.output, "ERROR: " .. message:upper() .. "\n")
+        pool.program = pool.program .. "\n" .. message .. "\n"
       end
 
       local ok, err = pcall(function()
-        basic(program, stdout, stderr)
+        basic(pool.program, stdout, stderr)
       end)
 
       if not ok then
         stderr(err)
       end
 
-      pool.program = ""
+      -- pool.program = ""
     end
   pool.typing = true
   end
