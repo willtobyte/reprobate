@@ -27,6 +27,10 @@ function scene.on_enter()
   pool.label = overlay:create(WidgetType.label)
   pool.label.font = pool.font
 
+  pool.effects = {}
+  pool.effects.key1 = scene:get("key1", SceneType.effect)
+  pool.effects.key2 = scene:get("key2", SceneType.effect)
+
   local switch = scene:get("switch", SceneType.object)
   switch:on_touch(function()
     pool.program = ""
@@ -53,6 +57,8 @@ function scene.on_loop(delta)
 end
 
 function scene.on_text(text)
+  (pool.effects)["key" .. math.random(2)]:play()
+
   if pool.font.glyphs:find(text, 1, true) then
     pool.program = pool.program .. text
     pool.typing = true
