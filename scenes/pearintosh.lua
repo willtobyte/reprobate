@@ -52,9 +52,13 @@ function scene.on_loop(delta)
   pool.label:set(text, 105, 20)
 end
 
+local allowed = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?+-/():;&%%*#=[]\\\"'{}^~|_@$"
+
 function scene.on_text(text)
-  pool.program = pool.program .. text
-  pool.typing = true
+  if allowed:find(text, 1, true) then
+    pool.program = pool.program .. text
+    pool.typing = true
+  end
 end
 
 function scene.on_keypress(code)
