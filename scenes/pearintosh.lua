@@ -10,16 +10,14 @@ MORNING STAR SOFTWARE 1986 (C)
 BASIC V1.6.6
 49152 BYTES FREE
 
-CODE TRANSMITTED THROUGH A CRT SEANCE
-ANOMALIES MAY OCCUR
-ERR 0x42: FLOPPY READ FAILURE SECTOR 13h
+RUN TO EXECUTE
 
 ]],
   program = "",
   cursor = {
     visible = true,
     timer = 0,
-    interval = 0.5
+    interval = 0.3
   },
   typing = false
 }
@@ -28,6 +26,11 @@ function scene.on_enter()
   local font = engine:fontfactory():get("retro")
   pool.label = overlay:create(WidgetType.label)
   pool.label.font = font
+
+  local switch = scene:get("switch", SceneType.object)
+  switch:on_touch(function()
+    pool.program = ""
+  end)
 end
 
 function scene.on_loop(delta)
@@ -55,7 +58,6 @@ function scene.on_text(text)
 end
 
 function scene.on_keypress(code)
-  print(code)
   if code == KeyEvent.backspace then
     pool.program = pool.program:sub(1, -2)
   elseif code == KeyEvent.space then
@@ -81,8 +83,6 @@ function scene.on_keypress(code)
       if not ok then
         stderr(err)
       end
-
-      -- pool.program = ""
     end
   pool.typing = true
   end
