@@ -23,9 +23,9 @@ RUN TO EXECUTE
 }
 
 function scene.on_enter()
-  local font = engine:fontfactory():get("retro")
+  pool.font = engine:fontfactory():get("retro")
   pool.label = overlay:create(WidgetType.label)
-  pool.label.font = font
+  pool.label.font = pool.font
 
   local switch = scene:get("switch", SceneType.object)
   switch:on_touch(function()
@@ -52,10 +52,8 @@ function scene.on_loop(delta)
   pool.label:set(text, 105, 20)
 end
 
-local allowed = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!?+-/():;&%%*#=[]\\\"'{}^~|_@$"
-
 function scene.on_text(text)
-  if allowed:find(text, 1, true) then
+  if pool.font.glyphs:find(text, 1, true) then
     pool.program = pool.program .. text
     pool.typing = true
   end
