@@ -122,7 +122,7 @@ function scene.on_enter()
           end
         end
 
-        cassette:set("system/stage", "endgame")
+        cassette:set("system/stage", "pearintosh")
 
         timermanager:singleshot(1000, function()
           local effect = scene:get("door", SceneType.effect)
