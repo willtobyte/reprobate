@@ -129,7 +129,7 @@ function scene.on_enter()
           local door = scene:get("door", SceneType.object)
           door:on_touch(function()
             scribe:clear()
-            scenemanager:set("endgame")
+            scenemanager:set("pearintosh")
           end)
 
           door.action = "default"
