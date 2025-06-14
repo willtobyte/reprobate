@@ -57,8 +57,6 @@ function scene.on_loop(delta)
 end
 
 function scene.on_text(text)
-  (pool.effects)["key" .. math.random(2)]:play()
-
   if pool.font.glyphs:find(text, 1, true) then
     pool.program = pool.program .. text
     pool.typing = true
@@ -66,6 +64,8 @@ function scene.on_text(text)
 end
 
 function scene.on_keypress(code)
+  (pool.effects)["key" .. math.random(2)]:play()
+
   if code == KeyEvent.backspace then
     pool.program = pool.program:sub(1, -2)
   elseif code == KeyEvent.space then
