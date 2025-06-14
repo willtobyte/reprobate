@@ -29,6 +29,8 @@ local items = {
 }
 
 function scene.on_enter()
+  achievement:unlock("NEW_ACHIEVEMENT_2_1")
+
   noise:init()
 
   pool.missclicks = 0
