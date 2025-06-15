@@ -27,12 +27,8 @@ jobs:
 
       - name: Create bundle
         run: |
-          7z a bundle.7z \
-            . \
-            -xr!icon.png \
-            -xr!.git/* \
-            -xr!.git \
-            -xr!.* \
+          find . -type f ! -path "*/.*" ! -name ".*" ! -name "icon.png" -print > files.txt
+          7z a bundle.7z @files.txt \
             -t7z \
             -m0=lzma2 \
             -mx=2 \
