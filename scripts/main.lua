@@ -10,6 +10,8 @@ local scenemanager = engine:scenemanager()
 
 local overlay = engine:overlay()
 
+local io = Socket.new()
+
 function setup()
   overlay.cursor:set("horn")
 
@@ -22,6 +24,8 @@ function setup()
 
   local stage = queryparam("stage", "mainmenu")
   scenemanager:set(stage)
+
+  io:connect()
 end
 
 function loop() end
