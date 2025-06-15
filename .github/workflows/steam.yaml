@@ -34,6 +34,7 @@ jobs:
             -t7z \
             -m0=lzma2 \
             -mx=3 \
+            -ms=off \
             -mmt=on
 
       - name: Download Carimbo runtime
