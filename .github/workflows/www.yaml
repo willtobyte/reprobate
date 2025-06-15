@@ -33,7 +33,7 @@ jobs:
           7z a bundle.7z . \
             -t7z \
             -m0=lzma2 \
-            -mx=5 \
+            -mx=3 \
             -mmt=on
 
       - name: Download Carimbo WebAssembly runtime
