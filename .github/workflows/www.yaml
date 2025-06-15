@@ -27,14 +27,13 @@ jobs:
 
       - name: Create bundle
         run: |
-          find . -type f ! -path "*/.*" ! -name ".*" ! -name "icon.png" -print > files.txt
-          7z a bundle.7z @files.txt \
+          find . -name '.*' ! -name '.' ! -name '..' -print
+          find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
+
+          7z a bundle.7z . \
             -t7z \
             -m0=lzma2 \
-            -mx=2 \
-            -mfb=8 \
-            -md=32k \
-            -ms=off \
+            -mx=5 \
             -mmt=on
 
       - name: Download Carimbo WebAssembly runtime
