@@ -147,7 +147,6 @@ function scene.on_enter()
   pool.inventory = Inventory.new(layout, character, objects)
 
   noise:on_finish(function()
-    -- scribe:write("I was born to disrespect.", 4, 5)
     scribe:write("I drown your divinity in the acheron of my soul.", 4, 5)
     scribe:on_finish(12000, function()
       scribe:clear()
