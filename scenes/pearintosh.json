@@ -3,7 +3,8 @@
   "height": 270,
   "effects": [
     "key1",
-    "key2"
+    "key2",
+    "music"
   ],
   "objects": [
     {

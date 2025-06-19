@@ -31,6 +31,9 @@ function scene.on_enter()
   pool.effects.key1 = scene:get("key1", SceneType.effect)
   pool.effects.key2 = scene:get("key2", SceneType.effect)
 
+  pool.music = scene:get("music", SceneType.effect)
+  pool.music:play(true)
+
   local switch = scene:get("switch", SceneType.object)
   switch:on_touch(function()
     pool.program = ""
