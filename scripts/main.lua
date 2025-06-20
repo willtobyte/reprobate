@@ -13,12 +13,11 @@ local overlay = engine:overlay()
 function setup()
   overlay.cursor:set("horn")
 
-  scenemanager:register("carimboengine")
+  -- scenemanager:register("carimbo")
   scenemanager:register("mainmenu")
   scenemanager:register("whobuilt")
   scenemanager:register("babyroom")
   scenemanager:register("pearintosh")
-  scenemanager:register("endgame")
 
   local stage = queryparam("stage", "mainmenu")
   scenemanager:set(stage)
