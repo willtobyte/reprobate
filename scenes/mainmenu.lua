@@ -23,11 +23,9 @@ function scene.on_enter()
   end)
 
   pool.headbanger = scene:get("headbanger", SceneType.object)
-
-  pool.headbanger:on_mail(function ()
-    print("on mail")
-  end)
 end
+
+local p = PostalService.new()
 
 function scene.on_motion(x, y)
   if x > 240 then -- 480 / 2
