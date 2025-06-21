@@ -3,7 +3,7 @@ _G.engine = EngineFactory.new()
   :with_width(1920)
   :with_height(1080)
   :with_scale(4.0)
-  :with_fullscreen(false)
+  :with_fullscreen(true)
   :create()
 
 local scenemanager = engine:scenemanager()
