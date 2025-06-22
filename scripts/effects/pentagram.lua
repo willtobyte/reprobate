@@ -105,7 +105,7 @@ function FastPentagram:loop()
 	end
 
 	for i = 1, self.width * self.height do
-		self.pixels[i] = ALPHA_MASK
+		self.pixels[i] = 0x00000000
 	end
 
 	for _, edge in ipairs(self.edges) do

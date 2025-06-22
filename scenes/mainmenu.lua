@@ -1,3 +1,5 @@
+local pentagram = require("effects/pentagram")
+
 local scene = {}
 
 local cassette = engine:cassette()
@@ -32,6 +34,11 @@ function scene.on_motion(x, y)
     pool.headbanger.action = "left"
   end
 end
+
+function scene.on_loop(delta)
+  pentagram:loop()
+end
+
 
 function scene.on_leave()
   for o in pairs(pool) do
