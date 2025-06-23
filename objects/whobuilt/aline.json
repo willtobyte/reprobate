@@ -30,13 +30,23 @@
         }
       ],
       "hitbox": {
-        "height": 211,
-        "width": 113,
-        "x": 279,
-        "y": 59
+        "rectangle": {
+          "height": 211,
+          "width": 113,
+          "x": 279,
+          "y": 59
+        }
       }
     },
     "hover": {
+      "hitbox": {
+        "rectangle": {
+          "height": 211,
+          "width": 113,
+          "x": 279,
+          "y": 59
+        }
+      },
       "frames": [
         {
           "duration": -1,
@@ -51,13 +61,7 @@
             "y": 1
           }
         }
-      ],
-      "hitbox": {
-        "height": 211,
-        "width": 113,
-        "x": 279,
-        "y": 59
-      }
+      ]
     }
   }
 }

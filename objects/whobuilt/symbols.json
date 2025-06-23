@@ -2,10 +2,12 @@
   "animations": {
     "blaspheming": {
       "hitbox": {
-        "height": 80,
-        "width": 30,
-        "x": 228,
-        "y": 39
+        "rectangle": {
+          "height": 80,
+          "width": 30,
+          "x": 228,
+          "y": 39
+        }
       },
       "frames": [
         {

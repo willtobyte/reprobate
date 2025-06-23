@@ -2,10 +2,12 @@
   "animations": {
     "default": {
       "hitbox": {
-        "x": 365,
-        "y": 162,
-        "width": 24,
-        "height": 12
+        "rectangle": {
+          "x": 365,
+          "y": 162,
+          "width": 24,
+          "height": 12
+        }
       },
       "frames": [
         {
@@ -27,10 +29,12 @@
       "oneshot": true,
       "next": "default",
       "hitbox": {
-        "x": 365,
-        "y": 162,
-        "width": 24,
-        "height": 12
+        "rectangle": {
+          "x": 365,
+          "y": 162,
+          "width": 24,
+          "height": 12
+        }
       },
       "frames": [
         {

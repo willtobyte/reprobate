@@ -1,6 +1,14 @@
 {
   "animations": {
     "burning": {
+      "hitbox": {
+        "rectangle": {
+          "height": 231,
+          "width": 96,
+          "x": 96,
+          "y": 39
+        }
+      },
       "frames": [
         {
           "duration": 120,
@@ -28,15 +36,17 @@
             "y": 234
           }
         }
-      ],
-      "hitbox": {
-        "height": 231,
-        "width": 96,
-        "x": 96,
-        "y": 39
-      }
+      ]
     },
     "hover": {
+      "hitbox": {
+        "rectangle": {
+          "height": 231,
+          "width": 96,
+          "x": 96,
+          "y": 39
+        }
+      },
       "frames": [
         {
           "duration": -1,
@@ -51,13 +61,7 @@
             "y": 1
           }
         }
-      ],
-      "hitbox": {
-        "height": 231,
-        "width": 96,
-        "x": 96,
-        "y": 39
-      }
+      ]
     }
   }
 }

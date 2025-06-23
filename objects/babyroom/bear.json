@@ -4,10 +4,12 @@
       "next": "default",
       "oneshot": true,
       "hitbox": {
-        "x": 116,
-        "y": 119,
-        "width": 28,
-        "height": 36
+        "rectangle": {
+          "x": 116,
+          "y": 119,
+          "width": 28,
+          "height": 36
+        }
       },
       "frames": [
         {
@@ -66,10 +68,12 @@
     },
     "default": {
       "hitbox": {
-        "x": 116,
-        "y": 119,
-        "width": 28,
-        "height": 36
+        "rectangle": {
+          "x": 116,
+          "y": 119,
+          "width": 28,
+          "height": 36
+        }
       },
       "frames": [
         {

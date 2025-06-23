@@ -2,10 +2,12 @@
   "animations": {
     "default": {
       "hitbox": {
-        "x": 352,
-        "y": 210,
-        "width": 32,
-        "height": 18
+        "rectangle": {
+          "x": 352,
+          "y": 210,
+          "width": 32,
+          "height": 18
+        }
       },
       "frames": [
         {

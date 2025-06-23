@@ -91,7 +91,7 @@ function FastPentagram:loop()
 	for i = 0, 4 do
 		local angle = angle_step * i + phase_offset
 		local x = self.cos(angle)
-		local y = -self.sin(angle) -- <<<<<< Flip vertical AQUI!
+		local y = -self.sin(angle)
 		local z = 0
 
 		local x_rot = x * cos_y - z * sin_y
