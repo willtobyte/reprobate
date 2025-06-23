@@ -24,7 +24,6 @@ function FastPentagram:new(width, height)
 
 	self.edges = {
 		{1, 3}, {3, 5}, {5, 2}, {2, 4}, {4, 1},
-		{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 1}
 	}
 
 	return self
@@ -62,7 +61,7 @@ function FastPentagram:draw_line(x0, y0, x1, y1)
 
 	while true do
 		self:draw_thick_point(x0, y0)
-		if x0 == x1 and y0 == y1 then break end
+		if x0 == x1 and y0 == y1 then return end
 		local e2 = 2 * err
 		if e2 > -dy then
 			err = err - dy
@@ -72,6 +71,32 @@ function FastPentagram:draw_line(x0, y0, x1, y1)
 			err = err + dx
 			y0 = y0 + sy
 		end
+	end
+end
+
+function FastPentagram:draw_rotating_circle(cx, cy, radius, cos_y, sin_y)
+	local segments = 360
+	local angle_step = (2 * self.pi) / segments
+	local prev_x, prev_y
+
+	for i = 0, segments do
+		local angle = i * angle_step
+		local x = self.cos(angle)
+		local y = -self.sin(angle)
+		local z = 0
+
+		local x_rot = x * cos_y - z * sin_y
+		local z_rot = x * sin_y + z * cos_y
+
+		local fov = 1 / (1 + z_rot * 0.5)
+		local screen_x = cx + x_rot * radius * fov
+		local screen_y = cy + y * radius * fov
+
+		if prev_x and prev_y then
+			self:draw_line(prev_x, prev_y, screen_x, screen_y)
+		end
+
+		prev_x, prev_y = screen_x, screen_y
 	end
 end
 
@@ -113,6 +138,8 @@ function FastPentagram:loop()
 		local b = projected[edge[2]]
 		self:draw_line(a.x, a.y, b.x, b.y)
 	end
+
+	self:draw_rotating_circle(cx, cy, self.scale, cos_y, sin_y)
 
 	self.canvas.pixels = self.pixels
 end
