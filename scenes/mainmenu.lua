@@ -1,3 +1,5 @@
+local pentagram = require("effects/pentagram")
+
 local scene = {}
 
 local cassette = engine:cassette()
@@ -33,7 +35,13 @@ function scene.on_motion(x, y)
   end
 end
 
+function scene.on_loop(delta)
+  pentagram:loop()
+end
+
 function scene.on_leave()
+  pentagram:teardown()
+
   for o in pairs(pool) do
     pool[o] = nil
   end

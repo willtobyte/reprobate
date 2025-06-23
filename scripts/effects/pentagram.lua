@@ -1,11 +1,11 @@
 local ALPHA_MASK = 0xFF000000
 local RED_COLOR = 0xFF0000
 
-local FastPentagram = {}
-FastPentagram.__index = FastPentagram
+local Pentagram = {}
+Pentagram.__index = Pentagram
 
-function FastPentagram:new(width, height)
-	local self = setmetatable({}, FastPentagram)
+function Pentagram:new(width, height)
+	local self = setmetatable({}, Pentagram)
 
 	self.canvas = engine:canvas()
 	self.width = width or 480
@@ -29,16 +29,16 @@ function FastPentagram:new(width, height)
 	return self
 end
 
-function FastPentagram:init() end
+function Pentagram:init() end
 
-function FastPentagram:plot(x, y)
+function Pentagram:plot(x, y)
 	if x >= 0 and x < self.width and y >= 0 and y < self.height then
 		local index = y * self.width + x + 1
 		self.pixels[index] = ALPHA_MASK + RED_COLOR
 	end
 end
 
-function FastPentagram:draw_thick_point(x, y)
+function Pentagram:draw_thick_point(x, y)
 	local t = self.line_thickness
 	for dy = -t, t do
 		for dx = -t, t do
@@ -47,7 +47,7 @@ function FastPentagram:draw_thick_point(x, y)
 	end
 end
 
-function FastPentagram:draw_line(x0, y0, x1, y1)
+function Pentagram:draw_line(x0, y0, x1, y1)
 	x0 = self.floor(x0)
 	y0 = self.floor(y0)
 	x1 = self.floor(x1)
@@ -74,7 +74,7 @@ function FastPentagram:draw_line(x0, y0, x1, y1)
 	end
 end
 
-function FastPentagram:draw_rotating_circle(cx, cy, radius, cos_y, sin_y)
+function Pentagram:draw_rotating_circle(cx, cy, radius, cos_y, sin_y)
 	local segments = 360
 	local angle_step = (2 * self.pi) / segments
 	local prev_x, prev_y
@@ -100,7 +100,7 @@ function FastPentagram:draw_rotating_circle(cx, cy, radius, cos_y, sin_y)
 	end
 end
 
-function FastPentagram:loop()
+function Pentagram:loop()
 	local elapsed = (moment() - self.start_time) * 0.001
 	local angle_y = elapsed * 0.8
 
@@ -144,4 +144,11 @@ function FastPentagram:loop()
 	self.canvas.pixels = self.pixels
 end
 
-return FastPentagram:new()
+function Pentagram:teardown()
+	for i = 1, self.width * self.height do
+		self.pixels[i] = 0x00000000
+	end
+	self.canvas.pixels = self.pixels
+end
+
+return Pentagram:new()
