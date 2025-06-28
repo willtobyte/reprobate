@@ -18,8 +18,11 @@ function setup()
   scenemanager:register("whobuilt")
   scenemanager:register("babyroom")
   scenemanager:register("pearintosh")
+  scenemanager:register("greenhill")
 
   local stage = queryparam("stage", "mainmenu")
+
+  stage = "greenhill" -- XXX temporary
   scenemanager:set(stage)
 end
 
