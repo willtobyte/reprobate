@@ -17,9 +17,9 @@ RUN TO EXECUTE
   cursor = {
     visible = true,
     timer = 0,
-    interval = 0.3
+    interval = 0.3,
   },
-  typing = false
+  typing = false,
 }
 
 function scene.on_enter()
@@ -95,7 +95,7 @@ function scene.on_keypress(code)
         stderr(err)
       end
     end
-  pool.typing = true
+    pool.typing = true
   end
 end
 

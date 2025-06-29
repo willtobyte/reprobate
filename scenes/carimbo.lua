@@ -5,11 +5,10 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 local function leave()
-	scenemanager:set("mainmenu")
+  scenemanager:set("mainmenu")
 end
 
-function scene.on_enter()
-end
+function scene.on_enter() end
 
 function scene.on_touch()
   leave()

@@ -1,3 +1,4 @@
+-- stylua: ignore
 _G.engine = EngineFactory.new()
   :with_title("Reprobate")
   :with_width(1920)

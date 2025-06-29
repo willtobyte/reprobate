@@ -17,7 +17,9 @@ local function interpreter(program, stdout, stderr)
     end)
 
     expression = expression:gsub("([A-Z][A-Z0-9]*)", function(var)
-      if var:match("^STR%d+$") then return var end
+      if var:match("^STR%d+$") then
+        return var
+      end
       return tostring(variables[var] or 0)
     end)
 
@@ -47,7 +49,9 @@ local function interpreter(program, stdout, stderr)
     end
   end
 
-  table.sort(lines, function(a, b) return a.num < b.num end)
+  table.sort(lines, function(a, b)
+    return a.num < b.num
+  end)
   for i, l in ipairs(lines) do
     line_index[l.num] = i
   end
@@ -63,7 +67,6 @@ local function interpreter(program, stdout, stderr)
         goto continue
       end
       variables[var] = eval(expr)
-
     elseif code:match("^PRINT") then
       local expr = code:match("^PRINT%s+(.+)$")
       if not expr then
@@ -73,7 +76,6 @@ local function interpreter(program, stdout, stderr)
       end
       local value = eval(expr)
       stdout((type(value) == "string" and value:upper()) or tostring(value))
-
     elseif code:match("^IF") then
       local condition, target = code:match("^IF%s+(.+)%s+THEN%s+(%d+)$")
       if not condition or not target then
@@ -90,7 +92,6 @@ local function interpreter(program, stdout, stderr)
         end
         goto continue
       end
-
     elseif code:match("^GOTO") then
       local target = tonumber(code:match("^GOTO%s+(%d+)$"))
       pc = line_index[target]
@@ -99,7 +100,6 @@ local function interpreter(program, stdout, stderr)
         return
       end
       goto continue
-
     elseif code:match("^FOR") then
       local var, start, stop, step = code:match("^FOR%s+([A-Z][A-Z0-9]*)%s*=%s*(.-)%s+TO%s+(.-)%s+STEP%s+(.+)$")
       if not step then
@@ -113,7 +113,6 @@ local function interpreter(program, stdout, stderr)
       end
       variables[var] = eval(start)
       table.insert(for_stack, { var = var, stop = stop, step = step, return_to = pc + 1 })
-
     elseif code:match("^NEXT") then
       local var = code:match("^NEXT%s+([A-Z][A-Z0-9]*)$")
       local loop = for_stack[#for_stack]
@@ -133,10 +132,8 @@ local function interpreter(program, stdout, stderr)
         goto continue
       end
       table.remove(for_stack)
-
     elseif code:match("^RUN$") then
       -- NO-OP
-
     else
       stderr(("UNKNOWN INSTRUCTION IN LINE %d: %s"):format(lines[pc].num, code:upper()))
     end

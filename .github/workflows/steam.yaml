@@ -27,10 +27,8 @@ jobs:
 
       - name: Create bundle
         run: |
-          find . -name '.*' ! -name '.' ! -name '..' -print
-          find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
-
-          7z a bundle.7z . \
+          folders=$(find . -type d -not -path '.' -prune)
+          7z a bundle.7z $folders \
             -t7z \
             -m0=lzma2 \
             -mx=3 \
