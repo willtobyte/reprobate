@@ -23,7 +23,7 @@ function setup()
 
   local stage = queryparam("stage", "mainmenu")
 
-  stage = "greenhill" -- XXX temporary
+  -- stage = "greenhill" -- XXX temporary
   scenemanager:set(stage)
 end
 
