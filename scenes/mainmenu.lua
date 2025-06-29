@@ -34,8 +34,6 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_leave()
-  pentagram:teardown()
-
   for o in pairs(pool) do
     pool[o] = nil
   end
