@@ -1,9 +1,7 @@
 {
   "width": 480,
   "height": 270,
-  "effects": [
-    "theme"
-  ],
+  "effects": ["theme"],
   "objects": [
     {
       "action": "default",

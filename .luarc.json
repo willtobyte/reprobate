@@ -1,7 +1,5 @@
 {
   "workspace": {
-    "library": [
-      ".typing.lua"
-    ]
+    "library": [".typing.lua"]
   }
 }

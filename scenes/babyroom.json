@@ -1,10 +1,7 @@
 {
   "width": 480,
   "height": 270,
-  "effects": [
-    "door",
-    "theme"
-  ],
+  "effects": ["door", "theme"],
   "objects": [
     {
       "kind": "beelzebuuth",

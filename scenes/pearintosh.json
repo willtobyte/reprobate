@@ -1,11 +1,7 @@
 {
   "width": 480,
   "height": 270,
-  "effects": [
-    "key1",
-    "key2",
-    "music"
-  ],
+  "effects": ["key1", "key2", "music"],
   "objects": [
     {
       "action": "default",
