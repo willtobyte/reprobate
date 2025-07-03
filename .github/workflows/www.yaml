@@ -30,12 +30,7 @@ jobs:
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
 
-          7z a bundle.7z . \
-            -t7z \
-            -m0=lzma2 \
-            -mx=3 \
-            -ms=off \
-            -mmt=on
+          zip -r bundle.zip .
 
       - name: Download Carimbo WebAssembly runtime
         env:
@@ -43,13 +38,13 @@ jobs:
         run: gh release download ${{ env.CARIMBO_TAG }} --repo willtobyte/carimbo --pattern "WebAssembly.zip"
 
       - name: Extract Carimbo runtime
-        run: 7z x WebAssembly.zip -o.
+        run: unzip WebAssembly.zip -d .
 
       - name: Copy files
         run: |
           mkdir -p output
           touch output/favicon.ico
-          mv bundle.7z output/
+          mv bundle.zip output/
           mv carimbo.js output/
           mv carimbo.wasm output/
 
@@ -87,7 +82,7 @@ jobs:
               />
               <link
                 rel="preload"
-                href="bundle.7z?v=${GIT_SHORT_HASH}"
+                href="bundle.zip?v=${GIT_SHORT_HASH}"
                 as="fetch"
                 type="application/octet-stream"
                 crossorigin
@@ -154,7 +149,7 @@ jobs:
                 const loading = document.getElementById("loading");
                 const progressText = document.getElementById("progress-text");
 
-                const response = await fetch("bundle.7z?v=${GIT_SHORT_HASH}");
+                const response = await fetch("bundle.zip?v=${GIT_SHORT_HASH}");
                 const contentLength = +response.headers.get("Content-Length");
 
                 if (!response.body || !contentLength) {
@@ -194,7 +189,7 @@ jobs:
                   },
                   onRuntimeInitialized: () => {
                     loading.remove();
-                    FS.writeFile("/bundle.7z", new Uint8Array(window.bundleBuffer));
+                    FS.writeFile("/bundle.zip", new Uint8Array(window.bundleBuffer));
                     Module.callMain();
                   },
                 };

@@ -30,12 +30,7 @@ jobs:
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
 
-          7z a bundle.7z . \
-            -t7z \
-            -m0=lzma2 \
-            -mx=3 \
-            -ms=off \
-            -mmt=on
+          zip -r bundle.zip .
 
       - name: Download Carimbo runtime
         env:
@@ -46,7 +41,7 @@ jobs:
 
       - name: Extract Carimbo runtime
         run: |
-          7z x Windows.zip -o.
+          unzip Windows.zip -d .
           tar -xzf macOS.tar.gz
 
       - name: Clone Steam SDK
@@ -67,8 +62,8 @@ jobs:
 
           mkdir -p output/macos output/windows
 
-          cp bundle.7z output/macos/
-          cp bundle.7z output/windows/
+          cp bundle.zip output/macos/
+          cp bundle.zip output/windows/
 
           cp carimbo output/macos/
           cp carimbo.exe output/windows/
