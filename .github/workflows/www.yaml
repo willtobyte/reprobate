@@ -68,7 +68,7 @@ jobs:
 
       - name: Create HTML index file
         run: |
-          cat << EOF > output/index.html
+          cat << 'EOF' > output/index.html
           <!doctype html>
           <html lang="en">
             <head>
@@ -154,7 +154,7 @@ jobs:
                 const loading = document.getElementById("loading");
                 const progressText = document.getElementById("progress-text");
 
-                const response = await fetch(`bundle.7z?v=${GIT_SHORT_HASH}`);
+                const response = await fetch("bundle.7z?v=${GIT_SHORT_HASH}");
                 const contentLength = +response.headers.get("Content-Length");
 
                 if (!response.body || !contentLength) {
@@ -173,7 +173,7 @@ jobs:
                     receivedLength += value.length;
 
                     const percent = Math.floor((receivedLength / contentLength) * 100);
-                    progressText.textContent = `\${percent}%`;
+                    progressText.textContent = `${percent}%`;
                   }
 
                   const bundle = new Uint8Array(receivedLength);
@@ -190,7 +190,7 @@ jobs:
                   canvas,
                   noInitialRun: true,
                   locateFile: (path) => {
-                    if (path.endsWith(".wasm")) return path + "?v=" + ${GIT_SHORT_HASH};
+                    if (path.endsWith(".wasm")) return path + "?v=${GIT_SHORT_HASH}";
                   },
                   onRuntimeInitialized: () => {
                     loading.remove();
@@ -200,7 +200,7 @@ jobs:
                 };
 
                 const script = document.createElement("script");
-                script.src = "carimbo.js" + ${GIT_SHORT_HASH};
+                script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
                 script.defer = true;
                 document.body.appendChild(script);
               </script>
