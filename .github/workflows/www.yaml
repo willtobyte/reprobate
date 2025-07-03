@@ -68,7 +68,7 @@ jobs:
 
       - name: Create HTML index file
         run: |
-          cat << 'EOF' > output/index.html
+          cat << EOF > output/index.html
           <!doctype html>
           <html lang="en">
             <head>
@@ -173,7 +173,7 @@ jobs:
                     receivedLength += value.length;
 
                     const percent = Math.floor((receivedLength / contentLength) * 100);
-                    progressText.textContent = `${percent}%`;
+                    progressText.textContent = percent + "%";
                   }
 
                   const bundle = new Uint8Array(receivedLength);
