@@ -12,14 +12,14 @@ _ = _
 
 ---@enum WidgetType
 WidgetType = {
-	cursor = 0,
-	label = 1,
+  cursor = 0,
+  label = 1,
 }
 
 ---@enum SceneType
 SceneType = {
-	object = 0,
-	effect = 1,
+  object = 0,
+  effect = 1,
 }
 
 ---@class EngineFactory
@@ -62,16 +62,16 @@ PostalService = PostalService
 ---@enum Anchor
 ---Anchor enumeration for object alignment (framework.anchor).
 Anchor = {
-	---Align to the top.
-	top = 0,
-	---Align to the bottom.
-	bottom = 1,
-	---Align to the left.
-	left = 2,
-	---Align to the right.
-	right = 3,
-	---No anchoring.
-	none = 4,
+  ---Align to the top.
+  top = 0,
+  ---Align to the bottom.
+  bottom = 1,
+  ---Align to the left.
+  left = 2,
+  ---Align to the right.
+  right = 3,
+  ---No anchoring.
+  none = 4,
 }
 
 ---@class Canvas
@@ -143,8 +143,8 @@ Anchor = {
 ---@enum FontEffect
 ---Text rendering effects (graphics.fonteffect.type).
 FontEffect = {
-	---Fade-in effect for text.
-	fadein = 0,
+  ---Fade-in effect for text.
+  fadein = 0,
 }
 
 ---@class FontFactory
@@ -159,11 +159,11 @@ FontEffect = {
 ---@enum KeyEvent
 ---Keyboard key event codes (input.event.keyboard.key).
 KeyEvent = {
-	up = 0,
-	left = 1,
-	down = 2,
-	right = 3,
-	space = 4,
+  up = 0,
+  left = 1,
+  down = 2,
+  right = 3,
+  space = 4,
 }
 
 ---@class KeyValue
