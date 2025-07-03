@@ -173,7 +173,7 @@ jobs:
                     receivedLength += value.length;
 
                     const percent = Math.floor((receivedLength / contentLength) * 100);
-                    progressText.textContent = `${percent}%`;
+                    progressText.textContent = `\${percent}%`;
                   }
 
                   const bundle = new Uint8Array(receivedLength);
