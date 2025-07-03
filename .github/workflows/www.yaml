@@ -143,7 +143,7 @@ jobs:
 
             <body>
               <div class="container">
-                <div id="loading">Whispers from the abyss echo… Preparing your passage into the void...</div>
+                <div id="loading"><span id="progress-text">0%</span></div>
                 <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
               </div>
 
@@ -152,26 +152,55 @@ jobs:
 
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
-                const response = await fetch("bundle.7z?v=${GIT_SHORT_HASH}");
-                const bundle = await response.arrayBuffer();
+                const progressText = document.getElementById("progress-text");
+
+                const response = await fetch(`bundle.7z?v=${GIT_SHORT_HASH}`);
+                const contentLength = +response.headers.get("Content-Length");
+
+                if (!response.body || !contentLength) {
+                  progressText.textContent = "Loading…";
+                  const bundle = await response.arrayBuffer();
+                  window.bundleBuffer = bundle;
+                } else {
+                  const reader = response.body.getReader();
+                  const chunks = [];
+                  let receivedLength = 0;
+
+                  while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    chunks.push(value);
+                    receivedLength += value.length;
+
+                    const percent = Math.floor((receivedLength / contentLength) * 100);
+                    progressText.textContent = `${percent}%`;
+                  }
+
+                  const bundle = new Uint8Array(receivedLength);
+                  let position = 0;
+                  for (const chunk of chunks) {
+                    bundle.set(chunk, position);
+                    position += chunk.length;
+                  }
+
+                  window.bundleBuffer = bundle.buffer;
+                }
 
                 window.Module = {
                   canvas,
                   noInitialRun: true,
                   locateFile: (path) => {
-                    if (path.endsWith('.wasm')) {
-                      return path + '?v=${GIT_SHORT_HASH}';
-                    }
+                    if (path.endsWith(".wasm")) return path + "?v=" + ${GIT_SHORT_HASH};
                   },
                   onRuntimeInitialized: () => {
                     loading.remove();
-                    FS.writeFile("/bundle.7z", new Uint8Array(bundle));
+                    FS.writeFile("/bundle.7z", new Uint8Array(window.bundleBuffer));
                     Module.callMain();
                   },
                 };
 
                 const script = document.createElement("script");
-                script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
+                script.src = "carimbo.js" + ${GIT_SHORT_HASH};
                 script.defer = true;
                 document.body.appendChild(script);
               </script>
