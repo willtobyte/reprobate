@@ -27,13 +27,8 @@ jobs:
 
       - name: Create bundle
         run: |
-          folders=$(find . -mindepth 1 -type d -print)
-          7z a bundle.7z $folders \
-            -t7z \
-            -m0=lzma2 \
-            -mx=3 \
-            -ms=off \
-            -mmt=on
+          7z a bundle.7z $(find . -mindepth 2 -type f ! -path '*/.*' ! -name '.*') \
+            -t7z -m0=lzma2 -mx=3 -ms=off -mmt=on
 
       - name: Download Carimbo runtime
         env:
