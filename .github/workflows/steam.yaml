@@ -27,6 +27,9 @@ jobs:
 
       - name: Create bundle
         run: |
+          find . -name '.*' ! -name '.' ! -name '..' -print
+          find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
+
           7z a bundle.7z . \
             -t7z \
             -m0=lzma2 \
