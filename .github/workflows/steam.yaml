@@ -27,7 +27,7 @@ jobs:
 
       - name: Create bundle
         run: |
-          folders=$(find . -type d -not -path '.' -prune)
+          folders=$(find . -mindepth 1 -type d -print)
           7z a bundle.7z $folders \
             -t7z \
             -m0=lzma2 \
