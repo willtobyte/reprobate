@@ -53,7 +53,7 @@ jobs:
         run: |
           echo "Carimbo: $CARIMBO_TAG" > VERSION
           echo "Game: ${{ github.ref_name }}" >> VERSION
-          echo "https://carimbo.site" >> VERSION
+          echo "Site: https://carimbo.site" >> VERSION
 
       - name: Copy files
         run: |
