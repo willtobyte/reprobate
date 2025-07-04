@@ -138,7 +138,7 @@ jobs:
 
             <body>
               <div class="container">
-                <div id="loading"><span id="progress-text">0%</span></div>
+                <div id="loading">Loading…</div>
                 <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
               </div>
 
@@ -147,39 +147,11 @@ jobs:
 
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
-                const progressText = document.getElementById("progress-text");
 
                 const response = await fetch("bundle.zip?v=${GIT_SHORT_HASH}");
-                const contentLength = +response.headers.get("Content-Length");
 
-                if (!response.body || !contentLength) {
-                  progressText.textContent = "Loading…";
-                  const bundle = await response.arrayBuffer();
-                  window.bundleBuffer = bundle;
-                } else {
-                  const reader = response.body.getReader();
-                  const chunks = [];
-                  let receivedLength = 0;
-
-                  while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-                    chunks.push(value);
-                    receivedLength += value.length;
-
-                    const percent = Math.floor((receivedLength / contentLength) * 100);
-                    progressText.textContent = percent + "%";
-                  }
-
-                  const bundle = new Uint8Array(receivedLength);
-                  let position = 0;
-                  for (const chunk of chunks) {
-                    bundle.set(chunk, position);
-                    position += chunk.length;
-                  }
-
-                  window.bundleBuffer = bundle.buffer;
-                }
+                const bundle = await response.arrayBuffer();
+                window.bundleBuffer = bundle;
 
                 window.Module = {
                   canvas,
