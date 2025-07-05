@@ -136,10 +136,7 @@ jobs:
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
 
-                const response = await fetch("bundle.zip?v=${GIT_SHORT_HASH}");
-
-                const bundle = await response.arrayBuffer();
-                window.bundleBuffer = bundle;
+                const promise = fetch("bundle.zip?v=${GIT_SHORT_HASH}").then(r => r.arrayBuffer());
 
                 window.Module = {
                   canvas,
@@ -147,9 +144,10 @@ jobs:
                   locateFile: (path) => {
                     if (path.endsWith(".wasm")) return path + "?v=${GIT_SHORT_HASH}";
                   },
-                  onRuntimeInitialized: () => {
+                  onRuntimeInitialized: async () => {
                     loading.remove();
-                    FS.writeFile("/bundle.zip", new Uint8Array(window.bundleBuffer));
+                    const bundle = await response.arrayBuffer();
+                    FS.writeFile("/bundle.zip", new Uint8Array(bundle));
                     Module.callMain();
                   },
                 };
