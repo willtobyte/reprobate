@@ -72,11 +72,13 @@ jobs:
                 rel="preload"
                 href="carimbo.js?v=${GIT_SHORT_HASH}"
                 as="script"
+                fetchpriority="high"
               />
               <link
                 rel="preload"
                 href="carimbo.wasm?v=${GIT_SHORT_HASH}"
                 as="fetch"
+                fetchpriority="high"
                 type="application/wasm"
                 crossorigin
               />
@@ -84,6 +86,7 @@ jobs:
                 rel="preload"
                 href="bundle.zip?v=${GIT_SHORT_HASH}"
                 as="fetch"
+                fetchpriority="high"
                 type="application/octet-stream"
                 crossorigin
               />
