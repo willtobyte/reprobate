@@ -55,7 +55,7 @@ jobs:
             Cache-Control: no-cache, no-store, must-revalidate
 
           /*
-            Cache-Control: public, max-age=86400, immutable
+            Cache-Control: public, max-age=31536000, immutable
           EOF
 
       - name: Set short commit hash
@@ -117,7 +117,6 @@ jobs:
                   height: calc(100vw * (9 / 16));
                   max-height: 100vh;
                   max-width: calc(100vh * (16 / 9));
-                  background: #000;
                 }
 
                 #loading {
