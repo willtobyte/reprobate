@@ -74,22 +74,6 @@ jobs:
                 as="script"
                 fetchpriority="high"
               />
-              <link
-                rel="preload"
-                href="carimbo.wasm?v=${GIT_SHORT_HASH}"
-                as="fetch"
-                fetchpriority="high"
-                type="application/wasm"
-                crossorigin
-              />
-              <link
-                rel="preload"
-                href="bundle.zip?v=${GIT_SHORT_HASH}"
-                as="fetch"
-                fetchpriority="high"
-                type="application/octet-stream"
-                crossorigin
-              />
               <style>
                 *,
                 *::before,
