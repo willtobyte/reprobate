@@ -72,6 +72,14 @@ jobs:
           };
           EOF
 
+      - name: Create wrangler.toml
+        run: |
+          cat << EOF > wrangler.toml
+          name = "reprobate"
+          compatibility_date = "${{ github.event.head_commit.timestamp | default('2025-07-05') | slice(0, 10) }}"
+          pages_build_output_dir = "./output"
+          EOF
+
       - name: Set short commit hash
         run: echo "GIT_SHORT_HASH=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
@@ -192,7 +200,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./output --branch=main --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+          command: pages deploy --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }} --branch=main
+          # command: pages deploy ./output --branch=main --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Purge Cloudflare Cache
