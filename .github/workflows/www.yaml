@@ -146,7 +146,7 @@ jobs:
                   },
                   onRuntimeInitialized: async () => {
                     loading.remove();
-                    const bundle = await response.arrayBuffer();
+                    const bundle = await promise;
                     FS.writeFile("/bundle.zip", new Uint8Array(bundle));
                     Module.callMain();
                   },
