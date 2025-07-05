@@ -58,6 +58,16 @@ jobs:
             Cache-Control: public, max-age=31536000, immutable
           EOF
 
+      - name: Create _routes file
+        run: |
+          cat << EOF > output/_routes.json
+          {
+            "version": 1,
+            "include": ["/*"],
+            "exclude": []
+          }
+          EOF
+
       - name: Set short commit hash
         run: echo "GIT_SHORT_HASH=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
