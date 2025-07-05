@@ -76,7 +76,7 @@ jobs:
         run: |
           cat << EOF > wrangler.toml
           name = "reprobate"
-          compatibility_date = "${{ github.event.head_commit.timestamp | default('2025-07-05') | slice(0, 10) }}"
+          compatibility_date = "2025-07-05"
           pages_build_output_dir = "./output"
           EOF
 
