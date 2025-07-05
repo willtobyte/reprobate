@@ -61,6 +61,13 @@ jobs:
       - name: Set short commit hash
         run: echo "GIT_SHORT_HASH=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
+      - name: Create robots.txt
+        run: |
+          cat << EOF > output/robots.txt
+          User-agent: *
+          Disallow:
+          EOF
+
       - name: Create HTML index file
         run: |
           cat << EOF > output/index.html
