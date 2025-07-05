@@ -58,37 +58,8 @@ jobs:
             Cache-Control: public, max-age=31536000, immutable
           EOF
 
-      - name: Create _worker file
-        run: |
-          cat << 'EOF' > output/_worker.js
-          export default {
-            async fetch(request, env, ctx) {
-              const url = new URL(request.url);
-              if (url.pathname === "/robots.txt") {
-                return env.ASSETS.fetch(request);
-              }
-              return env.ASSETS.fetch(request);
-            },
-          };
-          EOF
-
-      - name: Create wrangler.toml
-        run: |
-          cat << EOF > wrangler.toml
-          name = "reprobate"
-          compatibility_date = "2025-07-05"
-          pages_build_output_dir = "./output"
-          EOF
-
       - name: Set short commit hash
         run: echo "GIT_SHORT_HASH=${GITHUB_SHA::7}" >> $GITHUB_ENV
-
-      - name: Create robots.txt
-        run: |
-          cat << EOF > output/robots.txt
-          User-agent: *
-          Disallow:
-          EOF
 
       - name: Create HTML index file
         run: |
@@ -200,8 +171,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }} --branch=main
-          # command: pages deploy ./output --branch=main --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+          command: pages deploy ./output --branch=main --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Purge Cloudflare Cache
