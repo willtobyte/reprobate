@@ -136,18 +136,26 @@ jobs:
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
 
-                const promise = fetch("bundle.zip?v=${GIT_SHORT_HASH}").then(r => r.arrayBuffer());
+                const zipResponse = fetch("bundle.zip?v=${GIT_SHORT_HASH}");
+                const wasmPreload = document.createElement("link");
+                wasmPreload.rel = "preload";
+                wasmPreload.href = "carimbo.wasm?v=${GIT_SHORT_HASH}";
+                wasmPreload.as = "fetch";
+                wasmPreload.type = "application/wasm";
+                wasmPreload.crossOrigin = "anonymous";
+                document.head.appendChild(wasmPreload);
 
                 window.Module = {
                   canvas,
                   noInitialRun: true,
                   locateFile: (path) => {
                     if (path.endsWith(".wasm")) return path + "?v=${GIT_SHORT_HASH}";
+                    return path;
                   },
                   onRuntimeInitialized: async () => {
                     loading.remove();
-                    const bundle = await promise;
-                    FS.writeFile("/bundle.zip", new Uint8Array(bundle));
+                    const buffer = await (await zipResponse).arrayBuffer();
+                    FS.writeFile("/bundle.zip", new Uint8Array(buffer));
                     Module.callMain();
                   },
                 };
