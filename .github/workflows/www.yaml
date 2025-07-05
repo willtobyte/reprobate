@@ -171,6 +171,9 @@ jobs:
           </html>
           EOF
 
+      - name: Debug
+        run: ls -lah output
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
