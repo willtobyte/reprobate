@@ -147,7 +147,7 @@ jobs:
           </html>
           EOF
 
-      - name: Run Puppeteer with file:// URL
+      - name: Run Puppeteer
         run: |
           npx http-server output -p 8080 &
           SERVER_PID=$!
@@ -175,9 +175,13 @@ jobs:
                 process.exit(1);
               });
 
-              page.on('console', msg => {
-                if (msg.type() === 'error') {
-                  console.error('Console error:', msg.text());
+              page.on('console', message => {
+                const type = message.type();
+                const text = message.text();
+
+                console.log(`[${type}] ${text}`);
+
+                if (type === 'error') {
                   process.exit(1);
                 }
               });
