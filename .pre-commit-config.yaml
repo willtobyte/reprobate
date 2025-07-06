@@ -13,7 +13,6 @@ repos:
     rev: v2.1.0
     hooks:
       - id: stylua
-        # args: ["--config-path", "stylua.toml"]
 
   - repo: https://github.com/shssoichiro/oxipng
     rev: v9.1.5
