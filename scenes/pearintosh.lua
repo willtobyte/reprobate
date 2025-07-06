@@ -13,7 +13,7 @@ BASIC V1.6.6
 RUN TO EXECUTE
 
 ]],
-	program = "",
+	program = "10 ",
 	cursor = {
 		visible = true,
 		timer = 0,
@@ -36,7 +36,7 @@ function scene.on_enter()
 
 	local switch = scene:get("switch", SceneType.object)
 	switch:on_touch(function()
-		pool.program = ""
+		pool.program = "10 "
 	end)
 end
 
@@ -72,27 +72,43 @@ function scene.on_keypress(code)
 	if code == KeyEvent.backspace then
 		pool.program = pool.program:sub(1, -2)
 	elseif code == KeyEvent.enter then
-		pool.program = pool.program .. "\n"
+		for line in pool.program:gmatch("[^\n]+") do
+			local trimmed = line:match("^%s*(.-)%s*$")
+			if trimmed:match("^%d+%s+RUN$") then
+				pool.output = {}
 
-		if pool.program:match("\nRUN%s*\n$") or pool.program:match("^RUN%s*\n$") then
-			pool.output = {}
+				local function stdout(message)
+					pool.program = pool.program .. "\n" .. message .. "\n"
+				end
 
-			local function stdout(message)
-				pool.program = pool.program .. "\n" .. message .. "\n"
-			end
+				local function stderr(message)
+					pool.program = pool.program .. "\n" .. message .. "\n"
+				end
 
-			local function stderr(message)
-				pool.program = pool.program .. "\n" .. message .. "\n"
-			end
+				local ok, err = pcall(function()
+					basic(pool.program, stdout, stderr)
+				end)
 
-			local ok, err = pcall(function()
-				basic(pool.program, stdout, stderr)
-			end)
+				if not ok then
+					stderr(err)
+				end
 
-			if not ok then
-				stderr(err)
+				pool.typing = true
+				return
 			end
 		end
+
+		-- Caso não tenha sido RUN, calcula próxima linha normalmente
+		local last_line_number = 10
+		for number in pool.program:gmatch("\n(%d+)[^\n]*") do
+			number = tonumber(number)
+			if number and number > last_line_number then
+				last_line_number = number
+			end
+		end
+
+		local next_line_number = last_line_number + 10
+		pool.program = pool.program .. string.format("\n%d ", next_line_number)
 		pool.typing = true
 	end
 end
