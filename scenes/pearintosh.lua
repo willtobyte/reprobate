@@ -5,7 +5,7 @@ local scene = {}
 local overlay = engine:overlay()
 
 local pool = {
-  prelude = [[
+	prelude = [[
 MORNING STAR SOFTWARE 1986 (C)
 BASIC V1.6.6
 49152 BYTES FREE
@@ -13,96 +13,96 @@ BASIC V1.6.6
 RUN TO EXECUTE
 
 ]],
-  program = "",
-  cursor = {
-    visible = true,
-    timer = 0,
-    interval = 0.3,
-  },
-  typing = false,
+	program = "",
+	cursor = {
+		visible = true,
+		timer = 0,
+		interval = 0.3,
+	},
+	typing = false,
 }
 
 function scene.on_enter()
-  pool.font = engine:fontfactory():get("retro")
-  pool.label = overlay:create(WidgetType.label)
-  pool.label.font = pool.font
+	pool.font = engine:fontfactory():get("retro")
+	pool.label = overlay:create(WidgetType.label)
+	pool.label.font = pool.font
 
-  pool.effects = {}
-  pool.effects.key1 = scene:get("key1", SceneType.effect)
-  pool.effects.key2 = scene:get("key2", SceneType.effect)
+	pool.effects = {}
+	pool.effects.key1 = scene:get("key1", SceneType.effect)
+	pool.effects.key2 = scene:get("key2", SceneType.effect)
 
-  pool.music = scene:get("music", SceneType.effect)
-  pool.music:play(true)
+	pool.music = scene:get("music", SceneType.effect)
+	pool.music:play(true)
 
-  local switch = scene:get("switch", SceneType.object)
-  switch:on_touch(function()
-    pool.program = ""
-  end)
+	local switch = scene:get("switch", SceneType.object)
+	switch:on_touch(function()
+		pool.program = ""
+	end)
 end
 
 function scene.on_loop(delta)
-  local cursor = pool.cursor
+	local cursor = pool.cursor
 
-  if pool.typing then
-    cursor.visible = false
-    cursor.timer = 0
-    pool.typing = false
-  else
-    cursor.timer = cursor.timer + delta
-    if cursor.timer >= cursor.interval then
-      cursor.visible = not cursor.visible
-      cursor.timer = 0
-    end
-  end
+	if pool.typing then
+		cursor.visible = false
+		cursor.timer = 0
+		pool.typing = false
+	else
+		cursor.timer = cursor.timer + delta
+		if cursor.timer >= cursor.interval then
+			cursor.visible = not cursor.visible
+			cursor.timer = 0
+		end
+	end
 
-  local text = pool.prelude .. pool.program .. (cursor.visible and "_" or "")
-  pool.label:set(text, 105, 20)
+	local text = pool.prelude .. pool.program .. (cursor.visible and "_" or "")
+	pool.label:set(text, 105, 20)
 end
 
 function scene.on_text(text)
-  if pool.font.glyphs:find(text, 1, true) then
-    pool.program = pool.program .. text
-    pool.typing = true
-  end
+	if pool.font.glyphs:find(text, 1, true) then
+		pool.program = pool.program .. text
+		pool.typing = true
+	end
 end
 
 function scene.on_keypress(code)
-  (pool.effects)["key" .. math.random(2)]:play()
+	(pool.effects)["key" .. math.random(2)]:play()
 
-  if code == KeyEvent.backspace then
-    pool.program = pool.program:sub(1, -2)
-  elseif code == KeyEvent.space then
-    pool.program = pool.program .. " "
-  elseif code == KeyEvent.enter then
-    pool.program = pool.program .. "\n"
+	if code == KeyEvent.backspace then
+		pool.program = pool.program:sub(1, -2)
+	elseif code == KeyEvent.space then
+		pool.program = pool.program .. " "
+	elseif code == KeyEvent.enter then
+		pool.program = pool.program .. "\n"
 
-    if pool.program:match("\nRUN%s*\n$") or pool.program:match("^RUN%s*\n$") then
-      pool.output = {}
+		if pool.program:match("\nRUN%s*\n$") or pool.program:match("^RUN%s*\n$") then
+			pool.output = {}
 
-      local function stdout(message)
-        pool.program = pool.program .. "\n" .. message .. "\n"
-      end
+			local function stdout(message)
+				pool.program = pool.program .. "\n" .. message .. "\n"
+			end
 
-      local function stderr(message)
-        pool.program = pool.program .. "\n" .. message .. "\n"
-      end
+			local function stderr(message)
+				pool.program = pool.program .. "\n" .. message .. "\n"
+			end
 
-      local ok, err = pcall(function()
-        basic(pool.program, stdout, stderr)
-      end)
+			local ok, err = pcall(function()
+				basic(pool.program, stdout, stderr)
+			end)
 
-      if not ok then
-        stderr(err)
-      end
-    end
-    pool.typing = true
-  end
+			if not ok then
+				stderr(err)
+			end
+		end
+		pool.typing = true
+	end
 end
 
 function scene.on_leave()
-  for o in pairs(pool) do
-    pool[o] = nil
-  end
+	for o in pairs(pool) do
+		pool[o] = nil
+	end
 end
 
 return scene
