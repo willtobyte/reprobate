@@ -165,11 +165,11 @@ jobs:
 
               const page = await browser.newPage();
 
-              page.on('console', async (msg) => {
-                const args = await Promise.all(msg.args().map(arg => arg.jsonValue()));
+              page.on('console', async (message) => {
+                const args = await Promise.all(message.args().map(arg => arg.jsonValue()));
                 console.log(...args);
 
-                if (msg.type() === 'error') {
+                if (message.type() === 'error') {
                   process.exit(1);
                 }
               });
@@ -192,7 +192,7 @@ jobs:
 
                 await new Promise(resolve => setTimeout(resolve, 10000));
 
-                console.log('WebAssembly loaded from filesystem without errors for 10 seconds');
+                console.log('WebAssembly loaded without errors for 10 seconds');
               } catch (e) {
                 console.error('Failed to load file:', e.message);
                 process.exit(1);
