@@ -23,6 +23,7 @@ function setup()
 
   local stage = queryparam("stage", "mainmenu")
 
+  asdf
   -- stage = "greenhill"
   scenemanager:set(stage)
 end
