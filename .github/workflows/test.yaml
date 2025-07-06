@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Init Node project
+        run: npm init -y
+
       - name: Install Puppeteer
         run: npm install http-server puppeteer
 
@@ -146,7 +149,9 @@ jobs:
 
       - name: Run Puppeteer with file:// URL
         run: |
-          ./node_modules/.bin/http-server output -p 8080 &
+          npx http-server output -p 8080 &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID" EXIT
           sleep 3
           node -e "
             const path = require('path');
