@@ -123,7 +123,7 @@ jobs:
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
 
-                const promise = fetch("bundle.zip?v=${GIT_SHORT_HASH}");
+                const promise = fetch("bundle.zip");
 
                 window.Module = {
                   canvas,
