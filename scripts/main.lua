@@ -12,19 +12,16 @@ local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
 function setup()
-  overlay.cursor:set("horn")
+	overlay.cursor:set("horn")
 
-  -- scenemanager:register("carimbo")
-  scenemanager:register("mainmenu")
-  scenemanager:register("whobuilt")
-  scenemanager:register("babyroom")
-  scenemanager:register("pearintosh")
-  scenemanager:register("greenhill")
+	scenemanager:register("mainmenu")
+	scenemanager:register("whobuilt")
+	scenemanager:register("babyroom")
+	scenemanager:register("pearintosh")
 
-  local stage = queryparam("stage", "mainmenu")
+	local stage = queryparam("stage", "mainmenu")
 
-  -- stage = "greenhill"
-  scenemanager:set(stage)
+	scenemanager:set(stage)
 end
 
 function loop() end
