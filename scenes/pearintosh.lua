@@ -60,6 +60,8 @@ function scene.on_loop(delta)
 end
 
 function scene.on_text(text)
+	text = string.upper(text)
+
 	if pool.font.glyphs:find(text, 1, true) then
 		pool.program = pool.program .. text
 		pool.typing = true
