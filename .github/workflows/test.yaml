@@ -176,22 +176,38 @@ jobs:
               });
 
               page.on('console', async msg => {
-                const args = msg.args();
-                const vals = await Promise.all(args.map(a => a.executionContext().evaluate(arg => {
-                  try {
-                    return JSON.stringify(arg);
-                  } catch {
-                    return String(arg);
+                try {
+                  const values = await Promise.all(
+                    msg.args().map(async arg => {
+                      try {
+                        return await arg.jsonValue();
+                      } catch {
+                        return '[unserializable]';
+                      }
+                    })
+                  );
+
+                  const output = values.map(v => {
+                    if (typeof v === 'string') return v;
+                    try {
+                      return JSON.stringify(v);
+                    } catch {
+                      return '[object]';
+                    }
+                  }).join(' ');
+
+                  console.log(`[${msg.type().toUpperCase()}] ${output}`);
+
+                  if (msg.type() === 'error') {
+                    console.error('Console error detected');
+                    process.exit(1);
                   }
-                }, a)));
-
-                console.log(`[${msg.type().toUpperCase()}] ${vals.join(' ')}`);
-
-                if (msg.type() === 'error') {
-                  console.error('Console error detected.');
+                } catch (err) {
+                  console.error('Failed to process console message:', err);
                   process.exit(1);
                 }
               });
+
               try {
                 await page.goto('http://localhost:8080/index.html', {
                   waitUntil: 'load',
