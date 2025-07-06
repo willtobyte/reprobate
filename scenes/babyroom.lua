@@ -56,8 +56,6 @@ function scene.on_enter()
 		end)
 	end)
 
-	table.insert(pool.timers, id)
-
 	for name, settings in pairs(animations) do
 		local object = scene:get(name, SceneType.object)
 
@@ -66,6 +64,8 @@ function scene.on_enter()
 		local id = timermanager:set(delay, function()
 			object.action = settings.action
 		end)
+
+		table.insert(pool.timers, id)
 
 		object:on_touch(function()
 			if lock then
@@ -82,8 +82,6 @@ function scene.on_enter()
 		end)
 
 		pool[name] = object
-
-		table.insert(pool.timers, id)
 	end
 
 	local objects = {}
