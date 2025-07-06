@@ -190,7 +190,7 @@ jobs:
                   timeout: 15000
                 });
 
-                await new Promise(resolve => setTimeout(resolve, 6000));
+                await new Promise(resolve => setTimeout(resolve, 10000));
 
                 console.log('WebAssembly loaded from filesystem without errors for 10 seconds');
               } catch (e) {
