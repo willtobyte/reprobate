@@ -160,6 +160,7 @@ jobs:
             (async () => {
               const browser = await puppeteer.launch({
                 headless: 'new',
+                dumpio: true,
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
               });
 
@@ -173,39 +174,6 @@ jobs:
               page.on('error', error => {
                 console.error('Browser error:', error.message);
                 process.exit(1);
-              });
-
-              page.on('console', async msg => {
-                try {
-                  const values = await Promise.all(
-                    msg.args().map(async arg => {
-                      try {
-                        return await arg.jsonValue();
-                      } catch {
-                        return '[unserializable]';
-                      }
-                    })
-                  );
-
-                  const output = values.map(v => {
-                    if (typeof v === 'string') return v;
-                    try {
-                      return JSON.stringify(v);
-                    } catch {
-                      return '[object]';
-                    }
-                  }).join(' ');
-
-                  console.log(`[${msg.type().toUpperCase()}] ${output}`);
-
-                  if (msg.type() === 'error') {
-                    console.error('Console error detected');
-                    process.exit(1);
-                  }
-                } catch (err) {
-                  console.error('Failed to process console message:', err);
-                  process.exit(1);
-                }
               });
 
               try {
