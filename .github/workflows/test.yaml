@@ -175,6 +175,13 @@ jobs:
                 process.exit(1);
               });
 
+              page.on('console', msg => {
+                if (msg.type() === 'error') {
+                  console.error('Console error:', msg.text());
+                  process.exit(1);
+                }
+              });
+
               try {
                 await page.goto('http://localhost:8080/index.html', {
                   waitUntil: 'load',
