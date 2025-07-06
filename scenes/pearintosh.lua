@@ -71,8 +71,6 @@ function scene.on_keypress(code)
 
 	if code == KeyEvent.backspace then
 		pool.program = pool.program:sub(1, -2)
-	elseif code == KeyEvent.space then
-		pool.program = pool.program .. " "
 	elseif code == KeyEvent.enter then
 		pool.program = pool.program .. "\n"
 
