@@ -175,15 +175,11 @@ jobs:
                 process.exit(1);
               });
 
-              page.on('console', message => {
-                const type = message.type();
-                const text = message.text();
-
-                console.log(`[${type}] ${text}`);
-
-                if (type === 'error') {
-                  process.exit(1);
-                }
+              page.on('console', async msg => {
+                const args = await Promise.all(msg.args().map(arg => arg.jsonValue()));
+                const text = args.map(a => typeof a === 'string' ? a : JSON.stringify(a)).join(' ');
+                console.log(`[${msg.type()}] ${text}`);
+                if (msg.type() === 'error') process.exit(1);
               });
 
               try {
