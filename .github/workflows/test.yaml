@@ -18,7 +18,7 @@ jobs:
           node-version: "22"
 
       - name: Install Puppeteer
-        run: npm install http-server puppeteer --no-save
+        run: npm install http-server puppeteer
 
       - name: Enforce non-fullscreen
         run: |
