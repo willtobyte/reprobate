@@ -17,11 +17,8 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Init Node project
-        run: npm init -y
-
       - name: Install Puppeteer
-        run: npm install http-server puppeteer
+        run: npm install -g http-server puppeteer
 
       - name: Enforce non-fullscreen
         run: |
