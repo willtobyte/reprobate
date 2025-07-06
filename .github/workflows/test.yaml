@@ -146,7 +146,7 @@ jobs:
 
       - name: Run Puppeteer with file:// URL
         run: |
-          npx http-server output -p 8080 &
+          ./node_modules/.bin/http-server output -p 8080 &
           sleep 3
           node -e "
             const path = require('path');
