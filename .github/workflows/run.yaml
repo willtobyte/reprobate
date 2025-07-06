@@ -1,11 +1,11 @@
-name: WebAssembly Test
+name: WebAssembly Run
 
 on:
   push:
     branches: [main]
 
 jobs:
-  test:
+  run:
     runs-on: ubuntu-latest
 
     steps:
@@ -175,12 +175,12 @@ jobs:
               });
 
               page.on('pageerror', error => {
-                console.error('Page error:', error.message);
+                console.error(error.message);
                 process.exit(1);
               });
 
               page.on('error', error => {
-                console.error('Browser error:', error.message);
+                console.error(error.message);
                 process.exit(1);
               });
 
