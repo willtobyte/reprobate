@@ -1,25 +1,24 @@
-name: Publish Online
+name: WebAssembly Test
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches: [main]
 
 jobs:
-  publish:
+  wasm-test:
     runs-on: ubuntu-latest
-
-    if: true
-
-    env:
-      CARIMBO_TAG: "v1.5.4"
-
-    permissions:
-      contents: write
 
     steps:
       - name: Clone the repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Puppeteer
+        run: npm install puppeteer --no-save
 
       - name: Enforce non-fullscreen
         run: |
@@ -47,19 +46,6 @@ jobs:
           mv bundle.zip output/
           mv carimbo.js output/
           mv carimbo.wasm output/
-
-      - name: Create _headers file
-        run: |
-          cat << EOF > output/_headers
-          /
-            Cache-Control: no-cache, no-store, must-revalidate
-
-          /*
-            Cache-Control: public, max-age=31536000, immutable
-          EOF
-
-      - name: Set short commit hash
-        run: echo "GIT_SHORT_HASH=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Create HTML index file
         run: |
@@ -131,8 +117,6 @@ jobs:
               </div>
 
               <script type="module">
-                console.log("${GIT_SHORT_HASH}");
-
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
 
@@ -141,10 +125,6 @@ jobs:
                 window.Module = {
                   canvas,
                   noInitialRun: true,
-                  locateFile: (path) => {
-                    if (path.endsWith(".wasm")) return path + "?v=${GIT_SHORT_HASH}";
-                    return path;
-                  },
                   onRuntimeInitialized: async () => {
                     loading.remove();
                     const response = await promise;
@@ -156,7 +136,7 @@ jobs:
                 };
 
                 const script = document.createElement("script");
-                script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
+                script.src = "carimbo.js";
                 script.defer = true;
                 document.body.appendChild(script);
               </script>
@@ -164,20 +144,43 @@ jobs:
           </html>
           EOF
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./output --branch=main --project-name=${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Purge Cloudflare Cache
-        env:
-          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: Run Puppeteer with file:// URL
         run: |
-          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
-                -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
-                -H "Content-Type: application/json" \
-                --data '{"purge_everything":true}'
+          node -e "
+            const path = require('path');
+            const puppeteer = require('puppeteer');
+
+            (async () => {
+              const browser = await puppeteer.launch({
+                headless: 'new',
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+              });
+
+              const page = await browser.newPage();
+
+              page.on('pageerror', error => {
+                console.error('Page error:', error.message);
+                process.exit(1);
+              });
+
+              page.on('error', error => {
+                console.error('Browser error:', error.message);
+                process.exit(1);
+              });
+
+              try {
+                const indexPath = path.resolve('output/index.html');
+                const fileUrl = 'file://' + indexPath;
+
+                await page.goto(fileUrl, { waitUntil: 'load', timeout: 15000 });
+                await page.waitForTimeout(10000);
+
+                console.log('WebAssembly loaded from filesystem without errors for 10 seconds');
+              } catch (e) {
+                console.error('Failed to load file:', e.message);
+                process.exit(1);
+              } finally {
+                await browser.close();
+              }
+            })();
+          "
