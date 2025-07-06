@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  wasm-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,7 +18,7 @@ jobs:
           node-version: "22"
 
       - name: Install Puppeteer
-        run: npm install puppeteer --no-save
+        run: npm install http-server puppeteer --no-save
 
       - name: Enforce non-fullscreen
         run: |
@@ -58,7 +58,7 @@ jobs:
               <meta name="description" content="Play Reprobate">
               <link
                 rel="preload"
-                href="carimbo.js?v=${GIT_SHORT_HASH}"
+                href="carimbo.js"
                 as="script"
                 fetchpriority="high"
               />
@@ -146,6 +146,8 @@ jobs:
 
       - name: Run Puppeteer with file:// URL
         run: |
+          npx http-server output -p 8080 &
+          sleep 3
           node -e "
             const path = require('path');
             const puppeteer = require('puppeteer');
@@ -169,10 +171,11 @@ jobs:
               });
 
               try {
-                const indexPath = path.resolve('output/index.html');
-                const fileUrl = 'file://' + indexPath;
+                await page.goto('http://localhost:8080/index.html', {
+                  waitUntil: 'load',
+                  timeout: 15000
+                });
 
-                await page.goto(fileUrl, { waitUntil: 'load', timeout: 15000 });
                 await page.waitForTimeout(10000);
 
                 console.log('WebAssembly loaded from filesystem without errors for 10 seconds');
