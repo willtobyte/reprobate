@@ -167,7 +167,11 @@ jobs:
 
               page.on('console', async (msg) => {
                 const args = await Promise.all(msg.args().map(arg => arg.jsonValue()));
-                console.log(msg.type().toUpperCase(), ...args);
+                console.log(...args);
+
+                if (msg.type() === 'error') {
+                  process.exit(1);
+                }
               });
 
               page.on('pageerror', error => {
