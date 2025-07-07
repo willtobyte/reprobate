@@ -2,7 +2,7 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 	local lines, pc, variables, line_index, for_stack = {}, 1, {}, {}, {}
 	local steps, max_steps = 0, max_steps_override or 100
 
-	local function wrap_text(text, max_len)
+	local function wrap(text, max_len)
 		local result = {}
 		for line in text:gmatch("[^\r\n]+") do
 			while #line > max_len do
@@ -37,7 +37,7 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 		local chunk, err = load("return " .. expression)
 		if not chunk then
 			stderr("EVALUATION ERROR:")
-			for _, msg in ipairs(wrap_text(tostring(err):upper(), 60)) do
+			for _, msg in ipairs(wrap(tostring(err):upper(), 60)) do
 				stderr(msg)
 			end
 			return 0
@@ -45,7 +45,7 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 		local ok, result = pcall(chunk)
 		if not ok then
 			stderr("EVALUATION ERROR:")
-			for _, msg in ipairs(wrap_text(tostring(result):upper(), 60)) do
+			for _, msg in ipairs(wrap(tostring(result):upper(), 60)) do
 				stderr(msg)
 			end
 			return 0
