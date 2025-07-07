@@ -20,6 +20,7 @@ RUN TO EXECUTE
 		interval = 0.3,
 	},
 	typing = false,
+	out_of_memory = false,
 }
 
 function scene.on_enter()
@@ -37,6 +38,7 @@ function scene.on_enter()
 	local switch = scene:get("switch", SceneType.object)
 	switch:on_touch(function()
 		pool.program = "10 "
+		pool.out_of_memory = false
 	end)
 end
 
@@ -56,10 +58,14 @@ function scene.on_loop(delta)
 	end
 
 	local text = pool.prelude .. pool.program .. (cursor.visible and "_" or "")
-	pool.label:set(text, 105, 20)
+	pool.label:set(text, 105, 18)
 end
 
 function scene.on_text(text)
+	if pool.out_of_memory then
+		return
+	end
+
 	text = string.upper(text)
 
 	if pool.font.glyphs:find(text, 1, true) then
@@ -69,6 +75,10 @@ function scene.on_text(text)
 end
 
 function scene.on_keypress(code)
+	if pool.out_of_memory then
+		return
+	end
+
 	(pool.effects)["key" .. math.random(2)]:play()
 
 	if code == KeyEvent.backspace then
@@ -100,7 +110,6 @@ function scene.on_keypress(code)
 			end
 		end
 
-		-- Caso não tenha sido RUN, calcula próxima linha normalmente
 		local last_line_number = 10
 		for number in pool.program:gmatch("\n(%d+)[^\n]*") do
 			number = tonumber(number)
@@ -110,6 +119,14 @@ function scene.on_keypress(code)
 		end
 
 		local next_line_number = last_line_number + 10
+
+		if next_line_number > 200 then
+			pool.program = pool.program .. "\nOUT OF MEMORY"
+			pool.typing = true
+			pool.out_of_memory = true
+			return
+		end
+
 		pool.program = pool.program .. string.format("\n%d ", next_line_number)
 		pool.typing = true
 	end
