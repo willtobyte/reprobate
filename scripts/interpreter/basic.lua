@@ -47,7 +47,7 @@ local function interpreter(program, stdout, stderr)
 
 	while pc <= #lines do
 		if steps >= max_steps then
-			stderr("INFINITE LOOP DETECTED: EXECUTION STEP LIMIT EXCEEDED")
+			stderr("INFINITE LOOP DETECTED")
 			return
 		end
 		local line_num = lines[pc].num
