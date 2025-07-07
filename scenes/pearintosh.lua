@@ -92,7 +92,7 @@ function scene.on_keypress(code)
 				end
 
 				local function stderr(message)
-					pool.program = pool.program .. "\n" .. message .. "\n"
+					pool.program = pool.program .. "\n" .. message
 					pool.halted = true
 				end
 
