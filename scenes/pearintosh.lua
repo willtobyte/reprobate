@@ -107,6 +107,8 @@ function scene.on_keypress(code)
 				end
 
 				if pool.halted then
+					pool.program = pool.program .. "\n"
+
 					for _, message in ipairs(errors) do
 						pool.program = pool.program .. "\n" .. message
 					end
