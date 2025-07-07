@@ -86,14 +86,14 @@ function scene.on_keypress(code)
 			local trimmed = line:match("^%s*(.-)%s*$")
 			if trimmed:match("^%d+%s+RUN$") then
 				pool.output = {}
-				local error_messages = {}
+				local errors = {}
 
 				local function stdout(message)
 					pool.program = pool.program .. "\n" .. message .. "\n"
 				end
 
 				local function stderr(message)
-					table.insert(error_messages, message)
+					table.insert(errors, message)
 					pool.halted = true
 				end
 
@@ -102,13 +102,13 @@ function scene.on_keypress(code)
 				end)
 
 				if not ok then
-					table.insert(error_messages, err)
+					table.insert(errors, err)
 					pool.halted = true
 				end
 
 				if pool.halted then
-					for _, msg in ipairs(error_messages) do
-						pool.program = pool.program .. "\n" .. msg
+					for _, message in ipairs(errors) do
+						pool.program = pool.program .. "\n" .. message
 					end
 					pool.program = pool.program .. "\nPLEASE RESTART"
 				end
