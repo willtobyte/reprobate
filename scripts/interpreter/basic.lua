@@ -37,7 +37,7 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 		local chunk, err = load("return " .. expression)
 		if not chunk then
 			stderr("EVALUATION ERROR:")
-			for _, msg in ipairs(wrap_text(tostring(err):upper(), 40)) do
+			for _, msg in ipairs(wrap_text(tostring(err):upper(), 60)) do
 				stderr(msg)
 			end
 			return 0
@@ -45,7 +45,7 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 		local ok, result = pcall(chunk)
 		if not ok then
 			stderr("EVALUATION ERROR:")
-			for _, msg in ipairs(wrap_text(tostring(result):upper(), 40)) do
+			for _, msg in ipairs(wrap_text(tostring(result):upper(), 60)) do
 				stderr(msg)
 			end
 			return 0
