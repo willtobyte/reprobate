@@ -1,7 +1,6 @@
 local basic = require("interpreter/basic")
 
 local scene = {}
-
 local overlay = engine:overlay()
 
 local pool = {
@@ -20,7 +19,7 @@ RUN TO EXECUTE
 		interval = 0.3,
 	},
 	typing = false,
-	out_of_memory = false,
+	halted = false,
 }
 
 function scene.on_enter()
@@ -38,7 +37,7 @@ function scene.on_enter()
 	local switch = scene:get("switch", SceneType.object)
 	switch:on_touch(function()
 		pool.program = "10 "
-		pool.out_of_memory = false
+		pool.halted = false
 	end)
 end
 
@@ -62,12 +61,11 @@ function scene.on_loop(delta)
 end
 
 function scene.on_text(text)
-	if pool.out_of_memory then
+	if pool.halted then
 		return
 	end
 
 	text = string.upper(text)
-
 	if pool.font.glyphs:find(text, 1, true) then
 		pool.program = pool.program .. text
 		pool.typing = true
@@ -75,7 +73,7 @@ function scene.on_text(text)
 end
 
 function scene.on_keypress(code)
-	if pool.out_of_memory then
+	if pool.halted then
 		return
 	end
 
@@ -95,6 +93,7 @@ function scene.on_keypress(code)
 
 				local function stderr(message)
 					pool.program = pool.program .. "\n" .. message .. "\n"
+					pool.halted = true
 				end
 
 				local ok, err = pcall(function()
@@ -123,7 +122,7 @@ function scene.on_keypress(code)
 		if next_line_number > 200 then
 			pool.program = pool.program .. "\nOUT OF MEMORY"
 			pool.typing = true
-			pool.out_of_memory = true
+			pool.halted = true
 			return
 		end
 
