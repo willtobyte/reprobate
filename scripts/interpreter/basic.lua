@@ -1,6 +1,6 @@
 local function interpreter(program, stdout, stderr)
 	local lines, pc, variables, line_index, for_stack = {}, 1, {}, {}, {}
-	local steps, max_steps, line_exec_count, max_line_hits = 0, 100, {}, 100
+	local steps, max_steps = 0, 100
 
 	local function eval(expression)
 		local protected_strings, i = {}, 0
@@ -50,12 +50,7 @@ local function interpreter(program, stdout, stderr)
 			stderr("INFINITE LOOP DETECTED")
 			return
 		end
-		local line_num = lines[pc].num
-		line_exec_count[line_num] = (line_exec_count[line_num] or 0) + 1
-		if line_exec_count[line_num] > max_line_hits then
-			stderr(("INFINITE LOOP DETECTED: LINE %d EXECUTED TOO MANY TIMES"):format(line_num))
-			return
-		end
+
 		steps = steps + 1
 
 		local code, should_advance = lines[pc].code, true
