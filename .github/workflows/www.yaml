@@ -127,12 +127,14 @@ jobs:
               <script type="module">
                 console.log("${GIT_SHORT_HASH}");
 
+                import runtime from "./carimbo.js?v=${GIT_SHORT_HASH}";
+
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
 
                 const promise = fetch("bundle.zip?v=${GIT_SHORT_HASH}");
 
-                window.Module = {
+                const module = {
                   canvas,
                   noInitialRun: true,
                   locateFile: (path) => {
@@ -148,8 +150,9 @@ jobs:
                     Module.callMain();
                   },
                 };
+
+                init(module);
               </script>
-              <script type="module" src="carimbo.js?v=${GIT_SHORT_HASH}"></script>
             </body>
           </html>
           EOF
