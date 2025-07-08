@@ -130,7 +130,7 @@ jobs:
                 <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
               </div>
 
-              <script type="module">
+              <script>
                 console.log("${GIT_SHORT_HASH}");
 
                 const canvas = document.getElementById("canvas");
@@ -157,7 +157,6 @@ jobs:
 
                 const script = document.createElement("script");
                 script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
-                script.type = "module";
                 document.body.appendChild(script);
               </script>
             </body>
