@@ -157,6 +157,7 @@ jobs:
 
                 const script = document.createElement("script");
                 script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
+                script.type = "module";
                 document.body.appendChild(script);
               </script>
             </body>
