@@ -105,11 +105,11 @@ jobs:
                 }
 
                 canvas {
-                  display: block;
+                  aspect-ratio: 16 / 9;
                   width: 100vw;
-                  height: calc(100vw * (9 / 16));
+                  max-width: 100vh;
                   max-height: 100vh;
-                  max-width: calc(100vh * (16 / 9));
+                  display: block;
                 }
 
                 #loading {
@@ -157,6 +157,7 @@ jobs:
 
                 const script = document.createElement("script");
                 script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
+                script.type = "module";
                 script.defer = true;
                 document.body.appendChild(script);
               </script>
