@@ -70,6 +70,12 @@ jobs:
               <meta charset="UTF-8" />
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <meta name="description" content="Play Reprobate">
+              <link
+                rel="preload"
+                href="carimbo.js?v=${GIT_SHORT_HASH}"
+                as="script"
+                fetchpriority="high"
+              />
               <style>
                 *,
                 *::before,
@@ -99,11 +105,11 @@ jobs:
                 }
 
                 canvas {
-                  aspect-ratio: 16 / 9;
-                  width: 100vw;
-                  max-width: 100vh;
-                  max-height: 100vh;
                   display: block;
+                  width: 100vw;
+                  height: calc(100vw * (9 / 16));
+                  max-height: 100vh;
+                  max-width: calc(100vh * (16 / 9));
                 }
 
                 #loading {
@@ -127,14 +133,12 @@ jobs:
               <script type="module">
                 console.log("${GIT_SHORT_HASH}");
 
-                import runtime from "./carimbo.js?v=${GIT_SHORT_HASH}";
-
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
 
                 const promise = fetch("bundle.zip?v=${GIT_SHORT_HASH}");
 
-                const module = {
+                window.Module = {
                   canvas,
                   noInitialRun: true,
                   locateFile: (path) => {
@@ -151,7 +155,9 @@ jobs:
                   },
                 };
 
-                init(module);
+                const script = document.createElement("script");
+                script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
+                document.body.appendChild(script);
               </script>
             </body>
           </html>
