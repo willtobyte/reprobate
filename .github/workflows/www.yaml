@@ -135,8 +135,7 @@ jobs:
 
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
-
-                const promise = fetch("bundle.zip?v=${GIT_SHORT_HASH}");
+                const download = fetch("bundle.zip?v=${GIT_SHORT_HASH}");
 
                 window.Module = {
                   canvas,
@@ -147,7 +146,7 @@ jobs:
                   },
                   onRuntimeInitialized: async () => {
                     loading.remove();
-                    const response = await promise;
+                    const response = await download;
                     const blob = await response.blob();
                     const buffer = await blob.arrayBuffer();
                     FS.writeFile("/bundle.zip", new Uint8Array(buffer));
