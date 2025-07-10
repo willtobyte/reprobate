@@ -9,31 +9,19 @@ local function random()
 	return seed
 end
 
-local function shuffle(mask)
-	for i = #mask, 2, -1 do
-		local j = random() % i + 1
-		mask[i], mask[j] = mask[j], mask[i]
-	end
-end
-
 function NoiseEffect:new(width, height, duration)
-	local obj = {
+	local w, h = width or 480, height or 270
+	return setmetatable({
 		canvas = engine:canvas(),
-		width = width or 480,
-		height = height or 270,
-		duration = duration or 1000,
-		callback = nil,
+		width = w,
+		height = h,
+		duration = duration or 2000, -- 2 segundos
 		start_time = nil,
-		pixel_count = (width or 480) * (height or 270),
+		callback = nil,
+		pixel_count = w * h,
 		buffer = {},
-		color_mask = {},
-		cache = {
-			black = {},
-			white = {},
-			color = {},
-		},
-	}
-	return setmetatable(obj, self)
+		cache = {},
+	}, self)
 end
 
 function NoiseEffect:init()
@@ -44,67 +32,103 @@ function NoiseEffect:on_finish(cb)
 	self.callback = cb
 end
 
+local function fill_block(buffer, width, height, x, y, bw, bh, px)
+	for dy = 0, bh - 1 do
+		local row = y + dy
+		if row >= height then
+			break
+		end
+		for dx = 0, bw - 1 do
+			local col = x + dx
+			if col >= width then
+				break
+			end
+			local idx = row * width + col + 1
+			buffer[idx] = px
+		end
+	end
+end
+
 function NoiseEffect:loop()
 	local now = moment()
 	local elapsed = now - self.start_time
-	local duration, total = self.duration, self.pixel_count
-	local b, mask, cache = self.buffer, self.color_mask, self.cache
+	local duration = self.duration
+	local w, h = self.width, self.height
+	local total = self.pixel_count
+	local buffer, cache = self.buffer, self.cache
 
 	if elapsed >= duration then
-		local px = { char(0, 0, 0, 0), char(255, 255, 255, 0) }
 		for i = 1, total do
-			b[i] = px[(i % 2) + 1]
+			buffer[i] = char(0, 0, 0, 0)
 		end
-		self.canvas.pixels = concat(b, "", 1, total)
-
-		local cb = self.callback
-		if cb then
-			cb()
+		self.canvas.pixels = concat(buffer, "", 1, total)
+		if self.callback then
+			self.callback()
 			self.callback = nil
 		end
 		return
 	end
 
 	local fade = 1 - (elapsed / duration)
-	local half = floor(total / 2)
-	for i = 1, total do
-		mask[i] = (i <= half) and "black" or "white"
-	end
-	shuffle(mask)
+	local alpha = floor(255 * fade)
 
+	-- Tela de fundo completamente preenchida com ruído opaco
 	for i = 1, total do
-		local use_color = (random() % 100) < 15
-		local raw_a = random() % 241 + 10
-		local a = floor(raw_a * fade)
-		local px
-
-		if use_color then
-			local r = random() % 256
-			local g = random() % 256
-			local b = random() % 256
-			local key = r * 16777216 + g * 65536 + b * 256 + a
-			px = cache.color[key]
-			if not px then
-				px = char(r, g, b, a)
-				cache.color[key] = px
-			end
-		else
-			local base = mask[i]
-			local set = cache[base]
-			px = set[a]
-			if not px then
-				if base == "black" then
-					px = char(0, 0, 0, a)
-				else
-					px = char(255, 255, 255, a)
-				end
-				set[a] = px
-			end
+		local r = random() % 256
+		local g = random() % 256
+		local b = random() % 256
+		local key = r * 16777216 + g * 65536 + b * 256 + alpha
+		local px = cache[key]
+		if not px then
+			px = char(r, g, b, alpha)
+			cache[key] = px
 		end
-		b[i] = px
+		buffer[i] = px
 	end
 
-	self.canvas.pixels = concat(b, "", 1, total)
+	-- Blocos glitch retangulares e caóticos
+	for _ = 1, 350 do
+		local bw = 2 + (random() % 24)
+		local bh = 1 + (random() % 10)
+		local x = random() % (w - bw)
+		local y = random() % (h - bh)
+		local r = random() % 256
+		local g = random() % 256
+		local b = random() % 256
+		local key = r * 16777216 + g * 65536 + b * 256 + alpha
+		local px = cache[key] or char(r, g, b, alpha)
+		cache[key] = px
+		fill_block(buffer, w, h, x, y, bw, bh, px)
+	end
+
+	-- Linhas horizontais bugadas (zebra flicker)
+	for i = 1, 10 do
+		local y = random() % h
+		local px = char(random() % 256, random() % 256, random() % 256, alpha)
+		fill_block(buffer, w, h, 0, y, w, 1, px)
+	end
+
+	-- Distorções diagonais (pseudo scanlines diagonais)
+	for _ = 1, 20 do
+		local x = random() % w
+		local y = random() % h
+		local length = 10 + (random() % 30)
+		local r = random() % 256
+		local g = random() % 256
+		local b = random() % 256
+		local key = r * 16777216 + g * 65536 + b * 256 + alpha
+		local px = cache[key] or char(r, g, b, alpha)
+		cache[key] = px
+
+		for i = 0, length do
+			local dx = (x + i) % w
+			local dy = (y + i) % h
+			local idx = dy * w + dx + 1
+			buffer[idx] = px
+		end
+	end
+
+	self.canvas.pixels = concat(buffer, "", 1, total)
 end
 
 function NoiseEffect:teardown() end
