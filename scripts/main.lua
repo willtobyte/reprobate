@@ -1,21 +1,19 @@
 -- -- stylua: ignore
 -- _G.engine = EngineFactory.new()
 --   :with_title("Tela Vermelha")
---   :with_width(1920)
---   :with_height(1080)
+--   :with_width(3920)
+--   :with_height(4080)
 --   :with_scale(1.0)
 --   :with_fullscreen(false)
 --   :create()
 
 -- local canvas = engine:canvas()
--- local width, height = 1920, 1080
--- local pixels = {}
+-- local width, height = 3920, 4080
+-- -- local pixels = {}
+-- local red = string.char(0xFF, 0x00, 0x00, 0xFF)
+-- local pixels = red:rep(width * height)
 
 -- function setup()
---   local red = 0xFF0000FF
---   for i = 1, width * height do
---     pixels[i] = red
---   end
 -- end
 
 -- function loop()
