@@ -21,6 +21,7 @@ function NoiseEffect:new(width, height, duration)
 		pixel_count = w * h,
 		buffer = {},
 		cache = {},
+		done = false,
 	}, self)
 end
 
@@ -50,6 +51,10 @@ local function fill_block(buffer, width, height, x, y, bw, bh, px)
 end
 
 function NoiseEffect:loop()
+	if self.done then
+		return
+	end
+
 	local now = moment()
 	local elapsed = now - self.start_time
 	local duration = self.duration
@@ -66,6 +71,8 @@ function NoiseEffect:loop()
 			self.callback()
 			self.callback = nil
 		end
+
+		self.done = true
 		return
 	end
 
