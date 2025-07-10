@@ -1,6 +1,6 @@
 -- -- stylua: ignore
 -- _G.engine = EngineFactory.new()
---   :with_title("Tela Vermelha")
+--   :with_title("Benchmark")
 --   :with_width(3920)
 --   :with_height(4080)
 --   :with_scale(1.0)
