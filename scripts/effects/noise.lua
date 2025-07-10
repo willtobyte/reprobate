@@ -15,7 +15,7 @@ function NoiseEffect:new(width, height, duration)
 		canvas = engine:canvas(),
 		width = w,
 		height = h,
-		duration = duration or 2000, -- 2 segundos
+		duration = duration or 2000,
 		start_time = nil,
 		callback = nil,
 		pixel_count = w * h,
@@ -72,7 +72,6 @@ function NoiseEffect:loop()
 	local fade = 1 - (elapsed / duration)
 	local alpha = floor(255 * fade)
 
-	-- Tela de fundo completamente preenchida com ruído opaco
 	for i = 1, total do
 		local r = random() % 256
 		local g = random() % 256
@@ -86,7 +85,6 @@ function NoiseEffect:loop()
 		buffer[i] = px
 	end
 
-	-- Blocos glitch retangulares e caóticos
 	for _ = 1, 350 do
 		local bw = 2 + (random() % 24)
 		local bh = 1 + (random() % 10)
@@ -101,14 +99,12 @@ function NoiseEffect:loop()
 		fill_block(buffer, w, h, x, y, bw, bh, px)
 	end
 
-	-- Linhas horizontais bugadas (zebra flicker)
 	for i = 1, 10 do
 		local y = random() % h
 		local px = char(random() % 256, random() % 256, random() % 256, alpha)
 		fill_block(buffer, w, h, 0, y, w, 1, px)
 	end
 
-	-- Distorções diagonais (pseudo scanlines diagonais)
 	for _ = 1, 20 do
 		local x = random() % w
 		local y = random() % h
