@@ -72,6 +72,7 @@ function NoiseEffect:loop()
 	local fade = 1 - (elapsed / duration)
 	local alpha = floor(255 * fade)
 
+	-- Fundo colorido com alta opacidade
 	for i = 1, total do
 		local r = random() % 256
 		local g = random() % 256
@@ -85,7 +86,8 @@ function NoiseEffect:loop()
 		buffer[i] = px
 	end
 
-	for _ = 1, 350 do
+	-- Blocos glitch (700 por frame)
+	for _ = 1, 700 do
 		local bw = 2 + (random() % 24)
 		local bh = 1 + (random() % 10)
 		local x = random() % (w - bw)
@@ -93,30 +95,40 @@ function NoiseEffect:loop()
 		local r = random() % 256
 		local g = random() % 256
 		local b = random() % 256
-		local key = r * 16777216 + g * 65536 + b * 256 + alpha
-		local px = cache[key] or char(r, g, b, alpha)
+		local a = floor(alpha * (0.3 + (random() % 71) / 100)) -- entre 30% e 100% de alpha
+		local key = r * 16777216 + g * 65536 + b * 256 + a
+		local px = cache[key] or char(r, g, b, a)
 		cache[key] = px
 		fill_block(buffer, w, h, x, y, bw, bh, px)
 	end
 
-	for i = 1, 10 do
+	-- Linhas horizontais com transparência parcial (20 linhas)
+	for i = 1, 20 do
 		local y = random() % h
-		local px = char(random() % 256, random() % 256, random() % 256, alpha)
-		fill_block(buffer, w, h, 0, y, w, 1, px)
-	end
-
-	for _ = 1, 20 do
-		local x = random() % w
-		local y = random() % h
-		local length = 10 + (random() % 30)
+		local a = floor(alpha * (0.3 + (random() % 71) / 100))
 		local r = random() % 256
 		local g = random() % 256
 		local b = random() % 256
-		local key = r * 16777216 + g * 65536 + b * 256 + alpha
-		local px = cache[key] or char(r, g, b, alpha)
+		local key = r * 16777216 + g * 65536 + b * 256 + a
+		local px = cache[key] or char(r, g, b, a)
+		cache[key] = px
+		fill_block(buffer, w, h, 0, y, w, 1, px)
+	end
+
+	-- Distorções diagonais intensificadas (40 linhas)
+	for _ = 1, 40 do
+		local x = random() % w
+		local y = random() % h
+		local len = 10 + (random() % 40)
+		local a = floor(alpha * (0.3 + (random() % 71) / 100))
+		local r = random() % 256
+		local g = random() % 256
+		local b = random() % 256
+		local key = r * 16777216 + g * 65536 + b * 256 + a
+		local px = cache[key] or char(r, g, b, a)
 		cache[key] = px
 
-		for i = 0, length do
+		for i = 0, len do
 			local dx = (x + i) % w
 			local dy = (y + i) % h
 			local idx = dy * w + dx + 1
