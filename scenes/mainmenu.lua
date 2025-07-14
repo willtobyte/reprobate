@@ -6,11 +6,11 @@ local scenemanager = engine:scenemanager()
 
 local pool = {}
 
-local pentagram = require("effects/pentagram")
+-- local pentagram = require("effects/pentagram")
 
-function scene.on_loop()
-	pentagram:loop()
-end
+-- function scene.on_loop()
+-- 	pentagram:loop()
+-- end
 
 function scene.on_enter()
 	local music = scene:get("theme", SceneType.effect)
