@@ -15,6 +15,8 @@ function scene.on_loop()
 end
 
 function scene.on_leave()
+	lantern:teardown()
+
 	for o in pairs(pool) do
 		pool[o] = nil
 	end
