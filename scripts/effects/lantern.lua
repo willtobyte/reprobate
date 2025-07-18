@@ -1,11 +1,9 @@
 local lantern = {}
 lantern.__index = lantern
 
--- imports
 local char, concat, floor = string.char, table.concat, math.floor
 local rep = string.rep
 
--- parameters
 local radius = 40
 local fade = 20
 local total_radius = radius + fade
@@ -14,16 +12,15 @@ local min_d2 = radius * radius
 local levels = 6
 local level_step = (max_d2 - min_d2) / levels
 
--- constructor
 function lantern:new(width, height)
 	local w = width or 480
 	local h = height or 270
-	-- premultiplied pixel cache
+
 	local cache = {}
 	for i = 0, 255 do
 		cache[i] = char(0, 0, 0, i)
 	end
-	-- precompute alpha map
+
 	local alpha_map = {}
 	for d2 = 0, max_d2 do
 		if d2 <= min_d2 then
@@ -35,7 +32,7 @@ function lantern:new(width, height)
 			alpha_map[d2] = 255
 		end
 	end
-	-- reusable tables
+
 	local dx2 = {}
 	for x = 0, w - 1 do
 		dx2[x] = 0
@@ -45,7 +42,7 @@ function lantern:new(width, height)
 		dy2[y] = 0
 	end
 	local dynamic_rows = {}
-	-- opaque constants
+
 	local opaque_pixel = cache[255]
 	local opaque_line = rep(opaque_pixel, w)
 	return setmetatable({
@@ -64,13 +61,11 @@ function lantern:new(width, height)
 	}, self)
 end
 
--- update focus
 function lantern:motion(x, y)
 	self.mx = floor(x)
 	self.my = floor(y)
 end
 
--- render loop without noise
 function lantern:loop()
 	local w, h = self.w, self.h
 	local mx, my = self.mx, self.my
@@ -79,7 +74,6 @@ function lantern:loop()
 	local dynamic_rows = self.dynamic_rows
 	local opaque_pixel, opaque_line = self.opaque_pixel, self.opaque_line
 
-	-- update squared distances
 	for x = 0, w - 1 do
 		local d = x - mx
 		dx2[x] = d * d
@@ -89,7 +83,6 @@ function lantern:loop()
 		dy2[y] = d * d
 	end
 
-	-- compute dynamic bounds
 	local y0 = my - total_radius
 	if y0 < 0 then
 		y0 = 0
@@ -121,7 +114,6 @@ function lantern:loop()
 	local prefix = rep(opaque_pixel, x0)
 	local suffix = rep(opaque_pixel, w - (x1 + 1))
 
-	-- build dynamic rows
 	for row = 1, dynH do
 		local yi = y0 + row - 1
 		local ddy = dy2[yi]
@@ -138,7 +130,6 @@ function lantern:loop()
 		dynamic_rows[row] = prefix .. concat(buf, "", 1, dynW) .. suffix
 	end
 
-	-- stitch full canvas
 	local top = y0
 	local bot = h - (y0 + dynH)
 	local parts = {}
@@ -155,7 +146,6 @@ function lantern:loop()
 	self.canvas.pixels = concat(parts, "")
 end
 
--- clear to opaque
 function lantern:teardown()
 	self.canvas.pixels = rep(self.opaque_line, self.h)
 end
