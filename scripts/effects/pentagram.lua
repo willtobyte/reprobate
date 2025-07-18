@@ -1,134 +1,200 @@
 local Pentagram = {}
 Pentagram.__index = Pentagram
 
-local char, concat, floor, abs, cos, sin, pi =
-	string.char, table.concat, math.floor, math.abs, math.cos, math.sin, math.pi
+local char = string.char
+local concat = table.concat
+local floor = math.floor
+local abs = math.abs
+local cos = math.cos
+local sin = math.sin
+local pi = math.pi
 
 local RED_PIXEL = char(0, 0, 255, 255)
+local BLANK_PIXEL = char(0, 0, 0, 0)
 
 function Pentagram:new(width, height)
-	local w, h = width or 480, height or 270
+	local w = width or 480
+	local h = height or 270
 	local total = w * h
+
+	local buffer = {}
+	for i = 1, total do
+		buffer[i] = BLANK_PIXEL
+	end
+
+	local segments = 360
+	local angle_step = (2 * pi) / segments
+	local unit_circle = {}
+	for i = 1, segments do
+		local ang = (i - 1) * angle_step
+		unit_circle[i] = { cos(ang), -sin(ang) }
+	end
+
+	local cyclic_step = pi * 0.4
+	local phase_offset = pi * 1.5
+	local pent_angles = {}
+	for i = 1, 5 do
+		pent_angles[i] = cyclic_step * (i - 1) + phase_offset
+	end
+	local edges = { { 1, 3 }, { 3, 5 }, { 5, 2 }, { 2, 4 }, { 4, 1 } }
+
+	local t = 3
+
 	return setmetatable({
 		canvas = engine:canvas(),
-		width = w,
-		height = h,
+		w = w,
+		h = h,
 		total = total,
-		buffer = {},
+		buffer = buffer,
 		start_time = moment(),
 		scale = h * 0.4,
-		line_thickness = 2,
-		edges = {
-			{ 1, 3 },
-			{ 3, 5 },
-			{ 5, 2 },
-			{ 2, 4 },
-			{ 4, 1 },
-		},
+		segments = segments,
+		unit_circle = unit_circle,
+		pent_angles = pent_angles,
+		edges = edges,
+		thickness = t,
+		RED = RED_PIXEL,
+		BLANK = BLANK_PIXEL,
 	}, self)
 end
 
-function Pentagram:init() end
-
-function Pentagram:plot(x, y)
-	if x < 0 or x >= self.width or y < 0 or y >= self.height then
-		return
-	end
-	local idx = y * self.width + x + 1
-	self.buffer[idx] = RED_PIXEL
-end
-
-function Pentagram:draw_thick_point(x, y)
-	local t = self.line_thickness
-	for dy = -t, t do
-		for dx = -t, t do
-			self:plot(x + dx, y + dy)
-		end
-	end
-end
-
-function Pentagram:draw_line(x0, y0, x1, y1)
-	x0, y0 = floor(x0), floor(y0)
-	x1, y1 = floor(x1), floor(y1)
-	local dx, dy = abs(x1 - x0), abs(y1 - y0)
-	local sx = (x0 < x1) and 1 or -1
-	local sy = (y0 < y1) and 1 or -1
-	local err = dx - dy
-
-	while true do
-		self:draw_thick_point(x0, y0)
-		if x0 == x1 and y0 == y1 then
-			return
-		end
-		local e2 = 2 * err
-		if e2 > -dy then
-			err = err - dy
-			x0 = x0 + sx
-		end
-		if e2 < dx then
-			err = err + dx
-			y0 = y0 + sy
-		end
-	end
-end
-
-function Pentagram:draw_rotating_circle(cx, cy, radius, cos_y, sin_y)
-	local segments = 360
-	local angle_step = (2 * pi) / segments
-	local prev_x, prev_y
-
-	for i = 0, segments do
-		local angle = i * angle_step
-		local x, y, z = cos(angle), -sin(angle), 0
-		local x_rot = x * cos_y - z * sin_y
-		local z_rot = x * sin_y + z * cos_y
-		local fov = 1 / (1 + z_rot * 0.5)
-		local screen_x = cx + x_rot * radius * fov
-		local screen_y = cy + y * radius * fov
-
-		if prev_x then
-			self:draw_line(prev_x, prev_y, screen_x, screen_y)
-		end
-		prev_x, prev_y = screen_x, screen_y
-	end
-end
-
 function Pentagram:loop()
-	local elapsed = (moment() - self.start_time) * 0.001
-	local cos_y, sin_y = cos(elapsed * 0.8), sin(elapsed * 0.8)
-	local cx, cy = self.width * 0.5, self.height * 0.5
-	local projected = {}
-	local angle_step = pi * 0.4
-	local phase_offset = pi * 1.5
+	local w, h, total = self.w, self.h, self.total
+	local buf = self.buffer
+	local RED, BLANK = self.RED, self.BLANK
+	local unit_circle = self.unit_circle
+	local pent_angles = self.pent_angles
+	local edges = self.edges
+	local t = self.thickness
+	local scale = self.scale
+	local segs = self.segments
+	local now = moment()
 
-	for i = 1, self.total do
-		self.buffer[i] = char(0, 0, 0, 0)
+	for i = 1, total do
+		buf[i] = BLANK
 	end
 
-	for i = 0, 4 do
-		local angle = angle_step * i + phase_offset
-		local x, y, z = cos(angle), -sin(angle), 0
-		local x_rot = x * cos_y - z * sin_y
-		local z_rot = x * sin_y + z * cos_y
-		local fov = 1 / (1 + z_rot * 0.5)
-		projected[i + 1] = {
-			x = cx + x_rot * self.scale * fov,
-			y = cy + y * self.scale * fov,
+	local elapsed = (now - self.start_time) * 0.001
+	local cos_y = cos(elapsed * 0.8)
+	local sin_y = sin(elapsed * 0.8)
+	local cx, cy = w * 0.5, h * 0.5
+
+	local proj = {}
+	for i = 1, 5 do
+		local ang = pent_angles[i]
+		local x0 = cos(ang)
+		local z0 = 0
+		local x_r = x0 * cos_y - z0 * sin_y
+		local z_r = x0 * sin_y + z0 * cos_y
+		local fov = 1 / (1 + z_r * 0.5)
+		proj[i] = {
+			x = cx + x_r * scale * fov,
+			y = cy - sin(ang) * scale * fov,
 		}
 	end
 
-	for _, edge in ipairs(self.edges) do
-		local a, b = projected[edge[1]], projected[edge[2]]
-		self:draw_line(a.x, a.y, b.x, b.y)
+	local w_mul = w
+	for _, e in ipairs(edges) do
+		local a = proj[e[1]]
+		local b = proj[e[2]]
+		local x0 = floor(a.x)
+		local y0 = floor(a.y)
+		local x1 = floor(b.x)
+		local y1 = floor(b.y)
+		local dx = abs(x1 - x0)
+		local dy = abs(y1 - y0)
+		local sx = x0 < x1 and 1 or -1
+		local sy = y0 < y1 and 1 or -1
+		local err = dx - dy
+		while true do
+			for dy_off = -t, t do
+				local yy = y0 + dy_off
+				if yy >= 0 and yy < h then
+					local base = yy * w_mul
+					for dx_off = -t, t do
+						local xx = x0 + dx_off
+						if xx >= 0 and xx < w then
+							buf[base + xx + 1] = RED
+						end
+					end
+				end
+			end
+			if x0 == x1 and y0 == y1 then
+				break
+			end
+			local e2 = err * 2
+			if e2 > -dy then
+				err = err - dy
+				x0 = x0 + sx
+			end
+			if e2 < dx then
+				err = err + dx
+				y0 = y0 + sy
+			end
+		end
 	end
 
-	self:draw_rotating_circle(cx, cy, self.scale, cos_y, sin_y)
-	self.canvas.pixels = concat(self.buffer, "", 1, self.total)
+	for i = 1, segs do
+		local u = unit_circle[i]
+		local x0, y0 = u[1], u[2]
+		local x_r = x0 * cos_y
+		local z_r = x0 * sin_y
+		local fov0 = 1 / (1 + z_r * 0.5)
+		local sx0 = cx + x_r * scale * fov0
+		local sy0 = cy + y0 * scale * fov0
+
+		local j = (i % segs) + 1
+		local u2 = unit_circle[j]
+		local x1u, y1u = u2[1], u2[2]
+		local x1_r = x1u * cos_y
+		local z1_r = x1u * sin_y
+		local fov1 = 1 / (1 + z1_r * 0.5)
+		local sx1 = cx + x1_r * scale * fov1
+		local sy1 = cy + y1u * scale * fov1
+
+		local xi0 = floor(sx0)
+		local yi0 = floor(sy0)
+		local xi1 = floor(sx1)
+		local yi1 = floor(sy1)
+		local dx = abs(xi1 - xi0)
+		local dy = abs(yi1 - yi0)
+		local sx = xi0 < xi1 and 1 or -1
+		local sy = yi0 < yi1 and 1 or -1
+		local err = dx - dy
+		while true do
+			for dy_off = -t, t do
+				local yy = yi0 + dy_off
+				if yy >= 0 and yy < h then
+					local base = yy * w_mul
+					for dx_off = -t, t do
+						local xx = xi0 + dx_off
+						if xx >= 0 and xx < w then
+							buf[base + xx + 1] = RED
+						end
+					end
+				end
+			end
+			if xi0 == xi1 and yi0 == yi1 then
+				break
+			end
+			local e2 = err * 2
+			if e2 > -dy then
+				err = err - dy
+				xi0 = xi0 + sx
+			end
+			if e2 < dx then
+				err = err + dx
+				yi0 = yi0 + sy
+			end
+		end
+	end
+
+	self.canvas.pixels = concat(buf, "", 1, total)
 end
 
 function Pentagram:teardown()
 	for i = 1, self.total do
-		self.buffer[i] = char(0, 0, 0, 0)
+		self.buffer[i] = BLANK_PIXEL
 	end
 	self.canvas.pixels = concat(self.buffer, "", 1, self.total)
 end
