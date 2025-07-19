@@ -45,6 +45,8 @@ function setup()
 
 	local stage = queryparam("stage", "mainmenu")
 
+	stage = "pixelslab"
+
 	scenemanager:set(stage)
 end
 
