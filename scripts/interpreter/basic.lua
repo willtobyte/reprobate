@@ -65,7 +65,6 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 	table.sort(lines, function(a, b)
 		return a.num < b.num
 	end)
-
 	for i, l in ipairs(lines) do
 		line_index[l.num] = i
 	end
@@ -77,7 +76,6 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 		end
 
 		steps = steps + 1
-
 		local line_num = lines[pc].num
 		local code, should_advance = lines[pc].code, true
 
@@ -103,9 +101,14 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 					stderr(("SYNTAX ERROR IN LINE %d"):format(line_num))
 					break
 				end
+				target = tonumber(target)
+				if not target then
+					stderr(("INVALID GOTO TARGET IN LINE %d"):format(line_num))
+					return
+				end
 				cond = cond:gsub("=", "=="):gsub("<>", "~=")
 				if eval(cond) then
-					local jump = line_index[tonumber(target)]
+					local jump = line_index[target]
 					if not jump then
 						stderr(("INVALID GOTO TARGET %d IN LINE %d"):format(target, line_num))
 						return
@@ -114,7 +117,12 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 					should_advance = false
 				end
 			elseif code:match("^GOTO") then
-				local target = tonumber(code:match("^GOTO%s+(%d+)$"))
+				local target_str = code:match("^GOTO%s+(%d+)$")
+				local target = tonumber(target_str)
+				if not target then
+					stderr(("INVALID GOTO TARGET IN LINE %d"):format(line_num))
+					return
+				end
 				local jump = line_index[target]
 				if not jump then
 					stderr(("INVALID GOTO TARGET %d IN LINE %d"):format(target, line_num))
@@ -141,9 +149,12 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 				for i = #for_stack, 1, -1 do
 					local loop = for_stack[i]
 					if loop.var == var then
-						local step, stop = eval(loop.step), eval(loop.stop)
-						variables[var] = variables[var] + step
-						if (step > 0 and variables[var] <= stop) or (step < 0 and variables[var] >= stop) then
+						local step_val, stop_val = eval(loop.step), eval(loop.stop)
+						variables[var] = variables[var] + step_val
+						if
+							(step_val > 0 and variables[var] <= stop_val)
+							or (step_val < 0 and variables[var] >= stop_val)
+						then
 							pc = loop.return_to
 							should_advance = false
 						else

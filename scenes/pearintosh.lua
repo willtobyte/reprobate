@@ -89,7 +89,7 @@ function scene.on_keypress(code)
 				local errors = {}
 
 				local function stdout(message)
-					pool.program = pool.program .. "\n" .. message .. "\n"
+					pool.program = pool.program .. "\n" .. message
 				end
 
 				local function stderr(message)
