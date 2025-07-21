@@ -133,7 +133,7 @@ jobs:
               </div>
 
               <script>
-                console.log("${GIT_TAG}");
+                console.log("Game: ${GIT_TAG}");
 
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
