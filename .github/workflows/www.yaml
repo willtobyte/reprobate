@@ -58,8 +58,10 @@ jobs:
             Cache-Control: public, max-age=31536000, immutable
           EOF
 
-      - name: Set short commit hash
-        run: echo "GIT_SHORT_HASH=${GITHUB_SHA::7}" >> $GITHUB_ENV
+      - name: Set current tag
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          echo "GIT_TAG=$TAG" >> $GITHUB_ENV
 
       - name: Create HTML index file
         run: |
@@ -72,7 +74,7 @@ jobs:
               <meta name="description" content="Play Reprobate">
               <link
                 rel="preload"
-                href="carimbo.js?v=${GIT_SHORT_HASH}"
+                href="carimbo.js?v=${GIT_TAG}"
                 as="script"
                 fetchpriority="high"
               />
@@ -131,17 +133,17 @@ jobs:
               </div>
 
               <script>
-                console.log("${GIT_SHORT_HASH}");
+                console.log("${GIT_TAG}");
 
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
-                const download = fetch("bundle.zip?v=${GIT_SHORT_HASH}");
+                const download = fetch("bundle.zip?v=${GIT_TAG}");
 
                 window.Module = {
                   canvas,
                   noInitialRun: true,
                   locateFile: (path) => {
-                    if (path.endsWith(".wasm")) return path + "?v=${GIT_SHORT_HASH}";
+                    if (path.endsWith(".wasm")) return path + "?v=${GIT_TAG}";
                     return path;
                   },
                   onRuntimeInitialized: async () => {
@@ -155,7 +157,7 @@ jobs:
                 };
 
                 const script = document.createElement("script");
-                script.src = "carimbo.js?v=${GIT_SHORT_HASH}";
+                script.src = "carimbo.js?v=${GIT_TAG}";
                 document.body.appendChild(script);
               </script>
             </body>
