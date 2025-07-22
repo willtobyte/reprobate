@@ -1,7 +1,7 @@
 local NoiseEffect = {}
 NoiseEffect.__index = NoiseEffect
 
-local char, concat, floor = string.char, table.concat, math.floor
+local char, concat, floor, min, sqrt = string.char, table.concat, math.floor, math.min, math.sqrt
 
 local seed = os.time()
 local function random()
@@ -9,8 +9,10 @@ local function random()
 	return seed
 end
 
-function NoiseEffect:new(width, height, duration)
+function NoiseEffect:new(width, height, duration, rect_n)
 	local w, h = width or 480, height or 270
+	local rn = rect_n or 280
+	local sb = sqrt(700 / rn)
 	return setmetatable({
 		canvas = engine:canvas(),
 		width = w,
@@ -22,6 +24,8 @@ function NoiseEffect:new(width, height, duration)
 		buffer = {},
 		cache = {},
 		done = false,
+		rect_n = rn,
+		size_boost = sb,
 	}, self)
 end
 
@@ -58,9 +62,11 @@ function NoiseEffect:loop()
 	local now = moment()
 	local elapsed = now - self.start_time
 	local duration = self.duration
-	local w, h = self.width, self.height
+	local w = self.width
+	local h = self.height
 	local total = self.pixel_count
-	local buffer, cache = self.buffer, self.cache
+	local buffer = self.buffer
+	local cache = self.cache
 
 	if elapsed >= duration then
 		for i = 1, total do
@@ -71,7 +77,6 @@ function NoiseEffect:loop()
 			self.callback()
 			self.callback = nil
 		end
-
 		self.done = true
 		return
 	end
@@ -92,18 +97,33 @@ function NoiseEffect:loop()
 		buffer[i] = px
 	end
 
-	for _ = 1, 700 do
-		local bw = 2 + (random() % 24)
-		local bh = 1 + (random() % 10)
+	local rect_n = self.rect_n
+	local sb = self.size_boost
+	local max_bw = floor(24 * sb)
+	local max_bh = floor(10 * sb)
+
+	for _ = 1, rect_n do
+		local bw = 2 + (random() % max_bw)
+		local bh = 1 + (random() % max_bh)
+
+		bw = min(bw, w)
+		bh = min(bh, h)
+
 		local x = random() % (w - bw)
 		local y = random() % (h - bh)
+
 		local r = random() % 256
 		local g = random() % 256
 		local b = random() % 256
 		local a = floor(alpha * (0.3 + (random() % 71) / 100))
+
 		local key = r * 16777216 + g * 65536 + b * 256 + a
-		local px = cache[key] or char(r, g, b, a)
-		cache[key] = px
+		local px = cache[key]
+		if not px then
+			px = char(r, g, b, a)
+			cache[key] = px
+		end
+
 		fill_block(buffer, w, h, x, y, bw, bh, px)
 	end
 
@@ -114,8 +134,11 @@ function NoiseEffect:loop()
 		local g = random() % 256
 		local b = random() % 256
 		local key = r * 16777216 + g * 65536 + b * 256 + a
-		local px = cache[key] or char(r, g, b, a)
-		cache[key] = px
+		local px = cache[key]
+		if not px then
+			px = char(r, g, b, a)
+			cache[key] = px
+		end
 		fill_block(buffer, w, h, 0, y, w, 1, px)
 	end
 
@@ -128,8 +151,11 @@ function NoiseEffect:loop()
 		local g = random() % 256
 		local b = random() % 256
 		local key = r * 16777216 + g * 65536 + b * 256 + a
-		local px = cache[key] or char(r, g, b, a)
-		cache[key] = px
+		local px = cache[key]
+		if not px then
+			px = char(r, g, b, a)
+			cache[key] = px
+		end
 
 		for i = 0, len do
 			local dx = (x + i) % w
