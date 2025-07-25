@@ -89,6 +89,18 @@ function scene.on_keypress(code)
 				local errors = {}
 
 				local function stdout(message)
+					local achievements = {
+						["1"] = "NEW_ACHIEVEMENT_2_2",
+						["2"] = "NEW_ACHIEVEMENT_2_3",
+						["3"] = "NEW_ACHIEVEMENT_2_4",
+						["4"] = "NEW_ACHIEVEMENT_2_4",
+					}
+
+					local id = achievements[message]
+					if id then
+						achievement:unlock(id)
+					end
+
 					pool.program = pool.program .. "\n" .. message
 				end
 
