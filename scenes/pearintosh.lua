@@ -90,8 +90,8 @@ function scene.on_keypress(code)
 
 				local function stdout(message)
 					-- local achievements = {
-					-- 	["1"] = "NEW_ACHIEVEMENT_2_2",
-					-- 	["2"] = "NEW_ACHIEVEMENT_2_3",
+					-- 	["666"] = "NEW_ACHIEVEMENT_2_2",
+					-- 	["SATAN"] = "NEW_ACHIEVEMENT_2_3",
 					-- 	["3"] = "NEW_ACHIEVEMENT_2_4",
 					-- 	["4"] = "NEW_ACHIEVEMENT_2_4",
 					-- }
