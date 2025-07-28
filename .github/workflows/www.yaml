@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v1.5.21"
+      CARIMBO_TAG: "v1.5.22"
 
     permissions:
       contents: write
@@ -25,12 +25,12 @@ jobs:
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(true\)/\1(false)/' scripts/main.lua
 
-      - name: Create bundle
+      - name: Create cartridge
         run: |
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
 
-          zip -r bundle.zip .
+          zip -r cartridge.zip .
 
       - name: Download Carimbo WebAssembly runtime
         env:
@@ -44,7 +44,7 @@ jobs:
         run: |
           mkdir -p output
           touch output/favicon.ico
-          mv bundle.zip output/
+          mv cartridge.zip output/
           mv carimbo.js output/
           mv carimbo.wasm output/
 
@@ -137,7 +137,7 @@ jobs:
 
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
-                const download = fetch("bundle.zip?v=${GIT_TAG}");
+                const download = fetch("cartridge.zip?v=${GIT_TAG}");
 
                 window.Module = {
                   canvas,
@@ -151,7 +151,7 @@ jobs:
                     const response = await download;
                     const blob = await response.blob();
                     const buffer = await blob.arrayBuffer();
-                    FS.writeFile("/bundle.zip", new Uint8Array(buffer));
+                    FS.writeFile("/cartridge.zip", new Uint8Array(buffer));
                     Module.callMain();
                   },
                 };
