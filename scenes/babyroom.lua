@@ -50,7 +50,7 @@ function scene.on_enter()
 
 	pool.television:on_touch(function()
 		scribe:clear()
-		scribe:write("This house is haunted, can you feel it?", 3, 3)
+		scribe:write("This game is haunted, can you feel it?", 3, 3)
 		scribe:on_finish(6000, function()
 			scribe:clear()
 		end)
