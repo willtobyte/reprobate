@@ -1,5 +1,5 @@
-local lantern = {}
-lantern.__index = lantern
+local Lantern = {}
+Lantern.__index = Lantern
 
 local char, concat, floor = string.char, table.concat, math.floor
 local rep = string.rep
@@ -12,7 +12,7 @@ local min_d2 = radius * radius
 local levels = 6
 local level_step = (max_d2 - min_d2) / levels
 
-function lantern:new(width, height)
+function Lantern:new(width, height)
 	local w = width or 480
 	local h = height or 270
 
@@ -61,12 +61,12 @@ function lantern:new(width, height)
 	}, self)
 end
 
-function lantern:motion(x, y)
+function Lantern:motion(x, y)
 	self.mx = floor(x)
 	self.my = floor(y)
 end
 
-function lantern:loop()
+function Lantern:loop()
 	local w, h = self.w, self.h
 	local mx, my = self.mx, self.my
 	local cache, alpha_map = self.cache, self.alpha_map
@@ -146,8 +146,8 @@ function lantern:loop()
 	self.canvas.pixels = concat(parts, "")
 end
 
-function lantern:teardown()
+function Lantern:teardown()
 	self.canvas.pixels = rep(self.opaque_line, self.h)
 end
 
-return lantern:new()
+return Lantern:new()

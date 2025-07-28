@@ -1,4 +1,4 @@
-local lantern = require("effects/lantern")
+local effect = require("effects/lantern")
 
 local scene = {}
 
@@ -7,15 +7,15 @@ local pool = {}
 function scene.on_enter() end
 
 function scene.on_motion(x, y)
-	lantern:motion(x, y)
+	effect:motion(x, y)
 end
 
 function scene.on_loop()
-	lantern:loop()
+	effect:loop()
 end
 
 function scene.on_leave()
-	lantern:teardown()
+	effect:teardown()
 
 	for o in pairs(pool) do
 		pool[o] = nil

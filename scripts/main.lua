@@ -22,7 +22,7 @@ function setup()
 
 	local stage = queryparam("stage", "mainmenu")
 
-	-- stage = "thankyou"
+	stage = "pixelslab"
 
 	scenemanager:set(stage)
 end
