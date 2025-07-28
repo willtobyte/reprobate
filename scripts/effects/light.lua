@@ -14,7 +14,7 @@ function Light:new(width, height)
 		flashing = false,
 		flash_sequence = {},
 		flash_index = 0,
-		next_flash = moment() + random(4000, 6000),
+		next_flash = moment() + random(1000, 2000),
 	}, Light)
 
 	self:_generate_light_mask()
@@ -53,21 +53,23 @@ function Light:start_flash_sequence()
 	local sequence = {}
 	local t = now
 
-	local flashes = random(2, 3)
-	for _ = 1, flashes do
-		local duration_on = 100
-		local duration_off = math.floor(random(1000, 3000) / 500) * 100
+	local flashes = random(3, 5) -- mais flashes por sequência
+	local total_duration = random(3000, 5000)
 
+	local per_flash = math.floor(total_duration / (flashes * 2))
+	local duration_on = per_flash
+	local duration_off = per_flash
+
+	for _ = 1, flashes do
 		sequence[#sequence + 1] = { time = t, on = true }
 		t = t + duration_on
-
 		sequence[#sequence + 1] = { time = t, on = false }
 		t = t + duration_off
 	end
 
 	self.flash_sequence = sequence
 	self.flash_index = 1
-	self.next_flash = now + random(4000, 6000)
+	self.next_flash = t + random(1000, 2000)
 end
 
 function Light:loop()
@@ -77,11 +79,17 @@ function Light:loop()
 	if step and now >= step.time then
 		self.flashing = step.on
 		self.flash_index = self.flash_index + 1
-	elseif not step and self.flash_index > 0 then
+		return
+	end
+
+	if not step and self.flash_index > 0 then
 		self.flash_sequence = {}
 		self.flash_index = 0
 		self.flashing = false
-	elseif now >= self.next_flash and self.flash_index == 0 then
+		return
+	end
+
+	if now >= self.next_flash and self.flash_index == 0 then
 		self:start_flash_sequence()
 	end
 
