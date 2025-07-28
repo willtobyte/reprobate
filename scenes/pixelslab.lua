@@ -1,4 +1,4 @@
-local effect = require("effects/lantern")
+local effect = require("effects/light")
 
 local scene = {}
 
@@ -7,7 +7,7 @@ local pool = {}
 function scene.on_enter() end
 
 function scene.on_motion(x, y)
-	effect:motion(x, y)
+	-- effect:motion(x, y)
 end
 
 function scene.on_loop()
