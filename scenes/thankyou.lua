@@ -1,4 +1,4 @@
-local pentagram = require("effects/fill")
+local pentagram = require("effects/pentagram")
 
 local scene = {}
 
