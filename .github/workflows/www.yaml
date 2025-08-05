@@ -51,10 +51,16 @@ jobs:
       - name: Create _headers file
         run: |
           cat << EOF > output/_headers
-          /
-            Cache-Control: no-cache, no-store, must-revalidate
+          /index.html
+            Cache-Control: max-age=0, must-revalidate
 
-          /*
+          /carimbo.js
+            Cache-Control: public, max-age=31536000, immutable
+
+          /carimbo.wasm
+            Cache-Control: public, max-age=31536000, immutable
+
+          /cartridge.zip
             Cache-Control: public, max-age=31536000, immutable
           EOF
 
@@ -135,23 +141,18 @@ jobs:
               <script>
                 console.log("Game: ${GIT_TAG}");
 
-                const canvas = document.getElementById("canvas");
-                const loading = document.getElementById("loading");
-                const download = fetch("cartridge.zip?v=${GIT_TAG}");
+                const download = fetch("cartridge.zip?v=${GIT_TAG}")
+                  .then(res => res.blob())
+                  .then(blob => blob.arrayBuffer());
 
                 window.Module = {
-                  canvas,
+                  canvas: document.getElementById("canvas"),
                   noInitialRun: true,
-                  locateFile: (path) => {
-                    if (path.endsWith(".wasm")) return path + "?v=${GIT_TAG}";
-                    return path;
-                  },
+                  locateFile: (path) => path.endsWith(".wasm") ? path + "?v=${GIT_TAG}" : path,
                   onRuntimeInitialized: async () => {
-                    loading.remove();
-                    const response = await download;
-                    const blob = await response.blob();
-                    const buffer = await blob.arrayBuffer();
+                    const buffer = await download;
                     FS.writeFile("/cartridge.zip", new Uint8Array(buffer));
+                    document.getElementById("loading").remove();
                     Module.callMain();
                   },
                 };
