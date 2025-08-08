@@ -23,7 +23,7 @@
       "name": "window"
     },
     {
-      "action": "scare",
+      "action": "default",
       "kind": "pictures",
       "name": "pictures"
     },
@@ -31,6 +31,11 @@
       "action": "default",
       "kind": "ashtray",
       "name": "ashtray"
+    },
+    {
+      "action": "default",
+      "kind": "aberration",
+      "name": "aberration"
     }
   ]
 }
