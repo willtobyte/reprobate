@@ -18,6 +18,8 @@
       ]
     },
     "scare": {
+      "next": "default",
+      "oneshot": true,
       "frames": [
         {
           "duration": 200,
