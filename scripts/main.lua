@@ -16,13 +16,14 @@ function setup()
 	scenemanager:register("mainmenu")
 	scenemanager:register("whobuilt")
 	scenemanager:register("babyroom")
+	scenemanager:register("livingroom")
 	scenemanager:register("pearintosh")
 	scenemanager:register("thankyou")
 	scenemanager:register("pixelslabs")
 
 	local stage = queryparam("stage", "mainmenu")
 
-	-- stage = "thankyou"
+	stage = "livingroom"
 	scenemanager:set(stage)
 end
 
