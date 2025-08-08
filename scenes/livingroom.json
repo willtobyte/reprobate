@@ -6,6 +6,31 @@
       "action": "default",
       "kind": "blackpriest",
       "name": "blackpriest"
+    },
+    {
+      "action": "default",
+      "kind": "candles",
+      "name": "candles"
+    },
+    {
+      "action": "default",
+      "kind": "antiquewallclock",
+      "name": "antiquewallclock"
+    },
+    {
+      "action": "default",
+      "kind": "window",
+      "name": "window"
+    },
+    {
+      "action": "default",
+      "kind": "pictures",
+      "name": "pictures"
+    },
+    {
+      "action": "default",
+      "kind": "ashtray",
+      "name": "ashtray"
     }
   ]
 }

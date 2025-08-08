@@ -1,0 +1,47 @@
+{
+  "animations": {
+    "default": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 21,
+            "y": 57
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 213,
+            "width": 378,
+            "height": 209
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 21,
+            "y": 56
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 378,
+            "height": 210
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 21,
+            "y": 57
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 424,
+            "width": 378,
+            "height": 209
+          }
+        }
+      ]
+    }
+  }
+}
