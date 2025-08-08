@@ -4,8 +4,8 @@
   "objects": [
     {
       "action": "default",
-      "kind": "blackpriest",
-      "name": "blackpriest"
+      "kind": "bloodpriest",
+      "name": "bloodpriest"
     },
     {
       "action": "default",
