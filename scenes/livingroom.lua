@@ -1,6 +1,7 @@
 local scene = {}
 
 local scribe = require("helpers/scribe")
+local effect = require("effects/lantern")
 
 local pool = {}
 local lock = false
@@ -46,7 +47,12 @@ function scene.on_enter()
 	end
 end
 
+function scene.on_motion(x, y)
+	effect:motion(x, y)
+end
+
 function scene.on_loop(delta)
+	effect:loop()
 	scribe:loop(delta)
 	-- pool.inventory:loop(delta)
 end
