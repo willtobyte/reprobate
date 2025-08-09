@@ -52,7 +52,7 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_loop(delta)
-	effect:loop()
+	-- effect:loop()
 	scribe:loop(delta)
 	-- pool.inventory:loop(delta)
 end
