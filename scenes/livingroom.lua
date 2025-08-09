@@ -1,7 +1,7 @@
 local scene = {}
 
 local scribe = require("helpers/scribe")
-local effect = require("effects/lantern")
+local lightning = require("effects/lightning")
 
 local pool = {}
 local lock = false
@@ -12,7 +12,13 @@ local timermanager = engine:timermanager()
 
 local animations = {
 	pictures = { minimum = 3, maximum = 6, action = "moving", message = "What you seek, I control without help." },
-	window = { minimum = 4, maximum = 8, action = "lightning", message = "You cannot escape your own mind." },
+	window = {
+		minimum = 4,
+		maximum = 8,
+		action = "lightning",
+		message = "You cannot escape your own mind.",
+		lightning = true,
+	},
 }
 
 function scene.on_enter()
@@ -25,6 +31,10 @@ function scene.on_enter()
 
 		local id = timermanager:set(delay, function()
 			object.action = settings.action
+
+			if settings.lightning then
+				lightning:trigger()
+			end
 		end)
 
 		table.insert(pool.timers, id)
@@ -48,11 +58,11 @@ function scene.on_enter()
 end
 
 function scene.on_motion(x, y)
-	effect:motion(x, y)
+	-- effect:motion(x, y)
 end
 
 function scene.on_loop(delta)
-	-- effect:loop()
+	lightning:loop()
 	scribe:loop(delta)
 	-- pool.inventory:loop(delta)
 end
