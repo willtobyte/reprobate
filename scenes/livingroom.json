@@ -31,6 +31,16 @@
       "action": "default",
       "kind": "ashtray",
       "name": "ashtray"
+    },
+    {
+      "action": "default",
+      "kind": "cachaca",
+      "name": "cachaca"
+    },
+    {
+      "action": "default",
+      "kind": "cabinetdoor",
+      "name": "cabinetdoor"
     }
   ]
 }
