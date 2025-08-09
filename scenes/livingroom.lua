@@ -1,11 +1,16 @@
 local scene = {}
 
-local pool = {}
+local scribe = require("helpers/scribe")
 
+local pool = {}
+local lock = false
+local prefix = "livingroom/"
+
+local cassette = engine:cassette()
 local timermanager = engine:timermanager()
 
 local animations = {
-	window = { minimum = 4, maximum = 8, action = "lightning", message = "TODO..." },
+	window = { minimum = 4, maximum = 8, action = "lightning", message = "You cannot escape your own mind." },
 }
 
 function scene.on_enter()
@@ -22,8 +27,27 @@ function scene.on_enter()
 
 		table.insert(pool.timers, id)
 
+		object:on_touch(function()
+			if lock then
+				return
+			end
+
+			lock = true
+			scribe:clear()
+			scribe:write(settings.message, 3, 3)
+			scribe:on_finish(3000, function()
+				scribe:clear()
+				lock = false
+			end)
+		end)
+
 		pool[name] = object
 	end
+end
+
+function scene.on_loop(delta)
+	scribe:loop(delta)
+	-- pool.inventory:loop(delta)
 end
 
 function scene.on_leave()
