@@ -10,6 +10,7 @@ local cassette = engine:cassette()
 local timermanager = engine:timermanager()
 
 local animations = {
+	pictures = { minimum = 3, maximum = 6, action = "moving", message = "What you seek, I control without help." },
 	window = { minimum = 4, maximum = 8, action = "lightning", message = "You cannot escape your own mind." },
 }
 

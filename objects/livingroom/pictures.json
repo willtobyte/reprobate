@@ -1,6 +1,14 @@
 {
   "animations": {
     "default": {
+      "hitbox": {
+        "rectangle": {
+          "x": 316,
+          "y": 81,
+          "width": 66,
+          "height": 44
+        }
+      },
       "frames": [
         {
           "duration": 200,
@@ -17,9 +25,8 @@
         }
       ]
     },
-    "scare": {
+    "moving": {
       "next": "default",
-      "oneshot": true,
       "frames": [
         {
           "duration": 200,

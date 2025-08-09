@@ -27,7 +27,6 @@
     },
     "shrug": {
       "next": "default",
-      "oneshot": true,
       "hitbox": {
         "rectangle": {
           "x": 130,

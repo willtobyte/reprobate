@@ -26,7 +26,6 @@
       ]
     },
     "run": {
-      "oneshot": true,
       "next": "default",
       "hitbox": {
         "rectangle": {
