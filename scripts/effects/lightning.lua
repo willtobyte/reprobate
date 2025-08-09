@@ -25,8 +25,8 @@ function Lightning:new(width, height)
 end
 
 function Lightning:trigger()
-	local flashes = random(1, 3)
-	local total_time = random(200, 2000) -- total em ms
+	local flashes = random(2, 4)
+	local total_time = random(120, 800)
 	self.sequence = {}
 	local remaining = total_time
 
@@ -45,7 +45,7 @@ function Lightning:trigger()
 	self.active = true
 	self.state = "flash"
 	self.state_end_time = moment() + self.sequence[1].flash
-	self.canvas.pixels = rep(self.clear_line, self.h) -- PISCAR AGORA
+	self.canvas.pixels = rep(self.clear_line, self.h)
 end
 
 function Lightning:loop()
