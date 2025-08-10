@@ -3,29 +3,44 @@
     "default": {
       "hitbox": {
         "rectangle": {
-          "x": 100,
+          "x": 105,
           "y": 76,
           "width": 32,
-          "height": 56
+          "height": 50
         }
-      }
+      },
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "rectangle": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ]
+    },
+    "open": {
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 102,
+            "y": 78
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 31,
+            "height": 53
+          }
+        }
+      ]
     }
-  },
-  "open": {
-    "frames": [
-      {
-        "duration": 200,
-        "offset": {
-          "x": 102,
-          "y": 78
-        },
-        "rectangle": {
-          "x": 1,
-          "y": 1,
-          "width": 31,
-          "height": 53
-        }
-      }
-    ]
   }
 }

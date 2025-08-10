@@ -55,6 +55,13 @@ function scene.on_enter()
 
 		pool[name] = object
 	end
+
+	pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
+	pool.voodoodoll = scene:get("voodoodoll", SceneType.object)
+	pool.cabinetdoor:on_touch(function()
+		pool.cabinetdoor.action = "open"
+		pool.voodoodoll.action = "default"
+	end)
 end
 
 function scene.on_motion(x, y)
