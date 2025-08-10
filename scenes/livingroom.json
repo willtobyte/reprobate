@@ -34,6 +34,21 @@
     },
     {
       "action": "default",
+      "kind": "mirrors",
+      "name": "mirrors"
+    },
+    {
+      "action": "default",
+      "kind": "baphomet",
+      "name": "baphomet"
+    },
+    {
+      "action": "default",
+      "kind": "ogremask",
+      "name": "ogremask"
+    },
+    {
+      "action": "default",
       "kind": "cachaca",
       "name": "cachaca"
     },
