@@ -18,7 +18,12 @@ local animations = {
 		action = "default",
 		message = "Hell? The worst torment is to live in this realm of hypocrisy.",
 	},
-	pictures = { minimum = 3, maximum = 6, action = "moving", message = "What you seek, I control without help." },
+	pictures = {
+		minimum = 3,
+		maximum = 6,
+		action = "moving",
+		message = "What you seek, I control without help.",
+	},
 	window = {
 		minimum = 4,
 		maximum = 8,
