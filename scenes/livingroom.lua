@@ -2,6 +2,7 @@ local scene = {}
 
 local scribe = require("helpers/scribe")
 local lightning = require("effects/lightning")
+local visibility = require("helpers/visibility")
 
 local pool = {}
 local lock = false
@@ -61,6 +62,15 @@ function scene.on_enter()
 	pool.cabinetdoor:on_touch(function()
 		pool.cabinetdoor.action = "open"
 		pool.voodoodoll.action = "default"
+
+		visibility.appear(pool.voodoodoll)
+
+		local warning = "The doll is not yours, it belongs to the loa that rides it."
+		scribe:clear()
+		scribe:write(warning, 3, 3)
+		scribe:on_finish(3000, function()
+			scribe:clear()
+		end)
 	end)
 end
 

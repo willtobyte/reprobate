@@ -3,7 +3,7 @@ local scene = {}
 local Inventory = require("overlay/inventory")
 local noise = require("effects/noise")
 local scribe = require("helpers/scribe")
-local touch = require("helpers/touch")
+local visibility = require("helpers/visibility")
 
 local pool = {}
 local lock = false
@@ -114,7 +114,7 @@ function scene.on_enter()
 
 				cassette:set(key, true)
 
-				touch.disappear(self)
+				visibility.disappear(self)
 				pool[iname].action = "default"
 
 				for _, collected in pairs(pool.collected) do
