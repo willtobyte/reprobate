@@ -21,8 +21,8 @@ local animations = {
 		action = "moving",
 		message = "What you seek, I control without help.",
 	},
-	{
-		message = "Banished, cold, and alone, through the mirror I watch in silence, so near, yet aeons away.",
+	mirrors = {
+		message = "Banished, cold, alone, through the mirror I watch, aeons away.",
 	},
 	window = {
 		minimum = 4,
@@ -39,17 +39,21 @@ function scene.on_enter()
 	for name, settings in pairs(animations) do
 		local object = scene:get(name, SceneType.object)
 
-		local delay = math.random(settings.minimum, settings.maximum) * 1000
+		local timed = settings.minimum and settings.maximum or false
 
-		local id = timermanager:set(delay, function()
-			object.action = settings.action
+		if timed then
+			local delay = math.random(settings.minimum, settings.maximum) * 1000
 
-			if settings.lightning then
-				lightning:trigger()
-			end
-		end)
+			local id = timermanager:set(delay, function()
+				object.action = settings.action
 
-		table.insert(pool.timers, id)
+				if settings.lightning then
+					lightning:trigger()
+				end
+			end)
+
+			table.insert(pool.timers, id)
+		end
 
 		object:on_touch(function()
 			if lock then
