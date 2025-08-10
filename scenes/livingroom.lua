@@ -12,6 +12,12 @@ local cassette = engine:cassette()
 local timermanager = engine:timermanager()
 
 local animations = {
+	baphomet = {
+		minimum = 6,
+		maximum = 6,
+		action = "default",
+		message = "Hell? The worst torment is to live in this realm of hypocrisy.",
+	},
 	pictures = { minimum = 3, maximum = 6, action = "moving", message = "What you seek, I control without help." },
 	window = {
 		minimum = 4,
