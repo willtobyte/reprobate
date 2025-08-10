@@ -3,12 +3,12 @@ local timermanager = engine:timermanager()
 local M = {}
 
 function M.appear(object)
+	object.alpha = 0
+
 	local duration = 666
 	local interval = 32
 	local steps = math.floor(duration / interval)
 	local step = 0
-
-	object.alpha = 0
 
 	local ia = 0
 	local fa = 255
