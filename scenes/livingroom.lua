@@ -13,6 +13,9 @@ local cassette = engine:cassette()
 local timermanager = engine:timermanager()
 
 local animations = {
+	antiquewallclock = {
+		message = "The sands of time for me are running low...",
+	},
 	baphomet = {
 		message = "Hell? The worst torment is to live in this realm of hypocrisy.",
 	},
