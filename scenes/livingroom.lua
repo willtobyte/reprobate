@@ -46,6 +46,9 @@ local animations = {
 function scene.on_enter()
 	pool.timers = {}
 
+	local rainmuffled = scene:get("rainmuffled", SceneType.effect)
+	rainmuffled:play(true)
+
 	for name, settings in pairs(animations) do
 		local object = scene:get(name, SceneType.object)
 
