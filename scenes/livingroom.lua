@@ -35,8 +35,8 @@ local animations = {
 		message = "Oni no tsume de omae no tamashii o hikisake.",
 	},
 	window = {
-		minimum = 4,
-		maximum = 8,
+		minimum = 8,
+		maximum = 16,
 		action = "lightning",
 		message = "You cannot escape your own mind.",
 		lightning = true,
