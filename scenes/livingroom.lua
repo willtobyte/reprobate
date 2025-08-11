@@ -31,6 +31,9 @@ local animations = {
 	mirrors = {
 		message = "Banished, cold, alone, through the mirror I watch, aeons away.",
 	},
+	ogremask = {
+		message = "Oni no tsume de omae no tamashii o hikisake.",
+	},
 	window = {
 		minimum = 4,
 		maximum = 8,
