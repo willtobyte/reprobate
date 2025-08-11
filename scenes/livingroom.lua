@@ -9,11 +9,15 @@ local lock = false
 local prefix = "livingroom/"
 
 local cassette = engine:cassette()
+
 local timermanager = engine:timermanager()
 
 local animations = {
 	baphomet = {
 		message = "Hell? The worst torment is to live in this realm of hypocrisy.",
+	},
+	bloodpriest = {
+		message = "...Cast into the fields of evil pleasure.",
 	},
 	pictures = {
 		minimum = 3,
