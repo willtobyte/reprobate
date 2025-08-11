@@ -59,6 +59,9 @@ function scene.on_enter()
 
 				if settings.lightning then
 					lightning:trigger()
+
+					local fx = scene:get("lightening", SceneType.effect)
+					fx:play()
 				end
 			end)
 

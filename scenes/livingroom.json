@@ -1,6 +1,7 @@
 {
   "width": 480,
   "height": 270,
+  "effects": ["lightening"],
   "objects": [
     {
       "action": "default",
