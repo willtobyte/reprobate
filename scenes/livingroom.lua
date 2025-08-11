@@ -36,7 +36,7 @@ local animations = {
 	},
 	window = {
 		minimum = 8,
-		maximum = 16,
+		maximum = 14,
 		action = "lightning",
 		message = "You cannot escape your own mind.",
 		lightning = true,
