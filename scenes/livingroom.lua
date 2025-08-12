@@ -12,6 +12,10 @@ local cassette = engine:cassette()
 
 local timermanager = engine:timermanager()
 
+---
+--- Son, one day you will spread your wings and fly...\nThe world is yours. Conquer it.
+---
+
 local animations = {
 	antiquewallclock = {
 		message = "The sands of time for me are running low...",
