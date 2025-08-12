@@ -1,8 +1,9 @@
+
 ---
 
 I admire your curiosity, and like you, I used to dig through game assets and code. Keep that flame alive. ;-)
 
----
+.
 
 This game was made with my own resources and a great deal of will, love, and determination.
 
@@ -14,7 +15,7 @@ Thank you!
 
 Would you be interested in having a conversation? Feel free to shoot an email to rodrigo@delduca.org — I promise to reply.
 
----
+.
 
 Happy hacking!
 
@@ -25,5 +26,3 @@ I dedicate this work to my son, Henrique.
 Son, one day you will spread your wings and fly... The world is yours. Conquer it.
 
 I hope you find this message. <3
-
----
