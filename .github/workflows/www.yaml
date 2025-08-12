@@ -25,6 +25,10 @@ jobs:
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(true\)/\1(false)/' scripts/main.lua
 
+      - name: Remove secret message
+        run: |
+          rm -f scripts/MESSAGE\ IN\ A\ BOTTLE.txt
+
       - name: Create cartridge
         run: |
           find . -name '.*' ! -name '.' ! -name '..' -print
