@@ -14,7 +14,10 @@ local timermanager = engine:timermanager()
 
 local animations = {
 	antiquewallclock = {
-		message = { "The sands of time for me are running low..." },
+		message = {
+			"The sands of time for me are running low...",
+			"The dawn no longer breaks.",
+		},
 	},
 	baphomet = {
 		message = {
