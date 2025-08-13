@@ -17,7 +17,10 @@ local animations = {
 		message = { "The sands of time for me are running low..." },
 	},
 	baphomet = {
-		message = { "Hell? The worst torment is to live in this realm of hypocrisy." },
+		message = {
+			"Hell? The worst torment is to live in this realm of hypocrisy.",
+			"I am all your most dreadful nightmares. An inferno of splendour, victory and lust.",
+		},
 	},
 	bloodpriest = {
 		message = {
