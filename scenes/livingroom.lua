@@ -12,37 +12,36 @@ local cassette = engine:cassette()
 
 local timermanager = engine:timermanager()
 
----
---- Son, one day you will spread your wings and fly...\nThe world is yours. Conquer it.
----
-
 local animations = {
 	antiquewallclock = {
-		message = "The sands of time for me are running low...",
+		message = { "The sands of time for me are running low..." },
 	},
 	baphomet = {
-		message = "Hell? The worst torment is to live in this realm of hypocrisy.",
+		message = { "Hell? The worst torment is to live in this realm of hypocrisy." },
 	},
 	bloodpriest = {
-		message = "...Cast into the fields of evil pleasure.",
+		message = {
+			"...Cast into the fields of evil pleasure.",
+			"Hear her dead lips...",
+		},
 	},
 	pictures = {
 		minimum = 3,
 		maximum = 6,
 		action = "moving",
-		message = "What you seek, I control without help.",
+		message = { "What you seek, I control without help." },
 	},
 	mirrors = {
-		message = "Banished, cold, alone, through the mirror I watch, aeons away.",
+		message = { "Banished, cold, alone, through the mirror I watch, aeons away." },
 	},
 	ogremask = {
-		message = "Oni no tsume de omae no tamashii o hikisake.",
+		message = { "Oni no tsume de omae no tamashii o hikisake." },
 	},
 	window = {
 		minimum = 8,
 		maximum = 14,
 		action = "lightning",
-		message = "You cannot escape your own mind.",
+		message = { "You cannot escape your own mind." },
 		lightning = true,
 	},
 }
@@ -84,7 +83,7 @@ function scene.on_enter()
 
 			lock = true
 			scribe:clear()
-			scribe:write(settings.message, 3, 3)
+			scribe:write(settings.message[math.random(#settings.message)], 3, 3)
 			scribe:on_finish(3000, function()
 				scribe:clear()
 				lock = false
