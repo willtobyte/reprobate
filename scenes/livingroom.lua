@@ -19,7 +19,6 @@ local animations = {
 	baphomet = {
 		message = {
 			"Hell? The worst torment is to live in this realm of hypocrisy.",
-			"I am all your most dreadful nightmares. An inferno of splendour, victory and lust.",
 		},
 	},
 	bloodpriest = {
