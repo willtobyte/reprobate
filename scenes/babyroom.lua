@@ -138,14 +138,14 @@ function scene.on_enter()
 					end
 				end
 
-				cassette:set("system/stage", "pearintosh")
+				cassette:set("system/stage", "livingroom")
 
 				timermanager:singleshot(1000, function()
 					local effect = scene:get("door", SceneType.effect)
 					local door = scene:get("door", SceneType.object)
 					door:on_touch(function()
 						scribe:clear()
-						scenemanager:set("pearintosh")
+						scenemanager:set("livingroom")
 					end)
 
 					door.action = "default"
