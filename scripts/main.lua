@@ -11,7 +11,7 @@ local scenemanager = engine:scenemanager()
 local overlay = engine:overlay()
 
 function setup()
-	-- overlay.cursor:set("horn")
+	overlay.cursor:set("horn")
 
 	scenemanager:register("mainmenu")
 	scenemanager:register("whobuilt")
