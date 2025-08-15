@@ -2,10 +2,12 @@ local scene = {}
 
 local pool = {}
 
-function scene.on_enter() end
+function scene.on_enter()
+	pool.clock = scene:get("click", SceneType.effect)
+end
 
 function scene.on_touch(x, y)
-	print("click")
+	pool.clock:play()
 end
 
 function scene.on_loop() end
