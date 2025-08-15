@@ -13,7 +13,7 @@ function scene.on_touch()
 	pool.click:play()
 
 	pool.clicks = pool.clicks + 1
-	if pool.clicks > 3 then
+	if pool.clicks >= 3 then
 		scenemanager:set("babyroom")
 	end
 end
