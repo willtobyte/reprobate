@@ -5,7 +5,7 @@ local lightning = require("effects/lightning")
 local visibility = require("helpers/visibility")
 
 local pool = {}
-local lock = false
+-- local lock = false
 local prefix = "livingroom/"
 
 local cassette = engine:cassette()
@@ -82,16 +82,16 @@ function scene.on_enter()
 		end
 
 		object:on_touch(function()
-			if lock then
-				return
-			end
+			-- if lock then
+			-- 	return
+			-- end
 
-			lock = true
+			-- lock = true
 			scribe:clear()
 			scribe:write(settings.message[math.random(#settings.message)], 3, 3)
 			scribe:on_finish(3000, function()
 				scribe:clear()
-				lock = false
+				-- lock = false
 			end)
 		end)
 

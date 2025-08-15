@@ -6,7 +6,7 @@ local scribe = require("helpers/scribe")
 local visibility = require("helpers/visibility")
 
 local pool = {}
-local lock = false
+-- local lock = false
 local prefix = "babyroom/"
 
 local cassette = engine:cassette()
@@ -83,16 +83,16 @@ function scene.on_enter()
 		table.insert(pool.timers, id)
 
 		object:on_touch(function()
-			if lock then
-				return
-			end
+			-- if lock then
+			-- 	return
+			-- end
 
-			lock = true
+			-- lock = true
 			scribe:clear()
 			scribe:write(settings.message, 3, 3)
 			scribe:on_finish(3000, function()
 				scribe:clear()
-				lock = false
+				-- lock = false
 			end)
 		end)
 
@@ -185,9 +185,9 @@ function scene.on_touch()
 		pool.missclicks = 0
 	end
 
-	if lock then
-		return
-	end
+	-- if lock then
+	-- 	return
+	-- end
 
 	pool.touches = (pool.touches or 0) + 1
 	pool.threshold = pool.threshold or math.random(3, 6)
@@ -198,7 +198,7 @@ function scene.on_touch()
 
 	pool.threshold = math.random(3, 6)
 	pool.touches = 0
-	lock = true
+	-- lock = true
 
 	local candidates = {}
 	for name in pairs(items) do
@@ -213,14 +213,14 @@ function scene.on_touch()
 		scribe:write(items[chosen].hint, 3, 3)
 		scribe:on_finish(3000, function()
 			scribe:clear()
-			lock = false
+			--  lock = false
 		end)
 		return
 	end
 
-	timermanager:singleshot(1000, function()
-		lock = false
-	end)
+	-- timermanager:singleshot(1000, function()
+	-- 	lock = false
+	-- end)
 end
 
 function scene.on_motion(x, y)
