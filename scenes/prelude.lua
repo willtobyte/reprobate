@@ -2,12 +2,20 @@ local scene = {}
 
 local pool = {}
 
+local scenemanager = engine:scenemanager()
+
 function scene.on_enter()
-	pool.clock = scene:get("click", SceneType.effect)
+	pool.clicks = 0
+	pool.click = scene:get("click", SceneType.effect)
 end
 
-function scene.on_touch(x, y)
-	pool.clock:play()
+function scene.on_touch()
+	pool.click:play()
+
+	pool.clicks = pool.clicks + 1
+	if pool.clicks > 3 then
+		scenemanager:set("babyroom")
+	end
 end
 
 function scene.on_loop() end

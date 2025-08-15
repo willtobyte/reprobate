@@ -51,6 +51,8 @@ local items = {
 function scene.on_enter()
 	noise:init()
 
+	cassette:set("system/stage", "babyroom")
+
 	pool.missclicks = 0
 	pool.timers = {}
 	pool.collected = {}
