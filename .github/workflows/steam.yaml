@@ -57,13 +57,9 @@ jobs:
 
       - name: Copy files
         run: |
-          chmod -x LICENSES || true
-          chmod -x VERSION || true
+          mkdir -p output/{macos,windows}
 
-          mkdir -p output/macos output/windows
-
-          cp cartridge.zip output/macos/
-          cp cartridge.zip output/windows/
+          cp cartridge.zip output/{macos,windows}/
 
           cp carimbo output/macos/
           cp carimbo.exe output/windows/
@@ -71,11 +67,7 @@ jobs:
           cp steamworks/redistributable_bin/osx/libsteam_api.dylib output/macos/
           cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
 
-          cp LICENSES output/macos/
-          cp LICENSES output/windows/
-
-          cp VERSION output/macos/
-          cp VERSION output/windows/
+          cp {LICENSES,VERSION} output/{macos,windows}/
 
       - name: Upload build to Steam
         uses: game-ci/steam-deploy@v3
