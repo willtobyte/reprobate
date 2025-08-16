@@ -59,7 +59,8 @@ jobs:
         run: |
           mkdir -p output/{macos,windows}
 
-          cp cartridge.zip output/{macos,windows}/
+          cp cartridge.zip output/macos/
+          cp cartridge.zip output/windows/
 
           cp carimbo output/macos/
           cp carimbo.exe output/windows/
