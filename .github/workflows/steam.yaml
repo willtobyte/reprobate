@@ -67,7 +67,9 @@ jobs:
           cp steamworks/redistributable_bin/osx/libsteam_api.dylib output/macos/
           cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
 
-          cp {LICENSES,VERSION} output/{macos,windows}/
+          for d in output/{macos,windows}; do
+            cp LICENSES VERSION "$d/"
+          done
 
       - name: Upload build to Steam
         uses: game-ci/steam-deploy@v3
