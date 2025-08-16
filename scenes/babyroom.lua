@@ -51,6 +51,8 @@ local items = {
 function scene.on_enter()
 	noise:init()
 
+	scenemanager:destroy("mainmenu")
+	scenemanager:destroy("prelude")
 	cassette:set("system/stage", "babyroom")
 
 	pool.missclicks = 0
