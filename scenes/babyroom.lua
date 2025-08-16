@@ -53,6 +53,8 @@ function scene.on_enter()
 
 	scenemanager:destroy("mainmenu")
 	scenemanager:destroy("prelude")
+	scenemanager:register("livingroom")
+
 	cassette:set("system/stage", "babyroom")
 
 	pool.missclicks = 0

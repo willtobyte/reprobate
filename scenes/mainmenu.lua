@@ -20,6 +20,8 @@ function scene.on_enter()
 	play:on_touch(function()
 		local stage = cassette:get("system/stage", "prelude")
 
+		scenemanager:register(stage)
+
 		scenemanager:set(stage)
 	end)
 

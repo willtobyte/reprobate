@@ -8,6 +8,7 @@ local scenemanager = engine:scenemanager()
 
 function scene.on_enter()
 	scenemanager:destroy("mainmenu")
+	scenemanager:register("babyroom")
 
 	pool.clicks = 0
 	pool.click = scene:get("click", SceneType.effect)

@@ -10,6 +10,8 @@ local prefix = "livingroom/"
 
 local cassette = engine:cassette()
 
+local scenemanager = engine:scenemanager()
+
 local timermanager = engine:timermanager()
 
 local animations = {
@@ -53,6 +55,8 @@ local animations = {
 
 function scene.on_enter()
 	pool.timers = {}
+
+	scenemanager:destroy("babyroom")
 
 	local rainmuffled = scene:get("rainmuffled", SceneType.effect)
 	rainmuffled:play(true)
