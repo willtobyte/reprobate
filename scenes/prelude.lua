@@ -2,9 +2,13 @@ local scene = {}
 
 local pool = {}
 
+local resourcemanager = engine:resourcemanager()
+
 local scenemanager = engine:scenemanager()
 
 function scene.on_enter()
+	scenemanager:destroy("mainmenu")
+
 	pool.clicks = 0
 	pool.click = scene:get("click", SceneType.effect)
 end
