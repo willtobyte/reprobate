@@ -13,6 +13,8 @@ local pool = {}
 -- end
 
 function scene.on_enter()
+	scenemanager:register("whobuilt")
+
 	local music = scene:get("theme", SceneType.effect)
 	music:play(true)
 
