@@ -7,8 +7,7 @@ local resourcemanager = engine:resourcemanager()
 local scenemanager = engine:scenemanager()
 
 function scene.on_enter()
-  scenemanager:destroy("mainmenu")
-  scenemanager:destroy("whobuilt")
+  scenemanager:destroy("*")
   scenemanager:register("babyroom")
 
   pool.clicks = 0
