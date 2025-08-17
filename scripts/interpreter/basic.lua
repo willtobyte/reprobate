@@ -169,7 +169,7 @@ local function interpreter(program, stdout, stderr, max_steps_override)
 					return
 				end
 			elseif code:match("^RUN$") then
-				-- NO-OP
+			-- NO-OP
 			else
 				local shown_code = (#code > 0) and code:upper() or "<EMPTY LINE>"
 				stderr(("UNKNOWN INSTRUCTION IN LINE %d: %s"):format(line_num, shown_code))
