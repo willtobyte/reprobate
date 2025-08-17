@@ -5,68 +5,68 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
-	achievement:unlock("NEW_ACHIEVEMENT_2_0")
+  achievement:unlock("NEW_ACHIEVEMENT_2_0")
 
-	pool.music = scene:get("theme", SceneType.effect)
-	pool.music:play(true)
+  pool.music = scene:get("theme", SceneType.effect)
+  pool.music:play(true)
 
-	pool.symbols = scene:get("symbols", SceneType.object)
-	pool.goat = scene:get("goat", SceneType.effect)
-	pool.symbols:on_touch(function()
-		pool.goat:play()
-	end)
+  pool.symbols = scene:get("symbols", SceneType.object)
+  pool.goat = scene:get("goat", SceneType.effect)
+  pool.symbols:on_touch(function()
+    pool.goat:play()
+  end)
 
-	pool.back = scene:get("backbutton", SceneType.object)
+  pool.back = scene:get("backbutton", SceneType.object)
 
-	pool.back:on_hover(function()
-		pool.back.action = "hover"
-	end)
+  pool.back:on_hover(function()
+    pool.back.action = "hover"
+  end)
 
-	pool.back:on_unhover(function()
-		pool.back.action = "default"
-	end)
+  pool.back:on_unhover(function()
+    pool.back.action = "default"
+  end)
 
-	pool.back:on_touch(function()
-		scenemanager:set("mainmenu")
-	end)
+  pool.back:on_touch(function()
+    scenemanager:set("mainmenu")
+  end)
 
-	pool.aline = scene:get("aline", SceneType.object)
+  pool.aline = scene:get("aline", SceneType.object)
 
-	pool.rodrigo = scene:get("rodrigo", SceneType.object)
+  pool.rodrigo = scene:get("rodrigo", SceneType.object)
 
-	pool.aline:on_hover(function()
-		pool.aline.action = "hover"
-	end)
+  pool.aline:on_hover(function()
+    pool.aline.action = "hover"
+  end)
 
-	pool.aline:on_unhover(function()
-		pool.aline.action = "burning"
-		pool.rodrigo.action = nil
-		pool.rodrigo.action = "burning"
-	end)
+  pool.aline:on_unhover(function()
+    pool.aline.action = "burning"
+    pool.rodrigo.action = nil
+    pool.rodrigo.action = "burning"
+  end)
 
-	pool.aline:on_touch(function()
-		openurl("https://linktr.ee/dandelion.pixelart")
-	end)
+  pool.aline:on_touch(function()
+    openurl("https://linktr.ee/dandelion.pixelart")
+  end)
 
-	pool.rodrigo:on_hover(function()
-		pool.rodrigo.action = "hover"
-	end)
+  pool.rodrigo:on_hover(function()
+    pool.rodrigo.action = "hover"
+  end)
 
-	pool.rodrigo:on_unhover(function()
-		pool.rodrigo.action = "burning"
-		pool.aline.action = nil
-		pool.aline.action = "burning"
-	end)
+  pool.rodrigo:on_unhover(function()
+    pool.rodrigo.action = "burning"
+    pool.aline.action = nil
+    pool.aline.action = "burning"
+  end)
 
-	pool.rodrigo:on_touch(function()
-		openurl("https://rodrigodelduca.org")
-	end)
+  pool.rodrigo:on_touch(function()
+    openurl("https://rodrigodelduca.org")
+  end)
 end
 
 function scene.on_leave()
-	for o in pairs(pool) do
-		pool[o] = nil
-	end
+  for o in pairs(pool) do
+    pool[o] = nil
+  end
 end
 
 return scene
