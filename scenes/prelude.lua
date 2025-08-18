@@ -2,8 +2,6 @@ local scene = {}
 
 local pool = {}
 
-local resourcemanager = engine:resourcemanager()
-
 local scenemanager = engine:scenemanager()
 
 function scene.on_enter()
@@ -18,7 +16,7 @@ function scene.on_touch()
   pool.click:play()
 
   pool.clicks = pool.clicks + 1
-  if pool.clicks >= 4 then
+  if pool.clicks >= 1 then
     scenemanager:set("babyroom")
   end
 end
