@@ -15,15 +15,15 @@ local pool = {}
 function scene.on_enter()
   scenemanager:register("whobuilt")
 
+  local stage = cassette:get("system/stage", "babyroom") -- prelude
+
+  scenemanager:register(stage)
+
   local music = scene:get("theme", SceneType.effect)
   music:play(true)
 
   local play = scene:get("play", SceneType.object)
   play:on_touch(function()
-    local stage = cassette:get("system/stage", "babyroom") -- prelude
-
-    scenemanager:register(stage)
-
     scenemanager:set(stage)
   end)
 
