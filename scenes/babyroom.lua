@@ -145,7 +145,7 @@ function scene.on_enter()
 
         cassette:set("system/stage", "livingroom")
 
-        timermanager:singleshot(1000, function()
+        local id = timermanager:singleshot(1000, function()
           local door = scene:get("door", SceneType.object)
           door:on_touch(function()
             scribe:clear()
@@ -154,11 +154,15 @@ function scene.on_enter()
 
           door.action = "default"
 
-          timermanager:singleshot(3000, function()
+          local id = timermanager:singleshot(3000, function()
             local effect = scene:get("door", SceneType.effect)
             effect:play()
           end)
+
+          table.insert(pool.timers, id)
         end)
+
+        table.insert(pool.timers, id)
       end)
     end
   end
