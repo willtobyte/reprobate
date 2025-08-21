@@ -76,11 +76,13 @@ function scene.on_enter()
 
   for name, settings in pairs(animations) do
     local object = scene:get(name, SceneType.object)
+    pool[name] = object
 
     local delay = math.random(settings.minimum, settings.maximum) * 1000
-
+    local action = settings.action
     local id = timermanager:set(delay, function()
-      object.action = settings.action
+      local object = pool[name]
+      object.action = action
     end)
 
     table.insert(pool.timers, id)
@@ -98,8 +100,6 @@ function scene.on_enter()
         -- lock = false
       end)
     end)
-
-    pool[name] = object
   end
 
   local objects = {}
