@@ -13,10 +13,9 @@ local pool = {}
 -- end
 
 function scene.on_enter()
-  scenemanager:register("whobuilt")
-
   local stage = cassette:get("system/stage", "babyroom") -- prelude
 
+  scenemanager:register("whobuilt")
   scenemanager:register(stage)
 
   local music = scene:get("theme", SceneType.effect)
