@@ -22,6 +22,7 @@ function M.appear(object)
 
     if step >= steps then
       timermanager:clear(id)
+      object = nil
     end
   end)
 end
@@ -49,6 +50,7 @@ function M.disappear(object)
     if step >= steps then
       timermanager:clear(id)
       object:hide()
+      object = nil
     end
   end)
 end
