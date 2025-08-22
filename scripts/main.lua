@@ -13,7 +13,7 @@ local overlay = engine:overlay()
 function setup()
   overlay.cursor:set("horn")
 
-  local stage = "mainmenu"
+  local stage = "prelude"
 
   scenemanager:register(stage)
   scenemanager:set(stage)
