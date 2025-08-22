@@ -1,9 +1,18 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-json
       - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: catatonia
+        name: Perform code formatting & otimizations
+        entry: bash -c '
+          docker pull ghcr.io/willtobyte/catatonia:latest && docker run --rm -v "$PWD:/data" ghcr.io/willtobyte/catatonia:latest'
+        language: system
+        pass_filenames: false
