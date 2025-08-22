@@ -18,7 +18,7 @@ local animations = {
   antiquewallclock = {
     message = {
       "The sands of time for me are running low...",
-      "The dawn no longer breaks.",
+      "Dawn no longer comes.",
     },
   },
   baphomet = {
