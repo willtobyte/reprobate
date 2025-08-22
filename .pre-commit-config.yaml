@@ -19,4 +19,4 @@ repos:
           - -ceu
           - --
           - |
-            docker run --rm --pull=missing -v "$PWD:/data" ghcr.io/willtobyte/catatonia:latest
+            docker run --rm --pull=missing --user "$(id -u):$(id -g)" -v "$PWD:/data" ghcr.io/willtobyte/catatonia:latest
