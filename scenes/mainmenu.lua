@@ -15,6 +15,7 @@ local pool = {}
 function scene.on_enter()
   local stage = cassette:get("system/stage", "babyroom") -- prelude
 
+  scenemanager:destroy("*")
   scenemanager:register("whobuilt")
   scenemanager:register(stage)
 
