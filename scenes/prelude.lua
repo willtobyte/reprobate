@@ -4,8 +4,10 @@ local pool = {}
 
 local scenemanager = engine:scenemanager()
 
+local nextscene = "mainmenu"
+
 function scene.on_enter()
-  scenemanager:register("mainmenu")
+  scenemanager:register(nextscene)
 
   pool.clicks = 0
   pool.click = scene:get("click", SceneType.effect)
@@ -16,7 +18,7 @@ function scene.on_touch()
 
   pool.clicks = pool.clicks + 1
   if pool.clicks >= 3 then
-    scenemanager:set("mainmenu")
+    scenemanager:set(nextscene)
   end
 end
 
