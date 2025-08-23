@@ -54,6 +54,7 @@
     },
     "lightning": {
       "next": "default",
+      "effect": "thunder",
       "hitbox": {
         "rectangle": {
           "x": 0,

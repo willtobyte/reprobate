@@ -75,11 +75,6 @@ function scene.on_enter()
 
         if settings.lightning then
           lightning:trigger()
-
-          local thunder = scene:get("thunder", SceneType.effect)
-          thunder:play()
-
-          pool.thundered = true -- TODO if false, before final animation the game triggers lightning + thunder.
         end
       end)
 

@@ -1,7 +1,7 @@
 {
   "width": 480,
   "height": 270,
-  "effects": ["rainmuffled", "thunder"],
+  "effects": ["rainmuffled"],
   "objects": [
     {
       "action": "default",
