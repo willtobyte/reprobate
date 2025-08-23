@@ -33,8 +33,8 @@ local animations = {
     },
   },
   pictures = {
-    minimum = 3,
-    maximum = 6,
+    minimum = 4,
+    maximum = 10,
     action = "moving",
     message = { "What you seek, I control without help." },
   },
