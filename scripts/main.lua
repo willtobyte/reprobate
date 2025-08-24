@@ -22,7 +22,6 @@ function setup()
   scenemanager:register("babyroom")
   scenemanager:register("prelude")
 
-  scenemanager:register(stage)
   scenemanager:set(stage)
 end
 
