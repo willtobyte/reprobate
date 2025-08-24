@@ -9,21 +9,20 @@ local next = "mainmenu"
 function scene.on_enter()
   scenemanager:register(next)
 
-  pool.single = scene:get("single", SceneType.object)
+  pool.quarter = scene:get("quarter", SceneType.object)
 
-  pool.single:on_hover(function(self)
+  pool.quarter:on_hover(function(self)
     self.action = "hover"
   end)
 
-  pool.single:on_unhover(function(self)
+  pool.quarter:on_unhover(function(self)
     self.action = "normal"
   end)
 
-  pool.single:on_touch(function()
+  pool.quarter:on_touch(function()
     scenemanager:set(next)
   end)
 
-  pool.clicks = 0
   pool.click = scene:get("click", SceneType.effect)
 end
 

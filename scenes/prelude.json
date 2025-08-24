@@ -5,8 +5,8 @@
   "objects": [
     {
       "action": "normal",
-      "kind": "single",
-      "name": "single"
+      "kind": "quarter",
+      "name": "quarter"
     }
   ]
 }
