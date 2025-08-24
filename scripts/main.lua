@@ -15,6 +15,13 @@ function setup()
 
   local stage = "prelude"
 
+  scenemanager:register("babyroom")
+  scenemanager:register("livingroom")
+  scenemanager:register("mainmenu")
+  scenemanager:register("whobuilt")
+  scenemanager:register("babyroom")
+  scenemanager:register("prelude")
+
   scenemanager:register(stage)
   scenemanager:set(stage)
 end
