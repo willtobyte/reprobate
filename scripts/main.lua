@@ -18,9 +18,9 @@ function setup()
   scenemanager:register("babyroom")
   scenemanager:register("livingroom")
   scenemanager:register("mainmenu")
-  scenemanager:register("whobuilt")
-  scenemanager:register("babyroom")
+  scenemanager:register("pearintosh")
   scenemanager:register("prelude")
+  scenemanager:register("whobuilt")
 
   scenemanager:set(stage)
 end
