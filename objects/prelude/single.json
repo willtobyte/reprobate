@@ -1,0 +1,54 @@
+{
+  "animations": {
+    "normal": {
+      "hitbox": {
+        "rectangle": {
+          "height": 108,
+          "width": 64,
+          "x": 28,
+          "y": 20
+        }
+      },
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 28,
+            "y": 20
+          },
+          "rectangle": {
+            "x": 67,
+            "y": 1,
+            "width": 64,
+            "height": 108
+          }
+        }
+      ]
+    },
+    "hover": {
+      "hitbox": {
+        "rectangle": {
+          "height": 108,
+          "width": 64,
+          "x": 28,
+          "y": 20
+        }
+      },
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 28,
+            "y": 20
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 64,
+            "height": 108
+          }
+        }
+      ]
+    }
+  }
+}
