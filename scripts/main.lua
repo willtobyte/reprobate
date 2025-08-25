@@ -13,14 +13,14 @@ local overlay = engine:overlay()
 function setup()
   overlay.cursor:set("horn")
 
-  local stage = "prelude"
-
   scenemanager:register("babyroom")
   scenemanager:register("livingroom")
   scenemanager:register("mainmenu")
   scenemanager:register("pearintosh")
   scenemanager:register("prelude")
   scenemanager:register("whobuilt")
+
+  local stage = queryparam("stage", "prelude")
 
   scenemanager:set(stage)
 end
