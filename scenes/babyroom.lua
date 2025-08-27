@@ -1,9 +1,12 @@
 local scene = {}
 
 local Inventory = require("overlay/inventory")
+local Scribe = require("helpers/scribe")
 local noise = require("effects/noise")
-local scribe = require("helpers/scribe")
 local visibility = require("helpers/visibility")
+
+local say = Scribe.say
+local scribe = Scribe.scribe
 
 local pool = {}
 -- local lock = false
@@ -68,11 +71,7 @@ function scene.on_enter()
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
   pool.television:on_touch(function()
-    scribe:clear()
-    scribe:write("This game is haunted, can you feel it?", 3, 3)
-    scribe:on_finish(6000, function()
-      scribe:clear()
-    end)
+    say("This game is haunted, can you feel it?", 3, 3, 6000)
   end)
 
   for name, settings in pairs(animations) do
@@ -94,12 +93,7 @@ function scene.on_enter()
       -- end
 
       -- lock = true
-      scribe:clear()
-      scribe:write(settings.message, 3, 3)
-      scribe:on_finish(3000, function()
-        scribe:clear()
-        -- lock = false
-      end)
+      say(settings.message, 3, 3, 3000)
     end)
   end
 
@@ -173,10 +167,7 @@ function scene.on_enter()
   pool.inventory = Inventory.new(layout, character, objects)
 
   noise:on_finish(function()
-    scribe:write("I drown your divinity in the acheron of my soul.", 4, 5)
-    scribe:on_finish(12000, function()
-      scribe:clear()
-    end)
+    say("I drown your divinity in the acheron of my soul.", 4, 5, 12000)
   end)
 end
 
@@ -217,12 +208,8 @@ function scene.on_touch()
 
   if #candidates > 0 and math.random() < 0.8 then
     local chosen = candidates[math.random(#candidates)]
-    scribe:clear()
-    scribe:write(items[chosen].hint, 3, 3)
-    scribe:on_finish(3000, function()
-      scribe:clear()
-      --  lock = false
-    end)
+
+    say(items[chosen].hint, 3, 3, 3000)
     return
   end
 

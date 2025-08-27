@@ -78,4 +78,17 @@ function Writer:loop(delta)
   end
 end
 
-return Writer.new()
+local scribe = Writer.new()
+
+local function say(msg, x, y, ms)
+  scribe:clear()
+  scribe:write(msg, x or 3, y or 3)
+  scribe:on_finish(ms or 3000, function()
+    scribe:clear()
+  end)
+end
+
+return {
+  scribe = scribe,
+  say = say,
+}

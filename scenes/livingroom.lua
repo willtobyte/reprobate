@@ -1,8 +1,11 @@
 local scene = {}
 
-local scribe = require("helpers/scribe")
 local lightning = require("effects/lightning")
 local visibility = require("helpers/visibility")
+local Scribe = require("helpers/scribe")
+
+local say = Scribe.say
+local scribe = Scribe.scribe
 
 local pool = {}
 -- local lock = false
@@ -87,12 +90,7 @@ function scene.on_enter()
       -- end
 
       -- lock = true
-      scribe:clear()
-      scribe:write(settings.message[math.random(#settings.message)], 3, 3)
-      scribe:on_finish(3000, function()
-        scribe:clear()
-        -- lock = false
-      end)
+      say(settings.message[math.random(#settings.message)], 3, 3, 6000)
     end)
 
     pool[name] = object
@@ -107,11 +105,8 @@ function scene.on_enter()
     visibility.appear(pool.voodoodoll)
 
     local warning = "The doll is not yours, it belongs to the loa that rides it."
-    scribe:clear()
-    scribe:write(warning, 3, 3)
-    scribe:on_finish(3000, function()
-      scribe:clear()
-    end)
+
+    say(warning, 3, 3, 6000)
   end)
 end
 
