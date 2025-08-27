@@ -10,7 +10,6 @@ function scene.on_enter()
 
   pool.symbols = scene:get("symbols", SceneType.object)
   pool.goat = scene:get("goat", SceneType.effect)
-  print("pool.goat " .. tostring(pool.goat))
 
   pool.symbols:on_touch(function()
     pool.goat:play()
@@ -31,10 +30,8 @@ function scene.on_enter()
   end)
 
   pool.aline = scene:get("aline", SceneType.object)
-  print("pool.aline " .. tostring(pool.aline))
 
   pool.rodrigo = scene:get("rodrigo", SceneType.object)
-  print("pool.rodrigo " .. tostring(pool.rodrigo))
 
   pool.aline:on_hover(function(self)
     self.action = "hover"
