@@ -5,14 +5,16 @@ local lightning = require("effects/lightning")
 local visibility = require("helpers/visibility")
 
 local pool = {}
--- local lock = false
 local prefix = "livingroom/"
 
 local cassette = engine:cassette()
-
 local scenemanager = engine:scenemanager()
-
 local timermanager = engine:timermanager()
+
+local R = math.random
+local insert = table.insert
+local pairs = pairs
+local ipairs = ipairs
 
 local animations = {
   antiquewallclock = {
@@ -53,76 +55,59 @@ local animations = {
   },
 }
 
+local function say(msg, x, y, ms)
+  scribe:clear()
+  scribe:write(msg, x or 3, y or 3)
+  scribe:on_finish(ms or 3000, function()
+    scribe:clear()
+  end)
+end
+
 function scene.on_enter()
   pool.timers = {}
 
   scenemanager:destroy("*")
-  -- scenemanager:register("nextroom")
 
   local rainmuffled = scene:get("rainmuffled", SceneType.effect)
   rainmuffled:play(true)
 
   for name, settings in pairs(animations) do
     local object = scene:get(name, SceneType.object)
+    pool[name] = object
 
-    local timed = settings.minimum and settings.maximum or false
-
+    local timed = settings.minimum and settings.maximum
     if timed then
-      local delay = math.random(settings.minimum, settings.maximum) * 1000
-
+      local delay = R(settings.minimum, settings.maximum) * 1000
       local id = timermanager:set(delay, function()
         object.action = settings.action
-
         if settings.lightning then
           lightning:trigger()
         end
       end)
-
-      table.insert(pool.timers, id)
+      insert(pool.timers, id)
     end
 
     object:on_touch(function()
-      -- if lock then
-      -- 	return
-      -- end
-
-      -- lock = true
-      scribe:clear()
-      scribe:write(settings.message[math.random(#settings.message)], 3, 3)
-      scribe:on_finish(3000, function()
-        scribe:clear()
-        -- lock = false
-      end)
+      say(settings.message[R(#settings.message)], 3, 3, 3000)
     end)
-
-    pool[name] = object
   end
 
   pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
   pool.voodoodoll = scene:get("voodoodoll", SceneType.object)
+
   pool.cabinetdoor:on_touch(function()
     pool.cabinetdoor.action = "open"
     pool.voodoodoll.action = "default"
-
     visibility.appear(pool.voodoodoll)
-
-    local warning = "The doll is not yours, it belongs to the loa that rides it."
-    scribe:clear()
-    scribe:write(warning, 3, 3)
-    scribe:on_finish(3000, function()
-      scribe:clear()
-    end)
+    say("The doll is not yours, it belongs to the loa that rides it.", 3, 3, 3000)
   end)
 end
 
-function scene.on_motion(x, y)
-  -- effect:motion(x, y)
-end
+function scene.on_motion(x, y) end
 
 function scene.on_loop(delta)
   lightning:loop()
   scribe:loop(delta)
-  -- pool.inventory:loop(delta)
 end
 
 function scene.on_leave()
@@ -130,9 +115,7 @@ function scene.on_leave()
     timermanager:clear(id)
   end
 
-  for o in pairs(pool) do
-    pool[o] = nil
-  end
+  pool = {}
 end
 
 return scene
