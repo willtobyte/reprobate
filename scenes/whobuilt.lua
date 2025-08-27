@@ -5,8 +5,8 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
-  local music = scene:get("theme", SceneType.effect)
-  music:play(true)
+  pool.music = scene:get("theme", SceneType.effect)
+  pool.music:play(true)
 
   pool.symbols = scene:get("symbols", SceneType.object)
   pool.goat = scene:get("goat", SceneType.effect)
