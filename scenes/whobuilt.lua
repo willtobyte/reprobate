@@ -8,55 +8,55 @@ function scene.on_enter()
   local music = scene:get("theme", SceneType.effect)
   music:play(true)
 
-  local symbols = scene:get("symbols", SceneType.object)
-  local goat = scene:get("goat", SceneType.effect)
-  symbols:on_touch(function()
-    goat:play()
+  pool.symbols = scene:get("symbols", SceneType.object)
+  pool.goat = scene:get("goat", SceneType.effect)
+  pool.symbols:on_touch(function()
+    pool.goat:play()
   end)
 
-  local back = scene:get("backbutton", SceneType.object)
+  pool.back = scene:get("backbutton", SceneType.object)
 
-  back:on_hover(function(self)
+  pool.back:on_hover(function(self)
     self.action = "hover"
   end)
 
-  back:on_unhover(function(self)
+  pool.back:on_unhover(function(self)
     self.action = "default"
   end)
 
-  back:on_touch(function()
+  pool.back:on_touch(function()
     scenemanager:set("mainmenu")
   end)
 
-  local aline = scene:get("aline", SceneType.object)
+  pool.aline = scene:get("aline", SceneType.object)
 
-  local rodrigo = scene:get("rodrigo", SceneType.object)
+  pool.rodrigo = scene:get("rodrigo", SceneType.object)
 
-  aline:on_hover(function(self)
+  pool.aline:on_hover(function(self)
     self.action = "hover"
   end)
 
-  aline:on_unhover(function(self)
+  pool.aline:on_unhover(function(self)
     self.action = "burning"
-    rodrigo.action = nil
-    rodrigo.action = "burning"
+    pool.rodrigo.action = nil
+    pool.rodrigo.action = "burning"
   end)
 
-  aline:on_touch(function()
+  pool.aline:on_touch(function()
     openurl("https://linktr.ee/dandelion.pixelart")
   end)
 
-  rodrigo:on_hover(function(self)
+  pool.rodrigo:on_hover(function(self)
     self.action = "hover"
   end)
 
-  rodrigo:on_unhover(function(self)
+  pool.rodrigo:on_unhover(function(self)
     self.action = "burning"
-    aline.action = nil
-    aline.action = "burning"
+    pool.aline.action = nil
+    pool.aline.action = "burning"
   end)
 
-  rodrigo:on_touch(function()
+  pool.rodrigo:on_touch(function()
     openurl("https://rodrigodelduca.org")
   end)
 end
