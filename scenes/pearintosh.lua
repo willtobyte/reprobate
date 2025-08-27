@@ -26,7 +26,6 @@ RUN TO EXECUTE, EXIT TO QUIT
 local R = math.random
 local insert = table.insert
 local ipairs = ipairs
-local pairs = pairs
 
 function scene.on_enter()
   pool.font = engine:fontfactory():get("retro")
