@@ -90,7 +90,7 @@ function scene.on_enter()
       -- end
 
       -- lock = true
-      say(settings.message[math.random(#settings.message)], 3, 3, 6000)
+      say(settings.message[math.random(#settings.message)], 3, 3, 3000)
     end)
 
     pool[name] = object
@@ -106,7 +106,7 @@ function scene.on_enter()
 
     local warning = "The doll is not yours, it belongs to the loa that rides it."
 
-    say(warning, 3, 3, 6000)
+    say(warning, 3, 3, 3000)
   end)
 end
 

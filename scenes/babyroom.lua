@@ -71,7 +71,7 @@ function scene.on_enter()
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
   pool.television:on_touch(function()
-    say("This game is haunted, can you feel it?", 3, 3, 6000)
+    say("This game is haunted, can you feel it?")
   end)
 
   for name, settings in pairs(animations) do
@@ -93,7 +93,7 @@ function scene.on_enter()
       -- end
 
       -- lock = true
-      say(settings.message, 3, 3, 3000)
+      say(settings.message)
     end)
   end
 
@@ -167,7 +167,7 @@ function scene.on_enter()
   pool.inventory = Inventory.new(layout, character, objects)
 
   noise:on_finish(function()
-    say("I drown your divinity in the acheron of my soul.", 4, 5, 12000)
+    say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
   end)
 end
 
