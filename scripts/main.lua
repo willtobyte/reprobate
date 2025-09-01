@@ -25,6 +25,10 @@ function setup()
   local stage = queryparam("stage", "prelude")
 
   scenemanager:set(stage)
+
+  local file = io.open(desktop:path() .. "test.txt", "w")
+  file:write("Hello World")
+  file:close()
 end
 
 function loop() end
