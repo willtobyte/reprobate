@@ -13,6 +13,8 @@ local overlay = engine:overlay()
 function setup()
   overlay.cursor:set("horn")
 
+  engine:soundmanager().effect = SoundEffect.half
+
   scenemanager:register("babyroom")
   scenemanager:register("livingroom")
   scenemanager:register("mainmenu")
