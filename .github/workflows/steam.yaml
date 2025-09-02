@@ -49,6 +49,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
+      - name: Create BUGS file
+        run: |
+          echo "Please report any comments to rodrigo@delduca.org." > BUGS
+
       - name: Create VERSION file
         run: |
           echo "Carimbo: $CARIMBO_TAG" > VERSION
@@ -69,7 +73,7 @@ jobs:
           cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
 
           for d in output/{macos,windows}; do
-            cp LICENSES VERSION "$d/"
+            cp BUGS LICENSES VERSION "$d/"
           done
 
       - name: Upload build to Steam
