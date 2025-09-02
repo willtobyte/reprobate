@@ -26,7 +26,8 @@ function setup()
 
   scenemanager:set(stage)
 
-  local file = io.open(desktop:path() .. "test.txt", "w")
+  print(">>>> " .. desktop:folder())
+  local file = io.open(desktop:folder() .. "test.txt", "w")
   file:write("Hello World")
   file:close()
 end
