@@ -13,13 +13,6 @@ local overlay = engine:overlay()
 function setup()
   overlay.cursor:set("horn")
 
-  engine:soundmanager().effect = SoundEffect.half
-
-  print(">>> " .. desktop:folder())
-  local file = io.open(desktop:folder() .. "test.txt", "w")
-  file:write("Hello World")
-  file:close()
-
   scenemanager:register("babyroom")
   scenemanager:register("livingroom")
   scenemanager:register("mainmenu")
