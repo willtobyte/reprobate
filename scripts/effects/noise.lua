@@ -3,7 +3,7 @@ NoiseEffect.__index = NoiseEffect
 
 local char, concat, floor = string.char, table.concat, math.floor
 
-local seed = os.time()
+local seed = 666
 local function random()
   seed = (1103515245 * seed + 12345) % 2147483648
   return seed
