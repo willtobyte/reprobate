@@ -64,9 +64,6 @@ function scene.on_enter()
   pool.timers = {}
   pool.collected = {}
 
-  pool.theme = scene:get("theme", SceneType.effect)
-  pool.theme:play(true)
-
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
