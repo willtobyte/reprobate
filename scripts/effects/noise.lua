@@ -1,147 +1,131 @@
-local NoiseEffect = {}
-NoiseEffect.__index = NoiseEffect
+local FastPentagram = {}
+FastPentagram.__index = FastPentagram
 
-local char, concat, floor = string.char, table.concat, math.floor
+local char, concat, floor, abs, cos, sin, pi =
+  string.char, table.concat, math.floor, math.abs, math.cos, math.sin, math.pi
 
-local seed = 666
-local function random()
-  seed = (1103515245 * seed + 12345) % 2147483648
-  return seed
-end
-
-function NoiseEffect:new(width, height, duration)
+function FastPentagram:new(width, height)
   local w, h = width or 480, height or 270
-  return setmetatable({
-    canvas = engine:canvas(),
-    width = w,
-    height = h,
-    duration = duration or 2000,
-    start_time = nil,
-    callback = nil,
-    pixel_count = w * h,
-    buffer = {},
-    cache = {},
-    done = false,
-  }, self)
-end
+  local self = setmetatable({}, FastPentagram)
+  self.canvas = engine:canvas()
+  self.width, self.height = w, h
+  self.pixel_count = w * h
+  self.buffer = {}
+  self.EMPTY = char(0, 0, 0, 0)
+  self.RED = char(255, 0, 0, 255)
 
-function NoiseEffect:init()
   self.start_time = moment()
+  self.scale = h * 0.4
+  self.line_thickness = 2
+
+  -- ordem de conexão do pentagrama (5 pontos)
+  self.edges = {
+    { 1, 3 },
+    { 3, 5 },
+    { 5, 2 },
+    { 2, 4 },
+    { 4, 1 }, -- estrela
+    { 1, 2 },
+    { 2, 3 },
+    { 3, 4 },
+    { 4, 5 },
+    { 5, 1 }, -- pentágono externo
+  }
+  return self
 end
 
-function NoiseEffect:on_finish(cb)
-  self.callback = cb
-end
+function FastPentagram:init() end
 
-local function fill_block(buffer, width, height, x, y, bw, bh, px)
-  for dy = 0, bh - 1 do
-    local row = y + dy
-    if row >= height then
-      break
-    end
-    for dx = 0, bw - 1 do
-      local col = x + dx
-      if col >= width then
-        break
-      end
-      local idx = row * width + col + 1
-      buffer[idx] = px
-    end
-  end
-end
-
-function NoiseEffect:loop()
-  if self.done then
+function FastPentagram:plot(x, y)
+  if x < 0 or x >= self.width or y < 0 or y >= self.height then
     return
   end
+  local idx = y * self.width + x + 1
+  self.buffer[idx] = self.RED
+end
 
-  local now = moment()
-  local elapsed = now - self.start_time
-  local duration = self.duration
-  local w, h = self.width, self.height
+function FastPentagram:draw_thick_point(x, y)
+  local t = self.line_thickness
+  for dy = -t, t do
+    local yy = y + dy
+    for dx = -t, t do
+      self:plot(x + dx, yy)
+    end
+  end
+end
+
+function FastPentagram:draw_line(x0, y0, x1, y1)
+  x0 = floor(x0)
+  y0 = floor(y0)
+  x1 = floor(x1)
+  y1 = floor(y1)
+
+  local dx = abs(x1 - x0)
+  local dy = abs(y1 - y0)
+  local sx = x0 < x1 and 1 or -1
+  local sy = y0 < y1 and 1 or -1
+  local err = dx - dy
+
+  while true do
+    self:draw_thick_point(x0, y0)
+    if x0 == x1 and y0 == y1 then
+      return
+    end
+    local e2 = err + err
+    if e2 > -dy then
+      err = err - dy
+      x0 = x0 + sx
+    end
+    if e2 < dx then
+      err = err + dx
+      y0 = y0 + sy
+    end
+  end
+end
+
+function FastPentagram:loop()
+  local elapsed = (moment() - self.start_time) * 0.001
+  local angle_y = elapsed * 0.8
+  local cy = self.height * 0.5
+  local cx = self.width * 0.5
+  local angle_step = pi * 0.4
+  local phase_offset = pi * 1.5
+
+  -- limpa o frame reutilizando a mesma string vazia
+  local buf = self.buffer
   local total = self.pixel_count
-  local buffer, cache = self.buffer, self.cache
-
-  if elapsed >= duration then
-    for i = 1, total do
-      buffer[i] = char(0, 0, 0, 0)
-    end
-    self.canvas.pixels = concat(buffer, "", 1, total)
-    if self.callback then
-      self.callback()
-      self.callback = nil
-    end
-
-    self.done = true
-    return
-  end
-
-  local fade = 1 - (elapsed / duration)
-  local alpha = floor(255 * fade)
-
   for i = 1, total do
-    local r = random() % 256
-    local g = random() % 256
-    local b = random() % 256
-    local key = r * 16777216 + g * 65536 + b * 256 + alpha
-    local px = cache[key]
-    if not px then
-      px = char(r, g, b, alpha)
-      cache[key] = px
-    end
-    buffer[i] = px
+    buf[i] = self.EMPTY
   end
 
-  for _ = 1, 700 do
-    local bw = 2 + (random() % 24)
-    local bh = 1 + (random() % 10)
-    local x = random() % (w - bw)
-    local y = random() % (h - bh)
-    local r = random() % 256
-    local g = random() % 256
-    local b = random() % 256
-    local a = floor(alpha * (0.3 + (random() % 71) / 100))
-    local key = r * 16777216 + g * 65536 + b * 256 + a
-    local px = cache[key] or char(r, g, b, a)
-    cache[key] = px
-    fill_block(buffer, w, h, x, y, bw, bh, px)
+  -- projeção simples com rotação em Y
+  local c = cos(angle_y)
+  local s = sin(angle_y)
+  local scale = self.scale
+
+  local projected = {}
+  for i = 0, 4 do
+    local a = angle_step * i + phase_offset
+    local x = cos(a)
+    local y = -sin(a)
+    local z = 0
+
+    local xr = x * c - z * s
+    local zr = x * s + z * c
+    local fov = 1 / (1 + zr * 0.5)
+
+    projected[i + 1] = { x = cx + xr * scale * fov, y = cy + y * scale * fov }
   end
 
-  for i = 1, 20 do
-    local y = random() % h
-    local a = floor(alpha * (0.3 + (random() % 71) / 100))
-    local r = random() % 256
-    local g = random() % 256
-    local b = random() % 256
-    local key = r * 16777216 + g * 65536 + b * 256 + a
-    local px = cache[key] or char(r, g, b, a)
-    cache[key] = px
-    fill_block(buffer, w, h, 0, y, w, 1, px)
+  for _, e in ipairs(self.edges) do
+    local a = projected[e[1]]
+    local b = projected[e[2]]
+    self:draw_line(a.x, a.y, b.x, b.y)
   end
 
-  for _ = 1, 40 do
-    local x = random() % w
-    local y = random() % h
-    local len = 10 + (random() % 40)
-    local a = floor(alpha * (0.3 + (random() % 71) / 100))
-    local r = random() % 256
-    local g = random() % 256
-    local b = random() % 256
-    local key = r * 16777216 + g * 65536 + b * 256 + a
-    local px = cache[key] or char(r, g, b, a)
-    cache[key] = px
-
-    for i = 0, len do
-      local dx = (x + i) % w
-      local dy = (y + i) % h
-      local idx = dy * w + dx + 1
-      buffer[idx] = px
-    end
-  end
-
-  self.canvas.pixels = concat(buffer, "", 1, total)
+  self.canvas.pixels = concat(buf, "", 1, total)
 end
 
-function NoiseEffect:teardown() end
+function FastPentagram:teardown() end
 
-return NoiseEffect:new()
+return FastPentagram:new()

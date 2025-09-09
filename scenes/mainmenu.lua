@@ -6,12 +6,6 @@ local scenemanager = engine:scenemanager()
 
 local pool = {}
 
--- local pentagram = require("effects/pentagram")
-
--- function scene.on_loop()
--- 	pentagram:loop()
--- end
-
 function scene.on_enter()
   local stage = cassette:get("system/stage", "babyroom") -- prelude
 

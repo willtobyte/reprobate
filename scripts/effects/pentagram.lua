@@ -1,95 +1,130 @@
-local Lightning = {}
-Lightning.__index = Lightning
+local ALPHA_MASK = 0x000000FF
+local RED_COLOR = 0xFF000000
 
-local char, rep, random, floor = string.char, string.rep, math.random, math.floor
-local ALPHA_DARK, ALPHA_CLEAR = 179, 0
+local FastPentagram = {}
+FastPentagram.__index = FastPentagram
 
-function Lightning:new(width, height)
-  local w, h = width or 480, height or 270
-  local cache = {}
-  for a = 0, 255 do
-    cache[a] = char(0, 0, 0, a)
-  end
-  return setmetatable({
-    canvas = engine:canvas(),
-    w = w,
-    h = h,
-    dark_line = rep(cache[ALPHA_DARK], w),
-    clear_line = rep(cache[ALPHA_CLEAR], w),
-    active = false,
-    sequence = {},
-    seq_index = 1,
-    state_end_time = 0,
-  }, self)
+function FastPentagram:new(width, height)
+  local self = setmetatable({}, FastPentagram)
+
+  self.canvas = engine:canvas()
+  self.width = width or 480
+  self.height = height or 270
+  self.pixels = {}
+
+  self.pi = math.pi
+  self.cos = math.cos
+  self.sin = math.sin
+  self.floor = math.floor
+  self.abs = math.abs
+
+  self.start_time = moment()
+  self.scale = self.height * 0.4
+  self.line_thickness = 2
+
+  self.edges = {
+    { 1, 3 },
+    { 3, 5 },
+    { 5, 2 },
+    { 2, 4 },
+    { 4, 1 },
+    { 1, 2 },
+    { 2, 3 },
+    { 3, 4 },
+    { 4, 5 },
+    { 5, 1 },
+  }
+
+  return self
 end
 
-function Lightning:trigger()
-  local flashes = random(1, 3)
-  local total_min, total_max = 200, 2000
-  local total_time = random(total_min, total_max)
+function FastPentagram:init() end
 
-  self.sequence = {}
-  local remaining = total_time
-  for i = 1, flashes do
-    local max_for_this = floor(remaining / ((flashes - i + 1) * 2))
-    if max_for_this < 30 then
-      max_for_this = 30
-    end
-    local flash_len = random(30, max_for_this) -- mínimo 30ms visível
-    local gap_len = (i < flashes) and flash_len or 0
-    table.insert(self.sequence, { flash = flash_len, gap = gap_len })
-    remaining = remaining - flash_len - gap_len
+function FastPentagram:plot(x, y)
+  if x >= 0 and x < self.width and y >= 0 and y < self.height then
+    local index = y * self.width + x + 1
+    self.pixels[index] = ALPHA_MASK + RED_COLOR
   end
-
-  self.seq_index = 1
-  self.active = true
-  self.state = "flash"
-  self.state_end_time = moment() + self.sequence[1].flash
 end
 
-function Lightning:loop()
-  if not self.active then
-    self.canvas.pixels = rep(self.dark_line, self.h)
-    return
-  end
-
-  local now = moment()
-  local step = self.sequence[self.seq_index]
-
-  if self.state == "flash" then
-    self.canvas.pixels = rep(self.clear_line, self.h)
-    if now >= self.state_end_time then
-      if step.gap > 0 then
-        self.state = "gap"
-        self.state_end_time = now + step.gap
-      else
-        self.seq_index = self.seq_index + 1
-        if not self.sequence[self.seq_index] then
-          self.active = false
-          self.canvas.pixels = rep(self.dark_line, self.h)
-          return
-        end
-        self.state = "flash"
-        self.state_end_time = now + self.sequence[self.seq_index].flash
-      end
-    end
-  elseif self.state == "gap" then
-    self.canvas.pixels = rep(self.dark_line, self.h)
-    if now >= self.state_end_time then
-      self.seq_index = self.seq_index + 1
-      if not self.sequence[self.seq_index] then
-        self.active = false
-        return
-      end
-      self.state = "flash"
-      self.state_end_time = now + self.sequence[self.seq_index].flash
+function FastPentagram:draw_thick_point(x, y)
+  local t = self.line_thickness
+  for dy = -t, t do
+    for dx = -t, t do
+      self:plot(x + dx, y + dy)
     end
   end
 end
 
-function Lightning:teardown()
-  self.active = false
-  self.canvas.pixels = rep(self.dark_line, self.h)
+function FastPentagram:draw_line(x0, y0, x1, y1)
+  x0 = self.floor(x0)
+  y0 = self.floor(y0)
+  x1 = self.floor(x1)
+  y1 = self.floor(y1)
+
+  local dx = self.abs(x1 - x0)
+  local dy = self.abs(y1 - y0)
+  local sx = x0 < x1 and 1 or -1
+  local sy = y0 < y1 and 1 or -1
+  local err = dx - dy
+
+  while true do
+    self:draw_thick_point(x0, y0)
+    if x0 == x1 and y0 == y1 then
+      break
+    end
+    local e2 = 2 * err
+    if e2 > -dy then
+      err = err - dy
+      x0 = x0 + sx
+    end
+    if e2 < dx then
+      err = err + dx
+      y0 = y0 + sy
+    end
+  end
 end
 
-return Lightning:new()
+function FastPentagram:loop()
+  local elapsed = (moment() - self.start_time) * 0.001
+  local angle_y = elapsed * 0.8
+
+  local cos_y = self.cos(angle_y)
+  local sin_y = self.sin(angle_y)
+
+  local cx = self.width * 0.5
+  local cy = self.height * 0.5
+  local projected = {}
+  local angle_step = self.pi * 0.4
+  local phase_offset = self.pi * 1.5
+
+  for i = 0, 4 do
+    local angle = angle_step * i + phase_offset
+    local x = self.cos(angle)
+    local y = -self.sin(angle)
+    local z = 0
+
+    local x_rot = x * cos_y - z * sin_y
+    local z_rot = x * sin_y + z * cos_y
+    local fov = 1 / (1 + z_rot * 0.5)
+
+    projected[i + 1] = {
+      x = cx + x_rot * self.scale * fov,
+      y = cy + y * self.scale * fov,
+    }
+  end
+
+  for i = 1, self.width * self.height do
+    self.pixels[i] = 0x00000000
+  end
+
+  for _, edge in ipairs(self.edges) do
+    local a = projected[edge[1]]
+    local b = projected[edge[2]]
+    self:draw_line(a.x, a.y, b.x, b.y)
+  end
+
+  self.canvas.pixels = self.pixels
+end
+
+return FastPentagram:new()
