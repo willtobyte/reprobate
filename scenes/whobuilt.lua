@@ -5,6 +5,8 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
+  error("aaahhhhhh")
+
   pool.music = scene:get("theme", SceneType.effect)
   pool.music:play(true)
 
