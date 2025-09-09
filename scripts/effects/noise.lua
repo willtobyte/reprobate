@@ -51,8 +51,6 @@ local function fill_block(buffer, width, height, x, y, bw, bh, px)
 end
 
 function NoiseEffect:loop()
-  error("bhhhhhh")
-
   if self.done then
     return
   end
