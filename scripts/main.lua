@@ -23,6 +23,7 @@ function setup()
   scenemanager:register("prelude")
   scenemanager:register("whobuilt")
 
+  scenemanager:register("thankyou")
   scenemanager:register("pixelslabs")
 
   local stage = queryparam("stage", "prelude")
