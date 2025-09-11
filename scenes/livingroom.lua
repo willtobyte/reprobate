@@ -63,7 +63,7 @@ function scene.on_enter()
   scenemanager:destroy("mainmenu")
   scenemanager:destroy("whobuilt")
   scenemanager:destroy("babyroom")
-  -- scenemanager:register("nextroom")
+  scenemanager:register("highschool")
 
   local theme = scene:get("rainmuffled", SceneType.effect)
   theme:play(true)
