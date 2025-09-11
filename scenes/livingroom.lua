@@ -1,14 +1,15 @@
 local scene = {}
 
 local lightning = require("effects/lightning")
-local visibility = require("helpers/visibility")
-local Scribe = require("helpers/scribe")
 
+local visibility = require("helpers/visibility")
+
+local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
 local pool = {}
--- local lock = false
+
 local prefix = "livingroom/"
 
 local cassette = engine:cassette()
@@ -85,13 +86,9 @@ function scene.on_enter()
     end
 
     object:on_touch(function()
-      -- if lock then
-      -- 	return
-      -- end
-
-      -- lock = true
       local messages = settings.message
       local message = messages[math.random(#messages)]
+
       say(message, 3, 3, 3000)
     end)
 
@@ -110,10 +107,6 @@ function scene.on_enter()
 
     say(warning, 3, 3, 3000)
   end)
-end
-
-function scene.on_motion(x, y)
-  -- effect:motion(x, y)
 end
 
 function scene.on_loop(delta)
