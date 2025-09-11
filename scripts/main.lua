@@ -26,7 +26,7 @@ function setup()
   scenemanager:register("thankyou")
   scenemanager:register("pixelslabs")
 
-  local start = "prelude" -- "thankyou"
+  local start = "prelude"
   local stage = queryparam("stage", start)
 
   scenemanager:set(stage)
