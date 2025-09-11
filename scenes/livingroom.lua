@@ -60,9 +60,7 @@ local animations = {
 function scene.on_enter()
   pool.timers = {}
 
-  scenemanager:destroy("mainmenu")
-  scenemanager:destroy("whobuilt")
-  scenemanager:destroy("babyroom")
+  scenemanager:destroy("*")
   scenemanager:register("highschool")
 
   local theme = scene:get("rainmuffled", SceneType.effect)

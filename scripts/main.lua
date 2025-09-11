@@ -17,15 +17,6 @@ function setup()
   overlay.cursor:set("horn")
 
   scenemanager:register("prelude")
-  scenemanager:register("mainmenu")
-  scenemanager:register("whobuilt")
-  scenemanager:register("babyroom")
-  scenemanager:register("livingroom")
-  scenemanager:register("highschool")
-  scenemanager:register("pearintosh")
-
-  scenemanager:register("thankyou")
-  scenemanager:register("pixelslabs")
 
   local start = "prelude"
   local stage = queryparam("stage", start)
