@@ -1,15 +1,17 @@
 local scene = {}
 
 local Inventory = require("overlay/inventory")
-local Scribe = require("helpers/scribe")
-local noise = require("effects/noise")
-local visibility = require("helpers/visibility")
 
+local Scribe = require("helpers/scribe")
+
+local noise = require("effects/noise")
+
+local visibility = require("helpers/visibility")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
 local pool = {}
--- local lock = false
+
 local prefix = "babyroom/"
 
 local cassette = engine:cassette()
@@ -72,25 +74,20 @@ function scene.on_enter()
   end)
 
   for name, settings in pairs(animations) do
+    local message = settings.message
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
     local delay = math.random(settings.minimum, settings.maximum) * 1000
     local action = settings.action
     local id = timermanager:set(delay, function()
-      local object = pool[name]
-      object.action = action
+      pool[name].action = action
     end)
 
     table.insert(pool.timers, id)
 
     object:on_touch(function()
-      -- if lock then
-      -- 	return
-      -- end
-
-      -- lock = true
-      say(settings.message)
+      say(message)
     end)
   end
 

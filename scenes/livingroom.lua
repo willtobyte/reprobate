@@ -60,6 +60,8 @@ local animations = {
 function scene.on_enter()
   pool.timers = {}
 
+  scenemanager:destroy("mainmenu")
+  scenemanager:destroy("whobuilt")
   scenemanager:destroy("babyroom")
   -- scenemanager:register("nextroom")
 
