@@ -90,7 +90,9 @@ function scene.on_enter()
       -- end
 
       -- lock = true
-      say(settings.message[math.random(#settings.message)], 3, 3, 3000)
+      local messages = settings.message
+      local message = messages[math.random(#messages)]
+      say(message, 3, 3, 3000)
     end)
 
     pool[name] = object
