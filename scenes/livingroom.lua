@@ -62,8 +62,8 @@ function scene.on_enter()
   scenemanager:destroy("babyroom")
   -- scenemanager:register("nextroom")
 
-  local rainmuffled = scene:get("rainmuffled", SceneType.effect)
-  rainmuffled:play(true)
+  local theme = scene:get("rainmuffled", SceneType.effect)
+  theme:play(true)
 
   for name, settings in pairs(animations) do
     local object = scene:get(name, SceneType.object)
