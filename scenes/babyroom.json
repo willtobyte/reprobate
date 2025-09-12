@@ -68,23 +68,23 @@
     },
     {
       "action": "shadow",
-      "kind": "iplayboy",
-      "name": "iplayboy"
+      "kind": "_playboy",
+      "name": "_playboy"
     },
     {
       "action": "shadow",
-      "kind": "igijoe",
-      "name": "igijoe"
+      "kind": "_gijoe",
+      "name": "_gijoe"
     },
     {
       "action": "shadow",
-      "kind": "inintendo",
-      "name": "inintendo"
+      "kind": "_nintendo",
+      "name": "_nintendo"
     },
     {
       "action": "shadow",
-      "kind": "icrucifix",
-      "name": "icrucifix"
+      "kind": "_crucifix",
+      "name": "_crucifix"
     }
   ]
 }

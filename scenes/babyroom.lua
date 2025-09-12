@@ -91,14 +91,15 @@ function scene.on_enter()
   end
 
   local objects = {}
+
   for name, settings in pairs(items) do
     local key = prefix .. name
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
-    local iname = "i" .. name
-    local inventory = scene:get(iname, SceneType.object)
-    pool[iname] = inventory
+    local un = "_" .. name
+    local inventory = scene:get(un, SceneType.object)
+    pool[un] = inventory
 
     table.insert(objects, inventory)
 
@@ -123,7 +124,7 @@ function scene.on_enter()
         cassette:set(key, true)
 
         visibility.disappear(self)
-        pool[iname].action = "default"
+        pool[un].action = "default"
 
         for _, collected in pairs(pool.collected) do
           if not collected then
