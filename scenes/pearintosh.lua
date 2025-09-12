@@ -42,7 +42,9 @@ function scene.on_enter()
 end
 
 function scene.on_loop(delta)
-  pentagram:loop()
+  if pool.pentagram then
+    pentagram:loop()
+  end
 
   local cursor = pool.cursor
 
@@ -104,6 +106,8 @@ function scene.on_keypress(code)
           -- end
 
           pool.program = pool.program .. "\n" .. message
+
+          pool.pentagram = message == "666"
         end
 
         local function stderr(message)
