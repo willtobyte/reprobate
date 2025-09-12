@@ -39,6 +39,10 @@ function scene.on_enter()
     pool.program = "10 "
     pool.halted = false
   end)
+
+  pentagram:on_finish(function()
+    print(">>>")
+  end)
 end
 
 function scene.on_loop(delta)
@@ -95,17 +99,17 @@ function scene.on_keypress(code)
         local errors = {}
 
         local function stdout(message)
-          -- local achievements = {
-          -- 	["666"] = "NEW_ACHIEVEMENT_2_2",
-          -- 	["SATAN"] = "NEW_ACHIEVEMENT_2_3",
-          -- 	["3"] = "NEW_ACHIEVEMENT_2_4",
-          -- 	["4"] = "NEW_ACHIEVEMENT_2_4",
-          -- }
+          local achievements = {
+            ["666"] = "THE_NUMBER_OF_THE_BEAST",
+            ["SATAN"] = "BLACK_CASTLE_SECRET",
+            ["42"] = "ANSWER_TO_EVERYTHING",
+            ["MOON"] = "LUNAR_TOMB_UNLOCKED",
+          }
 
-          -- local id = achievements[message]
-          -- if id then
-          -- 	achievement:unlock(id)
-          -- end
+          local id = achievements[string.upper(message)]
+          if id then
+            achievement:unlock(id)
+          end
 
           pool.program = pool.program .. "\n" .. message
 
@@ -166,6 +170,8 @@ function scene.on_leave()
   for o in pairs(pool) do
     pool[o] = nil
   end
+
+  pentagram:teardown()
 end
 
 return scene

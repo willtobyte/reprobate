@@ -9,7 +9,7 @@ local cos = math.cos
 local sin = math.sin
 local pi = math.pi
 
-local COLOR_PIXEL = char(255, 0, 0, 80)
+local COLOR_PIXEL = char(255, 0, 0, 0)
 local BLANK_PIXEL = char(0, 0, 0, 0)
 
 function Pentagram:new(width, height)
@@ -55,13 +55,19 @@ function Pentagram:new(width, height)
     thickness = t,
     RED = COLOR_PIXEL,
     BLANK = BLANK_PIXEL,
+    callback = nil,
+    finished = false,
   }, self)
+end
+
+function Pentagram:on_finish(fn)
+  self.callback = fn
 end
 
 function Pentagram:loop()
   local w, h, total = self.w, self.h, self.total
   local buf = self.buffer
-  local RED, BLANK = self.RED, self.BLANK
+  local BLANK = self.BLANK
   local unit_circle = self.unit_circle
   local pent_angles = self.pent_angles
   local edges = self.edges
@@ -70,11 +76,27 @@ function Pentagram:loop()
   local segs = self.segments
   local now = moment()
 
+  if not self.alpha_start then
+    self.alpha_start = now
+  end
+
   for i = 1, total do
     buf[i] = BLANK
   end
 
   local elapsed = (now - self.start_time) * 0.001
+  local a_elapsed = (now - self.alpha_start) * 0.001
+  local a = a_elapsed >= 6 and 255 or floor((a_elapsed / 6) * 255)
+  self.RED = char(255, 0, 0, a)
+  local RED = self.RED
+
+  if a == 255 and not self.finished then
+    self.finished = true
+    if self.callback then
+      self.callback()
+    end
+  end
+
   local cos_y = cos(elapsed * 0.8)
   local sin_y = sin(elapsed * 0.8)
   local cx, cy = w * 0.5, h * 0.5
