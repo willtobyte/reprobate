@@ -4,13 +4,16 @@ Pentagram.__index = Pentagram
 local char = string.char
 local concat = table.concat
 local floor = math.floor
+local min = math.min
 local abs = math.abs
 local cos = math.cos
 local sin = math.sin
 local pi = math.pi
+local random = math.random
 
 local COLOR_PIXEL = char(255, 0, 0, 0)
 local BLANK_PIXEL = char(0, 0, 0, 0)
+local RED_PIXEL = char(255, 0, 0, 255)
 
 function Pentagram:new(width, height)
   local w = width or 480
@@ -57,6 +60,10 @@ function Pentagram:new(width, height)
     BLANK = BLANK_PIXEL,
     callback = nil,
     finished = false,
+    effect_started = false,
+    effect_done = false,
+    effect_duration = 3,
+    cell = 10,
   }, self)
 end
 
@@ -90,11 +97,22 @@ function Pentagram:loop()
   self.RED = char(255, 0, 0, a)
   local RED = self.RED
 
-  if a == 255 and not self.finished then
-    self.finished = true
-    if self.callback then
-      self.callback()
+  if a == 255 and not self.effect_started and not self.effect_done then
+    self.effect_started = true
+    self.effect_start = now
+    local c = self.cell
+    self.grid_w = floor((w + c - 1) / c)
+    self.grid_h = floor((h + c - 1) / c)
+    local total_cells = self.grid_w * self.grid_h
+    local order = {}
+    for i = 1, total_cells do
+      order[i] = i - 1
     end
+    for i = total_cells, 2, -1 do
+      local j = random(i)
+      order[i], order[j] = order[j], order[i]
+    end
+    self.square_order = order
   end
 
   local cos_y = cos(elapsed * 0.8)
@@ -105,24 +123,21 @@ function Pentagram:loop()
   for i = 1, 5 do
     local ang = pent_angles[i]
     local x0 = cos(ang)
-    local z0 = 0
-    local x_r = x0 * cos_y - z0 * sin_y
-    local z_r = x0 * sin_y + z0 * cos_y
+    local x_r = x0 * cos_y
+    local z_r = x0 * sin_y
     local fov = 1 / (1 + z_r * 0.5)
-    proj[i] = {
-      x = cx + x_r * scale * fov,
-      y = cy - sin(ang) * scale * fov,
-    }
+    proj[i] = { x = cx + x_r * scale * fov, y = cy - sin(ang) * scale * fov }
   end
 
   local w_mul = w
-  for _, e in ipairs(edges) do
-    local a = proj[e[1]]
-    local b = proj[e[2]]
-    local x0 = floor(a.x)
-    local y0 = floor(a.y)
-    local x1 = floor(b.x)
-    local y1 = floor(b.y)
+  for i = 1, 5 do
+    local e = edges[i]
+    local a0 = proj[e[1]]
+    local b0 = proj[e[2]]
+    local x0 = floor(a0.x)
+    local y0 = floor(a0.y)
+    local x1 = floor(b0.x)
+    local y1 = floor(b0.y)
     local dx = abs(x1 - x0)
     local dy = abs(y1 - y0)
     local sx = x0 < x1 and 1 or -1
@@ -207,6 +222,40 @@ function Pentagram:loop()
       if e2 < dx then
         err = err + dx
         yi0 = yi0 + sy
+      end
+    end
+  end
+
+  if self.effect_started and not self.effect_done then
+    local dt = (now - self.effect_start) * 0.001
+    local p = dt / self.effect_duration
+    if p > 1 then
+      p = 1
+    end
+    local c = self.cell
+    local gw = self.grid_w
+    local gh = self.grid_h
+    local total_cells = gw * gh
+    local k = floor(total_cells * p)
+    local order = self.square_order
+    for i = 1, k do
+      local idx = order[i]
+      local cx0 = (idx % gw) * c
+      local cy0 = floor(idx / gw) * c
+      local y_end = min(cy0 + c - 1, h - 1)
+      local x_end = min(cx0 + c - 1, w - 1)
+      for y = cy0, y_end do
+        local base = y * w
+        for x = cx0, x_end do
+          buf[base + x + 1] = RED_PIXEL
+        end
+      end
+    end
+    if dt >= self.effect_duration then
+      self.effect_done = true
+      self.finished = true
+      if self.callback then
+        self.callback()
       end
     end
   end

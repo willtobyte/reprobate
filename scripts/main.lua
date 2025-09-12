@@ -5,7 +5,7 @@ _G.engine = EngineFactory.new()
   :with_width(1920)
   :with_height(1080)
   :with_scale(4.0)
-  :with_fullscreen(true)
+  :with_fullscreen(false)
   :with_sentry(dsn)
   :create()
 
@@ -16,7 +16,7 @@ local overlay = engine:overlay()
 function setup()
   overlay.cursor:set("horn")
 
-  local start = "prelude" -- "pearintosh"
+  local start = "pearintosh" -- "prelude"
 
   scenemanager:register(start)
 
