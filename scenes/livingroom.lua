@@ -33,7 +33,7 @@ local animations = {
   bloodpriest = {
     message = {
       "...Cast into the fields of evil pleasure.",
-      "Hear her dead lips...",
+      "Hear they dead lips...",
     },
   },
   pictures = {
