@@ -9,7 +9,7 @@ local cos = math.cos
 local sin = math.sin
 local pi = math.pi
 
-local RED_PIXEL = char(255, 0, 0, 255)
+local COLOR_PIXEL = char(255, 0, 0, 80)
 local BLANK_PIXEL = char(0, 0, 0, 0)
 
 function Pentagram:new(width, height)
@@ -53,7 +53,7 @@ function Pentagram:new(width, height)
     pent_angles = pent_angles,
     edges = edges,
     thickness = t,
-    RED = RED_PIXEL,
+    RED = COLOR_PIXEL,
     BLANK = BLANK_PIXEL,
   }, self)
 end

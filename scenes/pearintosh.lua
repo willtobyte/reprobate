@@ -1,6 +1,9 @@
 local basic = require("interpreter/basic")
 
+local pentagram = require("effects/pentagram")
+
 local scene = {}
+
 local overlay = engine:overlay()
 
 local pool = {
@@ -31,9 +34,6 @@ function scene.on_enter()
   pool.effects.key1 = scene:get("key1", SceneType.effect)
   pool.effects.key2 = scene:get("key2", SceneType.effect)
 
-  pool.music = scene:get("music", SceneType.effect)
-  pool.music:play(true)
-
   local switch = scene:get("switch", SceneType.object)
   switch:on_touch(function()
     pool.program = "10 "
@@ -42,6 +42,8 @@ function scene.on_enter()
 end
 
 function scene.on_loop(delta)
+  pentagram:loop()
+
   local cursor = pool.cursor
 
   if pool.typing then
