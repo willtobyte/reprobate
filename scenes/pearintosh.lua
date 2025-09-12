@@ -44,6 +44,8 @@ end
 function scene.on_loop(delta)
   if pool.pentagram then
     pentagram:loop()
+
+    -- TODO start timer to enter next level
   end
 
   local cursor = pool.cursor
