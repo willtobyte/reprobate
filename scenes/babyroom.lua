@@ -213,7 +213,6 @@ function scene.on_touch()
 end
 
 function scene.on_motion(x, y)
-  error("fuck this shit")
   pool.inventory:on_motion(x, y)
 end
 
