@@ -73,7 +73,7 @@ end
 
 function Pentagram:loop()
   local w, h, total = self.w, self.h, self.total
-  local buf = self.buffer
+  local buffer = self.buffer
   local BLANK = self.BLANK
   local unit_circle = self.unit_circle
   local pent_angles = self.pent_angles
@@ -88,7 +88,7 @@ function Pentagram:loop()
   end
 
   for i = 1, total do
-    buf[i] = BLANK
+    buffer[i] = BLANK
   end
 
   local elapsed = (now - self.start_time) * 0.001
@@ -151,7 +151,7 @@ function Pentagram:loop()
           for dx_off = -t, t do
             local xx = x0 + dx_off
             if xx >= 0 and xx < w then
-              buf[base + xx + 1] = RED
+              buffer[base + xx + 1] = RED
             end
           end
         end
@@ -206,7 +206,7 @@ function Pentagram:loop()
           for dx_off = -t, t do
             local xx = xi0 + dx_off
             if xx >= 0 and xx < w then
-              buf[base + xx + 1] = RED
+              buffer[base + xx + 1] = RED
             end
           end
         end
@@ -247,7 +247,7 @@ function Pentagram:loop()
       for y = cy0, y_end do
         local base = y * w
         for x = cx0, x_end do
-          buf[base + x + 1] = RED_PIXEL
+          buffer[base + x + 1] = RED_PIXEL
         end
       end
     end
@@ -260,7 +260,7 @@ function Pentagram:loop()
     end
   end
 
-  self.canvas.pixels = concat(buf, "", 1, total)
+  self.canvas.pixels = concat(buffer, "", 1, total)
 end
 
 function Pentagram:teardown()
