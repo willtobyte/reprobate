@@ -16,7 +16,7 @@ local overlay = engine:overlay()
 function setup()
   overlay.cursor:set("horn")
 
-  local start = "pearintosh" -- "prelude"
+  local start = "prelude" -- "pearintosh"
 
   scenemanager:register(start)
 
