@@ -21,9 +21,9 @@ function setup()
   scenemanager:register(start)
   scenemanager:register("pearintosh")
 
-  local stage = queryparam("stage", start)
+  local scene = queryparam("scene", start)
 
-  scenemanager:set(stage)
+  scenemanager:set(scene)
 end
 
 function loop() end
