@@ -1,3 +1,6 @@
+local PENTAGRAM_COLOR = { 255, 0, 0 }
+local SQUARE_COLOR = { 0, 0, 0 }
+
 local Pentagram = {}
 Pentagram.__index = Pentagram
 
@@ -146,7 +149,7 @@ function Pentagram:loop()
     proj[i] = { x = cx + x_r * scale * fov, y = cy - sin(ang) * scale * fov }
   end
   local w_mul = w
-  local star_col = char(85, 255, 255, a)
+  local star_col = char(PENTAGRAM_COLOR[1], PENTAGRAM_COLOR[2], PENTAGRAM_COLOR[3], a)
   for i = 1, 5 do
     local e = edges[i]
     local a0 = proj[e[1]]
@@ -252,7 +255,7 @@ function Pentagram:loop()
     local k = floor(total_cells * p)
     local order_sq = self.square_order
     local sizes = self.cell_sizes
-    local mg_col = char(255, 85, 255, a)
+    local sq_col = char(SQUARE_COLOR[1], SQUARE_COLOR[2], SQUARE_COLOR[3], a)
     for i = 1, k do
       local idxc = order_sq[i]
       local cx0 = (idxc % gw) * c
@@ -271,7 +274,7 @@ function Pentagram:loop()
             local basey = yy * w
             local xx = x
             while xx <= sx2 do
-              buffer[basey + xx + 1] = mg_col
+              buffer[basey + xx + 1] = sq_col
               xx = xx + 1
             end
             yy = yy + 1
