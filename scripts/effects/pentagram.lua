@@ -162,7 +162,7 @@ function Pentagram:loop()
           for dx_off = -t, t do
             local xx = x0 + dx_off
             if xx >= 0 and xx < w then
-              local idx = ((xx + ymod) % 4) + 1
+              local idx = ((xx * 374761393 + yy * 668265263 + self.frame * 362437) % 4) + 1
               buffer[basey + xx + 1] = palette[idx]
             end
           end
@@ -216,7 +216,7 @@ function Pentagram:loop()
           for dx_off = -t, t do
             local xx = xi0 + dx_off
             if xx >= 0 and xx < w then
-              local idx = ((xx + ymod) % 4) + 1
+              local idx = ((xx * 374761393 + yy * 668265263 + self.frame * 362437) % 4) + 1
               buffer[basey + xx + 1] = palette[idx]
             end
           end
@@ -260,7 +260,7 @@ function Pentagram:loop()
         local ymod = y % 4
         local x = cx0
         while x <= x_end do
-          local pi = ((x + ymod) % 4) + 1
+          local pi = ((x * 374761393 + y * 668265263 + self.frame * 362437) % 4) + 1
           buffer[basey + x + 1] = palette[pi]
           x = x + 1
         end
