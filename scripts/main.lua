@@ -19,6 +19,7 @@ function setup()
   local start = "prelude"
 
   scenemanager:register(start)
+  scenemanager:register("pearintosh")
 
   local stage = queryparam("stage", start)
 
