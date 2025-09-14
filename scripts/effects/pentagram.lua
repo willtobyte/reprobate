@@ -126,6 +126,12 @@ function Pentagram:loop()
       ord[i], ord[j] = ord[j], ord[i]
     end
     self.square_order = ord
+    local sizes = {}
+    for i = 1, total_cells do
+      local r = random(4)
+      sizes[i] = r == 1 and 4 or (r == 2 and 8 or (r == 3 and 12 or 16))
+    end
+    self.cell_sizes = sizes
   end
   local cos_y = cos(elapsed * 0.8)
   local sin_y = sin(elapsed * 0.8)
@@ -140,6 +146,7 @@ function Pentagram:loop()
     proj[i] = { x = cx + x_r * scale * fov, y = cy - sin(ang) * scale * fov }
   end
   local w_mul = w
+  local star_col = char(85, 255, 255, a)
   for i = 1, 5 do
     local e = edges[i]
     local a0 = proj[e[1]]
@@ -158,12 +165,10 @@ function Pentagram:loop()
         local yy = y0 + dy_off
         if yy >= 0 and yy < h then
           local basey = yy * w_mul
-          local ymod = yy % 4
           for dx_off = -t, t do
             local xx = x0 + dx_off
             if xx >= 0 and xx < w then
-              local idx = ((xx * 374761393 + yy * 668265263 + self.frame * 362437) % 4) + 1
-              buffer[basey + xx + 1] = palette[idx]
+              buffer[basey + xx + 1] = star_col
             end
           end
         end
@@ -212,12 +217,10 @@ function Pentagram:loop()
         local yy = yi0 + dy_off
         if yy >= 0 and yy < h then
           local basey = yy * w_mul
-          local ymod = yy % 4
           for dx_off = -t, t do
             local xx = xi0 + dx_off
             if xx >= 0 and xx < w then
-              local idx = ((xx * 374761393 + yy * 668265263 + self.frame * 362437) % 4) + 1
-              buffer[basey + xx + 1] = palette[idx]
+              buffer[basey + xx + 1] = star_col
             end
           end
         end
@@ -248,23 +251,34 @@ function Pentagram:loop()
     local total_cells = gw * gh
     local k = floor(total_cells * p)
     local order_sq = self.square_order
+    local sizes = self.cell_sizes
+    local mg_col = char(255, 85, 255, a)
     for i = 1, k do
       local idxc = order_sq[i]
       local cx0 = (idxc % gw) * c
       local cy0 = floor(idxc / gw) * c
       local y_end = min(cy0 + c - 1, h - 1)
       local x_end = min(cx0 + c - 1, w - 1)
+      local s = sizes[idxc + 1]
       local y = cy0
       while y <= y_end do
-        local basey = y * w
-        local ymod = y % 4
+        local sy2 = min(y + s - 1, y_end)
         local x = cx0
         while x <= x_end do
-          local pi = ((x * 374761393 + y * 668265263 + self.frame * 362437) % 4) + 1
-          buffer[basey + x + 1] = palette[pi]
-          x = x + 1
+          local sx2 = min(x + s - 1, x_end)
+          local yy = y
+          while yy <= sy2 do
+            local basey = yy * w
+            local xx = x
+            while xx <= sx2 do
+              buffer[basey + xx + 1] = mg_col
+              xx = xx + 1
+            end
+            yy = yy + 1
+          end
+          x = x + s
         end
-        y = y + 1
+        y = y + s
       end
     end
     if dt >= self.effect_duration then
