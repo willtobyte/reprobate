@@ -4,6 +4,9 @@ local pentagram = require("effects/pentagram")
 
 local scene = {}
 
+local prefix = "pearintosh/"
+
+local cassette = engine:cassette()
 local overlay = engine:overlay()
 
 local pool = {
@@ -40,7 +43,13 @@ function scene.on_enter()
     pool.halted = false
   end)
 
+  -- scenemanager:destroy("*")
+  -- scenemanager:register("livingroom")
+
+  cassette:set("system/stage", "pearintosh")
+
   pentagram:on_finish(function()
+    cassette:set("system/stage", "minigame")
     print(">>>")
   end)
 end
