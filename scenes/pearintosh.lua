@@ -8,6 +8,7 @@ local prefix = "pearintosh/"
 
 local cassette = engine:cassette()
 local overlay = engine:overlay()
+local scenemanager = engine:scenemanager()
 
 local pool = {
   prelude = [[
@@ -49,11 +50,9 @@ function scene.on_enter()
   cassette:set("system/stage", "pearintosh")
 
   pentagram:on_finish(function()
-    cassette:set("system/stage", "minigame")
-
-    scenemanager:destroy("*")
-    scenemanager:set("minigame")
-    -- print(">>>")
+    print(">>>")
+    -- TODO
+    -- scenemanager:set("minigame")
   end)
 end
 
