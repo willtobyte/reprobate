@@ -103,13 +103,13 @@ function Pentagram:loop()
   local elapsed = (now - self.start_time) * 0.001
   local a_elapsed = (now - self.alpha_start) * 0.001
   local a = a_elapsed >= 6 and 255 or floor((a_elapsed / 6) * 255)
-  local pal = self.palette
+  local palette = self.palette
   local base = self.base_colors
   local order = self.palette_order
-  pal[1] = char(base[order[1]][1], base[order[1]][2], base[order[1]][3], a)
-  pal[2] = char(base[order[2]][1], base[order[2]][2], base[order[2]][3], a)
-  pal[3] = char(base[order[3]][1], base[order[3]][2], base[order[3]][3], a)
-  pal[4] = char(base[order[4]][1], base[order[4]][2], base[order[4]][3], a)
+  palette[1] = char(base[order[1]][1], base[order[1]][2], base[order[1]][3], a)
+  palette[2] = char(base[order[2]][1], base[order[2]][2], base[order[2]][3], a)
+  palette[3] = char(base[order[3]][1], base[order[3]][2], base[order[3]][3], a)
+  palette[4] = char(base[order[4]][1], base[order[4]][2], base[order[4]][3], a)
   if a == 255 and not self.effect_started and not self.effect_done then
     self.effect_started = true
     self.effect_start = now
@@ -163,7 +163,7 @@ function Pentagram:loop()
             local xx = x0 + dx_off
             if xx >= 0 and xx < w then
               local idx = ((xx + ymod) % 4) + 1
-              buffer[basey + xx + 1] = pal[idx]
+              buffer[basey + xx + 1] = palette[idx]
             end
           end
         end
@@ -217,7 +217,7 @@ function Pentagram:loop()
             local xx = xi0 + dx_off
             if xx >= 0 and xx < w then
               local idx = ((xx + ymod) % 4) + 1
-              buffer[basey + xx + 1] = pal[idx]
+              buffer[basey + xx + 1] = palette[idx]
             end
           end
         end
@@ -261,7 +261,7 @@ function Pentagram:loop()
         local x = cx0
         while x <= x_end do
           local pi = ((x + ymod) % 4) + 1
-          buffer[basey + x + 1] = pal[pi]
+          buffer[basey + x + 1] = palette[pi]
           x = x + 1
         end
         y = y + 1
