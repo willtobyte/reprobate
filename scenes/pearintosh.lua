@@ -43,14 +43,17 @@ function scene.on_enter()
     pool.halted = false
   end)
 
-  -- scenemanager:destroy("*")
-  -- scenemanager:register("livingroom")
+  -- TODO
+  -- scenemanager:register("minigame")
 
   cassette:set("system/stage", "pearintosh")
 
   pentagram:on_finish(function()
     cassette:set("system/stage", "minigame")
-    print(">>>")
+
+    scenemanager:destroy("*")
+    scenemanager:set("minigame")
+    -- print(">>>")
   end)
 end
 
