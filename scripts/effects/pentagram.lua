@@ -11,20 +11,16 @@ local sin = math.sin
 local pi = math.pi
 local random = math.random
 
-local COLOR_PIXEL = char(255, 0, 0, 0)
 local BLANK_PIXEL = char(0, 0, 0, 0)
-local RED_PIXEL = char(255, 0, 0, 255)
 
 function Pentagram:new(width, height)
   local w = width or 480
   local h = height or 270
   local total = w * h
-
   local buffer = {}
   for i = 1, total do
     buffer[i] = BLANK_PIXEL
   end
-
   local segments = 360
   local angle_step = (2 * pi) / segments
   local unit_circle = {}
@@ -32,7 +28,6 @@ function Pentagram:new(width, height)
     local ang = (i - 1) * angle_step
     unit_circle[i] = { cos(ang), -sin(ang) }
   end
-
   local cyclic_step = pi * 0.4
   local phase_offset = pi * 1.5
   local pent_angles = {}
@@ -40,9 +35,8 @@ function Pentagram:new(width, height)
     pent_angles[i] = cyclic_step * (i - 1) + phase_offset
   end
   local edges = { { 1, 3 }, { 3, 5 }, { 5, 2 }, { 2, 4 }, { 4, 1 } }
-
   local t = 3
-
+  local palette_order = { 1, 2, 3, 4 }
   return setmetatable({
     canvas = engine:canvas(),
     w = w,
@@ -56,7 +50,6 @@ function Pentagram:new(width, height)
     pent_angles = pent_angles,
     edges = edges,
     thickness = t,
-    RED = COLOR_PIXEL,
     BLANK = BLANK_PIXEL,
     callback = nil,
     finished = false,
@@ -64,6 +57,15 @@ function Pentagram:new(width, height)
     effect_done = false,
     effect_duration = 3,
     cell = 10,
+    base_colors = {
+      { 255, 48, 0 },
+      { 255, 84, 0 },
+      { 255, 120, 0 },
+      { 255, 156, 0 },
+    },
+    palette = {},
+    palette_order = palette_order,
+    frame = 0,
   }, self)
 end
 
@@ -82,21 +84,32 @@ function Pentagram:loop()
   local scale = self.scale
   local segs = self.segments
   local now = moment()
-
   if not self.alpha_start then
     self.alpha_start = now
   end
-
   for i = 1, total do
     buffer[i] = BLANK
   end
-
+  self.frame = self.frame + 1
+  if self.frame % 6 == 1 then
+    local o = self.palette_order
+    local n = #o
+    for i = n, 2, -1 do
+      local j = random(i)
+      o[i], o[j] = o[j], o[i]
+    end
+    self.palette_order = o
+  end
   local elapsed = (now - self.start_time) * 0.001
   local a_elapsed = (now - self.alpha_start) * 0.001
   local a = a_elapsed >= 6 and 255 or floor((a_elapsed / 6) * 255)
-  self.RED = char(255, 0, 0, a)
-  local RED = self.RED
-
+  local pal = self.palette
+  local base = self.base_colors
+  local order = self.palette_order
+  pal[1] = char(base[order[1]][1], base[order[1]][2], base[order[1]][3], a)
+  pal[2] = char(base[order[2]][1], base[order[2]][2], base[order[2]][3], a)
+  pal[3] = char(base[order[3]][1], base[order[3]][2], base[order[3]][3], a)
+  pal[4] = char(base[order[4]][1], base[order[4]][2], base[order[4]][3], a)
   if a == 255 and not self.effect_started and not self.effect_done then
     self.effect_started = true
     self.effect_start = now
@@ -104,21 +117,19 @@ function Pentagram:loop()
     self.grid_w = floor((w + c - 1) / c)
     self.grid_h = floor((h + c - 1) / c)
     local total_cells = self.grid_w * self.grid_h
-    local order = {}
+    local ord = {}
     for i = 1, total_cells do
-      order[i] = i - 1
+      ord[i] = i - 1
     end
     for i = total_cells, 2, -1 do
       local j = random(i)
-      order[i], order[j] = order[j], order[i]
+      ord[i], ord[j] = ord[j], ord[i]
     end
-    self.square_order = order
+    self.square_order = ord
   end
-
   local cos_y = cos(elapsed * 0.8)
   local sin_y = sin(elapsed * 0.8)
   local cx, cy = w * 0.5, h * 0.5
-
   local proj = {}
   for i = 1, 5 do
     local ang = pent_angles[i]
@@ -128,7 +139,6 @@ function Pentagram:loop()
     local fov = 1 / (1 + z_r * 0.5)
     proj[i] = { x = cx + x_r * scale * fov, y = cy - sin(ang) * scale * fov }
   end
-
   local w_mul = w
   for i = 1, 5 do
     local e = edges[i]
@@ -147,11 +157,13 @@ function Pentagram:loop()
       for dy_off = -t, t do
         local yy = y0 + dy_off
         if yy >= 0 and yy < h then
-          local base = yy * w_mul
+          local basey = yy * w_mul
+          local ymod = yy % 4
           for dx_off = -t, t do
             local xx = x0 + dx_off
             if xx >= 0 and xx < w then
-              buffer[base + xx + 1] = RED
+              local idx = ((xx + ymod) % 4) + 1
+              buffer[basey + xx + 1] = pal[idx]
             end
           end
         end
@@ -170,7 +182,6 @@ function Pentagram:loop()
       end
     end
   end
-
   for i = 1, segs do
     local u = unit_circle[i]
     local x0, y0 = u[1], u[2]
@@ -179,7 +190,6 @@ function Pentagram:loop()
     local fov0 = 1 / (1 + z_r * 0.5)
     local sx0 = cx + x_r * scale * fov0
     local sy0 = cy + y0 * scale * fov0
-
     local j = (i % segs) + 1
     local u2 = unit_circle[j]
     local x1u, y1u = u2[1], u2[2]
@@ -188,7 +198,6 @@ function Pentagram:loop()
     local fov1 = 1 / (1 + z1_r * 0.5)
     local sx1 = cx + x1_r * scale * fov1
     local sy1 = cy + y1u * scale * fov1
-
     local xi0 = floor(sx0)
     local yi0 = floor(sy0)
     local xi1 = floor(sx1)
@@ -202,11 +211,13 @@ function Pentagram:loop()
       for dy_off = -t, t do
         local yy = yi0 + dy_off
         if yy >= 0 and yy < h then
-          local base = yy * w_mul
+          local basey = yy * w_mul
+          local ymod = yy % 4
           for dx_off = -t, t do
             local xx = xi0 + dx_off
             if xx >= 0 and xx < w then
-              buffer[base + xx + 1] = RED
+              local idx = ((xx + ymod) % 4) + 1
+              buffer[basey + xx + 1] = pal[idx]
             end
           end
         end
@@ -225,7 +236,6 @@ function Pentagram:loop()
       end
     end
   end
-
   if self.effect_started and not self.effect_done then
     local dt = (now - self.effect_start) * 0.001
     local p = dt / self.effect_duration
@@ -237,18 +247,24 @@ function Pentagram:loop()
     local gh = self.grid_h
     local total_cells = gw * gh
     local k = floor(total_cells * p)
-    local order = self.square_order
+    local order_sq = self.square_order
     for i = 1, k do
-      local idx = order[i]
-      local cx0 = (idx % gw) * c
-      local cy0 = floor(idx / gw) * c
+      local idxc = order_sq[i]
+      local cx0 = (idxc % gw) * c
+      local cy0 = floor(idxc / gw) * c
       local y_end = min(cy0 + c - 1, h - 1)
       local x_end = min(cx0 + c - 1, w - 1)
-      for y = cy0, y_end do
-        local base = y * w
-        for x = cx0, x_end do
-          buffer[base + x + 1] = RED_PIXEL
+      local y = cy0
+      while y <= y_end do
+        local basey = y * w
+        local ymod = y % 4
+        local x = cx0
+        while x <= x_end do
+          local pi = ((x + ymod) % 4) + 1
+          buffer[basey + x + 1] = pal[pi]
+          x = x + 1
         end
+        y = y + 1
       end
     end
     if dt >= self.effect_duration then
@@ -259,7 +275,6 @@ function Pentagram:loop()
       end
     end
   end
-
   self.canvas.pixels = concat(buffer, "", 1, total)
 end
 
