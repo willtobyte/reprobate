@@ -161,6 +161,8 @@ function scene.on_enter()
   pool.inventory = Inventory.new(layout, character, objects)
 
   noise:on_finish(function()
+    noise:teardown()
+
     say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
   end)
 end
@@ -217,7 +219,6 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_leave()
-  noise:teardown()
   noise = nil
   package.loaded["effects/noise"] = nil
 
