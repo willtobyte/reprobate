@@ -94,7 +94,7 @@ function Lightning:loop()
   end
 end
 
-function Pentagram:teardown()
+function Lightning:teardown()
   self.canvas:clear()
 
   self.active = false

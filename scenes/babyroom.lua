@@ -170,7 +170,10 @@ end
 function scene.on_loop(delta)
   noise:loop()
   scribe:loop(delta)
-  pool.inventory:loop(delta)
+
+  if pool.inventory then
+    pool.inventory:loop(delta)
+  end
 end
 
 function scene.on_touch()
