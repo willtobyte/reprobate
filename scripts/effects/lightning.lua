@@ -94,9 +94,15 @@ function Lightning:loop()
   end
 end
 
-function Lightning:teardown()
+function Pentagram:teardown()
+  self.canvas:clear()
+
   self.active = false
-  self.canvas.pixels = rep(self.dark_line, self.h)
+  self.buffer = nil
+  self.cache = nil
+  self.canvas = nil
+  self.callback = nil
+  self.loop = function() end
 end
 
 return Lightning:new()
