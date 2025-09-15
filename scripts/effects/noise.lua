@@ -143,16 +143,14 @@ function NoiseEffect:loop()
 end
 
 function NoiseEffect:teardown()
+  self.canvas.pixels = nil
+
   self.buffer = nil
   self.cache = nil
-
   self.canvas = nil
   self.callback = nil
-  self.start_time = nil
 
-  self.loop = function()
-    return
-  end
+  self.loop = function() end
 end
 
 return NoiseEffect:new()
