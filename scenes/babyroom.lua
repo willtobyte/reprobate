@@ -218,6 +218,8 @@ end
 
 function scene.on_leave()
   noise:teardown()
+  package.loaded["effects/noise"] = nil
+  noise = nil
 
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
