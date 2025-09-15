@@ -142,6 +142,17 @@ function NoiseEffect:loop()
   self.canvas.pixels = concat(buffer, "", 1, total)
 end
 
-function NoiseEffect:teardown() end
+function NoiseEffect:teardown()
+  self.buffer = nil
+  self.cache = nil
+
+  self.canvas = nil
+  self.callback = nil
+  self.start_time = nil
+
+  self.loop = function()
+    return
+  end
+end
 
 return NoiseEffect:new()
