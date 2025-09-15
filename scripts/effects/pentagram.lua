@@ -77,6 +77,9 @@ function Pentagram:on_finish(fn)
 end
 
 function Pentagram:loop()
+  if self.finished then
+    return
+  end
   local w, h, total = self.w, self.h, self.total
   local buffer = self.buffer
   local BLANK = self.BLANK
@@ -290,16 +293,20 @@ function Pentagram:loop()
       if self.callback then
         self.callback()
       end
+      return
     end
   end
   self.canvas.pixels = concat(buffer, "", 1, total)
 end
 
 function Pentagram:teardown()
-  for i = 1, self.total do
-    self.buffer[i] = BLANK_PIXEL
-  end
-  self.canvas.pixels = concat(self.buffer, "", 1, self.total)
+  self.canvas:clear()
+
+  self.buffer = nil
+  self.cache = nil
+  self.canvas = nil
+  self.callback = nil
+  self.loop = function() end
 end
 
 return Pentagram:new()

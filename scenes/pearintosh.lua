@@ -50,6 +50,7 @@ function scene.on_enter()
   cassette:set("system/stage", "pearintosh")
 
   pentagram:on_finish(function()
+    pentagram:teardown()
     print(">>>")
     -- TODO
     -- scenemanager:set("minigame")
