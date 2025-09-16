@@ -54,13 +54,13 @@ local items = {
 }
 
 function scene.on_enter()
-  noise:init()
-
   scenemanager:destroy("mainmenu")
   scenemanager:destroy("whobuilt")
   scenemanager:register("livingroom")
 
   cassette:set("system/stage", "babyroom")
+
+  noise:init()
 
   pool.missclicks = 0
   pool.timers = {}
