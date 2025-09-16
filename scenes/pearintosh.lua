@@ -186,4 +186,6 @@ function scene.on_leave()
   pentagram:teardown()
 end
 
+sentinel(scene, "pearintosh")
+
 return scene

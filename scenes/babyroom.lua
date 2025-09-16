@@ -232,4 +232,6 @@ function scene.on_leave()
   end
 end
 
+sentinel(scene, "babyroom")
+
 return scene

@@ -15,4 +15,6 @@ function scene.on_leave()
   end
 end
 
+sentinel(scene, "highschool")
+
 return scene
