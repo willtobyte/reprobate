@@ -220,8 +220,8 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_leave()
-  noise = nil
-  package.loaded["effects/noise"] = nil
+  -- noise = nil
+  -- package.loaded["effects/noise"] = nil
 
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)

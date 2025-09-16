@@ -1,5 +1,7 @@
 local scene = {}
 
+local sentinel = require("helpers/sentinel")
+
 local pool = {}
 
 local scenemanager = engine:scenemanager()
@@ -36,5 +38,24 @@ function scene.on_leave()
     pool[o] = nil
   end
 end
+
+local function attach_finalizer(t, ongc)
+  if type(t) ~= "table" or type(ongc) ~= "function" then
+    return
+  end
+  local np = rawget(_G, "newproxy")
+  if np then
+    local u = np(true)
+    getmetatable(u).__gc = ongc
+    t.__sentinel = u
+    return u
+  end
+  t.__sentinel = setmetatable({}, { __gc = ongc })
+  return t.__sentinel
+end
+
+sentinel(scene, function()
+  print("[GC] collected scene prelude")
+end)
 
 return scene

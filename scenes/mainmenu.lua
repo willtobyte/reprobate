@@ -7,7 +7,7 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
-  local stage = cassette:get("system/stage", "babyroom") -- prelude
+  local stage = cassette:get("system/stage", "babyroom")
 
   scenemanager:destroy("prelude")
   scenemanager:register("whobuilt")
