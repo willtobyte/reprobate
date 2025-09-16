@@ -58,10 +58,10 @@ local animations = {
 }
 
 function scene.on_enter()
-  pool.timers = {}
-
-  scenemanager:destroy("*")
+  scenemanager:destroy("babyroom")
   scenemanager:register("highschool")
+
+  pool.timers = {}
 
   local theme = scene:get("rainmuffled", SceneType.effect)
   theme:play(true)
@@ -104,6 +104,10 @@ function scene.on_enter()
     visibility.appear(pool.voodoodoll)
 
     local warning = "The doll is not yours, it belongs to the loa that rides it."
+
+    print(">>> slash =", package.loaded["scenes/babyroom"])
+    print(">>> dot   =", package.loaded["scenes.babyroom"])
+    print(">>> _G.babyroom ", tostring(_G.babyroom))
 
     say(warning, 3, 3, 3000)
   end)

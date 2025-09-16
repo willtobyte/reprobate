@@ -56,7 +56,8 @@ local items = {
 function scene.on_enter()
   noise:init()
 
-  scenemanager:destroy("*")
+  scenemanager:destroy("mainmenu")
+  scenemanager:destroy("whobuilt")
   scenemanager:register("livingroom")
 
   cassette:set("system/stage", "babyroom")
@@ -220,8 +221,7 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_leave()
-  -- noise = nil
-  -- package.loaded["effects/noise"] = nil
+  noise = nil
 
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
