@@ -5,7 +5,8 @@ local pool = {}
 local scenemanager = engine:scenemanager()
 
 function scene.on_enter()
-  scenemanager:destroy("*")
+  scenemanager:destroy("livingroom")
+  scenemanager:register("pearintosh")
 end
 
 function scene.on_leave()
