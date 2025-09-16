@@ -116,6 +116,8 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  lightning:teardown()
+
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
   end
