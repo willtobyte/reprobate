@@ -4,7 +4,7 @@ local cassette = engine:cassette()
 
 local scenemanager = engine:scenemanager()
 
-local pool = setmetatable({}, { __mode = "k" })
+local pool = {}
 
 function scene.on_enter()
   local stage = cassette:get("system/stage", "babyroom")
@@ -34,6 +34,12 @@ function scene.on_motion(x, y)
     pool.headbanger.action = "right"
   else
     pool.headbanger.action = "left"
+  end
+end
+
+function scene.on_leave()
+  for name in pairs(pool) do
+    pool[name] = nil
   end
 end
 

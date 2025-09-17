@@ -10,13 +10,10 @@ local visibility = require("helpers/visibility")
 
 local noise = require("effects/noise")
 
-local pool = setmetatable({
+local pool = {
   timers = {},
   collected = {},
-  missclicks = 0,
-}, {
-  __mode = "k",
-})
+}
 
 local prefix = "babyroom/"
 
@@ -65,6 +62,7 @@ function scene.on_enter()
   scenemanager:register("livingroom")
   cassette:set("system/stage", "babyroom")
 
+  pool.missclicks = 0
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
@@ -215,6 +213,10 @@ end
 function scene.on_leave()
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
+  end
+
+  for name in pairs(pool) do
+    pool[name] = nil
   end
 end
 

@@ -2,7 +2,7 @@ local scene = {}
 
 local scenemanager = engine:scenemanager()
 
-local pool = setmetatable({}, { __mode = "k" })
+local pool = {}
 
 function scene.on_enter()
   pool.music = scene:get("theme", SceneType.effect)
@@ -60,6 +60,12 @@ function scene.on_enter()
   pool.rodrigo:on_touch(function()
     openurl("https://rodrigodelduca.org")
   end)
+end
+
+function scene.on_leave()
+  for name in pairs(pool) do
+    pool[name] = nil
+  end
 end
 
 sentinel(scene, "whobuilt")
