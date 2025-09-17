@@ -62,12 +62,6 @@ function scene.on_enter()
   end)
 end
 
-function scene.on_leave()
-  for o in pairs(pool) do
-    pool[o] = nil
-  end
-end
-
 sentinel(scene, "whobuilt")
 
 return scene

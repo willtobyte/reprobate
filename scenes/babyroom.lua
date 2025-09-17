@@ -3,14 +3,20 @@ local scene = {}
 local Inventory = require("overlay/inventory")
 
 local Scribe = require("helpers/scribe")
-
-local noise = require("effects/noise")
-
-local visibility = require("helpers/visibility")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
-local pool = setmetatable({ timers = {} }, { __mode = "k" })
+local visibility = require("helpers/visibility")
+
+local noise = require("effects/noise")
+
+local pool = setmetatable({
+  timers = {},
+  collected = {},
+  missclicks = 0,
+}, {
+  __mode = "k",
+})
 
 local prefix = "babyroom/"
 
@@ -59,10 +65,6 @@ function scene.on_enter()
   scenemanager:register("livingroom")
 
   cassette:set("system/stage", "babyroom")
-
-  pool.missclicks = 0
-  pool.timers = {}
-  pool.collected = {}
 
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
@@ -182,10 +184,6 @@ function scene.on_touch()
     pool.missclicks = 0
   end
 
-  -- if lock then
-  -- 	return
-  -- end
-
   pool.touches = (pool.touches or 0) + 1
   pool.threshold = pool.threshold or math.random(3, 6)
 
@@ -195,7 +193,6 @@ function scene.on_touch()
 
   pool.threshold = math.random(3, 6)
   pool.touches = 0
-  -- lock = true
 
   local candidates = {}
   for name in pairs(items) do
@@ -210,10 +207,6 @@ function scene.on_touch()
     say(items[chosen].hint, 3, 3, 3000)
     return
   end
-
-  -- timermanager:singleshot(1000, function()
-  -- 	lock = false
-  -- end)
 end
 
 function scene.on_motion(x, y)

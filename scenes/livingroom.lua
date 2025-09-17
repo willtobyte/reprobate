@@ -63,8 +63,10 @@ function scene.on_enter()
   scenemanager:destroy("babyroom")
   scenemanager:register("highschool")
 
-  local theme = scene:get("rainmuffled", SceneType.effect)
-  theme:play(true)
+  cassette:set("system/stage", "livingroom")
+
+  pool.theme = scene:get("rainmuffled", SceneType.effect)
+  pool.theme:play(true)
 
   for name, settings in pairs(animations) do
     local object = scene:get(name, SceneType.object)

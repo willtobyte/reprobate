@@ -13,16 +13,16 @@ function scene.on_enter()
   scenemanager:register("whobuilt")
   scenemanager:register(stage)
 
-  local music = scene:get("theme", SceneType.effect)
-  music:play(true)
+  pool.music = scene:get("theme", SceneType.effect)
+  pool.music:play(true)
 
-  local play = scene:get("play", SceneType.object)
-  play:on_touch(function()
+  pool.play = scene:get("play", SceneType.object)
+  pool.play:on_touch(function()
     scenemanager:set(stage)
   end)
 
-  local credits = scene:get("credits", SceneType.object)
-  credits:on_touch(function()
+  pool.credits = scene:get("credits", SceneType.object)
+  pool.credits:on_touch(function()
     scenemanager:set("whobuilt")
   end)
 
@@ -34,12 +34,6 @@ function scene.on_motion(x, y)
     pool.headbanger.action = "right"
   else
     pool.headbanger.action = "left"
-  end
-end
-
-function scene.on_leave()
-  for o in pairs(pool) do
-    pool[o] = nil
   end
 end
 
