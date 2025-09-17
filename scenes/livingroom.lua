@@ -62,7 +62,6 @@ function scene.on_enter()
   scenemanager:destroy("whobuilt")
   scenemanager:destroy("babyroom")
   scenemanager:register("highschool")
-
   cassette:set("system/stage", "livingroom")
 
   pool.theme = scene:get("rainmuffled", SceneType.effect)

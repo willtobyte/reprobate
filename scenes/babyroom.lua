@@ -63,7 +63,6 @@ function scene.on_enter()
   scenemanager:destroy("mainmenu")
   scenemanager:destroy("whobuilt")
   scenemanager:register("livingroom")
-
   cassette:set("system/stage", "babyroom")
 
   pool.television = scene:get("television", SceneType.object)
