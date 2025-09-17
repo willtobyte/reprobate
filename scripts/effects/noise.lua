@@ -29,8 +29,8 @@ function NoiseEffect:init()
   self.start_time = moment()
 end
 
-function NoiseEffect:on_finish(cb)
-  self.callback = cb
+function NoiseEffect:on_finish(callback)
+  self.callback = callback
 end
 
 local function fill_block(buffer, width, height, x, y, bw, bh, px)

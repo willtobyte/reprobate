@@ -1,6 +1,6 @@
 local scene = {}
 
-local pool = {}
+local pool = setmetatable({ timers = {} }, { __mode = "k" })
 
 local scenemanager = engine:scenemanager()
 

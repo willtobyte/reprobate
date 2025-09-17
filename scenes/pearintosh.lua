@@ -10,7 +10,7 @@ local cassette = engine:cassette()
 local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 
-local pool = {
+local pool = setmetatable({
   prelude = [[
 MORNING STAR SOFTWARE 1986 (C)
 BASIC V1.6.6
@@ -27,7 +27,9 @@ RUN TO EXECUTE, EXIT TO QUIT
   },
   typing = false,
   halted = false,
-}
+}, {
+  __mode = "k",
+})
 
 function scene.on_enter()
   pool.font = engine:fontfactory():get("retro")

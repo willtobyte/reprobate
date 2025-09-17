@@ -2,7 +2,7 @@ local scene = {}
 
 local scenemanager = engine:scenemanager()
 
-local pool = {}
+local pool = setmetatable({}, { __mode = "k" })
 
 local function leave()
   scenemanager:set("mainmenu")

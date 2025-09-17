@@ -2,7 +2,7 @@ local pentagram = require("effects/pentagram")
 
 local scene = {}
 
-local pool = {}
+local pool = setmetatable({}, { __mode = "k" })
 
 function scene.on_enter() end
 

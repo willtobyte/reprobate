@@ -4,7 +4,7 @@ local cassette = engine:cassette()
 
 local scenemanager = engine:scenemanager()
 
-local pool = {}
+local pool = setmetatable({}, { __mode = "k" })
 
 function scene.on_enter()
   local stage = cassette:get("system/stage", "babyroom")

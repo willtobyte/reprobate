@@ -10,7 +10,7 @@ local visibility = require("helpers/visibility")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
-local pool = {}
+local pool = setmetatable({ timers = {} }, { __mode = "k" })
 
 local prefix = "babyroom/"
 
@@ -59,8 +59,6 @@ function scene.on_enter()
   scenemanager:register("livingroom")
 
   cassette:set("system/stage", "babyroom")
-
-  noise:init()
 
   pool.missclicks = 0
   pool.timers = {}
@@ -166,6 +164,8 @@ function scene.on_enter()
 
     say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
   end)
+
+  noise:init()
 end
 
 function scene.on_loop(delta)
@@ -221,14 +221,8 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_leave()
-  noise = nil
-
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
-  end
-
-  for o in pairs(pool) do
-    pool[o] = nil
   end
 end
 

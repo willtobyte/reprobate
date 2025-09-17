@@ -2,7 +2,7 @@ local scene = {}
 
 local scenemanager = engine:scenemanager()
 
-local pool = {}
+local pool = setmetatable({}, { __mode = "k" })
 
 function scene.on_enter()
   pool.music = scene:get("theme", SceneType.effect)

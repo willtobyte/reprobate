@@ -8,7 +8,7 @@ local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
-local pool = {}
+local pool = setmetatable({ timers = {} }, { __mode = "k" })
 
 local prefix = "livingroom/"
 
@@ -63,8 +63,6 @@ function scene.on_enter()
   scenemanager:destroy("babyroom")
   scenemanager:register("highschool")
 
-  pool.timers = {}
-
   local theme = scene:get("rainmuffled", SceneType.effect)
   theme:play(true)
 
@@ -107,10 +105,6 @@ function scene.on_enter()
 
     local warning = "The doll is not yours, it belongs to the loa that rides it."
 
-    print(">>> slash =", package.loaded["scenes/babyroom"])
-    print(">>> dot   =", package.loaded["scenes.babyroom"])
-    print(">>> _G.babyroom ", tostring(_G.babyroom))
-
     say(warning, 3, 3, 3000)
   end)
 end
@@ -126,10 +120,6 @@ function scene.on_leave()
 
   for _, id in ipairs(pool.timers) do
     timermanager:clear(id)
-  end
-
-  for o in pairs(pool) do
-    pool[o] = nil
   end
 end
 
