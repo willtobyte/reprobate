@@ -29,6 +29,12 @@ function scene.on_touch()
   pool.click:play()
 end
 
+function scene.on_leave()
+  for name in pairs(pool) do
+    pool[name] = nil
+  end
+end
+
 sentinel(scene, "prelude")
 
 return scene
