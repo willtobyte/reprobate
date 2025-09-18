@@ -62,6 +62,8 @@ function scene.on_enter()
   scenemanager:register("livingroom")
   cassette:set("system/stage", "babyroom")
 
+  achievement:unlock("NEW_ACHIEVEMENT_3_1")
+
   pool.missclicks = 0
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
