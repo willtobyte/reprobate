@@ -5,7 +5,7 @@ local scenemanager = engine:scenemanager()
 local pool = {}
 
 function scene.on_enter()
-  achievement:unlock("") -- Our biggest problem is the state.
+  -- achievement:unlock("") -- Our biggest problem is the state.
 
   pool.music = scene:get("theme", SceneType.effect)
   pool.music:play(true)
