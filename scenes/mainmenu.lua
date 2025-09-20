@@ -1,10 +1,10 @@
 local scene = {}
 
+local pool = {}
+
 local cassette = engine:cassette()
 
 local scenemanager = engine:scenemanager()
-
-local pool = {}
 
 function scene.on_enter()
   local stage = cassette:get("system/stage", "babyroom")

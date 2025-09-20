@@ -1,5 +1,11 @@
 local scene = {}
 
+local pool = {}
+
+local timers = {}
+
+local prefix = "livingroom/"
+
 local lightning = require("effects/lightning")
 
 local visibility = require("helpers/visibility")
@@ -8,14 +14,8 @@ local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
-local pool = { timers = {} }
-
-local prefix = "livingroom/"
-
 local cassette = engine:cassette()
-
 local scenemanager = engine:scenemanager()
-
 local timermanager = engine:timermanager()
 
 local animations = {
@@ -83,7 +83,7 @@ function scene.on_enter()
         end
       end)
 
-      table.insert(pool.timers, id)
+      table.insert(timers, id)
     end
 
     object:on_touch(function()
@@ -119,7 +119,7 @@ end
 function scene.on_leave()
   lightning:teardown()
 
-  for _, id in ipairs(pool.timers) do
+  for _, id in ipairs(timers) do
     timermanager:clear(id)
   end
 

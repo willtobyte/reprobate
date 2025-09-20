@@ -1,5 +1,11 @@
 local scene = {}
 
+local pool = {}
+
+local timers = {}
+
+local prefix = "babyroom/"
+
 local Inventory = require("overlay/inventory")
 
 local Scribe = require("helpers/scribe")
@@ -9,12 +15,6 @@ local scribe = Scribe.scribe
 local visibility = require("helpers/visibility")
 
 local noise = require("effects/noise")
-
-local pool = {}
-
-local timers = {}
-
-local prefix = "babyroom/"
 
 local cassette = engine:cassette()
 local overlay = engine:overlay()
