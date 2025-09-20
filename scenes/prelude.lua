@@ -1,6 +1,6 @@
 local scene = {}
 
-local pool = setmetatable({}, { __mode = "k" })
+local pool = {}
 
 local scenemanager = engine:scenemanager()
 
@@ -27,6 +27,11 @@ end
 
 function scene.on_touch()
   pool.click:play()
+
+  pool.clicks = pool.clicks + 1
+  if pool.clicks >= 10 then
+    achievement:unlock("How about trying to click with your forehead?")
+  end
 end
 
 function scene.on_leave()
