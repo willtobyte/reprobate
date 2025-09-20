@@ -4,7 +4,6 @@ local pool = { timers = {} }
 
 local scenemanager = engine:scenemanager()
 
-
 function scene.on_enter()
   -- achievement:unlock("")
 

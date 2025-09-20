@@ -143,6 +143,8 @@ function scene.on_enter()
 
           door.action = "default"
 
+          -- achievement:unlock("")
+
           local id = timermanager:singleshot(3000, function()
             local effect = scene:get("door", SceneType.effect)
             if effect then
