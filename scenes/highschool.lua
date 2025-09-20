@@ -4,7 +4,9 @@ local pool = {}
 
 local timers = {}
 
+local cassette = engine:cassette()
 local scenemanager = engine:scenemanager()
+local timermanager = engine:timermanager()
 
 function scene.on_enter()
   scenemanager:destroy("mainmenu")
