@@ -10,10 +10,9 @@ local visibility = require("helpers/visibility")
 
 local noise = require("effects/noise")
 
-local pool = {
-  timers = {},
-  collected = {},
-}
+local pool = {}
+
+local timers = {}
 
 local prefix = "babyroom/"
 
@@ -64,6 +63,7 @@ function scene.on_enter()
 
   achievement:unlock("NEW_ACHIEVEMENT_3_1")
 
+  pool.collected = {}
   pool.missclicks = 0
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
@@ -83,7 +83,7 @@ function scene.on_enter()
       pool[name].action = action
     end)
 
-    table.insert(pool.timers, id)
+    table.insert(timers, id)
 
     object:on_touch(function()
       say(message)
@@ -145,13 +145,15 @@ function scene.on_enter()
 
           local id = timermanager:singleshot(3000, function()
             local effect = scene:get("door", SceneType.effect)
-            effect:play()
+            if effect then
+              effect:play()
+            end
           end)
 
-          table.insert(pool.timers, id)
+          table.insert(timers, id)
         end)
 
-        table.insert(pool.timers, id)
+        table.insert(timers, id)
       end)
     end
   end
@@ -213,7 +215,7 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_leave()
-  for _, id in ipairs(pool.timers) do
+  for _, id in ipairs(timers) do
     timermanager:clear(id)
   end
 

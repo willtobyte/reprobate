@@ -1,6 +1,8 @@
 local scene = {}
 
-local pool = setmetatable({ timers = {} }, { __mode = "k" })
+local pool = {}
+
+local timers = {}
 
 local scenemanager = engine:scenemanager()
 
@@ -16,7 +18,7 @@ function scene.on_enter()
 end
 
 function scene.on_leave()
-  for _, id in ipairs(pool.timers) do
+  for _, id in ipairs(timers) do
     timermanager:clear(id)
   end
 
