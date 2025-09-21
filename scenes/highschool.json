@@ -9,8 +9,18 @@
     },
     {
       "action": "default",
+      "kind": "blackguy",
+      "name": "blackguy"
+    },
+    {
+      "action": "default",
       "kind": "blondgirl",
       "name": "blondgirl"
+    },
+    {
+      "action": "default",
+      "kind": "bloodyhandprint",
+      "name": "bloodyhandprint"
     },
     {
       "action": "default",
@@ -22,7 +32,36 @@
       "kind": "gothgirl",
       "name": "gothgirl"
     },
-
+    {
+      "action": "default",
+      "kind": "longhairgirl",
+      "name": "longhairgirl"
+    },
+    {
+      "action": "default",
+      "kind": "nerd",
+      "name": "nerd"
+    },
+    {
+      "action": "default",
+      "kind": "punkgirl",
+      "name": "punkgirl"
+    },
+    {
+      "action": "default",
+      "kind": "purplegirl",
+      "name": "purplegirl"
+    },
+    {
+      "action": "default",
+      "kind": "purpleman",
+      "name": "purpleman"
+    },
+    {
+      "action": "default",
+      "kind": "teacher",
+      "name": "teacher"
+    },
     {
       "action": "default",
       "kind": "wallclock",

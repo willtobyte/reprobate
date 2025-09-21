@@ -3,24 +3,24 @@
     "default": {
       "hitbox": {
         "rectangle": {
-          "x": 433,
-          "y": 138,
-          "width": 47,
-          "height": 42
+          "x": 135,
+          "y": 167,
+          "width": 60,
+          "height": 90
         }
       },
       "frames": [
         {
           "duration": -1,
           "offset": {
-            "x": 433,
-            "y": 138
+            "x": 135,
+            "y": 167
           },
           "rectangle": {
             "x": 1,
             "y": 1,
-            "width": 47,
-            "height": 68
+            "width": 84,
+            "height": 103
           }
         }
       ]
