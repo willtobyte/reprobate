@@ -3,7 +3,7 @@
   "height": 270,
   "objects": [
     {
-      "action": "default",
+      "action": "hidden",
       "kind": "binarymessage",
       "name": "binarymessage"
     },

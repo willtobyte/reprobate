@@ -37,12 +37,12 @@ function scene.on_enter()
 
   table.insert(timers, id)
 
-  -- pool.binarymessage:on_hover(function(self)
-  --   self.action = "default"
-  -- end)
-  -- pool.binarymessage:on_unhover(function(self)
-  --   self.action = nil
-  -- end)
+  pool.binarymessage:on_hover(function(self)
+    self.action = "default"
+  end)
+  pool.binarymessage:on_unhover(function(self)
+    self.action = "hidden"
+  end)
 end
 
 function scene.on_leave()
