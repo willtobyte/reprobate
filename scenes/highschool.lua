@@ -17,6 +17,26 @@ function scene.on_enter()
   cassette:set("system/stage", "highschool")
 
   pool.binarymessage = scene:get("binarymessage", SceneType.object)
+
+  pool.pearintosh = scene:get("pearintosh", SceneType.object)
+  pool.pearintosh:on_touch(function()
+    scenemanager:set("pearintosh")
+  end)
+
+  pool.bloodyhandprint = scene:get("bloodyhandprint", SceneType.object)
+
+  local id = timermanager:set(6000, function()
+    pool.bloodyhandprint.action = "default"
+
+    local id = timermanager:singleshot(1000, function()
+      pool.bloodyhandprint.action = nil
+    end)
+
+    table.insert(timers, id)
+  end)
+
+  table.insert(timers, id)
+
   -- pool.binarymessage:on_hover(function(self)
   --   self.action = "default"
   -- end)

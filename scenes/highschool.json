@@ -18,7 +18,6 @@
       "name": "blondgirl"
     },
     {
-      "action": "default",
       "kind": "bloodyhandprint",
       "name": "bloodyhandprint"
     },
@@ -41,6 +40,11 @@
       "action": "default",
       "kind": "nerd",
       "name": "nerd"
+    },
+    {
+      "action": "default",
+      "kind": "pearintosh",
+      "name": "pearintosh"
     },
     {
       "action": "default",

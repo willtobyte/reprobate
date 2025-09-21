@@ -3,9 +3,9 @@
     "default": {
       "hitbox": {
         "rectangle": {
-          "x": 433,
+          "x": 443,
           "y": 138,
-          "width": 47,
+          "width": 27,
           "height": 42
         }
       },
