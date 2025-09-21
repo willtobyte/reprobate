@@ -2,6 +2,7 @@
   "width": 480,
   "height": 270,
   "effects": ["key1", "key2"],
+  "fonts": ["retro"],
   "objects": [
     {
       "action": "default",
