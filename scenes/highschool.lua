@@ -31,6 +31,17 @@ function scene.on_enter()
 
   pool.binarymessage = scene:get("binarymessage", SceneType.object)
 
+  local function on_event(event, value)
+    local binarymessage = pool.binarymessage
+
+    binarymessage["on_" .. event](binarymessage, function(self)
+      self.action = value
+    end)
+  end
+
+  on_event("hover", "default")
+  on_event("unhover", "hidden")
+
   pool.pearintosh = scene:get("pearintosh", SceneType.object)
   pool.pearintosh:on_touch(function()
     scenemanager:set("pearintosh")
@@ -49,13 +60,6 @@ function scene.on_enter()
   end)
 
   table.insert(timers, id)
-
-  pool.binarymessage:on_hover(function(self)
-    self.action = "default"
-  end)
-  pool.binarymessage:on_unhover(function(self)
-    self.action = "hidden"
-  end)
 
   for name, conf in pairs(objects) do
     local object = scene:get(name, SceneType.object)

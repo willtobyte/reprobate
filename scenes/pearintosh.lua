@@ -32,6 +32,9 @@ RUN TO EXECUTE, EXIT TO QUIT
 })
 
 function scene.on_enter()
+  -- scenemanager:register("minigame")
+  cassette:set("system/stage", "pearintosh")
+
   pool.font = engine:fontfactory():get("retro")
   pool.label = overlay:create(WidgetType.label)
   pool.label.font = pool.font
@@ -45,11 +48,6 @@ function scene.on_enter()
     pool.program = "10 "
     pool.halted = false
   end)
-
-  -- TODO
-  -- scenemanager:register("minigame")
-
-  cassette:set("system/stage", "pearintosh")
 
   pentagram:on_finish(function()
     pentagram:teardown()
