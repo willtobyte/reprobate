@@ -72,13 +72,13 @@ function scene.on_enter()
     say("This game is haunted, can you feel it?")
   end)
 
-  for name, settings in pairs(animations) do
-    local message = settings.message
+  for name, conf in pairs(animations) do
+    local message = conf.message
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
-    local delay = math.random(settings.minimum, settings.maximum) * 1000
-    local action = settings.action
+    local delay = math.random(conf.minimum, conf.maximum) * 1000
+    local action = conf.action
     local id = timermanager:set(delay, function()
       pool[name].action = action
     end)
@@ -92,7 +92,7 @@ function scene.on_enter()
 
   local objects = {}
 
-  for name, settings in pairs(items) do
+  for name, conf in pairs(items) do
     local key = prefix .. name
     local object = scene:get(name, SceneType.object)
     pool[name] = object
@@ -114,7 +114,7 @@ function scene.on_enter()
 
     if not done then
       object:on_touch(function(self)
-        if settings.damage then
+        if conf.damage then
           overlay:dispatch(WidgetType.cursor, "damage")
         end
 

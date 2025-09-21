@@ -67,18 +67,18 @@ function scene.on_enter()
   pool.theme = scene:get("rainmuffled", SceneType.effect)
   pool.theme:play(true)
 
-  for name, settings in pairs(animations) do
+  for name, conf in pairs(animations) do
     local object = scene:get(name, SceneType.object)
 
-    local timed = settings.minimum and settings.maximum or false
+    local timed = conf.minimum and conf.maximum or false
 
     if timed then
-      local delay = math.random(settings.minimum, settings.maximum) * 1000
+      local delay = math.random(conf.minimum, conf.maximum) * 1000
 
       local id = timermanager:set(delay, function()
-        object.action = settings.action
+        object.action = conf.action
 
-        if settings.lightning then
+        if conf.lightning then
           lightning:trigger()
         end
       end)
@@ -87,7 +87,7 @@ function scene.on_enter()
     end
 
     object:on_touch(function()
-      local messages = settings.message
+      local messages = conf.message
       local message = messages[math.random(#messages)]
 
       say(message, 3, 3, 3000)
