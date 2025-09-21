@@ -12,6 +12,15 @@ local cassette = engine:cassette()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
+local objects = {
+  blackguy = {
+    messages = {
+      "TODO 1",
+      "TODO 2",
+    },
+  },
+}
+
 function scene.on_enter()
   scenemanager:destroy("mainmenu")
   scenemanager:destroy("whobuilt")
@@ -47,6 +56,23 @@ function scene.on_enter()
   pool.binarymessage:on_unhover(function(self)
     self.action = "hidden"
   end)
+
+  for name, conf in pairs(objects) do
+    local object = scene:get(name, SceneType.object)
+
+    object:on_touch(function()
+      local messages = conf.messages
+      local message = messages[math.random(#messages)]
+
+      say(message, 3, 3, 3000)
+    end)
+
+    pool[name] = object
+  end
+end
+
+function scene.on_loop(delta)
+  scribe:loop(delta)
 end
 
 function scene.on_leave()

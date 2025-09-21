@@ -18,20 +18,20 @@ local cassette = engine:cassette()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
-local animations = {
+local objects = {
   antiquewallclock = {
-    message = {
+    messages = {
       "The sands of time for me are running low...",
       "Dawn no longer comes.",
     },
   },
   baphomet = {
-    message = {
+    messages = {
       "Hell? The worst torment is to live in this realm of hypocrisy.",
     },
   },
   bloodpriest = {
-    message = {
+    messages = {
       "...Cast into the fields of evil pleasure.",
       "Hear they dead lips...",
     },
@@ -40,19 +40,19 @@ local animations = {
     minimum = 4,
     maximum = 10,
     action = "moving",
-    message = { "What you seek, I control without help." },
+    messages = { "What you seek, I control without help." },
   },
   mirrors = {
-    message = { "Banished, cold, alone, through the mirror I watch, aeons away." },
+    messages = { "Banished, cold, alone, through the mirror I watch, aeons away." },
   },
   ogremask = {
-    message = { "Oni no tsume de omae no tamashii o hikisake." },
+    messages = { "Oni no tsume de omae no tamashii o hikisake." },
   },
   window = {
     minimum = 8,
     maximum = 14,
     action = "lightning",
-    message = { "You cannot escape your own mind." },
+    messages = { "You cannot escape your own mind." },
     lightning = true,
   },
 }
@@ -67,7 +67,7 @@ function scene.on_enter()
   pool.theme = scene:get("rainmuffled", SceneType.effect)
   pool.theme:play(true)
 
-  for name, conf in pairs(animations) do
+  for name, conf in pairs(objects) do
     local object = scene:get(name, SceneType.object)
 
     local timed = conf.minimum and conf.maximum or false
@@ -87,7 +87,7 @@ function scene.on_enter()
     end
 
     object:on_touch(function()
-      local messages = conf.message
+      local messages = conf.messages
       local message = messages[math.random(#messages)]
 
       say(message, 3, 3, 3000)
