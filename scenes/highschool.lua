@@ -30,17 +30,12 @@ function scene.on_enter()
   cassette:set("system/stage", "highschool")
 
   pool.binarymessage = scene:get("binarymessage", SceneType.object)
-
-  local function on_event(event, value)
-    local binarymessage = pool.binarymessage
-
-    binarymessage["on_" .. event](binarymessage, function(self)
-      self.action = value
-    end)
-  end
-
-  on_event("hover", "default")
-  on_event("unhover", "hidden")
+  pool.binarymessage:on_hover(function(self)
+    self.action = "default"
+  end)
+  pool.binarymessage:on_unhover(function(self)
+    self.action = "hidden"
+  end)
 
   pool.pearintosh = scene:get("pearintosh", SceneType.object)
   pool.pearintosh:on_touch(function()
