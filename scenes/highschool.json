@@ -28,6 +28,11 @@
     },
     {
       "action": "default",
+      "kind": "pearintosh",
+      "name": "pearintosh"
+    },
+    {
+      "action": "default",
       "kind": "gothgirl",
       "name": "gothgirl"
     },
@@ -38,13 +43,8 @@
     },
     {
       "action": "default",
-      "kind": "nerd",
-      "name": "nerd"
-    },
-    {
-      "action": "default",
-      "kind": "pearintosh",
-      "name": "pearintosh"
+      "kind": "thenerd",
+      "name": "thenerd"
     },
     {
       "action": "default",
@@ -65,6 +65,11 @@
       "action": "default",
       "kind": "teacher",
       "name": "teacher"
+    },
+    {
+      "action": "default",
+      "kind": "decorations",
+      "name": "decorations"
     },
     {
       "action": "default",
