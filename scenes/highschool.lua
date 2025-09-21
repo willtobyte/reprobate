@@ -16,7 +16,13 @@ function scene.on_enter()
 
   cassette:set("system/stage", "highschool")
 
-  --
+  pool.binarymessage = scene:get("binarymessage", SceneType.object)
+  -- pool.binarymessage:on_hover(function(self)
+  --   self.action = "default"
+  -- end)
+  -- pool.binarymessage:on_unhover(function(self)
+  --   self.action = nil
+  -- end)
 end
 
 function scene.on_leave()

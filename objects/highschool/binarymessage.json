@@ -1,0 +1,40 @@
+{
+  "animations": {
+    "hidden": {
+      "hitbox": {
+        "rectangle": {
+          "x": 323,
+          "y": 93,
+          "width": 63,
+          "height": 39
+        }
+      },
+      "frames": []
+    },
+    "default": {
+      "hitbox": {
+        "rectangle": {
+          "x": 323,
+          "y": 93,
+          "width": 63,
+          "height": 39
+        }
+      },
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 323,
+            "y": 93
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 63,
+            "height": 37
+          }
+        }
+      ]
+    }
+  }
+}

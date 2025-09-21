@@ -1,4 +1,32 @@
 {
   "width": 480,
-  "height": 270
+  "height": 270,
+  "objects": [
+    {
+      "action": "default",
+      "kind": "binarymessage",
+      "name": "binarymessage"
+    },
+    {
+      "action": "default",
+      "kind": "blondgirl",
+      "name": "blondgirl"
+    },
+    {
+      "action": "default",
+      "kind": "bulletinboard",
+      "name": "bulletinboard"
+    },
+    {
+      "action": "default",
+      "kind": "gothgirl",
+      "name": "gothgirl"
+    },
+
+    {
+      "action": "default",
+      "kind": "wallclock",
+      "name": "wallclock"
+    }
+  ]
 }
