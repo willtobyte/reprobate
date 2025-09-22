@@ -4,6 +4,8 @@ local pool = {}
 
 local timers = {}
 
+local Inventory = require("overlay/inventory")
+
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
@@ -66,10 +68,20 @@ function scene.on_enter()
 
     pool[name] = object
   end
+
+  local layout = scene:get("layout", SceneType.object)
+  local character = scene:get("boy", SceneType.object)
+  pool.inventory = Inventory.new(layout, character, {})
+end
+
+function scene.on_motion(x, y)
+  pool.inventory:on_motion(x, y)
 end
 
 function scene.on_loop(delta)
   scribe:loop(delta)
+
+  pool.inventory:loop(delta)
 end
 
 function scene.on_leave()

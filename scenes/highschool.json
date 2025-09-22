@@ -75,6 +75,21 @@
       "action": "default",
       "kind": "wallclock",
       "name": "wallclock"
+    },
+    {
+      "action": "default",
+      "kind": "layout",
+      "name": "layout"
+    },
+    {
+      "action": "default",
+      "kind": "boy",
+      "name": "boy"
+    },
+    {
+      "action": "default",
+      "kind": "playboy",
+      "name": "playboy"
     }
   ]
 }
