@@ -13,10 +13,14 @@ local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
 local objects = {
+  punkgirl = {
+    messages = {
+      "Reactionary discourse from state-puppet teachers.",
+    },
+  },
   redguy = {
     messages = {
-      "TODO 1",
-      "TODO 2",
+      "The road of rebellion leads to inner power.",
     },
   },
 }
@@ -46,12 +50,6 @@ function scene.on_enter()
 
   local id = timermanager:set(6000, function()
     pool.bloodyhandprint.action = "default"
-
-    local id = timermanager:singleshot(1000, function()
-      pool.bloodyhandprint.action = nil
-    end)
-
-    table.insert(timers, id)
   end)
 
   table.insert(timers, id)
