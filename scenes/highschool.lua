@@ -71,7 +71,8 @@ function scene.on_enter()
 
   local layout = scene:get("layout", SceneType.object)
   local character = scene:get("boy", SceneType.object)
-  pool.inventory = Inventory.new(layout, character, {})
+  local playboy = scene:get("playboy", SceneType.object)
+  pool.inventory = Inventory.new(layout, character, { playboy })
 end
 
 function scene.on_motion(x, y)

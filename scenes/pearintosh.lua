@@ -32,6 +32,7 @@ RUN TO EXECUTE, EXIT TO QUIT
 })
 
 function scene.on_enter()
+  scenemanager:destroy("*")
   -- scenemanager:register("minigame")
   cassette:set("system/stage", "pearintosh")
 
