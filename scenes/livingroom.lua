@@ -68,11 +68,11 @@ function scene.on_enter()
   pool.theme:play(true)
 
   for name, conf in pairs(objects) do
+    local bounded = conf.minimum and conf.maximum or false
     local messages = conf.messages
     local object = scene:get(name, SceneType.object)
-    local timed = conf.minimum and conf.maximum or false
 
-    if timed then
+    if bounded then
       local delay = math.random(conf.minimum, conf.maximum) * 1000
 
       local id = timermanager:set(delay, function()
