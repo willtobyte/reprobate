@@ -68,8 +68,8 @@ function scene.on_enter()
   pool.theme:play(true)
 
   for name, conf in pairs(objects) do
+    local messages = conf.messages
     local object = scene:get(name, SceneType.object)
-
     local timed = conf.minimum and conf.maximum or false
 
     if timed then
@@ -87,7 +87,6 @@ function scene.on_enter()
     end
 
     object:on_touch(function()
-      local messages = conf.messages
       local message = messages[math.random(#messages)]
 
       say(message, 3, 3, 3000)
