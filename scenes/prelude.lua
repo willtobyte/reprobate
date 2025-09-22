@@ -23,6 +23,8 @@ function scene.on_enter()
   end)
 
   pool.click = scene:get("click", SceneType.effect)
+
+  pool.clicks = 0
 end
 
 function scene.on_touch()
