@@ -68,10 +68,9 @@ function scene.on_enter()
   pool.theme:play(true)
 
   for name, conf in pairs(objects) do
-    local bounded = conf.minimum and conf.maximum or false
-    local messages = conf.messages
     local object = scene:get(name, SceneType.object)
 
+    local bounded = conf.minimum and conf.maximum or false
     if bounded then
       local delay = math.random(conf.minimum, conf.maximum) * 1000
 
@@ -87,6 +86,7 @@ function scene.on_enter()
     end
 
     object:on_touch(function()
+      local messages = conf.messages
       local message = messages[math.random(#messages)]
 
       say(message, 3, 3, 3000)
