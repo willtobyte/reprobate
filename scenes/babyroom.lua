@@ -173,13 +173,6 @@ function scene.on_enter()
   noise:init()
 end
 
-function scene.on_loop(delta)
-  noise:loop()
-  scribe:loop(delta)
-
-  pool.inventory:loop(delta)
-end
-
 function scene.on_touch()
   pool.missclicks = pool.missclicks + 1
   if pool.missclicks >= 6 then
@@ -214,6 +207,13 @@ end
 
 function scene.on_motion(x, y)
   pool.inventory:on_motion(x, y)
+end
+
+function scene.on_loop(delta)
+  noise:loop()
+  scribe:loop(delta)
+
+  pool.inventory:loop(delta)
 end
 
 function scene.on_leave()
