@@ -13,7 +13,7 @@ local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
 local objects = {
-  blackguy = {
+  redguy = {
     messages = {
       "TODO 1",
       "TODO 2",
