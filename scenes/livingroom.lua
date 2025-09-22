@@ -100,26 +100,22 @@ function scene.on_enter()
 
   local key = prefix .. "cabinetdoor"
 
-  local function opendoor()
+  if cassette:get(key) then
     pool.cabinetdoor.action = "open"
     pool.voodoodoll.action = "default"
+  else
+    pool.cabinetdoor:on_touch(function()
+      pool.cabinetdoor.action = "open"
+      pool.voodoodoll.action = "default"
+
+      visibility.appear(pool.voodoodoll)
+
+      local message = "The doll is not yours, it belongs to the loa that rides it."
+      say(message, 3, 3, 3000)
+
+      cassette:set(key, true)
+    end)
   end
-
-  if cassette:get(key) then
-    opendoor()
-    return
-  end
-
-  pool.cabinetdoor:on_touch(function()
-    opendoor()
-
-    visibility.appear(pool.voodoodoll)
-
-    local message = "The doll is not yours, it belongs to the loa that rides it."
-    say(message, 3, 3, 3000)
-
-    cassette:set(key, true)
-  end)
 end
 
 function scene.on_loop(delta)
