@@ -88,8 +88,8 @@
     },
     {
       "action": "default",
-      "kind": "playboy",
-      "name": "playboy"
+      "kind": "hud/playboy",
+      "name": "hud/playboy"
     }
   ]
 }
