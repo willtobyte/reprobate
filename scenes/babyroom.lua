@@ -49,10 +49,10 @@ local animations = {
 }
 
 local items = {
-  crucifix = { damage = true, hint = "His sacrifice means nothing." },
-  gijoe = { damage = false, hint = "Plastic bones beneath the dust of war." },
-  nintendo = { damage = false, hint = "Wires like veins, still twitching." },
-  playboy = { damage = false, hint = "Paper temptations sealed behind sin." },
+  crucifix = { damage = true },
+  gijoe = { damage = false },
+  nintendo = { damage = false },
+  playboy = { damage = false },
 }
 
 function scene.on_enter()
@@ -176,30 +176,6 @@ function scene.on_touch()
   if pool.missclicks >= 6 then
     pool.beelzebuuth.action = "summon"
     pool.missclicks = 0
-  end
-
-  pool.touches = (pool.touches or 0) + 1
-  pool.threshold = pool.threshold or math.random(3, 6)
-
-  if pool.touches < pool.threshold then
-    return
-  end
-
-  pool.threshold = math.random(3, 6)
-  pool.touches = 0
-
-  local candidates = {}
-  for name in pairs(items) do
-    if not cassette:get(prefix .. name, false) then
-      table.insert(candidates, name)
-    end
-  end
-
-  if #candidates > 0 and math.random() < 0.8 then
-    local chosen = candidates[math.random(#candidates)]
-
-    say(items[chosen].hint, 3, 3, 3000)
-    return
   end
 end
 
