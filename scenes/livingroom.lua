@@ -97,15 +97,28 @@ function scene.on_enter()
 
   pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
   pool.voodoodoll = scene:get("voodoodoll", SceneType.object)
-  pool.cabinetdoor:on_touch(function()
+
+  local key = prefix .. "cabinetdoor"
+
+  local function opendoor()
     pool.cabinetdoor.action = "open"
     pool.voodoodoll.action = "default"
+  end
+
+  if cassette:get(key) then
+    opendoor()
+    return
+  end
+
+  pool.cabinetdoor:on_touch(function()
+    opendoor()
 
     visibility.appear(pool.voodoodoll)
 
-    local warning = "The doll is not yours, it belongs to the loa that rides it."
+    local message = "The doll is not yours, it belongs to the loa that rides it."
+    say(message, 3, 3, 3000)
 
-    say(warning, 3, 3, 3000)
+    cassette:set(key, true)
   end)
 end
 
