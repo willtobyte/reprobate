@@ -4,6 +4,8 @@ local pool = {}
 
 local scenemanager = engine:scenemanager()
 
+local memory = require("helpers/memory")
+
 function scene.on_enter()
   scenemanager:register("mainmenu")
   scenemanager:register("whobuilt")
