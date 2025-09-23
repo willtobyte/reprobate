@@ -1,0 +1,145 @@
+{
+  "animations": {
+    "default": {
+      "hitbox": {
+        "rectangle": {
+          "x": 18,
+          "y": 18,
+          "width": 63,
+          "height": 20
+        }
+      },
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 18,
+            "y": 18
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 63,
+            "height": 20
+          }
+        }
+      ]
+    },
+    "hover": {
+      "hitbox": {
+        "rectangle": {
+          "x": 18,
+          "y": 18,
+          "width": 63,
+          "height": 20
+        }
+      },
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 18,
+            "y": 18
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 63,
+            "height": 20
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 17
+          },
+          "rectangle": {
+            "x": 340,
+            "y": 1,
+            "width": 65,
+            "height": 18
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 18
+          },
+          "rectangle": {
+            "x": 206,
+            "y": 1,
+            "width": 65,
+            "height": 19
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 14,
+            "y": 18
+          },
+          "rectangle": {
+            "x": 137,
+            "y": 1,
+            "width": 67,
+            "height": 19
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 12,
+            "y": 18
+          },
+          "rectangle": {
+            "x": 66,
+            "y": 1,
+            "width": 69,
+            "height": 19
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 14,
+            "y": 18
+          },
+          "rectangle": {
+            "x": 137,
+            "y": 1,
+            "width": 67,
+            "height": 19
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 18
+          },
+          "rectangle": {
+            "x": 273,
+            "y": 1,
+            "width": 65,
+            "height": 19
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 17
+          },
+          "rectangle": {
+            "x": 407,
+            "y": 1,
+            "width": 65,
+            "height": 18
+          }
+        }
+      ]
+    }
+  }
+}

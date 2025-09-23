@@ -6,6 +6,11 @@
   "objects": [
     {
       "action": "default",
+      "kind": "backcursor",
+      "name": "backcursor"
+    },
+    {
+      "action": "default",
       "kind": "switch",
       "name": "switch"
     },

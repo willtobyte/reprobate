@@ -10,31 +10,30 @@ local cassette = engine:cassette()
 local overlay = engine:overlay()
 local scenemanager = engine:scenemanager()
 
-local pool = setmetatable({
-  prelude = [[
-MORNING STAR SOFTWARE 1986 (C)
-BASIC V1.6.6
-49152 BYTES FREE
-
-RUN TO EXECUTE, EXIT TO QUIT
-
-]],
-  program = "10 ",
-  cursor = {
-    visible = true,
-    timer = 0,
-    interval = 0.3,
-  },
-  typing = false,
-  halted = false,
-}, {
-  __mode = "k",
-})
+local pool
 
 function scene.on_enter()
-  scenemanager:destroy("*")
   -- scenemanager:register("minigame")
   cassette:set("system/stage", "pearintosh")
+
+  pool = {
+    prelude = [[
+  MORNING STAR SOFTWARE 1986 (C)
+  BASIC V1.6.6
+  49152 BYTES FREE
+
+  RUN TO EXECUTE, EXIT TO QUIT
+
+  ]],
+    program = "10 ",
+    cursor = {
+      visible = true,
+      timer = 0,
+      interval = 0.3,
+    },
+    typing = false,
+    halted = false,
+  }
 
   pool.font = engine:fontfactory():get("retro")
   pool.label = overlay:create(WidgetType.label)
@@ -43,6 +42,17 @@ function scene.on_enter()
   pool.effects = {}
   pool.effects.key1 = scene:get("key1", SceneType.effect)
   pool.effects.key2 = scene:get("key2", SceneType.effect)
+
+  pool.backcursor = scene:get("backcursor", SceneType.object)
+  pool.backcursor:on_hover(function(self)
+    self.action = "hover"
+  end)
+  pool.backcursor:on_unhover(function(self)
+    self.action = "default"
+  end)
+  pool.backcursor:on_touch(function()
+    scenemanager:set("highschool")
+  end)
 
   local switch = scene:get("switch", SceneType.object)
   switch:on_touch(function()
@@ -183,8 +193,6 @@ function scene.on_leave()
   for o in pairs(pool) do
     pool[o] = nil
   end
-
-  pentagram:teardown()
 end
 
 sentinel(scene, "pearintosh")
