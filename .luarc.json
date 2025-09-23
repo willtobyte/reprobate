@@ -1,5 +1,9 @@
 {
   "diagnostics": {
-    "disable": ["lowercase-global", "undefined-global"]
+    "disable": [
+      "lowercase-global",
+      "undefined-field",
+      "undefined-global"
+    ]
   }
 }
