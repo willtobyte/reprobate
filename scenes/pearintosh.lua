@@ -137,6 +137,10 @@ function scene.on_keypress(code)
           pool.program = pool.program .. "\n" .. message
 
           pool.pentagram = message == "666"
+
+          if pool.pentagram then
+            pool.backcursor.action = nil
+          end
         end
 
         local function stderr(message)
