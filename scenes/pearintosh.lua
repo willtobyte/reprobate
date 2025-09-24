@@ -190,6 +190,10 @@ function scene.on_keypress(code)
 end
 
 function scene.on_leave()
+  if pool.pentagram then
+    pentagram:teardown()
+  end
+
   for o in pairs(pool) do
     pool[o] = nil
   end
