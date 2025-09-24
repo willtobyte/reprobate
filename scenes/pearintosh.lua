@@ -18,13 +18,13 @@ function scene.on_enter()
 
   pool = {
     prelude = [[
-  MORNING STAR SOFTWARE 1986 (C)
-  BASIC V1.6.6
-  49152 BYTES FREE
+MORNING STAR SOFTWARE 1986 (C)
+BASIC V1.6.6
+49152 BYTES FREE
 
-  RUN TO EXECUTE, EXIT TO QUIT
+RUN TO EXECUTE, EXIT TO QUIT
 
-  ]],
+]],
     program = "10 ",
     cursor = {
       visible = true,
@@ -190,6 +190,8 @@ function scene.on_keypress(code)
 end
 
 function scene.on_leave()
+  pool.label:clear()
+
   if pool.pentagram then
     pentagram:teardown()
   end
