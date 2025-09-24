@@ -3,15 +3,28 @@
     "default": {
       "hitbox": {
         "rectangle": {
-          "x": 413,
-          "y": 129,
-          "width": 26,
-          "height": 30
+          "x": 412,
+          "y": 130,
+          "width": 30,
+          "height": 29
         }
       },
       "frames": [
         {
-          "duration": -1,
+          "duration": 1000,
+          "offset": {
+            "x": 412,
+            "y": 128
+          },
+          "rectangle": {
+            "x": 43,
+            "y": 1,
+            "width": 40,
+            "height": 31
+          }
+        },
+        {
+          "duration": 3000,
           "offset": {
             "x": 412,
             "y": 128
