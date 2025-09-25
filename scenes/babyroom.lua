@@ -97,7 +97,7 @@ function scene.on_enter()
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
-    local hn = "hud/" .. name
+    local hn = "HUD/" .. name
     local item = scene:get(hn, SceneType.object)
     pool[hn] = item
     table.insert(objects, item)

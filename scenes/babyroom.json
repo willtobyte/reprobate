@@ -68,23 +68,23 @@
     },
     {
       "action": "shadow",
-      "kind": "hud/playboy",
-      "name": "hud/playboy"
+      "kind": "HUD/playboy",
+      "name": "HUD/playboy"
     },
     {
       "action": "shadow",
-      "kind": "hud/gijoe",
-      "name": "hud/gijoe"
+      "kind": "HUD/gijoe",
+      "name": "HUD/gijoe"
     },
     {
       "action": "shadow",
-      "kind": "hud/nintendo",
-      "name": "hud/nintendo"
+      "kind": "HUD/nintendo",
+      "name": "HUD/nintendo"
     },
     {
       "action": "shadow",
-      "kind": "hud/crucifix",
-      "name": "hud/crucifix"
+      "kind": "HUD/crucifix",
+      "name": "HUD/crucifix"
     }
   ]
 }
