@@ -136,7 +136,6 @@ function scene.on_enter()
         local id = timermanager:singleshot(1000, function()
           local door = scene:get("door", SceneType.object)
           door:on_touch(function()
-            scribe:clear()
             scenemanager:set("livingroom")
           end)
 
@@ -192,6 +191,8 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  scribe:clear()
+
   for _, id in ipairs(timers) do
     timermanager:clear(id)
   end
