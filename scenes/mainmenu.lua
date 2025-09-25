@@ -30,10 +30,6 @@ function scene.on_enter()
 end
 
 function scene.on_motion(x, y)
-  if not pool.headbanger then
-    print(">>> " .. tostring(pool.headbanger))
-  end
-  end
   if x > 240 then -- 480 / 2
     pool.headbanger.action = "right"
   else
