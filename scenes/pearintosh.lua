@@ -44,6 +44,7 @@ RUN TO EXECUTE, EXIT TO QUIT
   pool.effects.key2 = scene:get("key2", SceneType.effect)
 
   pool.backcursor = scene:get("backcursor", SceneType.object)
+  pool.backcursor.action = "default"
   pool.backcursor:on_hover(function(self)
     self.action = "hover"
   end)
