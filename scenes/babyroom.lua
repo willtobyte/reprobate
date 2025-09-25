@@ -61,7 +61,7 @@ function scene.on_enter()
   scenemanager:register("livingroom")
   cassette:set("system/stage", "babyroom")
 
-  achievement:unlock("NEW_ACHIEVEMENT_3_2")
+  achievement:unlock("NEW_ACHIEVEMENT_3_3")
 
   pool.collected = {}
   pool.missclicks = 0
