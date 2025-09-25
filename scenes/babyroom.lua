@@ -60,8 +60,8 @@ function scene.on_enter()
   scenemanager:destroy("whobuilt")
   scenemanager:register("livingroom")
   cassette:set("system/stage", "babyroom")
-
-  achievement:unlock("NEW_ACHIEVEMENT_3_1")
+  
+  achievement:unlock("NEW_ACHIEVEMENT_3_2")
 
   pool.collected = {}
   pool.missclicks = 0
