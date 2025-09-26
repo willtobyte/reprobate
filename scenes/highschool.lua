@@ -32,7 +32,6 @@ function scene.on_enter()
   scenemanager:destroy("whobuilt")
   scenemanager:destroy("livingroom")
   scenemanager:register("pearintosh")
-
   cassette:set("system/stage", "highschool")
 
   pool.binarymessage = scene:get("binarymessage", SceneType.object)
