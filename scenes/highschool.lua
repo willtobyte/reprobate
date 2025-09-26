@@ -25,7 +25,6 @@ local objects = {
       "The road of rebellion leads to inner power.",
     },
   },
-
   teacher = {
     messages = {
       "Your laziness will get you sent straight to hell.",
