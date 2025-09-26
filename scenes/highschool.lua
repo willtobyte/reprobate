@@ -15,6 +15,11 @@ local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
 local objects = {
+  gothgirl = {
+    messages = {
+      "I will not speak of stars, for the universe has faded away.",
+    },
+  },
   punkgirl = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
