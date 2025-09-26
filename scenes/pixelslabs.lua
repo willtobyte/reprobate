@@ -1,21 +1,21 @@
-local effect = require("effects/lantern")
+local lantern = require("effects/lantern")
 
 local scene = {}
 
-local pool = setmetatable({}, { __mode = "k" })
+local pool = {}
 
 function scene.on_enter() end
 
 function scene.on_motion(x, y)
-  effect:motion(x, y)
+  lantern:motion(x, y)
 end
 
 function scene.on_loop()
-  effect:loop()
+  lantern:loop()
 end
 
 function scene.on_leave()
-  effect:teardown()
+  lantern:teardown()
 
   for o in pairs(pool) do
     pool[o] = nil
