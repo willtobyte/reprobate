@@ -27,7 +27,7 @@ local objects = {
   },
   teacher = {
     messages = {
-      "Your laziness will get you sent straight to hell.",
+      "Your laziness will get you sent straight to hell.", -- I miss you, calculus professor.
     },
   },
 }
