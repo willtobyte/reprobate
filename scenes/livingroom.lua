@@ -125,6 +125,7 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  scribe:clear()
   lightning:teardown()
 
   for _, id in ipairs(timers) do

@@ -45,6 +45,7 @@ function scene.on_enter()
 
   pool.pearintosh = scene:get("pearintosh", SceneType.object)
   pool.pearintosh:on_touch(function()
+    scribe:clear()
     scenemanager:set("pearintosh")
   end)
 
@@ -86,6 +87,8 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  scribe:clear()
+
   for _, id in ipairs(timers) do
     timermanager:clear(id)
   end
