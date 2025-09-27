@@ -109,15 +109,15 @@ M.__index = function(t, k)
     if not i then
       return nil
     end
-    local objlist = t.objects
-    if not objlist then
+    local objects = t.objects
+    if not objects then
       return nil
     end
-    local o = objlist[i]
-    if not o then
+    local object = objects[i]
+    if not object then
       return nil
     end
-    return o.kind
+    return object.kind
   end
   return rawget(M, k)
 end
