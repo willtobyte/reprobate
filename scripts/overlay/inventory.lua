@@ -11,9 +11,18 @@ function M.new(layout, character, objects)
   self.original_y_position = layout.y
   self.layout.y = self.original_y_position + 40
   self.character.y = self.layout.y
+  self.target = nil
+  self.x_offset = 0
+  self.y_offset = 0
 
   for i = 1, #self.objects do
     self.objects[i].y = self.layout.y
+
+    self.objects[i]:on_touch(function(_, x, y)
+      self.target = i
+      self.x_offset = x
+      self.y_offset = y
+    end)
   end
 
   self.is_animating = false
@@ -24,6 +33,13 @@ function M.new(layout, character, objects)
 end
 
 function M:motion(x, y)
+  if self.target then
+    self.objects[self.target].placement = {
+      x = x - self.x_offset,
+      y = y - self.y_offset,
+    }
+  end
+
   if self.is_animating then
     return
   end
@@ -54,7 +70,9 @@ function M:loop(delta)
     self.character.y = self.layout.y
 
     for i = 1, #self.objects do
-      self.objects[i].y = self.layout.y
+      if self.target ~= i then
+        self.objects[i].y = self.layout.y
+      end
     end
 
     self.is_animating = false
@@ -67,8 +85,22 @@ function M:loop(delta)
   self.character.y = current_y
 
   for i = 1, #self.objects do
-    self.objects[i].y = current_y
+    if self.target ~= i then
+      self.objects[i].y = current_y
+    end
   end
+end
+
+function M:teardown()
+  self.layout = nil
+  self.character = nil
+  self.target = nil
+
+  for i = 1, #self.objects do
+    self.objects[i] = nil
+  end
+
+  self.objects = nil
 end
 
 return M

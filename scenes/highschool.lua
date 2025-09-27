@@ -82,7 +82,6 @@ function scene.on_enter()
   local layout = scene:get("layout", SceneType.object)
   local character = scene:get("boy", SceneType.object)
   local playboy = scene:get("playboy", SceneType.object)
-  print(">>> " .. playboy.kind)
   pool.inventory = Inventory.new(layout, character, { playboy })
 end
 
@@ -97,6 +96,7 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  pool.inventory:teardown()
   scribe:clear()
 
   for _, id in ipairs(timers) do

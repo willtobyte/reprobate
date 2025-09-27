@@ -1,6 +1,14 @@
 {
   "animations": {
     "default": {
+      "hitbox": {
+        "rectangle": {
+          "x": 130,
+          "y": 229,
+          "width": 31,
+          "height": 36
+        }
+      },
       "frames": [
         {
           "duration": -1,
