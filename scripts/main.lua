@@ -16,7 +16,7 @@ local overlay = engine:overlay()
 function setup()
   overlay.cursor:set("horn")
 
-  local scene = queryparam("scene", "prelude")
+  local scene = queryparam("scene", "highschool")
 
   scenemanager:register(scene)
 
