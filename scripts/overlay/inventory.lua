@@ -91,6 +91,19 @@ function M:loop(delta)
   end
 end
 
+function M:teardown()
+  self.layout = nil
+  self.character = nil
+  self.target = nil
+
+  for i = 1, #self.objects do
+    self.objects[i]:on_touch(nil)
+    self.objects[i] = nil
+  end
+
+  self.objects = nil
+end
+
 M.__index = function(t, k)
   if k == "dragging" then
     local i = t.target
