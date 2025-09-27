@@ -24,15 +24,26 @@ local objects = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
     },
+    ondrop = {
+      ["HUD/playboy"] = "Take this and shove it up your ass.",
+    },
   },
   redguy = {
     messages = {
       "The road of rebellion leads to inner power.",
     },
+    ondrop = {
+      ["HUD/playboy"] = "You pervert.",
+    },
   },
   teacher = {
     messages = {
       "Your laziness will get you sent straight to hell.", -- I miss you, calculus professor.
+    },
+  },
+  thenerd = {
+    messages = {
+      "TODO",
     },
   },
 }
@@ -70,10 +81,10 @@ function scene.on_enter()
     local object = scene:get(name, SceneType.object)
 
     object:on_touch(function()
-      local kind = pool.inventory.dragging
-      if kind ~= nil then
-        if object.kind == "thenerd" then
-          say("obrigado!", 3, 3, 3000)
+      local drag = pool.inventory.dragging
+      if drag ~= nil then
+        if conf.ondrop then
+          say(conf.ondrop[drag], 3, 3, 3000)
         end
 
         return
