@@ -103,4 +103,23 @@ function M:teardown()
   self.objects = nil
 end
 
+M.__index = function(t, k)
+  if k == "dragging" then
+    local i = t.target
+    if not i then
+      return nil
+    end
+    local objlist = t.objects
+    if not objlist then
+      return nil
+    end
+    local o = objlist[i]
+    if not o then
+      return nil
+    end
+    return o.kind
+  end
+  return rawget(M, k)
+end
+
 return M

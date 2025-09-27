@@ -70,6 +70,15 @@ function scene.on_enter()
     local object = scene:get(name, SceneType.object)
 
     object:on_touch(function()
+      local kind = pool.inventory.dragging
+      if kind ~= nil then
+        if object.kind == "thenerd" then
+          say("obrigado!", 3, 3, 3000)
+        end
+
+        return
+      end
+
       local messages = conf.messages
       local message = messages[math.random(#messages)]
 
