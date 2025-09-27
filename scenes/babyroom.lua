@@ -8,6 +8,8 @@ local prefix = "babyroom/"
 
 local Inventory = require("overlay/inventory")
 
+local prank = require("helpers/prank")
+
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
@@ -62,6 +64,8 @@ function scene.on_enter()
   cassette:set("system/stage", "babyroom")
 
   achievement:unlock("NEW_ACHIEVEMENT_3_3")
+
+  prank.write("iseeyou.txt", "TODO...")
 
   pool.collected = {}
   pool.missclicks = 0
