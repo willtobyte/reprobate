@@ -24,7 +24,7 @@ local objects = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
     },
-    ondrop = {
+    droppable = {
       ["HUD/playboy"] = "Take this and shove it up your ass.",
     },
   },
@@ -32,7 +32,7 @@ local objects = {
     messages = {
       "The road of rebellion leads to inner power.",
     },
-    ondrop = {
+    droppable = {
       ["HUD/playboy"] = "You pervert.",
     },
   },
@@ -83,8 +83,8 @@ function scene.on_enter()
     object:on_touch(function()
       local o = pool.inventory.dragging
       if o ~= nil then
-        if conf.ondrop then
-          say(conf.ondrop[o], 3, 3, 3000)
+        if conf.droppable then
+          say(conf.droppable[o], 3, 3, 3000)
         end
 
         return
