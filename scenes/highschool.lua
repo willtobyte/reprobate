@@ -116,7 +116,6 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
-  pool.inventory:teardown()
   scribe:clear()
 
   for _, id in ipairs(timers) do
