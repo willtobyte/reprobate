@@ -81,10 +81,10 @@ function scene.on_enter()
     local object = scene:get(name, SceneType.object)
 
     object:on_touch(function()
-      local drag = pool.inventory.dragging
-      if drag ~= nil then
+      local o = pool.inventory.dragging
+      if o ~= nil then
         if conf.ondrop then
-          say(conf.ondrop[drag], 3, 3, 3000)
+          say(conf.ondrop[o], 3, 3, 3000)
         end
 
         return
