@@ -1,10 +1,10 @@
-local Inventory = {}
-Inventory.__index = Inventory
+local M = {}
+M.__index = M
 
 local ANIMATION_DURATION = 0.2
 
-function Inventory.new(layout, character, objects)
-  local self = setmetatable({}, Inventory)
+function M.new(layout, character, objects)
+  local self = setmetatable({}, M)
   self.layout = layout
   self.character = character
   self.objects = objects
@@ -23,7 +23,7 @@ function Inventory.new(layout, character, objects)
   return self
 end
 
-function Inventory:on_motion(x, y)
+function M:motion(x, y)
   if self.is_animating then
     return
   end
@@ -40,7 +40,7 @@ function Inventory:on_motion(x, y)
   self.is_animating = true
 end
 
-function Inventory:loop(delta)
+function M:loop(delta)
   if not self.is_animating then
     return
   end
@@ -71,4 +71,4 @@ function Inventory:loop(delta)
   end
 end
 
-return Inventory
+return M

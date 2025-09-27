@@ -8,8 +8,8 @@ local prefix = "babyroom/"
 
 local Inventory = require("overlay/inventory")
 
+local ops = require("helpers/ops")
 local prank = require("helpers/prank")
-
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
@@ -71,6 +71,13 @@ function scene.on_enter()
   pool.missclicks = 0
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
+
+  pool.beelzebuuth.misses:subscribe(function(value)
+    if value >= 6 then
+      pool.beelzebuuth.action = "summon"
+      pool.beelzebuuth.misses = 0
+    end
+  end)
 
   pool.television:on_touch(function()
     say("This game is haunted, can you feel it?")
@@ -176,15 +183,11 @@ function scene.on_enter()
 end
 
 function scene.on_touch()
-  pool.missclicks = pool.missclicks + 1
-  if pool.missclicks >= 6 then
-    pool.beelzebuuth.action = "summon"
-    pool.missclicks = 0
-  end
+  ops.incr(pool.beelzebuuth.misses)
 end
 
 function scene.on_motion(x, y)
-  pool.inventory:on_motion(x, y)
+  pool.inventory:motion(x, y)
 end
 
 function scene.on_loop(delta)

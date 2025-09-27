@@ -87,7 +87,7 @@ function scene.on_enter()
 end
 
 function scene.on_motion(x, y)
-  pool.inventory:on_motion(x, y)
+  pool.inventory:motion(x, y)
 end
 
 function scene.on_loop(delta)
