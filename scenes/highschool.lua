@@ -91,7 +91,7 @@ function scene.on_enter()
 
   pool.bloodyhandprint = scene:get("bloodyhandprint", SceneType.object)
 
-  local id = timermanager:set(6000, function()
+  local id = timermanager:set(6666, function()
     pool.bloodyhandprint.action = "default"
   end)
 
