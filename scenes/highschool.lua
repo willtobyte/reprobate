@@ -31,6 +31,7 @@ local objects = {
   redguy = {
     messages = {
       "The road of rebellion leads to inner power.",
+      "The Will to Potency\nThe Will to Potency\nThe Will to Potency",
     },
     droppable = {
       ["HUD/playboy"] = "You pervert.",
@@ -43,7 +44,7 @@ local objects = {
   },
   thenerd = {
     messages = {
-      "TODO",
+      "Die Jesus, I hate you",
     },
   },
 }
