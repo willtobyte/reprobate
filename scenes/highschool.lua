@@ -61,7 +61,7 @@ local objects = {
       ["HUD/playboy"] = {
         accept = true,
         messages = {
-          "Thank you! I have been searching for years for this edition.",
+          "Thank you! I have been searching for years for this edition.\nTake this.",
         },
       },
     },
