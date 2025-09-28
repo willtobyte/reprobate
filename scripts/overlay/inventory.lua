@@ -98,10 +98,19 @@ function M:teardown()
 
   for i = 1, #self.objects do
     self.objects[i]:on_touch(nil)
-    self.objects[i] = nil
   end
 
   self.objects = nil
+end
+
+function M:release()
+  if self.target then
+    local object = self.objects[self.target]
+    if object and object.hide then
+      object:hide()
+    end
+  end
+  self.target = nil
 end
 
 M.__index = function(t, k)

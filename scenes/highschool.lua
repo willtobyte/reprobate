@@ -27,7 +27,11 @@ local objects = {
       "Wake the hell up, kill the TV. Forget your idols & face yourself.",
     },
     droppable = {
-      ["HUD/playboy"] = "Take this and shove it up your ass.",
+      ["HUD/playboy"] = {
+        messages = {
+          "Take this and shove it up your ass.",
+        },
+      },
     },
   },
   redguy = {
@@ -36,17 +40,29 @@ local objects = {
       "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.\nThe Will to Potency.",
     },
     droppable = {
-      ["HUD/playboy"] = "You pervert.",
+      ["HUD/playboy"] = {
+        messages = {
+          "You pervert.",
+        },
+      },
     },
   },
   teacher = {
     messages = {
-      "Your laziness will get you sent straight to hell.", -- I miss you, calculus professor.
+      "Your laziness will get you sent straight to hell.",
     },
   },
   thenerd = {
     messages = {
       "Die Jesus, I hate you",
+    },
+    droppable = {
+      ["HUD/playboy"] = {
+        accept = true,
+        messages = {
+          "Thank you! I have been searching for years for this edition.",
+        },
+      },
     },
   },
 }
@@ -84,18 +100,23 @@ function scene.on_enter()
     local object = scene:get(name, SceneType.object)
 
     object:on_touch(function()
-      local o = pool.inventory.dragging
-      if o ~= nil then
+      local kind = pool.inventory.dragging
+      if kind ~= nil then
         if conf.droppable then
-          say(conf.droppable[o], 3, 3, 3000)
-        end
+          if conf.droppable[kind].accept then
+            pool.inventory:release()
+          end
 
-        return
+          local messages = conf.droppable[kind].messages
+          local message = messages[math.random(#messages)]
+          say(message, 3, 3, 3000)
+
+          return
+        end
       end
 
       local messages = conf.messages
       local message = messages[math.random(#messages)]
-
       say(message, 3, 3, 3000)
     end)
 
@@ -110,6 +131,10 @@ end
 
 function scene.on_motion(x, y)
   pool.inventory:motion(x, y)
+end
+
+function scene.on_touch()
+  print("touch")
 end
 
 function scene.on_loop(delta)
