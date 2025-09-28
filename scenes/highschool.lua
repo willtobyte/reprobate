@@ -54,7 +54,8 @@ local objects = {
   },
   thenerd = {
     messages = {
-      "Die Jesus, I hate you.",
+      "I first learned LOGO, and now I study BASIC.",
+      "I am learning C. Pointers are awesome!",
     },
     droppable = {
       ["HUD/playboy"] = {
