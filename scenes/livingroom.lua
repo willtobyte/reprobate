@@ -22,6 +22,7 @@ local objects = {
   antiquewallclock = {
     messages = {
       "Dawn no longer comes.",
+      "Time catches up with everyone;\nSooner or later, the moment will come.",
     },
   },
   baphomet = {
