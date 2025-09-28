@@ -54,7 +54,7 @@ local objects = {
   },
   thenerd = {
     messages = {
-      "Die Jesus, I hate you",
+      "Die Jesus, I hate you.",
     },
     droppable = {
       ["HUD/playboy"] = {
