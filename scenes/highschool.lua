@@ -18,11 +18,13 @@ local objects = {
   gothgirl = {
     messages = {
       "I will not speak of stars, for the universe has faded away.",
+      "I feel the vibrations of the moon.",
     },
   },
   punkgirl = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
+      "Wake the hell up, kill the TV. Forget your idols & face yourself.",
     },
     droppable = {
       ["HUD/playboy"] = "Take this and shove it up your ass.",
@@ -31,7 +33,7 @@ local objects = {
   redguy = {
     messages = {
       "The road of rebellion leads to inner power.",
-      "The Will to Potency\nThe Will to Potency\nThe Will to Potency",
+      "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.\nThe Will to Potency.",
     },
     droppable = {
       ["HUD/playboy"] = "You pervert.",
