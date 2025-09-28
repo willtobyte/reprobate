@@ -21,7 +21,6 @@ local timermanager = engine:timermanager()
 local objects = {
   antiquewallclock = {
     messages = {
-      "The sands of time for me are running low...",
       "Dawn no longer comes.",
     },
   },
