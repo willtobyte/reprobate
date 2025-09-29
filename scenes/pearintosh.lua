@@ -140,7 +140,7 @@ function scene.on_keypress(code)
           pool.pentagram = message == "666"
 
           if pool.pentagram then
-            pool.backcursor.action = nil
+            pool.backcursor:hide()
           end
         end
 
