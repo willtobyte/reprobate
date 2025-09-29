@@ -100,17 +100,18 @@ function M:teardown()
   if self.target ~= nil then
     self.objects[self.target].x = self.x_orig
     self.objects[self.target].y = self.y_orig
+    self.target = nil
   end
-  self.layout.y = self.start_y
-  self.layout = nil
-  self.character = nil
-  self.target = nil
 
   for i = 1, #self.objects do
     self.objects[i]:on_touch(nil)
   end
 
   self.objects = nil
+
+  self.layout.y = self.start_y
+  self.layout = nil
+  self.character = nil
 end
 
 function M:release()
