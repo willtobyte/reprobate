@@ -122,13 +122,19 @@ function scene.on_enter()
           local messages = reaction.messages
           local message = messages[math.random(#messages)]
           say(message, 3, 3, 3000)
-
           return
         end
       end
 
       local messages = conf.messages
-      local message = messages[math.random(#messages)]
+      local last = #messages
+      local index = math.random(last)
+      local message = messages[index]
+
+      if name == "redguy" and index == last then
+        achievement:unlock("ACH_THE_WILL_TO_POTENCY") -- The Will to Potency.
+      end
+
       say(message, 3, 3, 3000)
     end)
 

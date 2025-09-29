@@ -63,8 +63,6 @@ function scene.on_enter()
   scenemanager:register("livingroom")
   cassette:set("system/stage", "babyroom")
 
-  achievement:unlock("NEW_ACHIEVEMENT_3_3")
-
   prank.write("iseeyou.txt", "TODO...")
 
   pool.collected = {}
