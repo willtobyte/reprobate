@@ -14,11 +14,16 @@ function M.new(layout, character, objects)
   self.target = nil
   self.x_offset = 0
   self.y_offset = 0
+  self.x_orig = 0
+  self.y_orig = 0
 
   for i = 1, #self.objects do
     self.objects[i].y = self.layout.y
 
     self.objects[i]:on_touch(function(_, x, y)
+      self.x_orig = self.objects[i].x
+      self.y_orig = self.objects[i].y
+
       self.target = i
       self.x_offset = x
       self.y_offset = y
@@ -92,6 +97,11 @@ function M:loop(delta)
 end
 
 function M:teardown()
+  if self.target ~= nil then
+    self.objects[self.target].x = self.x_orig
+    self.objects[self.target].y = self.y_orig
+  end
+  self.layout.y = self.start_y
   self.layout = nil
   self.character = nil
   self.target = nil
