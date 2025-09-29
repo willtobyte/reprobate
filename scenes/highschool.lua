@@ -111,7 +111,7 @@ function scene.on_enter()
         if conf.receivables then
           local reaction = conf.receivables[kind]
           if reaction.gameover then
-            print("game over")
+            -- TODO
             return
           end
 
