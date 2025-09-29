@@ -109,17 +109,17 @@ function scene.on_enter()
       local kind = pool.inventory.dragging
       if kind ~= nil then
         if conf.receivables then
-          local o = conf.receivables[kind]
-          if o.gameover then
+          local reaction = conf.receivables[kind]
+          if reaction.gameover then
             print("game over")
             return
           end
 
-          if o.accept then
+          if reaction.accept then
             pool.inventory:release()
           end
 
-          local messages = o.messages
+          local messages = reaction.messages
           local message = messages[math.random(#messages)]
           say(message, 3, 3, 3000)
 
