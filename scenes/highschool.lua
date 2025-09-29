@@ -42,7 +42,7 @@ local objects = {
     droppable = {
       ["HUD/playboy"] = {
         messages = {
-          "You pervert.",
+          "Keep this away from me. You pevert.",
         },
       },
     },
@@ -50,6 +50,11 @@ local objects = {
   teacher = {
     messages = {
       "Your laziness will get you sent straight to hell.",
+    },
+    droppable = {
+      ["HUD/playboy"] = {
+        gameover = true,
+      },
     },
   },
   thenerd = {
@@ -104,11 +109,17 @@ function scene.on_enter()
       local kind = pool.inventory.dragging
       if kind ~= nil then
         if conf.droppable then
-          if conf.droppable[kind].accept then
+          local item = conf.droppable[kind]
+          if item.gameover then
+            print("game over")
+            return
+          end
+
+          if item.accept then
             pool.inventory:release()
           end
 
-          local messages = conf.droppable[kind].messages
+          local messages = item.messages
           local message = messages[math.random(#messages)]
           say(message, 3, 3, 3000)
 
