@@ -26,7 +26,7 @@ local objects = {
       "Reactionary discourse from state-puppet teachers.",
       "Wake the hell up, kill the TV. Forget your idols & face yourself.",
     },
-    droppable = {
+    receivables = {
       ["HUD/playboy"] = {
         messages = {
           "Take this and shove it up your ass.",
@@ -39,7 +39,7 @@ local objects = {
       "The road of rebellion leads to inner power.",
       "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.\nThe Will to Potency.",
     },
-    droppable = {
+    receivables = {
       ["HUD/playboy"] = {
         messages = {
           "Keep this away from me. You pevert.",
@@ -51,7 +51,7 @@ local objects = {
     messages = {
       "Your laziness will get you sent straight to hell.",
     },
-    droppable = {
+    receivables = {
       ["HUD/playboy"] = {
         gameover = true,
       },
@@ -62,7 +62,7 @@ local objects = {
       "I first learned LOGO, and now I study BASIC.",
       "I am learning C. Pointers are awesome!",
     },
-    droppable = {
+    receivables = {
       ["HUD/playboy"] = {
         accept = true,
         messages = {
@@ -108,18 +108,18 @@ function scene.on_enter()
     object:on_touch(function()
       local kind = pool.inventory.dragging
       if kind ~= nil then
-        if conf.droppable then
-          local item = conf.droppable[kind]
-          if item.gameover then
+        if conf.receivables then
+          local o = conf.receivables[kind]
+          if o.gameover then
             print("game over")
             return
           end
 
-          if item.accept then
+          if o.accept then
             pool.inventory:release()
           end
 
-          local messages = item.messages
+          local messages = o.messages
           local message = messages[math.random(#messages)]
           say(message, 3, 3, 3000)
 
