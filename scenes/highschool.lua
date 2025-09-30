@@ -111,11 +111,12 @@ function scene.on_enter()
         if conf.receivables then
           local reaction = conf.receivables[kind]
           if reaction.gameover then
-            -- TODO
+            -- TODO show game over screen
             return
           end
 
           if reaction.accept then
+            -- TODO add script to inventory
             pool.inventory:release()
           end
 

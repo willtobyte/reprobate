@@ -117,10 +117,11 @@ end
 function M:release()
   if self.target then
     local object = self.objects[self.target]
-    if object and object.hide then
+    if object then
       object:hide()
     end
   end
+
   self.target = nil
 end
 
