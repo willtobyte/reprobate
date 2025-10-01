@@ -123,8 +123,8 @@ function scene.on_enter()
           local messages = reaction.messages
           local message = messages[math.random(#messages)]
           say(message, 3, 3, 3000)
-          return
         end
+        return
       end
 
       local messages = conf.messages
