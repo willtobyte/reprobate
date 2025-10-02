@@ -18,7 +18,7 @@ local objects = {
   blondgirl = {
     messages = {
       "Have you finished your homework yet?",
-      "People say the cafeteria’s ground beef is human.",
+      "People say the cafeteria ground beef is human.",
     },
   },
   bulletinboard = {
