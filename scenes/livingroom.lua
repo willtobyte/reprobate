@@ -128,11 +128,11 @@ function scene.on_leave()
   scribe:clear()
   lightning:teardown()
 
-  for _, id in ipairs(timers) do
-    timermanager:clear(id)
+  for i = 1, #timers do
+    timermanager:clear(timers[i])
   end
 
-  for name in pairs(pool) do
+  for name in next, pool do
     pool[name] = nil
   end
 end
