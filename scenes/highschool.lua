@@ -61,6 +61,7 @@ local objects = {
     messages = {
       "I first learned LOGO, and now I study BASIC.",
       "I am learning C. Pointers are awesome!",
+      "General protection fault? What the heck's going on?",
     },
     receivables = {
       ["HUD/playboy"] = {
