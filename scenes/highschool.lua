@@ -62,7 +62,7 @@ local objects = {
   redguy = {
     messages = {
       "The road of rebellion leads to inner power.",
-      "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.\nThe Will to Potency.",
+      "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.\nThe Will to Potency.", -- Always last.
     },
     receivables = {
       ["HUD/playboy"] = {
