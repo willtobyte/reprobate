@@ -70,6 +70,10 @@ local objects = {
     },
   },
   redguy = {
+    achievement = {
+      trigger_index = 2,
+      id = "ACH_THE_WILL_TO_POTENCY",
+    },
     messages = {
       "The road of rebellion leads to inner power.",
       "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.\nThe Will to Potency.", -- Always update `trigger_index`.
@@ -80,10 +84,6 @@ local objects = {
           "Keep this away from me. You pevert.",
         },
       },
-    },
-    achievement = {
-      trigger_index = 2,
-      id = "ACH_THE_WILL_TO_POTENCY",
     },
   },
   teacher = {
