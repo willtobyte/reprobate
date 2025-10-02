@@ -113,7 +113,8 @@ function scene.on_keypress(code)
     return
   end
 
-  pool.effects["key" .. math.random(2)]:play()
+  local effect = pool.effects["key" .. math.random(2)]
+  effect:play()
 
   if code == KeyEvent.backspace then
     pool.program = pool.program:sub(1, -2)
