@@ -61,9 +61,11 @@ RUN TO EXECUTE, EXIT TO QUIT
     pool.halted = false
   end)
 
-  pentagram:on_finish(function()
+  pool.dialup = scene:get("dialup", SceneType.effect)
+
+  pool.dialup:on_end(function()
     pentagram:teardown()
-    print(">>>")
+    print(">>> ...")
     -- TODO
     -- scenemanager:set("minigame")
   end)
@@ -140,7 +142,9 @@ function scene.on_keypress(code)
           pool.pentagram = message == "666"
 
           if pool.pentagram then
+            achievement:unlock("ACH_IN_LEAGUE_WITH_SATAN") -- In League with Satan.
             pool.backcursor:hide()
+            pool.dialup:play()
           end
         end
 
