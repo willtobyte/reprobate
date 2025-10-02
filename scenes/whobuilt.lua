@@ -65,7 +65,7 @@ function scene.on_enter()
 end
 
 function scene.on_leave()
-  for name in pairs(pool) do
+  for name in next, pool do
     pool[name] = nil
   end
 end

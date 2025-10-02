@@ -203,8 +203,8 @@ function scene.on_leave()
     pentagram:teardown()
   end
 
-  for o in pairs(pool) do
-    pool[o] = nil
+  for name in next, pool do
+    pool[name] = nil
   end
 end
 
