@@ -81,6 +81,10 @@ local objects = {
         },
       },
     },
+    achievement = {
+      trigger_index = 2,
+      id = "ACH_THE_WILL_TO_POTENCY",
+    },
   },
   teacher = {
     messages = {
@@ -175,8 +179,8 @@ function scene.on_enter()
       local index = math.random(last)
       local message = messages[index]
 
-      if name == "redguy" and index == last then
-        achievement:unlock("ACH_THE_WILL_TO_POTENCY") -- The Will to Potency.
+      if conf.achievement and index == conf.achievement.trigger_index then
+        achievement:unlock(conf.achievement.id)
       end
 
       say(message, 3, 3, 3000)
