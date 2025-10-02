@@ -50,6 +50,7 @@ local objects = {
   teacher = {
     messages = {
       "Your laziness will get you sent straight to hell.",
+      "Everyone, open page 42 of The C Programming Language book.",
     },
     receivables = {
       ["HUD/playboy"] = {
