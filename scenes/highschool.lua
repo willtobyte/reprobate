@@ -17,29 +17,36 @@ local timermanager = engine:timermanager()
 local objects = {
   blondgirl = {
     messages = {
-      "TODO",
+      "I heard there's a secret room behind the library.",
+      "Have you finished your homework yet?",
+      "The cafeteria food is getting worse every day.",
     },
   },
   bulletinboard = {
     messages = {
-      "TODO",
+      "Chess Club Meeting - Tuesday 3PM",
+      "Lost: One red notebook. Please return to main office.",
+      "Drama auditions next week!",
     },
   },
   gothgirl = {
     messages = {
       "I will not speak of stars, for the universe has faded away.",
       "I feel the vibrations of the moon.",
+      "Darkness is not the absence of light, but its truest form.",
     },
   },
   longhairgirl = {
     messages = {
-      "TODO",
+      "My parents want me to study medicine, but I love computers.",
+      "Did you see what happened in the chemistry lab?",
     },
   },
   punkgirl = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
       "Wake the hell up, kill the TV. Forget your idols & face yourself.",
+      "They want us to conform, but I refuse to be another brick.",
     },
     receivables = {
       ["HUD/playboy"] = {
@@ -51,12 +58,15 @@ local objects = {
   },
   purplegirl = {
     messages = {
-      "TODO",
+      "Math class is my favorite, weird right?",
+      "Want to study together after school?",
     },
   },
   purpleman = {
     messages = {
-      "TODO",
+      "The basketball team is looking for new players.",
+      "I failed the history test... again.",
+      "Anyone want to grab pizza after school?",
     },
   },
   redguy = {
@@ -87,6 +97,7 @@ local objects = {
     messages = {
       "I am learning C. Pointers are awesome!",
       "General protection fault? What the heck is going on?",
+      "Did you know you can write an OS in assembly?",
     },
     receivables = {
       ["HUD/playboy"] = {
@@ -99,7 +110,8 @@ local objects = {
   },
   wallclock = {
     messages = {
-      "TODO",
+      "The clock seems to be moving slower today.",
+      "Tick... Tock... Tick... Tock...",
     },
   },
 }
