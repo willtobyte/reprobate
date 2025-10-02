@@ -15,10 +15,25 @@ local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
 local objects = {
+  blondgirl = {
+    messages = {
+      "TODO",
+    },
+  },
+  bulletinboard = {
+    messages = {
+      "TODO",
+    },
+  },
   gothgirl = {
     messages = {
       "I will not speak of stars, for the universe has faded away.",
       "I feel the vibrations of the moon.",
+    },
+  },
+  longhairgirl = {
+    messages = {
+      "TODO",
     },
   },
   punkgirl = {
@@ -32,6 +47,16 @@ local objects = {
           "Take this and shove it up your ass.",
         },
       },
+    },
+  },
+  purplegirl = {
+    messages = {
+      "TODO",
+    },
+  },
+  purpleman = {
+    messages = {
+      "TODO",
     },
   },
   redguy = {
@@ -70,6 +95,11 @@ local objects = {
           "Thank you! I have been searching for years for this edition.\nTake this.",
         },
       },
+    },
+  },
+  wallclock = {
+    messages = {
+      "TODO",
     },
   },
 }
