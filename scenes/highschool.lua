@@ -17,9 +17,8 @@ local timermanager = engine:timermanager()
 local objects = {
   blondgirl = {
     messages = {
-      "I heard there's a secret room behind the library.",
       "Have you finished your homework yet?",
-      "The cafeteria food is getting worse every day.",
+      "People say the cafeteria’s ground beef is human.",
     },
   },
   bulletinboard = {
@@ -33,12 +32,12 @@ local objects = {
     messages = {
       "I will not speak of stars, for the universe has faded away.",
       "I feel the vibrations of the moon.",
-      "Darkness is not the absence of light, but its truest form.",
+      "Darkness is not the absence of light.",
     },
   },
   longhairgirl = {
     messages = {
-      "My parents want me to study medicine, but I love computers.",
+      "My parents want me to study medicine, I actually love computers.",
       "Did you see what happened in the chemistry lab?",
     },
   },
@@ -60,6 +59,7 @@ local objects = {
     messages = {
       "Math class is my favorite, weird right?",
       "Want to study together after school?",
+      "I heard there's a secret room behind the library.",
     },
   },
   purpleman = {
