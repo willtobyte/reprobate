@@ -76,7 +76,7 @@ local objects = {
     },
     messages = {
       "The road of rebellion leads to inner power.",
-      "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.\nThe Will to Potency.", -- Always update `trigger_index`.
+      "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.", -- Always update `trigger_index`.
     },
     receivables = {
       ["HUD/playboy"] = {
