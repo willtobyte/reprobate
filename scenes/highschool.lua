@@ -24,7 +24,7 @@ local objects = {
   bulletinboard = {
     messages = {
       "Blood Club Meeting - Tuesday 3PM",
-      "Lost: Venom - Black Metal vinyl. Please return to main office.",
+      "Lost: black metal vinyl. Please return to main office.",
       "Spectral auditions next week!",
     },
   },
