@@ -66,7 +66,6 @@ function scene.on_enter()
   prank.write("iseeyou.txt", "TODO...")
 
   pool.collected = {}
-  pool.missclicks = 0
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
