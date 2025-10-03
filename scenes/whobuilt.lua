@@ -70,6 +70,4 @@ function scene.on_leave()
   end
 end
 
-sentinel(scene, "whobuilt")
-
 return scene

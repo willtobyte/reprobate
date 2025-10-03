@@ -43,6 +43,4 @@ function scene.on_leave()
   end
 end
 
-sentinel(scene, "mainmenu")
-
 return scene

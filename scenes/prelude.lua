@@ -42,6 +42,4 @@ function scene.on_leave()
   end
 end
 
-sentinel(scene, "prelude")
-
 return scene
