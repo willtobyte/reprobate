@@ -23,9 +23,9 @@ local objects = {
   },
   bulletinboard = {
     messages = {
-      "Chess Club Meeting - Tuesday 3PM",
-      "Lost: One red notebook. Please return to main office.",
-      "Drama auditions next week!",
+      "Blood Club Meeting - Tuesday 3PM",
+      "Lost: Venom - Black Metal vinyl. Please return to main office.",
+      "Spectral auditions next week!",
     },
   },
   gothgirl = {
