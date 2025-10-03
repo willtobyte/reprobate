@@ -37,7 +37,7 @@ local objects = {
   },
   longhairgirl = {
     messages = {
-      "My parents want me to study medicine, I actually love computers.",
+      "My parents want me to study medicine, I love computers.",
       "Did you see what happened in the chemistry lab?",
     },
   },
