@@ -44,13 +44,13 @@ local objects = {
   punkgirl = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
-      "Wake up, cut the TV noise. Drop your idols & face yourself.",
-      "They want us to conform. I refuse to be another brick.",
+      "Turn off the TV, forget your idols, and face yourself.",
+      "",
     },
     receivables = {
       ["HUD/playboy"] = {
         messages = {
-          "Take this and shove it up your ass.",
+          "Take this and shove it up your ass hole.",
         },
       },
     },
