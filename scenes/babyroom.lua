@@ -150,7 +150,6 @@ function scene.on_enter()
 
           door.action = "default"
 
-          -- print("[achievement] unlocked " ..
           -- achievement:unlock("")
 
           local id = timermanager:singleshot(3000, function()
