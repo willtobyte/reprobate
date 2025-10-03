@@ -44,7 +44,7 @@ local objects = {
   punkgirl = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
-      "Wake the hell up, kill the TV. Forget your idols & face yourself.",
+      "Wake up, cut the TV noise. Drop your idols & face yourself.",
       "They want us to conform. I refuse to be another brick.",
     },
     receivables = {
