@@ -32,7 +32,7 @@ local objects = {
     messages = {
       "I will not speak of stars, for the universe has faded away.",
       "I feel the vibrations of the moon.",
-      "Darkness is not the absence of light.",
+      "Darkness is not the absence of light, it is the abyss itself.",
     },
   },
   longhairgirl = {
