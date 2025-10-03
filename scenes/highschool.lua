@@ -115,7 +115,6 @@ local objects = {
   wallclock = {
     messages = {
       "The clock seems to be moving slower today.",
-      "Tick... Tock... Tick... Tock...",
     },
   },
 }
