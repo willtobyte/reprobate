@@ -39,8 +39,8 @@ function scene.on_enter()
     self.action = "hover"
   end)
 
-  pool.aline:on_unhover(function(self)
-    self.action = "burning"
+  pool.aline:on_unhover(function()
+    pool.aline.action = "burning"
     pool.rodrigo.action = nil
     pool.rodrigo.action = "burning"
   end)
@@ -53,8 +53,8 @@ function scene.on_enter()
     self.action = "hover"
   end)
 
-  pool.rodrigo:on_unhover(function(self)
-    self.action = "burning"
+  pool.rodrigo:on_unhover(function()
+    pool.rodrigo.action = "burning"
     pool.aline.action = nil
     pool.aline.action = "burning"
   end)
