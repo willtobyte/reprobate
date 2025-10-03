@@ -32,7 +32,9 @@ function scene.on_touch()
 
   pool.clicks = pool.clicks + 1
   if pool.clicks >= 10 then
-    achievement:unlock("ACH_CLICK_FOREHEAD") -- How about trying to click with your forehead?
+    local aid = "ACH_CLICK_FOREHEAD"
+    print("[achievement] unlocked " .. aid)
+    achievement:unlock(aid) -- How about trying to click with your forehead?
   end
 end
 

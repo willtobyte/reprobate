@@ -132,6 +132,7 @@ function scene.on_keypress(code)
 
           local id = achievements[string.upper(message)]
           if id then
+            print("[achievement] unlocked " .. id)
             achievement:unlock(id)
           end
 
@@ -140,7 +141,9 @@ function scene.on_keypress(code)
           pool.pentagram = message == "666"
 
           if pool.pentagram then
-            achievement:unlock("ACH_IN_LEAGUE_WITH_SATAN") -- In League with Satan.
+            local aid = "ACH_IN_LEAGUE_WITH_SATAN"
+            print("[achievement] unlocked " .. aid)
+            achievement:unlock(ach) -- In League with Satan.
             pool.backcursor:hide()
             pool.dialup:play()
           end

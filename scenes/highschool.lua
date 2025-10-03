@@ -179,6 +179,7 @@ function scene.on_enter()
       local message = messages[index]
 
       if conf.achievement and index == conf.achievement.trigger_index then
+        print("[achievement] unlocked " .. conf.achievement.id)
         achievement:unlock(conf.achievement.id)
       end
 
