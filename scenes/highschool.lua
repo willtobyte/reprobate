@@ -45,7 +45,7 @@ local objects = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
       "Wake the hell up, kill the TV. Forget your idols & face yourself.",
-      "They want us to conform, but I refuse to be another brick.",
+      "They want us to conform. I refuse to be another brick.",
     },
     receivables = {
       ["HUD/playboy"] = {
