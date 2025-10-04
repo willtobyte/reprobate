@@ -86,7 +86,7 @@ local objects = {
         },
       },
     },
-    delivers = {
+    deliver = {
       index = 3,
       id = "zine",
     },
@@ -187,7 +187,7 @@ function scene.on_enter()
         achievement:unlock(conf.achievement.id)
       end
 
-      if conf.delivers and index == conf.delivers.index then
+      if conf.deliver and index == conf.deliver.index then
         print(">>> TODO got zine")
       end
 
