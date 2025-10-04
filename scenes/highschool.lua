@@ -86,8 +86,8 @@ local objects = {
         },
       },
     },
-    zine = {
-      index = 3,
+    delivers = {
+      zine = 3,
     },
   },
   teacher = {
@@ -186,8 +186,8 @@ function scene.on_enter()
         achievement:unlock(conf.achievement.id)
       end
 
-      if conf.zine and index == conf.zine.index then
-        print(">>> got zine!")
+      if conf.delivers and index == conf.delivers.zine then
+        print(">>> TODO got zine")
       end
 
       say(message, 3, 3, 3000)
