@@ -77,7 +77,7 @@ local objects = {
     messages = {
       "The road of rebellion leads to inner power.",
       "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.", -- Always update `achievement.index`.
-      "I have some zines, feel free to grab one.", -- Always update `zine.index`.
+      "I have some zines, feel free to grab one.", -- Always update `delivers.index`.
     },
     receivables = {
       ["HUD/playboy"] = {
@@ -87,7 +87,8 @@ local objects = {
       },
     },
     delivers = {
-      zine = 3,
+      index = 3,
+      id = "zine",
     },
   },
   teacher = {
@@ -186,7 +187,7 @@ function scene.on_enter()
         achievement:unlock(conf.achievement.id)
       end
 
-      if conf.delivers and index == conf.delivers.zine then
+      if conf.delivers and index == conf.delivers.index then
         print(">>> TODO got zine")
       end
 
