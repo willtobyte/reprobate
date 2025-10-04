@@ -31,7 +31,7 @@ local objects = {
   gothgirl = {
     messages = {
       "I will not speak of stars, for the universe has faded away.",
-      "I feel the vibrations of the moon.",
+      "Shattered embers of ancient stars, wandering in flesh.",
       "Darkness is not the absence of light, it is the abyss itself.",
     },
   },
@@ -71,13 +71,13 @@ local objects = {
   },
   redguy = {
     achievement = {
-      trigger_index = 2,
+      index = 2,
       id = "ACH_THE_WILL_TO_POTENCY",
     },
     messages = {
       "The road of rebellion leads to inner power.",
-      "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.", -- Always update `trigger_index`.
-      "I have some zines, feel free to grab one.",
+      "The Will to Potency.\nThe Will to Potency.\nThe Will to Potency.", -- Always update `achievement.index`.
+      "I have some zines, feel free to grab one.", -- Always update `zine.index`.
     },
     receivables = {
       ["HUD/playboy"] = {
@@ -85,6 +85,9 @@ local objects = {
           "Keep this away from me. You pevert.",
         },
       },
+    },
+    zine = {
+      index = 3,
     },
   },
   teacher = {
@@ -179,8 +182,12 @@ function scene.on_enter()
       local index = math.random(last)
       local message = messages[index]
 
-      if conf.achievement and index == conf.achievement.trigger_index then
+      if conf.achievement and index == conf.achievement.index then
         achievement:unlock(conf.achievement.id)
+      end
+
+      if conf.zine and index == conf.zine.index then
+        print(">>> got zine!")
       end
 
       say(message, 3, 3, 3000)
