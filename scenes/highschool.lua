@@ -20,6 +20,13 @@ local objects = {
       "Have you finished your homework yet?",
       "People say the cafeteria ground beef is human.",
     },
+    receivables = {
+      ["HUD/playboy"] = {
+        messages = {
+          "My aunt is in this edition.",
+        },
+      },
+    },
   },
   bulletinboard = {
     messages = {
