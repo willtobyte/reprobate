@@ -151,16 +151,6 @@ function Lantern:teardown()
   self.opaque_line = nil
   self.opaque_pixel = nil
   self.dynamic_rows = nil
-  self.dx2 = nil
-  self.dy2 = nil
-  self.cache = nil
-  self.alpha_map = nil
-  self.mx = nil
-  self.my = nil
-  self.w = nil
-  self.h = nil
-
-  self._dead = true
 end
 
 return Lantern:new()
