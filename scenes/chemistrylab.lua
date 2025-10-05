@@ -1,8 +1,8 @@
-local lantern = require("effects/lantern")
-
 local scene = {}
 
 local pool = {}
+
+local lantern = require("effects/lantern")
 
 function scene.on_enter() end
 
