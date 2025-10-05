@@ -58,6 +58,7 @@ local objects = {
       ["HUD/playboy"] = {
         messages = {
           "Take this and shove it up your ass hole.",
+          "Is that your mom on the cover?",
         },
       },
     },
