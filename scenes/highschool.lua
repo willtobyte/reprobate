@@ -14,6 +14,8 @@ local cassette = engine:cassette()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
+local playboy = "HUD/playboy"
+
 local objects = {
   blondgirl = {
     messages = {
@@ -21,7 +23,7 @@ local objects = {
       "People say the cafeteria ground beef is human.",
     },
     receivables = {
-      ["HUD/playboy"] = {
+      [playboy] = {
         messages = {
           "My aunt is in this edition.",
         },
@@ -55,7 +57,7 @@ local objects = {
       "Tune in to our pirate radio station on 43.2 FM.",
     },
     receivables = {
-      ["HUD/playboy"] = {
+      [playboy] = {
         messages = {
           "Take this and shove it up your ass hole.",
           "Is that your mom on the cover?",
@@ -88,7 +90,7 @@ local objects = {
       "I have some zines, feel free to grab one.", -- Always update `delivers.index`.
     },
     receivables = {
-      ["HUD/playboy"] = {
+      [playboy] = {
         messages = {
           "Keep this away from me. You pevert.",
         },
@@ -105,7 +107,7 @@ local objects = {
       "Everyone, open page 42 of The C Programming Language book.",
     },
     receivables = {
-      ["HUD/playboy"] = {
+      [playboy] = {
         gameover = true,
       },
     },
@@ -117,7 +119,7 @@ local objects = {
       "Did you know you can write an OS in assembly?",
     },
     receivables = {
-      ["HUD/playboy"] = {
+      [playboy] = {
         accept = true,
         messages = {
           "Thank you! I have been searching for years for this edition.\nTake this.",
