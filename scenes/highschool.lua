@@ -14,10 +14,6 @@ local cassette = engine:cassette()
 local scenemanager = engine:scenemanager()
 local timermanager = engine:timermanager()
 
----
-local particlesystem = engine:particlesystem()
----
-
 local playboy = "HUD/playboy"
 
 local objects = {
@@ -139,10 +135,6 @@ local objects = {
 }
 
 function scene.on_enter()
-  -- const std::string& name, const std::string& kind, float_t x, float_t y
-  particlesystem:create("part1", "smoke", 100, 100)
-  ---
-
   scenemanager:destroy("mainmenu")
   scenemanager:destroy("whobuilt")
   scenemanager:destroy("livingroom")
