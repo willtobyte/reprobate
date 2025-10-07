@@ -1,7 +1,7 @@
 {
   "count": 10,
-  "xvel": { "start": 2.0, "end": 10.0 },
-  "yvel": { "start": 2.0, "end": 10.0 },
+  "xvel": { "start": 10.0, "end": -10.0 },
+  "yvel": { "start": -10.0, "end": 10.0 },
   "gx": { "start": 2.0, "end": 1.0 },
   "gy": { "start": 2.0, "end": 1.0 },
   "life": { "start": 0.2, "end": 1.0 }
