@@ -76,6 +76,7 @@ local objects = {
     messages = {
       "And what if none of this ever truly mattered?",
       "Anyone want to grab pizza after school?",
+      "The false dream they dreamed on our behalf.",
     },
   },
   redguy = {
