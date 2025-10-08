@@ -74,8 +74,7 @@ local objects = {
   },
   purpleman = {
     messages = {
-      "The basketball team is looking for new players.",
-      "I failed the history test... again.",
+      "And what if none of this ever truly mattered?",
       "Anyone want to grab pizza after school?",
     },
   },
