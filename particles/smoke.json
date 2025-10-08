@@ -1,16 +1,20 @@
 {
-  "count": 100,
-  "start": {
+  "count": 1000,
+  "spawn": {
     "x": { "start": 0.0, "end": 200.0 },
     "y": { "start": 0.0, "end": 200.0 }
   },
   "velocity": {
-    "x": { "start": -5.0, "end": 5.0 },
+    "x": { "start": 10.0, "end": 50.0 },
     "y": { "start": 10.0, "end": -10.0 }
   },
   "gravity": {
     "x": { "start": 0.0, "end": 0.0 },
     "y": { "start": 0.0, "end": 0.0 }
+  },
+  "rotation": {
+    "force": { "start": -100.0, "end": 100.0 },
+    "velocity": { "start": -100.0, "end": 100.0 }
   },
   "life": { "start": 0.5, "end": 3.0 },
   "scale": { "start": 0.8, "end": 1.2 },
