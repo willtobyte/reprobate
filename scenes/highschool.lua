@@ -67,9 +67,9 @@ local objects = {
   },
   purplegirl = {
     messages = {
-      "if all this fades into gray and absence?",
+      "If all this fades into gray and absence?",
       "Want to study together after school?",
-      "I heard there's a secret room behind the library.",
+      "I heard there is a secret room behind the library.",
     },
   },
   purpleman = {
