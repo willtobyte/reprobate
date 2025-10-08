@@ -1,5 +1,5 @@
 {
-  "count": 1000,
+  "count": 300,
   "spawn": {
     "x": { "start": 0.0, "end": 200.0 },
     "y": { "start": 0.0, "end": 200.0 }
@@ -16,7 +16,7 @@
     "force": { "start": -100.0, "end": 100.0 },
     "velocity": { "start": -100.0, "end": 100.0 }
   },
-  "life": { "start": 0.5, "end": 3.0 },
+  "life": { "start": 10, "end": 30.0 },
   "scale": { "start": 0.8, "end": 1.2 },
   "alpha": { "start": 200, "end": 20 }
 }
