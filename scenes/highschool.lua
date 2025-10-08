@@ -229,7 +229,6 @@ end
 
 function scene.on_leave()
   pool.inventory:teardown()
-  pool.inventory = nil
 
   scribe:clear()
 
