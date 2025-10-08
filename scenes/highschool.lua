@@ -67,7 +67,7 @@ local objects = {
   },
   purplegirl = {
     messages = {
-      "Math class is my favorite, weird right?",
+      "if all this fades into gray and absence?",
       "Want to study together after school?",
       "I heard there's a secret room behind the library.",
     },
@@ -217,9 +217,7 @@ function scene.on_motion(x, y)
   pool.inventory:motion(x, y)
 end
 
-function scene.on_touch()
-  print("touch")
-end
+function scene.on_touch() end
 
 function scene.on_loop(delta)
   scribe:loop(delta)
