@@ -5,8 +5,8 @@
     {
       "name": "part1",
       "kind": "smoke",
-      "x": 50,
-      "y": 50
+      "x": 0,
+      "y": 0
     }
   ],
   "objects": [

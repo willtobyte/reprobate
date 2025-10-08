@@ -25,7 +25,7 @@ local objects = {
     receivables = {
       [playboy] = {
         messages = {
-          "My aunt is in this edition.",
+          "The pages are all stuck together. Modern art, probably.",
         },
       },
     },
