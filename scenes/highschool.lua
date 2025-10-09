@@ -218,8 +218,7 @@ end
 function scene.on_motion(x, y)
   pool.inventory:motion(x, y)
 
-  pool.p.x = x
-  pool.p.y = y
+  pool.p.placement = { x, y }
 end
 
 function scene.on_touch() end
