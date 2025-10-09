@@ -1,5 +1,12 @@
 local M = {}
 
+function M.set(observable, value)
+  if value == nil then
+    value = 0
+  end
+  observable:set(value)
+end
+
 local function add(observable, delta)
   local value = observable.value
   if value == nil then
