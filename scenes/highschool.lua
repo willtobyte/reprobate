@@ -84,6 +84,13 @@ local objects = {
       "And what if none of this ever truly mattered?",
       "The false dream they dreamed on our behalf.",
     },
+    receivables = {
+      [playboy] = {
+        messages = {
+          "So this is what you think I read in my spare time? Touching.",
+        },
+      },
+    },
   },
   redguy = {
     achievement = {
