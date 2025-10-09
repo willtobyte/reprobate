@@ -71,11 +71,17 @@ local objects = {
       "Want to study together after school?",
       "I heard there is a secret room behind the library.",
     },
+    receivables = {
+      [playboy] = {
+        messages = {
+          "Let me guess, you thought this was romantic?",
+        },
+      },
+    },
   },
   purpleman = {
     messages = {
       "And what if none of this ever truly mattered?",
-      "Anyone want to grab pizza after school?",
       "The false dream they dreamed on our behalf.",
     },
   },
