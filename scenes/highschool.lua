@@ -43,6 +43,13 @@ local objects = {
       "Shattered embers of ancient stars, wandering in flesh.",
       "Darkness is not the absence of light, it is the abyss itself.",
     },
+    receivables = {
+      [playboy] = {
+        messages = {
+          "How adorable. You mistook me for someone alive inside.",
+        },
+      },
+    },
   },
   longhairgirl = {
     messages = {
