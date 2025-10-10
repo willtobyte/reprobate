@@ -143,8 +143,8 @@ function scene.on_enter()
         cassette:set(key, true)
         visibility.disappear(self)
 
-        for _, v in pairs(pool.collected) do
-          if not v then
+        for i = 1, #pool.collected do
+          if not pool.collected[i] then
             return
           end
         end
