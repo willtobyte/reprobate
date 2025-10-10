@@ -106,10 +106,12 @@ function scene.on_enter()
   if cassette:get(key) then
     pool.cabinetdoor.action = "open"
     pool.voodoodoll.action = "default"
+    pool.voodoodoll.enabled = true
   else
     pool.cabinetdoor:on_touch(function()
       pool.cabinetdoor.action = "open"
       pool.voodoodoll.action = "default"
+      pool.voodoodoll.enabled = true
 
       visibility.appear(pool.voodoodoll)
 
@@ -118,6 +120,49 @@ function scene.on_enter()
 
       cassette:set(key, true)
     end)
+  end
+
+  pool.collected = {}
+
+  local objects = {
+    "sugarcanespirit",
+  }
+
+  for _, name in ipairs(objects) do
+    local object = scene:get(name, SceneType.object)
+
+    local key = prefix .. name
+
+    local done = cassette:get(key, false)
+
+    pool.collected[name] = done
+
+    if done then
+      object:hide()
+    else
+      pool[name] = object
+      object:on_touch(function()
+        pool.collected[name] = true
+        cassette:set(key, true)
+        object:hide()
+
+        for _, collected in pairs(pool.collected) do
+          if not collected then
+            return
+          end
+        end
+
+        pool.teenager.action = "default"
+        visibility.appear(pool.teenager)
+
+        local id = timermanager:singleshot(3000, function()
+          pool.voodoocast.action = "default"
+          visibility.appear(pool.voodoocast)
+        end)
+
+        table.insert(timers, id)
+      end)
+    end
   end
 end
 
