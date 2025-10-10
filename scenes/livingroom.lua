@@ -55,12 +55,11 @@ local objects = {
     messages = { "You cannot escape your own mind." },
     lightning = true,
   },
-  sugarcanespirit = {
-    collectible = true,
-  },
-  voodoodoll = {
-    collectible = true,
-  },
+}
+
+local items = {
+  sugarcanespirit = {},
+  voodoodoll = {},
 }
 
 function scene.on_enter()
@@ -81,16 +80,7 @@ function scene.on_enter()
   for name, conf in pairs(objects) do
     local object = scene:get(name, SceneType.object)
 
-    local key = prefix .. name
-    local done = cassette:get(key, false)
-
-    if conf.collectible then
-      pool.collected[name] = done
-    end
-
-    if done then
-      object:hide()
-    end
+    pool[name] = object
 
     local bounded = conf.minimum and conf.maximum or false
     if bounded then
@@ -108,36 +98,12 @@ function scene.on_enter()
     end
 
     object:on_touch(function()
-      if conf.collectible then
-        pool.collected[name] = true
-        cassette:set(key, true)
-        object:hide()
-      end
-
       local messages = conf.messages
       if messages then
         local message = messages[math.random(#messages)]
         say(message, 3, 3, 3000)
       end
-
-      for _, v in pairs(pool.collected) do
-        if not v then
-          return
-        end
-      end
-
-      pool.teenager.action = "default"
-      visibility.appear(pool.teenager)
-
-      local id = timermanager:singleshot(3000, function()
-        pool.voodoocast.action = "default"
-        visibility.appear(pool.voodoocast)
-      end)
-
-      table.insert(timers, id)
     end)
-
-    pool[name] = object
   end
 
   pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
@@ -160,6 +126,45 @@ function scene.on_enter()
 
       cassette:set(key, true)
     end)
+  end
+
+  for name, _ in pairs(items) do
+    local object = scene:get(name, SceneType.object)
+
+    pool[name] = object
+
+    local key = prefix .. name
+    local done = cassette:get(key, false)
+
+    pool.collected[name] = done
+
+    print("name " .. name .. " done " .. tostring(done))
+
+    if done then
+      object:hide()
+    else
+      object:on_touch(function()
+        pool.collected[name] = true
+        cassette:set(key, true)
+        object:hide()
+
+        for _, v in pairs(pool.collected) do
+          if not v then
+            return
+          end
+        end
+
+        pool.teenager.action = "default"
+        visibility.appear(pool.teenager)
+
+        local id = timermanager:singleshot(3000, function()
+          pool.voodoocast.action = "default"
+          visibility.appear(pool.voodoocast)
+        end)
+
+        table.insert(timers, id)
+      end)
+    end
   end
 end
 

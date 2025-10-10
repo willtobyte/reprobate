@@ -52,9 +52,9 @@ local animations = {
 
 local items = {
   crucifix = { damage = true },
-  gijoe = { damage = false },
-  nintendo = { damage = false },
-  playboy = { damage = false },
+  gijoe = {},
+  nintendo = {},
+  playboy = {},
 }
 
 function scene.on_enter()
