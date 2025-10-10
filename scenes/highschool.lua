@@ -231,14 +231,10 @@ function scene.on_enter()
   local character = scene:get("boy", SceneType.object)
   local playboy = scene:get("playboy", SceneType.object)
   pool.inventory = Inventory.new(layout, character, { playboy })
-
-  pool.p = scene:get("part1", SceneType.particle)
 end
 
 function scene.on_motion(x, y)
   pool.inventory:motion(x, y)
-
-  pool.p.placement = { x, y }
 end
 
 function scene.on_touch() end
