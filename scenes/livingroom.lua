@@ -100,8 +100,7 @@ function scene.on_enter()
     object:on_touch(function()
       local messages = conf.messages
       if messages then
-        local message = messages[math.random(#messages)]
-        say(message, 3, 3, 3000)
+        say(messages[math.random(#messages)], 3, 3, 3000)
       end
     end)
   end
