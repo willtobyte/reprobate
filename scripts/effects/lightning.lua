@@ -95,13 +95,15 @@ function Lightning:loop()
 end
 
 function Lightning:teardown()
-  self.canvas:clear()
+  if self.canvas then
+    self.canvas:clear()
+  end
 
   self.active = false
   self.buffer = nil
   self.cache = nil
-  self.canvas = nil
   self.callback = nil
+  self.canvas = nil
   self.loop = function() end
 end
 

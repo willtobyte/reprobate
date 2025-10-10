@@ -133,8 +133,8 @@ function scene.on_enter()
         visibility.disappear(self)
         pool[hud].action = "default"
 
-        for _, collected in pairs(pool.collected) do
-          if not collected then
+        for _, v in pairs(pool.collected) do
+          if not v then
             return
           end
         end

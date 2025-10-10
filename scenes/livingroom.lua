@@ -129,23 +129,19 @@ function scene.on_enter()
 
   for name, _ in pairs(items) do
     local object = scene:get(name, SceneType.object)
-
-    pool[name] = object
-
     local key = prefix .. name
     local done = cassette:get(key, false)
+    pool[name] = object
 
     pool.collected[name] = done
-
-    print("name " .. name .. " done " .. tostring(done))
 
     if done then
       object:hide()
     else
-      object:on_touch(function()
+      object:on_touch(function(self)
         pool.collected[name] = true
         cassette:set(key, true)
-        object:hide()
+        visibility.disappear(self)
 
         for _, v in pairs(pool.collected) do
           if not v then
@@ -153,20 +149,34 @@ function scene.on_enter()
           end
         end
 
+        cassette:set("system/stage", "highschool")
+
         for i = 1, #timers do
           timermanager:clear(timers[i])
         end
+        timers = {}
 
         pool.theme:stop()
-        scribe:clear()
-        lightning:teardown()
-
-        pool.teenager.action = "default"
-        visibility.appear(pool.teenager)
 
         local id = timermanager:singleshot(3000, function()
-          pool.voodoocast.action = "default"
-          visibility.appear(pool.voodoocast)
+          scribe:clear()
+          lightning:teardown()
+
+          pool.teenager.action = "default"
+          visibility.appear(pool.teenager)
+
+          local id = timermanager:singleshot(3000, function()
+            pool.voodoocast.action = "default"
+            visibility.appear(pool.voodoocast)
+
+            local id = timermanager:singleshot(6000, function()
+              scenemanager:set("highschool")
+            end)
+
+            table.insert(timers, id)
+          end)
+
+          table.insert(timers, id)
         end)
 
         table.insert(timers, id)
