@@ -95,6 +95,9 @@ function scene.on_enter()
     pool[name] = object
   end
 
+  pool.teenager = scene:get("teenager", SceneType.object)
+  pool.voodoocast = scene:get("voodoocast", SceneType.object)
+
   pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
   pool.voodoodoll = scene:get("voodoodoll", SceneType.object)
 
