@@ -9,6 +9,7 @@ local prefix = "babyroom/"
 local Inventory = require("overlay/inventory")
 
 local ops = require("helpers/ops")
+local toolbox = require("helpers/toolbox")
 local prank = require("helpers/prank")
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
@@ -133,10 +134,8 @@ function scene.on_enter()
         visibility.disappear(self)
         pool[hud].action = "default"
 
-        for i = 1, #pool.collected do
-          if not pool.collected[i] then
-            return
-          end
+        if not toolbox.all(pool.collected) then
+          return
         end
 
         cassette:set("system/stage", "livingroom")

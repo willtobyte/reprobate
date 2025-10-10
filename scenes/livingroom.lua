@@ -7,7 +7,7 @@ local timers = {}
 local prefix = "livingroom/"
 
 local lightning = require("effects/lightning")
-
+local toolbox = require("helpers/toolbox")
 local visibility = require("helpers/visibility")
 
 local Scribe = require("helpers/scribe")
@@ -143,10 +143,8 @@ function scene.on_enter()
         cassette:set(key, true)
         visibility.disappear(self)
 
-        for i = 1, #pool.collected do
-          if not pool.collected[i] then
-            return
-          end
+        if not toolbox.all(pool.collected) then
+          return
         end
 
         cassette:set("system/stage", "highschool")
