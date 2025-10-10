@@ -2,11 +2,30 @@ local M = {}
 
 local unpack = table.unpack or unpack
 local huge = math.huge
-local type = type
+local next = next
+
+local function dense(t)
+  local n = #t
+  for i = 1, n do
+    if t[i] == nil then
+      return nil
+    end
+  end
+  return n
+end
 
 function M.any(t)
-  for i = 1, #t do
-    if t[i] then
+  local n = dense(t)
+  if n then
+    for i = 1, n do
+      if t[i] then
+        return true
+      end
+    end
+    return false
+  end
+  for _, v in pairs(t) do
+    if v then
       return true
     end
   end
@@ -24,50 +43,100 @@ end
 
 function M.sum(t, start)
   local s = start or 0
-  for i = 1, #t do
-    s = s + t[i]
+  local n = dense(t)
+  if n then
+    for i = 1, n do
+      s = s + t[i]
+    end
+    return s
+  end
+  for _, v in pairs(t) do
+    s = s + v
   end
   return s
 end
 
 function M.min(t)
-  local n = #t
-  if n == 0 then
+  local n = dense(t)
+  if n and n == 0 then
     return nil
   end
-  local m = t[1]
-  local mi = 1
-  for i = 2, n do
-    local v = t[i]
+  if n then
+    local m = t[1]
+    if m == nil then
+      return nil
+    end
+    local mi = 1
+    for i = 2, n do
+      local v = t[i]
+      if v < m then
+        m = v
+        mi = i
+      end
+    end
+    return m, mi
+  end
+  local first_k, first_v = next(t)
+  if first_k == nil then
+    return nil
+  end
+  local m, mk = first_v, first_k
+  for k, v in pairs(t) do
     if v < m then
       m = v
-      mi = i
+      mk = k
     end
   end
-  return m, mi
+  return m, mk
 end
 
 function M.max(t)
-  local n = #t
-  if n == 0 then
+  local n = dense(t)
+  if n and n == 0 then
     return nil
   end
-  local m = t[1]
-  local mi = 1
-  for i = 2, n do
-    local v = t[i]
+  if n then
+    local m = t[1]
+    if m == nil then
+      return nil
+    end
+    local mi = 1
+    for i = 2, n do
+      local v = t[i]
+      if v > m then
+        m = v
+        mi = i
+      end
+    end
+    return m, mi
+  end
+  local first_k, first_v = next(t)
+  if first_k == nil then
+    return nil
+  end
+  local m, mk = first_v, first_k
+  for k, v in pairs(t) do
     if v > m then
       m = v
-      mi = i
+      mk = k
     end
   end
-  return m, mi
+  return m, mk
 end
 
 function M.count(t, value)
   local c = 0
-  for i = 1, #t do
-    if t[i] == value then
+  local n = dense(t)
+  if n then
+    for i = 1, n do
+      if t[i] == value then
+        c = c + 1
+      end
+    end
+    return c
+  end
+  for _, v in pairs(t) do
+    if v == value then
       c = c + 1
     end
   end
@@ -75,8 +144,8 @@ function M.count(t, value)
 end
 
 function M.enumerate(t, start)
+  local n = dense(t) or 0
   local i = (start or 1) - 1
-  local n = #t
   return function()
     i = i + 1
     if i > n then
@@ -107,7 +176,6 @@ function M.range(a, b, step)
       return i
     end
   end
-
   return function()
     i = i + stepv
     if i <= stopv then
@@ -127,9 +195,14 @@ function M.zip(...)
   end
   local n = huge
   for i = 1, k do
-    local m = #arrays[i]
-    if m < n then
-      n = m
+    local di = dense(arrays[i])
+    if not di then
+      return function()
+        return
+      end
+    end
+    if di < n then
+      n = di
     end
   end
   local i = 0
@@ -147,20 +220,37 @@ function M.zip(...)
 end
 
 function M.map(func, t)
-  local n = #t
-  local out = {}
-  for i = 1, n do
-    out[i] = func(t[i], i)
+  local n = dense(t)
+  if n then
+    local out = {}
+    for i = 1, n do
+      out[i] = func(t[i], i)
+    end
+    return out
+  end
+  local out, j = {}, 1
+  for k, v in pairs(t) do
+    out[j] = func(v, k)
+    j = j + 1
   end
   return out
 end
 
 function M.filter(func, t)
-  local out = {}
-  local j = 1
-  for i = 1, #t do
-    local v = t[i]
-    if func(v, i) then
+  local out, j = {}, 1
+  local n = dense(t)
+  if n then
+    for i = 1, n do
+      local v = t[i]
+      if func(v, i) then
+        out[j] = v
+        j = j + 1
+      end
+    end
+    return out
+  end
+  for k, v in pairs(t) do
+    if func(v, k) then
       out[j] = v
       j = j + 1
     end
@@ -169,18 +259,36 @@ function M.filter(func, t)
 end
 
 function M.reduce(func, t, init)
-  local n = #t
-  local i = 1
-  local acc = init
-  if acc == nil then
-    if n == 0 then
-      error("reduce: empty table with no initial value")
+  local n = dense(t)
+  if n then
+    local i = 1
+    local acc = init
+    if acc == nil then
+      if n == 0 then
+        error("reduce: empty table with no initial value")
+      end
+      acc = t[1]
+      i = 2
     end
-    acc = t[1]
-    i = 2
+    for idx = i, n do
+      acc = func(acc, t[idx], idx)
+    end
+    return acc
   end
-  for idx = i, n do
-    acc = func(acc, t[idx], idx)
+  local acc = init
+  local first = true
+  for k, v in pairs(t) do
+    if acc == nil then
+      if first then
+        acc = v
+        first = false
+      end
+    else
+      acc = func(acc, v, k)
+    end
+  end
+  if acc == nil then
+    error("reduce: empty table with no initial value")
   end
   return acc
 end
