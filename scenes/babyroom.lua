@@ -105,9 +105,9 @@ function scene.on_enter()
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
-    local n = "HUD/" .. name
-    local item = scene:get(n, SceneType.object)
-    pool[n] = item
+    local hud = "HUD/" .. name
+    local item = scene:get(hud, SceneType.object)
+    pool[hud] = item
     table.insert(objects, item)
 
     local done = cassette:get(key, false)
@@ -131,7 +131,7 @@ function scene.on_enter()
         cassette:set(key, true)
 
         visibility.disappear(self)
-        pool[n].action = "default"
+        pool[hud].action = "default"
 
         for _, collected in pairs(pool.collected) do
           if not collected then
