@@ -154,6 +154,14 @@ function scene.on_enter()
           end
         end
 
+        for i = 1, #timers do
+          timermanager:clear(timers[i])
+        end
+
+        pool.theme:stop()
+        scribe:clear()
+        lightning:teardown()
+
         pool.teenager.action = "default"
         visibility.appear(pool.teenager)
 
