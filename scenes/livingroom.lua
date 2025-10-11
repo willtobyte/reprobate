@@ -2,8 +2,6 @@ local scene = {}
 
 local pool = {}
 
-local timers = {}
-
 local prefix = "livingroom/"
 
 local lightning = require("effects/lightning")
@@ -86,15 +84,13 @@ function scene.on_enter()
     if bounded then
       local delay = math.random(conf.minimum, conf.maximum) * 1000
 
-      local id = timermanager:set(delay, function()
+      timermanager:set(delay, function()
         object.action = conf.action
 
         if conf.lightning then
           lightning:trigger()
         end
       end)
-
-      table.insert(timers, id)
     end
 
     object:on_touch(function()
@@ -149,35 +145,26 @@ function scene.on_enter()
 
         cassette:set("system/stage", "highschool")
 
-        for i = 1, #timers do
-          timermanager:clear(timers[i])
-        end
-        timers = {}
+        -- TODO timermanager:purge()
 
         pool.theme:stop()
 
-        local id = timermanager:singleshot(3000, function()
+        timermanager:singleshot(3000, function()
           scribe:clear()
           lightning:teardown()
 
           pool.teenager.action = "default"
           visibility.appear(pool.teenager)
 
-          local id = timermanager:singleshot(3000, function()
+          timermanager:singleshot(3000, function()
             pool.voodoocast.action = "default"
             visibility.appear(pool.voodoocast)
 
-            local id = timermanager:singleshot(6000, function()
+            timermanager:singleshot(6000, function()
               scenemanager:set("highschool")
             end)
-
-            table.insert(timers, id)
           end)
-
-          table.insert(timers, id)
         end)
-
-        table.insert(timers, id)
       end)
     end
   end
@@ -192,12 +179,6 @@ end
 function scene.on_leave()
   scribe:clear()
   lightning:teardown()
-  visibility.teardown()
-
-  for i = 1, #timers do
-    timermanager:clear(timers[i])
-  end
-  timers = {}
 
   for name in next, pool do
     pool[name] = nil

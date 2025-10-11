@@ -2,8 +2,6 @@ local scene = {}
 
 local pool = {}
 
-local timers = {}
-
 local prefix = "babyroom/"
 
 local Inventory = require("overlay/inventory")
@@ -88,11 +86,9 @@ function scene.on_enter()
 
     local delay = math.random(conf.minimum, conf.maximum) * 1000
     local action = conf.action
-    local id = timermanager:set(delay, function()
+    timermanager:set(delay, function()
       pool[name].action = action
     end)
-
-    table.insert(timers, id)
 
     object:on_touch(function()
       say(message)
@@ -140,7 +136,7 @@ function scene.on_enter()
 
         cassette:set("system/stage", "livingroom")
 
-        local id = timermanager:singleshot(1000, function()
+        timermanager:singleshot(1000, function()
           local door = scene:get("door", SceneType.object)
           door:on_touch(function()
             scenemanager:set("livingroom")
@@ -150,17 +146,13 @@ function scene.on_enter()
 
           -- achievement:unlock("")
 
-          local id = timermanager:singleshot(3000, function()
+          timermanager:singleshot(3000, function()
             local effect = scene:get("door", SceneType.effect)
             if effect then
               effect:play()
             end
           end)
-
-          table.insert(timers, id)
         end)
-
-        table.insert(timers, id)
       end)
     end
   end
@@ -196,12 +188,6 @@ end
 function scene.on_leave()
   pool.inventory:teardown()
   scribe:clear()
-  visibility.teardown()
-
-  for i = 1, #timers do
-    timermanager:clear(timers[i])
-  end
-  timers = {}
 
   for name in next, pool do
     pool[name] = nil
