@@ -1,9 +1,9 @@
 {
-  "count": 200,
+  "count": 100,
   "spawn": {
     "x": { "start": 100.0, "end": 100.0 },
     "y": { "start": 100.0, "end": 100.0 },
-    "life": { "start": 0.6, "end": 2.0 },
+    "life": { "start": 10000, "end": 20000 },
     "scale": { "start": 0.2, "end": 2.0 },
     "alpha": { "start": 10, "end": 40 },
     "angle": { "start": -200, "end": 360 }
