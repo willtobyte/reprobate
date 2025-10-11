@@ -192,6 +192,7 @@ end
 function scene.on_leave()
   scribe:clear()
   lightning:teardown()
+  visibility.teardown()
 
   for i = 1, #timers do
     timermanager:clear(timers[i])

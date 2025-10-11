@@ -196,6 +196,7 @@ end
 function scene.on_leave()
   pool.inventory:teardown()
   scribe:clear()
+  visibility.teardown()
 
   for i = 1, #timers do
     timermanager:clear(timers[i])

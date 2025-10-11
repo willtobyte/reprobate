@@ -2,6 +2,8 @@ local timermanager = engine:timermanager()
 
 local M = {}
 
+local timers = {}
+
 function M.appear(object)
   object.alpha = 0
 
@@ -13,8 +15,7 @@ function M.appear(object)
   local ia = 0
   local fa = 255
 
-  local id
-  id = timermanager:set(interval, function()
+  local id = timermanager:set(interval, function()
     step = step + 1
 
     local t = step / steps
@@ -25,6 +26,8 @@ function M.appear(object)
       object = nil
     end
   end)
+
+  table.insert(timers, id)
 end
 
 function M.disappear(object)
@@ -39,8 +42,7 @@ function M.disappear(object)
   local ia = object.alpha
   local fa = 0
 
-  local id
-  id = timermanager:set(interval, function()
+  local id = timermanager:set(interval, function()
     step = step + 1
 
     local t = step / steps
@@ -53,6 +55,15 @@ function M.disappear(object)
       object = nil
     end
   end)
+
+  table.insert(timers, id)
+end
+
+function M.teardown()
+  for i = 1, #timers do
+    timermanager:clear(timers[i])
+  end
+  timers = {}
 end
 
 return M
