@@ -200,6 +200,7 @@ function scene.on_leave()
   for i = 1, #timers do
     timermanager:clear(timers[i])
   end
+  timers = {}
 
   for name in next, pool do
     pool[name] = nil
