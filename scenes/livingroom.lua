@@ -49,8 +49,8 @@ local objects = {
     messages = { "Oni no tsume de omae no tamashii o hikisake." },
   },
   window = {
-    minimum = 6,
-    maximum = 12,
+    minimum = 8,
+    maximum = 16,
     action = "lightning",
     messages = { "You cannot escape your own mind." },
     lightning = true,

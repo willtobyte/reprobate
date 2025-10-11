@@ -3,9 +3,9 @@
     "hidden": {
       "hitbox": {
         "rectangle": {
-          "x": 323,
+          "x": 336,
           "y": 93,
-          "width": 63,
+          "width": 54,
           "height": 39
         }
       }
@@ -13,9 +13,9 @@
     "default": {
       "hitbox": {
         "rectangle": {
-          "x": 323,
+          "x": 336,
           "y": 93,
-          "width": 63,
+          "width": 54,
           "height": 39
         }
       },
