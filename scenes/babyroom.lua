@@ -135,6 +135,8 @@ function scene.on_enter()
 
         cassette:set("system/stage", "livingroom")
 
+        -- achievement:unlock("")
+
         timermanager:singleshot(1000, function()
           local door = scene:get("door", SceneType.object)
           door:on_touch(function()
@@ -143,9 +145,7 @@ function scene.on_enter()
 
           door.action = "default"
 
-          -- achievement:unlock("")
-
-          local id2 = timermanager:singleshot(3000, function()
+          timermanager:singleshot(3000, function()
             local effect = scene:get("door", SceneType.effect)
             effect:play()
           end)
@@ -185,6 +185,7 @@ end
 function scene.on_leave()
   pool.inventory:teardown()
   scribe:clear()
+  noise:teardown()
 
   for name in next, pool do
     pool[name] = nil

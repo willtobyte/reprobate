@@ -143,7 +143,9 @@ function NoiseEffect:loop()
 end
 
 function NoiseEffect:teardown()
-  self.canvas:clear()
+  if self.canvas then
+    self.canvas:clear()
+  end
 
   self.buffer = nil
   self.cache = nil
