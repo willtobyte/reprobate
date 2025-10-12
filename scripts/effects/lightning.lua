@@ -25,6 +25,10 @@ function Lightning:new(width, height)
 end
 
 function Lightning:trigger()
+  if not self.canvas then
+    return
+  end
+
   local flashes = random(2, 4)
   local total_time = random(120, 800)
   self.sequence = {}
