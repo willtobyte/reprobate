@@ -141,7 +141,7 @@ function scene.on_keypress(code)
 
           if pool.pentagram then
             achievement:unlock("ACH_IN_LEAGUE_WITH_SATAN") -- In League with Satan.
-            pool.backcursor:hide()
+            pool.backcursor.visible = false
             pool.dialup:play()
           end
         end

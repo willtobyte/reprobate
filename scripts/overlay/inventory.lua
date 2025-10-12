@@ -118,7 +118,7 @@ function M:release()
   if self.target then
     local object = self.objects[self.target]
     if object then
-      object:hide()
+      object.visible = false
     end
   end
 

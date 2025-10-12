@@ -21,7 +21,7 @@ function M.appear(object)
     object.alpha = math.floor(ia + (fa - ia) * t)
 
     if step >= steps then
-      timermanager:clear(id)
+      timermanager:cancel(id)
       object = nil
     end
   end)
@@ -48,8 +48,8 @@ function M.disappear(object)
     object.alpha = math.floor(ia + (fa - ia) * t)
 
     if step >= steps then
-      timermanager:clear(id)
-      object:hide()
+      timermanager:cancel(id)
+      object.visible = false
       object = nil
     end
   end)

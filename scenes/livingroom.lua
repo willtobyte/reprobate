@@ -132,7 +132,7 @@ function scene.on_enter()
     pool.collected[name] = done
 
     if done then
-      object:hide()
+      object.visible = false
     else
       object:on_touch(function(self)
         pool.collected[name] = true

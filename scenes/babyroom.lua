@@ -112,7 +112,7 @@ function scene.on_enter()
     pool.collected[name] = done
 
     if done then
-      object:hide()
+      object.visible = false
       item.action = "default"
     end
 
@@ -126,7 +126,6 @@ function scene.on_enter()
         pool.collected[name] = true
 
         cassette:set(key, true)
-
         visibility.disappear(self)
         pool[hud].action = "default"
 
@@ -146,11 +145,9 @@ function scene.on_enter()
 
           -- achievement:unlock("")
 
-          timermanager:singleshot(3000, function()
+          local id2 = timermanager:singleshot(3000, function()
             local effect = scene:get("door", SceneType.effect)
-            if effect then
-              effect:play()
-            end
+            effect:play()
           end)
         end)
       end)
