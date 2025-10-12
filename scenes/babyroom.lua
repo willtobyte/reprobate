@@ -112,12 +112,12 @@ function scene.on_enter()
     pool.collected[name] = done
 
     if done then
-      pool[name].visible = false
-      pool[hud].action = "default"
+      object.visible = false
+      item.action = "default"
     end
 
     if not done then
-      pool[name]:on_touch(function(self)
+      object:on_touch(function(self)
         if conf.damage then
           overlay:dispatch(WidgetType.cursor, "damage")
         end
