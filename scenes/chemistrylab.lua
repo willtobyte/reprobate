@@ -22,4 +22,6 @@ function scene.on_leave()
   end
 end
 
+sentinel(scene, "chemistrylab")
+
 return scene

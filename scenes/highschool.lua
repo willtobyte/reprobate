@@ -2,8 +2,6 @@ local scene = {}
 
 local pool = {}
 
-local timers = {}
-
 local Inventory = require("overlay/inventory")
 
 local Scribe = require("helpers/scribe")
@@ -177,11 +175,9 @@ function scene.on_enter()
 
   pool.bloodyhandprint = scene:get("bloodyhandprint", SceneType.object)
 
-  local id = timermanager:set(6666, function()
+  timermanager:set(6666, function()
     pool.bloodyhandprint.action = "default"
   end)
-
-  table.insert(timers, id)
 
   for name, conf in pairs(objects) do
     local object = scene:get(name, SceneType.object)
@@ -250,10 +246,6 @@ function scene.on_leave()
 
   scribe:clear()
 
-  for i = 1, #timers do
-    timermanager:clear(timers[i])
-  end
-  timers = {}
   for name in next, pool do
     pool[name] = nil
   end

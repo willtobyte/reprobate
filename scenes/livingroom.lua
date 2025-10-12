@@ -145,9 +145,7 @@ function scene.on_enter()
 
         cassette:set("system/stage", "highschool")
 
-        -- TODO timermanager:purge()
-
-        pool.theme:stop()
+        pool.theme:stop() -- TODO fade
 
         timermanager:singleshot(3000, function()
           scribe:clear()
