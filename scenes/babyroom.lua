@@ -112,12 +112,12 @@ function scene.on_enter()
     pool.collected[name] = done
 
     if done then
-      object.visible = false
-      item.action = "default"
+      pool[name].visible = false
+      pool[hud].action = "default"
     end
 
     if not done then
-      object:on_touch(function(self)
+      pool[name]:on_touch(function(self)
         if conf.damage then
           overlay:dispatch(WidgetType.cursor, "damage")
         end
@@ -138,16 +138,16 @@ function scene.on_enter()
         -- achievement:unlock("")
 
         timermanager:singleshot(1000, function()
-          local door = scene:get("door", SceneType.object)
-          door:on_touch(function()
+          pool.door = scene:get("door", SceneType.object)
+          pool.door:on_touch(function()
             scenemanager:set("livingroom")
           end)
 
-          door.action = "default"
+          pool.door.action = "default"
 
           timermanager:singleshot(3000, function()
-            local effect = scene:get("door", SceneType.effect)
-            effect:play()
+            pool.effect = scene:get("door", SceneType.effect)
+            pool.effect:play()
           end)
         end)
       end)
