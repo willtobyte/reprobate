@@ -1,7 +1,7 @@
 {
   "animations": {
     "burning": {
-      "hitbox": {
+      "bounds": {
         "rectangle": {
           "height": 231,
           "width": 96,
@@ -39,7 +39,7 @@
       ]
     },
     "hover": {
-      "hitbox": {
+      "bounds": {
         "rectangle": {
           "height": 231,
           "width": 96,

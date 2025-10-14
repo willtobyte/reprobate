@@ -1,7 +1,7 @@
 {
   "animations": {
     "default": {
-      "hitbox": {
+      "bounds": {
         "rectangle": {
           "x": 135,
           "y": 167,

@@ -1,7 +1,7 @@
 {
   "animations": {
     "blaspheming": {
-      "hitbox": {
+      "bounds": {
         "rectangle": {
           "height": 80,
           "width": 30,

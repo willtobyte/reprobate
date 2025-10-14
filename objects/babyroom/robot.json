@@ -1,7 +1,7 @@
 {
   "animations": {
     "default": {
-      "hitbox": {
+      "bounds": {
         "rectangle": {
           "x": 130,
           "y": 90,
@@ -27,7 +27,7 @@
     },
     "shrug": {
       "next": "default",
-      "hitbox": {
+      "bounds": {
         "rectangle": {
           "x": 130,
           "y": 90,

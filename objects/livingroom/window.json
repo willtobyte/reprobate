@@ -1,7 +1,7 @@
 {
   "animations": {
     "default": {
-      "hitbox": {
+      "bounds": {
         "rectangle": {
           "x": 0,
           "y": 40,
@@ -55,7 +55,7 @@
     "lightning": {
       "next": "default",
       "effect": "thunder",
-      "hitbox": {
+      "bounds": {
         "rectangle": {
           "x": 0,
           "y": 40,
