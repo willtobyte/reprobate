@@ -21,7 +21,9 @@ function scene.on_enter()
 
   pool.credits = scene:get("credits", SceneType.object)
   pool.credits:on_touch(function()
-    scenemanager:set("whobuilt")
+    timermanager:singleshot(300, function()
+      scenemanager:set("whobuilt")
+    end)
   end)
 
   pool.headbanger = scene:get("headbanger", SceneType.object)
