@@ -46,7 +46,6 @@ function Lantern:new(width, height)
   local opaque_pixel = cache[255]
   local opaque_line = rep(opaque_pixel, w)
   return setmetatable({
-    canvas = engine:canvas(),
     w = w,
     h = h,
     cache = cache,
@@ -143,11 +142,10 @@ function Lantern:loop()
     parts[#parts + 1] = rep(opaque_line, bot)
   end
 
-  self.canvas.pixels = concat(parts, "")
+  canvas.pixels = concat(parts, "")
 end
 
 function Lantern:teardown()
-  self.canvas = nil
   self.opaque_line = nil
   self.opaque_pixel = nil
   self.dynamic_rows = nil

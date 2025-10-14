@@ -2,8 +2,6 @@ local scene = {}
 
 local pool = {}
 
-local scenemanager = engine:scenemanager()
-
 function scene.on_enter()
   scenemanager:register("mainmenu")
   scenemanager:register("whobuilt")
@@ -19,7 +17,9 @@ function scene.on_enter()
   end)
 
   pool.quarter:on_touch(function()
-    scenemanager:set("mainmenu")
+    timermanager:singleshot(300, function()
+      scenemanager:set("mainmenu")
+    end)
   end)
 
   pool.click = scene:get("click", SceneType.effect)

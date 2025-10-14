@@ -1,6 +1,3 @@
-local fontfactory = engine:fontfactory()
-local overlay = engine:overlay()
-
 local Writer = {}
 Writer.__index = Writer
 

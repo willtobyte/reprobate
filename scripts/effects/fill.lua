@@ -13,13 +13,12 @@ function Effect:new()
   local frame = rep(line, height)
 
   return setmetatable({
-    canvas = engine:canvas(),
     frame = frame,
   }, self)
 end
 
 function Effect:loop()
-  self.canvas.pixels = self.frame
+  canvas.pixels = self.frame
 end
 
 return Effect:new()

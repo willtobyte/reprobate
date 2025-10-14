@@ -1,5 +1,3 @@
-local timermanager = engine:timermanager()
-
 local M = {}
 
 function M.appear(object)

@@ -4,10 +4,6 @@ local pentagram = require("effects/pentagram")
 
 local scene = {}
 
-local cassette = engine:cassette()
-local overlay = engine:overlay()
-local scenemanager = engine:scenemanager()
-
 local pool
 
 function scene.on_enter()
@@ -32,7 +28,7 @@ RUN TO EXECUTE, EXIT TO QUIT
     halted = false,
   }
 
-  pool.font = engine:fontfactory():get("retro")
+  pool.font = fontfactory:get("retro")
   pool.label = overlay:create(WidgetType.label)
   pool.label.font = pool.font
 

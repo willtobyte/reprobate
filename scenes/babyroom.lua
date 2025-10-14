@@ -17,11 +17,6 @@ local visibility = require("helpers/visibility")
 
 local noise = require("effects/noise")
 
-local cassette = engine:cassette()
-local overlay = engine:overlay()
-local scenemanager = engine:scenemanager()
-local timermanager = engine:timermanager()
-
 local animations = {
   car = {
     minimum = 5,

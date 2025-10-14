@@ -2,10 +2,6 @@ local scene = {}
 
 local pool = {}
 
-local cassette = engine:cassette()
-
-local scenemanager = engine:scenemanager()
-
 function scene.on_enter()
   local stage = cassette:get("system/stage", "babyroom")
 
@@ -18,7 +14,9 @@ function scene.on_enter()
 
   pool.play = scene:get("play", SceneType.object)
   pool.play:on_touch(function()
-    scenemanager:set(stage)
+    timermanager:singleshot(300, function()
+      scenemanager:set(stage)
+    end)
   end)
 
   pool.credits = scene:get("credits", SceneType.object)

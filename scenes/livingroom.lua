@@ -12,10 +12,6 @@ local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
-local cassette = engine:cassette()
-local scenemanager = engine:scenemanager()
-local timermanager = engine:timermanager()
-
 local objects = {
   antiquewallclock = {
     messages = {

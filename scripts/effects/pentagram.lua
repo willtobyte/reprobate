@@ -41,7 +41,6 @@ function Pentagram:new(width, height)
   local t = 3
   local palette_order = { 1, 2, 3, 4 }
   return setmetatable({
-    canvas = engine:canvas(),
     w = w,
     h = h,
     total = total,
@@ -296,15 +295,14 @@ function Pentagram:loop()
       return
     end
   end
-  self.canvas.pixels = concat(buffer, "", 1, total)
+  canvas.pixels = concat(buffer, "", 1, total)
 end
 
 function Pentagram:teardown()
-  self.canvas:clear()
+  canvas:clear()
 
   self.buffer = nil
   self.cache = nil
-  self.canvas = nil
   self.callback = nil
   self.loop = function() end
 end

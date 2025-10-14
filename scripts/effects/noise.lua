@@ -12,7 +12,6 @@ end
 function NoiseEffect:new(width, height, duration)
   local w, h = width or 480, height or 270
   return setmetatable({
-    canvas = engine:canvas(),
     width = w,
     height = h,
     duration = duration or 2000,
@@ -66,7 +65,7 @@ function NoiseEffect:loop()
     for i = 1, total do
       buffer[i] = char(0, 0, 0, 0)
     end
-    self.canvas.pixels = concat(buffer, "", 1, total)
+    canvas.pixels = concat(buffer, "", 1, total)
     if self.callback then
       self.callback()
       self.callback = nil
@@ -139,17 +138,14 @@ function NoiseEffect:loop()
     end
   end
 
-  self.canvas.pixels = concat(buffer, "", 1, total)
+  canvas.pixels = concat(buffer, "", 1, total)
 end
 
 function NoiseEffect:teardown()
-  if self.canvas then
-    self.canvas:clear()
-  end
+  canvas:clear()
 
   self.buffer = nil
   self.cache = nil
-  self.canvas = nil
   self.callback = nil
 
   self.loop = function() end

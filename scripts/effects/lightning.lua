@@ -11,7 +11,6 @@ function Lightning:new(width, height)
     cache[a] = char(0, 0, 0, a)
   end
   return setmetatable({
-    canvas = engine:canvas(),
     w = w,
     h = h,
     dark_line = rep(cache[ALPHA_DARK], w),
@@ -25,10 +24,6 @@ function Lightning:new(width, height)
 end
 
 function Lightning:trigger()
-  if not self.canvas then
-    return
-  end
-
   local flashes = random(2, 4)
   local total_time = random(120, 800)
   self.sequence = {}
@@ -49,12 +44,13 @@ function Lightning:trigger()
   self.active = true
   self.state = "flash"
   self.state_end_time = moment() + self.sequence[1].flash
-  self.canvas.pixels = rep(self.clear_line, self.h)
+
+  canvas.pixels = rep(self.clear_line, self.h)
 end
 
 function Lightning:loop()
   if not self.active then
-    self.canvas.pixels = rep(self.dark_line, self.h)
+    canvas.pixels = rep(self.dark_line, self.h)
     return
   end
 
@@ -66,48 +62,45 @@ function Lightning:loop()
       if step.gap > 0 then
         self.state = "gap"
         self.state_end_time = now + step.gap
-        self.canvas.pixels = rep(self.dark_line, self.h)
+        canvas.pixels = rep(self.dark_line, self.h)
       else
         self.seq_index = self.seq_index + 1
         if not self.sequence[self.seq_index] then
           self.active = false
-          self.canvas.pixels = rep(self.dark_line, self.h)
+          canvas.pixels = rep(self.dark_line, self.h)
           return
         end
         self.state = "flash"
         self.state_end_time = now + self.sequence[self.seq_index].flash
-        self.canvas.pixels = rep(self.clear_line, self.h)
+        canvas.pixels = rep(self.clear_line, self.h)
       end
     else
-      self.canvas.pixels = rep(self.clear_line, self.h)
+      canvas.pixels = rep(self.clear_line, self.h)
     end
   elseif self.state == "gap" then
     if now >= self.state_end_time then
       self.seq_index = self.seq_index + 1
       if not self.sequence[self.seq_index] then
         self.active = false
-        self.canvas.pixels = rep(self.dark_line, self.h)
+        canvas.pixels = rep(self.dark_line, self.h)
         return
       end
       self.state = "flash"
       self.state_end_time = now + self.sequence[self.seq_index].flash
-      self.canvas.pixels = rep(self.clear_line, self.h)
+      canvas.pixels = rep(self.clear_line, self.h)
     else
-      self.canvas.pixels = rep(self.dark_line, self.h)
+      canvas.pixels = rep(self.dark_line, self.h)
     end
   end
 end
 
 function Lightning:teardown()
-  if self.canvas then
-    self.canvas:clear()
-  end
+  canvas:clear()
 
   self.active = false
   self.buffer = nil
   self.cache = nil
   self.callback = nil
-  self.canvas = nil
   self.loop = function() end
 end
 
