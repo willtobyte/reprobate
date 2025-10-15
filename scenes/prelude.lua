@@ -2,6 +2,8 @@ local scene = {}
 
 local pool = {}
 
+local nextscene = require("helpers/nextscene")
+
 function scene.on_enter()
   scenemanager:register("mainmenu")
   scenemanager:register("whobuilt")
@@ -16,11 +18,7 @@ function scene.on_enter()
     self.action = "normal"
   end)
 
-  pool.quarter:on_touch(function()
-    timermanager:singleshot(300, function()
-      scenemanager:set("mainmenu")
-    end)
-  end)
+  pool.quarter:on_touch(nextscene.n("mainmenu"))
 
   pool.click = scene:get("click", SceneType.effect)
 

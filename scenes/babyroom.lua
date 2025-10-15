@@ -9,6 +9,7 @@ local Inventory = require("overlay/inventory")
 local ops = require("helpers/ops")
 local toolbox = require("helpers/toolbox")
 local prank = require("helpers/prank")
+local nextscene = require("helpers/nextscene")
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
@@ -134,9 +135,7 @@ function scene.on_enter()
 
         timermanager:singleshot(1000, function()
           pool.door = scene:get("door", SceneType.object)
-          pool.door:on_touch(function()
-            scenemanager:set("livingroom")
-          end)
+          pool.door:on_touch(nextscene.n("livingroom"))
 
           pool.door.action = "default"
 

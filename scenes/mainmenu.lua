@@ -2,6 +2,8 @@ local scene = {}
 
 local pool = {}
 
+local nextscene = require("helpers/nextscene")
+
 function scene.on_enter()
   local stage = cassette:get("system/stage", "babyroom")
 
@@ -13,18 +15,10 @@ function scene.on_enter()
   pool.music:play(true)
 
   pool.play = scene:get("play", SceneType.object)
-  pool.play:on_touch(function()
-    timermanager:singleshot(300, function()
-      scenemanager:set(stage)
-    end)
-  end)
+  pool.play:on_touch(nextscene.n(stage))
 
   pool.credits = scene:get("credits", SceneType.object)
-  pool.credits:on_touch(function()
-    timermanager:singleshot(300, function()
-      scenemanager:set("whobuilt")
-    end)
-  end)
+  pool.credits:on_touch(nextscene.n("whobuilt"))
 
   pool.headbanger = scene:get("headbanger", SceneType.object)
 end

@@ -1,6 +1,7 @@
 local basic = require("interpreter/basic")
 
 local pentagram = require("effects/pentagram")
+local nextscene = require("helpers/nextscene")
 
 local scene = {}
 
@@ -44,9 +45,7 @@ RUN TO EXECUTE, EXIT TO QUIT
   pool.backcursor:on_unhover(function(self)
     self.action = "default"
   end)
-  pool.backcursor:on_touch(function()
-    scenemanager:set("highschool")
-  end)
+  pool.backcursor:on_touch(nextscene.n("highschool"))
 
   local switch = scene:get("switch", SceneType.object)
   switch:on_touch(function()
