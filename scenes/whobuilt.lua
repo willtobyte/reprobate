@@ -14,6 +14,7 @@ function scene.on_enter()
   pool.goat = scene:get("goat", SceneType.effect)
 
   pool.symbols:on_touch(function()
+    achievement:unlock("ACH_BLESSED_BY_THE_GOAT")
     pool.goat:play()
   end)
 
