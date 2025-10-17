@@ -21,12 +21,13 @@ function M.new(layout, character, objects)
     self.objects[i].y = self.layout.y
 
     self.objects[i]:on_touch(function(_, x, y)
-      self.x_orig = self.objects[i].x
-      self.y_orig = self.objects[i].y
+      local object = self.objects[i]
+      self.x_orig = object.x
+      self.y_orig = object.y
 
       self.target = i
-      self.x_offset = x
-      self.y_offset = y
+      self.x_offset = x - self.x_orig
+      self.y_offset = y - self.y_orig
     end)
   end
 
