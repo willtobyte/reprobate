@@ -141,18 +141,17 @@ function scene.on_enter()
 
         cassette:set("system/stage", "highschool")
 
-        pool.theme:stop() -- TODO fade
-
         timermanager:singleshot(3000, function()
+          pool.theme:stop()
           scribe:clear()
           lightning:teardown()
 
           pool.teenager.action = "default"
-          visibility.appear(pool.teenager)
+          -- visibility.appear(pool.teenager)
 
           timermanager:singleshot(3000, function()
             pool.voodoocast.action = "default"
-            visibility.appear(pool.voodoocast)
+            -- visibility.appear(pool.voodoocast)
 
             timermanager:singleshot(6000, function()
               scenemanager:set("highschool")
