@@ -6,7 +6,10 @@ local prefix = "livingroom/"
 
 local lightning = require("effects/lightning")
 local toolbox = require("helpers/toolbox")
-local visibility = require("helpers/visibility")
+
+local tween = require("library/tween")
+local tweens1 = {}
+local tweens2 = {}
 
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
@@ -109,8 +112,8 @@ function scene.on_enter()
     pool.cabinetdoor:on_touch(function()
       pool.cabinetdoor.action = "open"
       pool.voodoodoll.action = "default"
-
-      visibility.appear(pool.voodoodoll)
+      pool.voodoodoll.alpha = 0
+      tweens1[#tweens1 + 1] = tween.new(1, pool.voodoodoll, { alpha = 255 })
 
       local message = "The doll is not yours, it belongs to the loa that rides it."
       say(message, 3, 3, 3000)
@@ -124,7 +127,6 @@ function scene.on_enter()
     local key = prefix .. name
     local done = cassette:get(key, false)
     pool[name] = object
-
     pool.collected[name] = done
 
     if done then
@@ -133,7 +135,7 @@ function scene.on_enter()
       object:on_touch(function(self)
         pool.collected[name] = true
         cassette:set(key, true)
-        visibility.disappear(self)
+        tweens2[#tweens2 + 1] = tween.new(1, self, { alpha = 0, scale = 1.5 })
 
         if not toolbox.all(pool.collected) then
           return
@@ -147,11 +149,13 @@ function scene.on_enter()
           lightning:teardown()
 
           pool.teenager.action = "default"
-          visibility.appear(pool.teenager)
+          pool.teenager.alpha = 0
+          tweens1[#tweens1 + 1] = tween.new(1, pool.teenager, { alpha = 255 })
 
           timermanager:singleshot(3000, function()
             pool.voodoocast.action = "default"
-            visibility.appear(pool.voodoocast)
+            pool.voodoocast.alpha = 0
+            tweens1[#tweens1 + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
 
             timermanager:singleshot(6000, function()
               scenemanager:set("highschool")
@@ -167,11 +171,41 @@ function scene.on_loop(delta)
   lightning:loop()
   scribe:loop(delta)
   -- pool.inventory:loop(delta)
+
+  local function step(list, hide)
+    local n = #list
+    if n == 0 then
+      return
+    end
+
+    for i = n, 1, -1 do
+      local t = list[i]
+      if t:update(delta) then
+        if t.subject and hide then
+          t.subject.visible = false
+        end
+
+        list[i] = list[n]
+        list[n] = nil
+        n = n - 1
+      end
+    end
+  end
+
+  step(tweens1, false)
+  step(tweens2, true)
 end
 
 function scene.on_leave()
   scribe:clear()
   lightning:teardown()
+
+  for i = #tweens1, 1, -1 do
+    tweens1[i] = nil
+  end
+  for i = #tweens2, 1, -1 do
+    tweens2[i] = nil
+  end
 
   for name in next, pool do
     pool[name] = nil

@@ -125,9 +125,7 @@ function scene.on_enter()
         pool.collected[name] = true
 
         cassette:set(key, true)
-        -- visibility.disappear(self)
         tweens[#tweens + 1] = tween.new(1, self, { alpha = 0, scale = 1.5 })
-
         pool[hud].action = "default"
 
         if not toolbox.all(pool.collected) then
@@ -203,6 +201,10 @@ function scene.on_leave()
   pool.inventory:teardown()
   scribe:clear()
   noise:teardown()
+
+  for i = #tweens, 1, -1 do
+    tweens[i] = nil
+  end
 
   for name in next, pool do
     pool[name] = nil
