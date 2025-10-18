@@ -126,7 +126,7 @@ function scene.on_enter()
 
         cassette:set(key, true)
         -- visibility.disappear(self)
-        tweens[#tweens + 1] = tween.new(2, self, { alpha = 0 })
+        tweens[#tweens + 1] = tween.new(1, self, { alpha = 0, scale = 1.5 })
 
         pool[hud].action = "default"
 
@@ -186,11 +186,15 @@ function scene.on_loop(delta)
   end
 
   for i = n, 1, -1 do
-    local done = tweens[i]:update(delta)
-    if done then
-      local last = tweens[#tweens]
-      tweens[i] = last
-      tweens[#tweens] = nil
+    local t = tweens[i]
+    if t:update(delta) then
+      if t.subject then
+        t.subject.visible = false
+      end
+
+      tweens[i] = tweens[n]
+      tweens[n] = nil
+      n = n - 1
     end
   end
 end
