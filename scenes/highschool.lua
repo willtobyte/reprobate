@@ -158,9 +158,11 @@ function scene.on_enter()
 
   pool.binarymessage = scene:get("binarymessage", SceneType.object)
   pool.binarymessage:on_hover(function(self)
+    print(">>> on_hover")
     self.action = "default"
   end)
   pool.binarymessage:on_unhover(function(self)
+    print(">>> on_unhover")
     self.action = "hidden"
   end)
 
