@@ -6,6 +6,9 @@ local prefix = "babyroom/"
 
 local Inventory = require("overlay/inventory")
 
+local tween = require("library/tween")
+local tweens = {}
+
 local ops = require("helpers/ops")
 local toolbox = require("helpers/toolbox")
 local prank = require("helpers/prank")
@@ -14,7 +17,7 @@ local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
-local visibility = require("helpers/visibility")
+-- local visibility = require("helpers/visibility")
 
 local noise = require("effects/noise")
 
@@ -122,7 +125,9 @@ function scene.on_enter()
         pool.collected[name] = true
 
         cassette:set(key, true)
-        visibility.disappear(self)
+        -- visibility.disappear(self)
+        tweens[#tweens + 1] = tween.new(2, self, { alpha = 0 })
+
         pool[hud].action = "default"
 
         if not toolbox.all(pool.collected) then
@@ -174,6 +179,20 @@ function scene.on_loop(delta)
   scribe:loop(delta)
 
   pool.inventory:loop(delta)
+
+  local n = #tweens
+  if n == 0 then
+    return
+  end
+
+  for i = n, 1, -1 do
+    local done = tweens[i]:update(delta)
+    if done then
+      local last = tweens[#tweens]
+      tweens[i] = last
+      tweens[#tweens] = nil
+    end
+  end
 end
 
 function scene.on_leave()
