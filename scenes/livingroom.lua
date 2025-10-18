@@ -133,7 +133,7 @@ function scene.on_enter()
       object:on_touch(function(self)
         pool.collected[name] = true
         cassette:set(key, true)
-        visibility.disappear(self)
+        --visibility.disappear(self)
 
         if not toolbox.all(pool.collected) then
           return
@@ -147,11 +147,11 @@ function scene.on_enter()
           lightning:teardown()
 
           pool.teenager.action = "default"
-          -- visibility.appear(pool.teenager)
+          --visibility.appear(pool.teenager)
 
           timermanager:singleshot(3000, function()
             pool.voodoocast.action = "default"
-            -- visibility.appear(pool.voodoocast)
+            --visibility.appear(pool.voodoocast)
 
             timermanager:singleshot(6000, function()
               scenemanager:set("highschool")
