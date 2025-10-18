@@ -31,8 +31,8 @@ function M.disappear(object)
   local steps = math.floor(duration / interval)
   local step = 0
 
-  --local is = object.scale
-  local fs = is * 1.2
+  -- local is = object.scale
+  -- local fs = is * 1.2
 
   local ia = object.alpha
   local fa = 0
