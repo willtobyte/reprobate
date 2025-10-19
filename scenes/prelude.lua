@@ -35,8 +35,8 @@ function scene.on_touch()
 end
 
 function scene.on_leave()
-  for i = #pool, 1, -1 do
-    pool[i] = nil
+  for key in next, pool do
+    pool[key] = nil
   end
 end
 

@@ -137,7 +137,8 @@ function scene.on_enter()
       object:on_touch(function(self)
         pool.collected[name] = true
         cassette:set(key, true)
-        tweens.disappear[#tweens.disappear + 1] = tween.new(1, self, { alpha = 0, scale = 1.5 })
+
+        tweens.disappear[#tweens.disappear + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 })
 
         if not toolbox.all(pool.collected) then
           return
@@ -146,9 +147,8 @@ function scene.on_enter()
         cassette:set("system/stage", "highschool")
 
         timermanager:singleshot(3000, function()
-          pool.theme:stop()
-          scribe:clear()
           lightning:teardown()
+          scribe:clear()
 
           pool.teenager.action = "default"
           pool.teenager.alpha = 0
@@ -209,8 +209,8 @@ function scene.on_leave()
     tweens.disappear[i] = nil
   end
 
-  for i = #pool, 1, -1 do
-    pool[i] = nil
+  for key in next, pool do
+    pool[key] = nil
   end
 end
 

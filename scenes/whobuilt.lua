@@ -64,8 +64,8 @@ function scene.on_enter()
 end
 
 function scene.on_leave()
-  for name in next, pool do
-    pool[name] = nil
+  for key in next, pool do
+    pool[key] = nil
   end
 end
 

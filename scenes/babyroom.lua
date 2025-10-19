@@ -206,8 +206,8 @@ function scene.on_leave()
     tweens[i] = nil
   end
 
-  for i = #pool, 1, -1 do
-    pool[i] = nil
+  for key in next, pool do
+    pool[key] = nil
   end
 end
 
