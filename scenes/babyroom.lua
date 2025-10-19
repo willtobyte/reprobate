@@ -125,7 +125,7 @@ function scene.on_enter()
         pool.collected[name] = true
 
         cassette:set(key, true)
-        tweens[#tweens + 1] = tween.new(1, self, { alpha = 255, angle = 180, scale = 1.5 })
+        tweens[#tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 })
         pool[hud].action = "default"
 
         if not toolbox.all(pool.collected) then
@@ -187,7 +187,7 @@ function scene.on_loop(delta)
     local t = tweens[i]
     if t:update(delta) then
       if t.subject then
-        -- t.subject.visible = false
+        t.subject.visible = false
       end
 
       tweens[i] = tweens[n]
