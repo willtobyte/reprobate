@@ -112,6 +112,7 @@ function scene.on_enter()
     pool.voodoodoll.action = "default"
   else
     pool.cabinetdoor:on_touch(function()
+      pool.cabinetdoor:on_touch(nil)
       pool.cabinetdoor.action = "open"
       pool.voodoodoll.action = "default"
       pool.voodoodoll.alpha = 0
