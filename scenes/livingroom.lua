@@ -151,6 +151,12 @@ function scene.on_enter()
           lightning:teardown()
           scribe:clear()
 
+          for _, v in pairs(pool) do
+            if v.visible ~= nil then
+              v.visible = false
+            end
+          end
+
           pool.teenager.action = "default"
           pool.teenager.alpha = 0
           tweens.appear[#tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
