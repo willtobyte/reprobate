@@ -139,7 +139,8 @@ function scene.on_enter()
         pool.collected[name] = true
         cassette:set(key, true)
 
-        tweens.disappear[#tweens.disappear + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 })
+        tweens.disappear[#tweens.disappear + 1] =
+          tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
 
         if not toolbox.all(pool.collected) then
           return
