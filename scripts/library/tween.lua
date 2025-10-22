@@ -37,7 +37,10 @@ local tween = {
 -- c = change == ending - beginning
 -- d = duration == running time. How much time has passed *right now*
 
-local pow, sin, cos, pi, sqrt, abs, asin = math.pow, math.sin, math.cos, math.pi, math.sqrt, math.abs, math.asin
+local sin, cos, pi, sqrt, abs, asin = math.sin, math.cos, math.pi, math.sqrt, math.abs, math.asin
+local function pow(a, b)
+  return a ^ b
+end
 
 -- linear
 local function linear(t, b, c, d)
