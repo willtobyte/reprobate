@@ -9,7 +9,6 @@ local prefix = "babyroom/"
 local Inventory = require("overlay/inventory")
 
 local tween = require("library/tween")
-local tweens = {}
 
 local ops = require("helpers/ops")
 local toolbox = require("helpers/toolbox")
@@ -18,8 +17,6 @@ local nextscene = require("helpers/nextscene")
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
-
--- local visibility = require("helpers/visibility")
 
 local noise = require("effects/noise")
 
@@ -65,6 +62,7 @@ function scene.on_enter()
 
   prank.write("iseeyou.txt", "TODO...")
 
+  pool.tweens = {}
   pool.collected = {}
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
@@ -125,7 +123,7 @@ function scene.on_enter()
         pool.collected[name] = true
 
         cassette:set(key, true)
-        tweens[#tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
+        pool.tweens[#pool.tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
         pool[hud].action = "default"
 
         funcs:on_all()
@@ -182,20 +180,20 @@ function scene.on_loop(delta)
 
   pool.inventory:loop(delta)
 
-  local n = #tweens
+  local n = #pool.tweens
   if n == 0 then
     return
   end
 
   for i = n, 1, -1 do
-    local t = tweens[i]
+    local t = pool.tweens[i]
     if t:update(delta) then
       if t.subject then
         t.subject.visible = false
       end
 
-      tweens[i] = tweens[n]
-      tweens[n] = nil
+      pool.tweens[i] = pool.tweens[n]
+      pool.tweens[n] = nil
       n = n - 1
     end
   end
@@ -205,10 +203,6 @@ function scene.on_leave()
   pool.inventory:teardown()
   scribe:clear()
   noise:teardown()
-
-  for i = #tweens, 1, -1 do
-    tweens[i] = nil
-  end
 
   for key in next, pool do
     pool[key] = nil

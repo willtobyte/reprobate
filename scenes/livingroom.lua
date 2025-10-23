@@ -8,12 +8,7 @@ local prefix = "livingroom/"
 
 local lightning = require("effects/lightning")
 local toolbox = require("helpers/toolbox")
-
 local tween = require("library/tween")
-local tweens = {
-  appear = {},
-  disappear = {},
-}
 
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
@@ -73,6 +68,11 @@ function scene.on_enter()
   pool.theme = scene:get("rainmuffled", SceneType.effect)
   pool.theme:play(true)
 
+  pool.tweens = {
+    appear = {},
+    disappear = {},
+  }
+
   pool.collected = {}
 
   pool.teenager = scene:get("teenager", SceneType.object)
@@ -118,7 +118,7 @@ function scene.on_enter()
       pool.cabinetdoor.action = "open"
       pool.voodoodoll.action = "default"
       pool.voodoodoll.alpha = 0
-      tweens.appear[#tweens.appear + 1] = tween.new(1, pool.voodoodoll, { alpha = 255 })
+      pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoodoll, { alpha = 255 })
 
       local message = "The doll is not yours, it belongs to the loa that rides it."
       say(message, 3, 3, 3000)
@@ -143,7 +143,7 @@ function scene.on_enter()
         pool.collected[name] = true
         cassette:set(key, true)
 
-        tweens.disappear[#tweens.disappear + 1] =
+        pool.tweens.disappear[#pool.tweens.disappear + 1] =
           tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
 
         funcs:on_all()
@@ -163,20 +163,20 @@ function funcs:on_all()
     lightning:teardown()
     scribe:clear()
 
-    for _, v in pairs(pool) do
-      if v.visible ~= nil then
-        v.visible = false
+    for _, object in pairs(pool) do
+      if object.visible ~= nil then
+        object.visible = false
       end
     end
 
     pool.teenager.action = "default"
     pool.teenager.alpha = 200
-    tweens.appear[#tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
+    pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
 
     timermanager:singleshot(3000, function()
       pool.voodoocast.action = "default"
       pool.voodoocast.alpha = 0
-      tweens.appear[#tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
+      pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
 
       timermanager:singleshot(6000, function()
         scenemanager:set("highschool")
@@ -210,20 +210,13 @@ function scene.on_loop(delta)
     end
   end
 
-  step(tweens.appear, false)
-  step(tweens.disappear, true)
+  step(pool.tweens.appear, false)
+  step(pool.tweens.disappear, true)
 end
 
 function scene.on_leave()
   scribe:clear()
   lightning:teardown()
-
-  for i = #tweens.appear, 1, -1 do
-    tweens.appear[i] = nil
-  end
-  for i = #tweens.disappear, 1, -1 do
-    tweens.disappear[i] = nil
-  end
 
   for key in next, pool do
     pool[key] = nil
