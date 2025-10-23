@@ -170,7 +170,7 @@ function funcs:on_all()
     end
 
     pool.teenager.action = "default"
-    pool.teenager.alpha = 0
+    pool.teenager.alpha = 200
     tweens.appear[#tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
 
     timermanager:singleshot(3000, function()
