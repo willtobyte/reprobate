@@ -106,16 +106,14 @@ function scene.on_enter()
     pool[hud] = item
     table.insert(objects, item)
 
-    local done = cassette:get(key, false)
+    local taken = cassette:get(key, false)
 
-    pool.collected[name] = done
+    pool.collected[name] = taken
 
-    if done then
+    if taken then
       object.visible = false
       item.action = "default"
-    end
-
-    if not done then
+    else
       object:on_touch(function(self)
         if conf.damage then
           overlay:dispatch(WidgetType.cursor, "damage")

@@ -128,11 +128,13 @@ function scene.on_enter()
   for name, _ in pairs(items) do
     local object = scene:get(name, SceneType.object)
     local key = prefix .. name
-    local done = cassette:get(key, false)
     pool[name] = object
-    pool.collected[name] = done
 
-    if done then
+    local taken = cassette:get(key, false)
+
+    pool.collected[name] = taken
+
+    if taken then
       object.visible = false
     else
       object:on_touch(function(self)
