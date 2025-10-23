@@ -2,6 +2,8 @@ local scene = {}
 
 local pool = {}
 
+local funcs = {}
+
 local prefix = "livingroom/"
 
 local lightning = require("effects/lightning")
@@ -144,39 +146,43 @@ function scene.on_enter()
         tweens.disappear[#tweens.disappear + 1] =
           tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
 
-        if not toolbox.all(pool.collected) then
-          return
-        end
-
-        cassette:set("system/stage", "highschool")
-
-        timermanager:singleshot(3000, function()
-          lightning:teardown()
-          scribe:clear()
-
-          for _, v in pairs(pool) do
-            if v.visible ~= nil then
-              v.visible = false
-            end
-          end
-
-          pool.teenager.action = "default"
-          pool.teenager.alpha = 0
-          tweens.appear[#tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
-
-          timermanager:singleshot(3000, function()
-            pool.voodoocast.action = "default"
-            pool.voodoocast.alpha = 0
-            tweens.appear[#tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
-
-            timermanager:singleshot(6000, function()
-              scenemanager:set("highschool")
-            end)
-          end)
-        end)
+        funcs:on_all()
       end)
     end
   end
+end
+
+function funcs:on_all()
+  if not toolbox.all(pool.collected) then
+    return
+  end
+
+  cassette:set("system/stage", "highschool")
+
+  timermanager:singleshot(3000, function()
+    lightning:teardown()
+    scribe:clear()
+
+    for _, v in pairs(pool) do
+      if v.visible ~= nil then
+        v.visible = false
+      end
+    end
+
+    pool.teenager.action = "default"
+    pool.teenager.alpha = 0
+    tweens.appear[#tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
+
+    timermanager:singleshot(3000, function()
+      pool.voodoocast.action = "default"
+      pool.voodoocast.alpha = 0
+      tweens.appear[#tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
+
+      timermanager:singleshot(6000, function()
+        scenemanager:set("highschool")
+      end)
+    end)
+  end)
 end
 
 function scene.on_loop(delta)
