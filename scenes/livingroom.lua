@@ -43,8 +43,8 @@ local objects = {
     messages = { "Oni no tsume de omae no tamashii o hikisake." },
   },
   window = {
-    minimum = 8,
-    maximum = 16,
+    minimum = 4,
+    maximum = 8,
     action = "lightning",
     messages = { "You cannot escape your own mind." },
     lightning = true,
@@ -121,7 +121,6 @@ function scene.on_enter()
 
       timermanager:set(delay, function()
         object.action = conf.action
-
         if conf.lightning then
           lightning:trigger()
         end
