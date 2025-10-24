@@ -4,7 +4,7 @@ local pool = {}
 
 local Inventory = require("overlay/inventory")
 
-local nextscene = require("helpers/nextscene")
+local jump = require("helpers/jump")
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
@@ -167,7 +167,7 @@ function scene.on_enter()
   end)
 
   pool.pearintosh = scene:get("pearintosh", SceneType.object)
-  pool.pearintosh:on_touch(nextscene.n("pearintosh"))
+  pool.pearintosh:on_touch(jump.to("pearintosh"))
 
   pool.bloodyhandprint = scene:get("bloodyhandprint", SceneType.object)
 

@@ -2,7 +2,7 @@ local scene = {}
 
 local pool = {}
 
-local nextscene = require("helpers/nextscene")
+local jump = require("helpers/jump")
 
 function scene.on_enter()
   scenemanager:register("mainmenu")
@@ -18,7 +18,7 @@ function scene.on_enter()
     self.action = "normal"
   end)
 
-  pool.quarter:on_touch(nextscene.n("mainmenu"))
+  pool.quarter:on_touch(jump.to("mainmenu"))
 
   pool.click = scene:get("click", SceneType.effect)
 

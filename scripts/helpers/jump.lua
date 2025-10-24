@@ -1,6 +1,6 @@
 local M = {}
 
-function M.n(name, delay)
+function M.to(name, delay)
   delay = delay or 300
   return function()
     timermanager:singleshot(delay, function()

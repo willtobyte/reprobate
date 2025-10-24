@@ -2,7 +2,7 @@ local scene = {}
 
 local pool = {}
 
-local nextscene = require("helpers/nextscene")
+local jump = require("helpers/jump")
 
 function scene.on_enter()
   achievement:unlock("ACH_CURIUS_PERSON") -- Curious enough to check the Credits.
@@ -28,7 +28,7 @@ function scene.on_enter()
     self.action = "default"
   end)
 
-  pool.back:on_touch(nextscene.n("mainmenu"))
+  pool.back:on_touch(jump.to("mainmenu"))
 
   pool.aline = scene:get("aline", SceneType.object)
 

@@ -13,7 +13,7 @@ local tween = require("library/tween")
 local ops = require("helpers/ops")
 local toolbox = require("helpers/toolbox")
 local prank = require("helpers/prank")
-local nextscene = require("helpers/nextscene")
+local jump = require("helpers/jump")
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
@@ -155,7 +155,7 @@ function funcs.on_all()
 
   timermanager:singleshot(1000, function()
     pool.door = scene:get("door", SceneType.object)
-    pool.door:on_touch(nextscene.n("livingroom"))
+    pool.door:on_touch(jump.to("livingroom"))
 
     pool.door.action = "default"
 
