@@ -2,8 +2,6 @@ local scene = {}
 
 local pool = {}
 
-local funcs = {}
-
 local prefix = "babyroom/"
 
 local Inventory = require("overlay/inventory")
@@ -53,6 +51,28 @@ local items = {
   nintendo = {},
   playboy = {},
 }
+
+local function verify()
+  if not toolbox.all(pool.collected) then
+    return
+  end
+
+  cassette:set("system/stage", "livingroom")
+
+  -- achievement:unlock("")
+
+  timermanager:singleshot(1000, function()
+    pool.door = scene:get("door", SceneType.object)
+    pool.door:on_touch(jump.to("livingroom"))
+
+    pool.door.action = "default"
+
+    timermanager:singleshot(3000, function()
+      pool.effect = scene:get("door", SceneType.effect)
+      pool.effect:play()
+    end)
+  end)
+end
 
 function scene.on_enter()
   scenemanager:destroy("mainmenu")
@@ -126,7 +146,7 @@ function scene.on_enter()
         pool.tweens[#pool.tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
         pool[hud].action = "default"
 
-        funcs:on_all()
+        verify()
       end)
     end
   end
@@ -142,28 +162,6 @@ function scene.on_enter()
   end)
 
   noise:init()
-end
-
-function funcs.on_all()
-  if not toolbox.all(pool.collected) then
-    return
-  end
-
-  cassette:set("system/stage", "livingroom")
-
-  -- achievement:unlock("")
-
-  timermanager:singleshot(1000, function()
-    pool.door = scene:get("door", SceneType.object)
-    pool.door:on_touch(jump.to("livingroom"))
-
-    pool.door.action = "default"
-
-    timermanager:singleshot(3000, function()
-      pool.effect = scene:get("door", SceneType.effect)
-      pool.effect:play()
-    end)
-  end)
 end
 
 function scene.on_touch()
