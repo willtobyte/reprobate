@@ -221,7 +221,7 @@ function scene.on_leave()
   scribe:clear()
   lightning:teardown()
 
-  pool = {}
+  pool = nil
 end
 
 sentinel(scene, "livingroom")

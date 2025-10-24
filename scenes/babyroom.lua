@@ -204,7 +204,7 @@ function scene.on_leave()
   noise:teardown()
   pool.inventory:teardown()
 
-  pool = {}
+  pool = nil
 end
 
 sentinel(scene, "babyroom")

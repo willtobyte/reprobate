@@ -64,7 +64,7 @@ function scene.on_enter()
 end
 
 function scene.on_leave()
-  pool = {}
+  pool = nil
 end
 
 sentinel(scene, "whobuilt")

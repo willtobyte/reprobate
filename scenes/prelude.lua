@@ -35,7 +35,7 @@ function scene.on_touch()
 end
 
 function scene.on_leave()
-  pool = {}
+  pool = nil
 end
 
 sentinel(scene, "prelude")
