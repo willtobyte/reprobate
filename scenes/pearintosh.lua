@@ -198,7 +198,7 @@ function scene.on_leave()
     pentagram:teardown()
   end
 
-  pool = nil
+  pool = {}
 end
 
 sentinel(scene, "pearintosh")
