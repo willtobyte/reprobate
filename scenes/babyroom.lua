@@ -200,13 +200,11 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
-  pool.inventory:teardown()
   scribe:clear()
   noise:teardown()
+  pool.inventory:teardown()
 
-  for key in next, pool do
-    pool[key] = nil
-  end
+  pool = {}
 end
 
 sentinel(scene, "babyroom")

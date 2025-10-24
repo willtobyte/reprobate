@@ -221,9 +221,7 @@ function scene.on_leave()
   scribe:clear()
   lightning:teardown()
 
-  for key in next, pool do
-    pool[key] = nil
-  end
+  pool = {}
 end
 
 sentinel(scene, "livingroom")

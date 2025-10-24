@@ -32,9 +32,7 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_leave()
-  for key in next, pool do
-    pool[key] = nil
-  end
+  pool = {}
 end
 
 sentinel(scene, "mainmenu")

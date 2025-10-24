@@ -158,11 +158,9 @@ function scene.on_enter()
 
   pool.binarymessage = scene:get("binarymessage", SceneType.object)
   pool.binarymessage:on_hover(function(self)
-    print(">>> on_hover")
     self.action = "default"
   end)
   pool.binarymessage:on_unhover(function(self)
-    print(">>> on_unhover")
     self.action = "hidden"
   end)
 
@@ -238,13 +236,10 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  scribe:clear()
   pool.inventory:teardown()
 
-  scribe:clear()
-
-  for key in next, pool do
-    pool[key] = nil
-  end
+  pool = {}
 end
 
 sentinel(scene, "highschool")

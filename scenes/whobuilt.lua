@@ -64,9 +64,7 @@ function scene.on_enter()
 end
 
 function scene.on_leave()
-  for key in next, pool do
-    pool[key] = nil
-  end
+  pool = {}
 end
 
 sentinel(scene, "whobuilt")
