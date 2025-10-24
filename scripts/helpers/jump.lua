@@ -1,7 +1,7 @@
 local M = {}
 
 function M.to(name, delay)
-  delay = delay or 300
+  delay = delay or 200
   return function()
     timermanager:singleshot(delay, function()
       scenemanager:set(name)

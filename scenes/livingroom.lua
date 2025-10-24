@@ -174,6 +174,9 @@ function funcs:on_all()
     pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
 
     timermanager:singleshot(3000, function()
+      pool.teenager.action = nil
+      pool.teenager.action = "default"
+
       pool.voodoocast.action = "default"
       pool.voodoocast.alpha = 0
       pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
