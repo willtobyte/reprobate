@@ -239,7 +239,7 @@ function scene.on_leave()
   scribe:clear()
   pool.inventory:teardown()
 
-  pool = nil
+  pool = {}
 end
 
 sentinel(scene, "highschool")

@@ -8,7 +8,7 @@ local scene = {}
 local pool
 
 function scene.on_enter()
-  -- scenemanager:register("minigame")
+  scenemanager:register("highschool")
 
   pool = {
     prelude = [[
