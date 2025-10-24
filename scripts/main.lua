@@ -9,6 +9,8 @@ _G.engine = EngineFactory.new()
   :with_sentry(dsn)
   :create()
 
+_G.debugger = require("debugger")
+
 function setup()
   overlay.cursor:set("horn")
 
