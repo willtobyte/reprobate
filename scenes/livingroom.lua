@@ -57,39 +57,37 @@ local items = {
 }
 
 local function verify()
-  if not toolbox.all(pool.collected) then
-    return
-  end
-
-  cassette:set("system/stage", "highschool")
-
-  timermanager:singleshot(3000, function()
-    lightning:teardown()
-    scribe:clear()
-
-    for _, object in pairs(pool) do
-      if object.visible ~= nil then
-        object.visible = false
-      end
-    end
-
-    pool.teenager.action = "default"
-    pool.teenager.alpha = 200
-    pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
+  if toolbox.all(pool.collected) then
+    cassette:set("system/stage", "highschool")
 
     timermanager:singleshot(3000, function()
-      pool.teenager.action = nil
+      lightning:teardown()
+      scribe:clear()
+
+      for _, object in pairs(pool) do
+        if object.visible ~= nil then
+          object.visible = false
+        end
+      end
+
       pool.teenager.action = "default"
+      pool.teenager.alpha = 200
+      pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
 
-      pool.voodoocast.action = "default"
-      pool.voodoocast.alpha = 0
-      pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
+      timermanager:singleshot(3000, function()
+        pool.teenager.action = nil
+        pool.teenager.action = "default"
 
-      timermanager:singleshot(6000, function()
-        scenemanager:set("highschool")
+        pool.voodoocast.action = "default"
+        pool.voodoocast.alpha = 0
+        pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
+
+        timermanager:singleshot(6000, function()
+          scenemanager:set("highschool")
+        end)
       end)
     end)
-  end)
+  end
 end
 
 function scene.on_enter()
