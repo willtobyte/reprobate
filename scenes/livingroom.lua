@@ -193,21 +193,21 @@ function scene.on_loop(delta)
   scribe:loop(delta)
   -- pool.inventory:loop(delta)
 
-  local function step(list, hide)
-    local n = #list
+  local function step(tweens, hide)
+    local n = #tweens
     if n == 0 then
       return
     end
 
     for i = n, 1, -1 do
-      local t = list[i]
+      local t = tweens[i]
       if t:update(delta) then
         if t.subject and hide then
           t.subject.visible = false
         end
 
-        list[i] = list[n]
-        list[n] = nil
+        tweens[i] = tweens[n]
+        tweens[n] = nil
         n = n - 1
       end
     end
