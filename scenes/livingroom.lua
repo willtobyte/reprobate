@@ -115,13 +115,14 @@ function scene.on_enter()
 
     pool[name] = object
 
-    local bounded = conf.minimum and conf.maximum or false
+    local bounded = conf.minimum ~= nil and conf.maximum ~= nil
     if bounded then
       local delay = math.random(conf.minimum, conf.maximum) * 1000
 
+      local c = conf
       timermanager:set(delay, function()
-        object.action = conf.action
-        if conf.lightning then
+        pool[name].action = c.action
+        if c.lightning then
           lightning:trigger()
         end
       end)
