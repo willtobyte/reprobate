@@ -119,10 +119,9 @@ function scene.on_enter()
     if bounded then
       local delay = math.random(conf.minimum, conf.maximum) * 1000
 
-      local c = conf
       timermanager:set(delay, function()
-        pool[name].action = c.action
-        if c.lightning then
+        pool[name].action = conf.action
+        if conf.lightning then
           lightning:trigger()
         end
       end)
