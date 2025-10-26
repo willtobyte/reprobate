@@ -11,6 +11,8 @@ _G.engine = EngineFactory.new()
 
 _G.debugger = require("debugger")
 
+math.randomseed(os.time() + math.floor(os.clock() * 1e6))
+
 function setup()
   overlay.cursor:set("horn")
 
