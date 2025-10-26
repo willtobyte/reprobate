@@ -54,6 +54,7 @@ local items = {
 
 local function verify()
   if toolbox.all(pool.collected) then
+    error("ok")
     cassette:set("system/stage", "livingroom")
 
     -- achievement:unlock("")
