@@ -1,3 +1,6 @@
 .DS_Store
 
 cassette.json
+
+stdout.txt
+stderr.txt
