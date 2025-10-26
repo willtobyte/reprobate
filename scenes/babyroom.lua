@@ -53,7 +53,6 @@ local items = {
 }
 
 local function verify()
-  error("Error!")
   if toolbox.all(pool.collected) then
     cassette:set("system/stage", "livingroom")
 
