@@ -66,7 +66,6 @@ function lightning:trigger()
   self.phase = "bright"
   pool.darker.action = nil
   self.next_at = moment() + math.random(20, 30)
-  error("Boo")
 end
 
 function lightning:update()
