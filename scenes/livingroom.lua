@@ -4,10 +4,8 @@ local pool = {}
 
 local prefix = "livingroom/"
 
-local lightning = require("effects/lightning")
 local toolbox = require("helpers/toolbox")
 local tween = require("library/tween")
-
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
@@ -56,12 +54,50 @@ local items = {
   voodoodoll = {},
 }
 
+local lightning = { active = false, next_at = 0, count = 0, total = 0, phase = nil }
+
+function lightning:trigger()
+  if self.active then
+    return
+  end
+  self.active = true
+  self.count = 0
+  self.total = math.random(3, 4)
+  self.phase = "bright"
+  pool.darker.action = nil
+  self.next_at = moment() + math.random(20, 30)
+end
+
+function lightning:update()
+  if not self.active then
+    return
+  end
+  local now = moment()
+  if now < self.next_at then
+    return
+  end
+  if self.phase == "bright" then
+    self.count = self.count + 1
+    pool.darker.action = "default"
+    if self.count >= self.total then
+      self.active = false
+      self.phase = nil
+      return
+    end
+    self.phase = "dark"
+    self.next_at = now + math.random(20, 30)
+    return
+  end
+  pool.darker.action = nil
+  self.phase = "bright"
+  self.next_at = now + math.random(20, 30)
+end
+
 local function verify()
   if toolbox.all(pool.collected) then
     cassette:set("system/stage", "highschool")
 
     timermanager:singleshot(3000, function()
-      lightning:teardown()
       scribe:clear()
 
       for _, object in pairs(pool) do
@@ -109,6 +145,8 @@ function scene.on_enter()
 
   pool.teenager = scene:get("teenager", SceneType.object)
   pool.voodoocast = scene:get("voodoocast", SceneType.object)
+
+  pool.darker = scene:get("darker", SceneType.object)
 
   for name, conf in pairs(objects) do
     local object = scene:get(name, SceneType.object)
@@ -184,9 +222,10 @@ function scene.on_enter()
 end
 
 function scene.on_loop(delta)
-  lightning:loop()
   scribe:loop(delta)
   -- pool.inventory:loop(delta)
+
+  lightning:update()
 
   local function step(tweens, hide)
     local n = #tweens
@@ -214,7 +253,6 @@ end
 
 function scene.on_leave()
   scribe:clear()
-  lightning:teardown()
 
   pool = {}
 end

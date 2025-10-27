@@ -16,8 +16,6 @@ local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
 
-local noise = require("effects/noise")
-
 local animations = {
   car = {
     minimum = 5,
@@ -153,13 +151,7 @@ function scene.on_enter()
   local character = scene:get("boy", SceneType.object)
   pool.inventory = Inventory.new(layout, character, objects)
 
-  noise:on_finish(function()
-    noise:teardown()
-
-    say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
-  end)
-
-  noise:init()
+  say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
 end
 
 function scene.on_touch()
@@ -171,7 +163,6 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_loop(delta)
-  noise:loop()
   scribe:loop(delta)
 
   pool.inventory:loop(delta)
@@ -197,7 +188,6 @@ end
 
 function scene.on_leave()
   scribe:clear()
-  noise:teardown()
   pool.inventory:teardown()
 
   pool = {}

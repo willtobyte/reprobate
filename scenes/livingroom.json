@@ -63,6 +63,11 @@
       "name": "voodoodoll"
     },
     {
+      "action": "default",
+      "kind": "darker",
+      "name": "darker"
+    },
+    {
       "kind": "teenager",
       "name": "teenager"
     },
