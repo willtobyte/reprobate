@@ -1,6 +1,5 @@
 local basic = require("interpreter/basic")
 
-local pentagram = require("effects/pentagram")
 local jump = require("helpers/jump")
 
 local scene = {}
@@ -56,7 +55,6 @@ RUN TO EXECUTE, EXIT TO QUIT
   pool.dialup = scene:get("dialup", SceneType.effect)
 
   pool.dialup:on_end(function()
-    pentagram:teardown()
     print(">>> ...")
     -- TODO
     -- scenemanager:set("minigame")
@@ -64,12 +62,6 @@ RUN TO EXECUTE, EXIT TO QUIT
 end
 
 function scene.on_loop(delta)
-  if pool.pentagram then
-    pentagram:loop()
-
-    -- TODO start timer to enter next level
-  end
-
   local cursor = pool.cursor
 
   if pool.typing then
@@ -119,6 +111,7 @@ function scene.on_keypress(code)
 
         local function stdout(message)
           local achievements = {
+            ["666"] = "ACH_IN_LEAGUE_WITH_SATAN", -- In League with Satan.
             ["SATAN"] = "BLACK_CASTLE_SECRET",
             ["42"] = "ANSWER_TO_EVERYTHING",
             ["MOON"] = "LUNAR_TOMB_UNLOCKED",
@@ -134,7 +127,7 @@ function scene.on_keypress(code)
           pool.pentagram = message == "666"
 
           if pool.pentagram then
-            achievement:unlock("ACH_IN_LEAGUE_WITH_SATAN") -- In League with Satan.
+            achievement:unlock("ACH_IN_LEAGUE_WITH_SATAN")
             pool.backcursor.visible = false
             pool.dialup:play()
           end
@@ -192,10 +185,6 @@ end
 
 function scene.on_leave()
   pool.label:clear()
-
-  if pool.pentagram then
-    pentagram:teardown()
-  end
 
   pool = {}
 end
