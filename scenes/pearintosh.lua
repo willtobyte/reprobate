@@ -119,7 +119,6 @@ function scene.on_keypress(code)
 
         local function stdout(message)
           local achievements = {
-            ["666"] = "THE_NUMBER_OF_THE_BEAST",
             ["SATAN"] = "BLACK_CASTLE_SECRET",
             ["42"] = "ANSWER_TO_EVERYTHING",
             ["MOON"] = "LUNAR_TOMB_UNLOCKED",
