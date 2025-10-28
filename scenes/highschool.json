@@ -1,14 +1,6 @@
 {
   "width": 480,
   "height": 270,
-  "particles": [
-    {
-      "name": "part1",
-      "kind": "smoke",
-      "x": 30,
-      "y": 30
-    }
-  ],
   "objects": [
     {
       "action": "hidden",
