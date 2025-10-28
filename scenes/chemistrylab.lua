@@ -7,7 +7,7 @@ function scene.on_enter()
 end
 
 function scene.on_motion(x, y)
-  pool.lightmask.placement = { x - 480, y - 322.5 }
+  pool.lightmask.placement = { x - 500, y - 340 }
 end
 
 function scene.on_loop() end
