@@ -128,23 +128,23 @@ function M:release()
   self.target = nil
 end
 
-M.__index = function(t, k)
-  if k == "dragging" then
-    local i = t.target
-    if not i then
+M.__index = function(instance, key)
+  if key == "dragging" then
+    local target = instance.target
+    if not target then
       return nil
     end
-    local objects = t.objects
+    local objects = instance.objects
     if not objects then
       return nil
     end
-    local object = objects[i]
+    local object = objects[target]
     if not object then
       return nil
     end
     return object.kind
   end
-  return rawget(M, k)
+  return rawget(M, key)
 end
 
 return M
