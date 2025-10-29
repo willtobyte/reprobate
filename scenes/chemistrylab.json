@@ -1,10 +1,4 @@
 {
   "width": 480,
-  "height": 270,
-  "objects": [
-    {
-      "kind": "lightmask",
-      "name": "lightmask"
-    }
-  ]
+  "height": 270
 }
