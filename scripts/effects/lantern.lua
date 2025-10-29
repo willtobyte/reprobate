@@ -1,154 +1,155 @@
-local Lantern = {}
-Lantern.__index = Lantern
+local M = {}
+M.__index = M
 
-local char, concat, floor = string.char, table.concat, math.floor
+local char = string.char
+local join = table.concat
 local rep = string.rep
+local floor = math.floor
 
-local radius = 40
-local fade = 20
-local total_radius = radius + fade
-local max_d2 = total_radius * total_radius
-local min_d2 = radius * radius
-local levels = 6
-local level_step = (max_d2 - min_d2) / levels
+local R = 40
+local F = 20
+local TR = R + F
+local MAXD2 = TR * TR
+local MIND2 = R * R
+local LV = 6
+local STEP = (MAXD2 - MIND2) / LV
 
-function Lantern:new(width, height)
-  local w = width or 480
-  local h = height or 270
-
-  local cache = {}
+function M:new(w, h)
+  local ww = w or 480
+  local hh = h or 270
+  local px = {}
   for i = 0, 255 do
-    cache[i] = char(0, 0, 0, i)
+    px[i] = char(0, 0, 0, i)
   end
-
-  local alpha_map = {}
-  for d2 = 0, max_d2 do
-    if d2 <= min_d2 then
-      alpha_map[d2] = 0
-    elseif d2 < max_d2 then
-      local layer = floor((d2 - min_d2) / level_step)
-      alpha_map[d2] = floor((layer / (levels - 1)) * 255)
-    else
-      alpha_map[d2] = 255
+  local amap = {}
+  for d2 = 0, MAXD2 do
+    if d2 <= MIND2 then
+      amap[d2] = 0
+    end
+    if d2 > MIND2 and d2 < MAXD2 then
+      local layer = floor((d2 - MIND2) / STEP)
+      amap[d2] = floor((layer / (LV - 1)) * 255)
+    end
+    if d2 >= MAXD2 then
+      amap[d2] = 255
     end
   end
-
   local dx2 = {}
-  for x = 0, w - 1 do
-    dx2[x] = 0
+  for i = 1, ww do
+    dx2[i] = 0
   end
   local dy2 = {}
-  for y = 0, h - 1 do
-    dy2[y] = 0
+  for i = 1, hh do
+    dy2[i] = 0
   end
-  local dynamic_rows = {}
-
-  local opaque_pixel = cache[255]
-  local opaque_line = rep(opaque_pixel, w)
   return setmetatable({
-    w = w,
-    h = h,
-    cache = cache,
-    alpha_map = alpha_map,
+    w = ww,
+    h = hh,
+    px = px,
+    amap = amap,
     dx2 = dx2,
     dy2 = dy2,
-    dynamic_rows = dynamic_rows,
-    opaque_pixel = opaque_pixel,
-    opaque_line = opaque_line,
-    mx = floor(w * 0.5),
-    my = floor(h * 0.5),
+    rowbuf = {},
+    opaque_px = px[255],
+    opaque_row = rep(px[255], ww),
+    cx = floor(ww * 0.5),
+    cy = floor(hh * 0.5),
   }, self)
 end
 
-function Lantern:motion(x, y)
-  self.mx = floor(x)
-  self.my = floor(y)
+function M:motion(x, y)
+  self.cx = floor(x)
+  self.cy = floor(y)
 end
 
-function Lantern:loop()
+function M:loop()
   local w, h = self.w, self.h
-  local mx, my = self.mx, self.my
-  local cache, alpha_map = self.cache, self.alpha_map
+  local cx, cy = self.cx, self.cy
+  local px, amap = self.px, self.amap
   local dx2, dy2 = self.dx2, self.dy2
-  local dynamic_rows = self.dynamic_rows
-  local opaque_pixel, opaque_line = self.opaque_pixel, self.opaque_line
+  local rowbuf = self.rowbuf
+  local opaque_px, opaque_row = self.opaque_px, self.opaque_row
 
   for x = 0, w - 1 do
-    local d = x - mx
-    dx2[x] = d * d
+    local d = x - cx
+    dx2[x + 1] = d * d
   end
   for y = 0, h - 1 do
-    local d = y - my
-    dy2[y] = d * d
+    local d = y - cy
+    dy2[y + 1] = d * d
   end
 
-  local y0 = my - total_radius
+  local y0 = cy - TR
   if y0 < 0 then
     y0 = 0
-  elseif y0 > h - 1 then
+  end
+  if y0 > h - 1 then
     y0 = h - 1
   end
-  local y1 = my + total_radius
+  local y1 = cy + TR
   if y1 > h - 1 then
     y1 = h - 1
-  elseif y1 < 0 then
+  end
+  if y1 < 0 then
     y1 = 0
   end
-  local x0 = mx - total_radius
+  local x0 = cx - TR
   if x0 < 0 then
     x0 = 0
-  elseif x0 > w - 1 then
+  end
+  if x0 > w - 1 then
     x0 = w - 1
   end
-  local x1 = mx + total_radius
+  local x1 = cx + TR
   if x1 > w - 1 then
     x1 = w - 1
-  elseif x1 < 0 then
+  end
+  if x1 < 0 then
     x1 = 0
   end
 
   local dynW = x1 - x0 + 1
   local dynH = y1 - y0 + 1
+  local pre = rep(opaque_px, x0)
+  local suf = rep(opaque_px, w - (x1 + 1))
 
-  local prefix = rep(opaque_pixel, x0)
-  local suffix = rep(opaque_pixel, w - (x1 + 1))
-
-  for row = 1, dynH do
-    local yi = y0 + row - 1
-    local ddy = dy2[yi]
-    local buf = {}
-    for col = 1, dynW do
-      local xi = x0 + col - 1
-      local d2 = dx2[xi] + ddy
-      if d2 > max_d2 then
-        d2 = max_d2
-      end
-      local a0 = alpha_map[d2]
-      buf[col] = cache[a0]
-    end
-    dynamic_rows[row] = prefix .. concat(buf, "", 1, dynW) .. suffix
-  end
-
-  local top = y0
-  local bot = h - (y0 + dynH)
   local parts = {}
+  local top = y0
   if top > 0 then
-    parts[#parts + 1] = rep(opaque_line, top)
+    parts[#parts + 1] = rep(opaque_row, top)
   end
+
   if dynH > 0 then
-    parts[#parts + 1] = concat(dynamic_rows, "", 1, dynH)
+    for r = 1, dynH do
+      local yi = y0 + r - 1
+      local ddy = dy2[yi + 1]
+      for c = 1, dynW do
+        local xi = x0 + c - 1
+        local d2 = dx2[xi + 1] + ddy
+        if d2 > MAXD2 then
+          d2 = MAXD2
+        end
+        local a = amap[d2]
+        rowbuf[c] = px[a]
+      end
+      parts[#parts + 1] = pre
+      parts[#parts + 1] = join(rowbuf, "", 1, dynW)
+      parts[#parts + 1] = suf
+    end
   end
+
+  local bot = h - (y0 + dynH)
   if bot > 0 then
-    parts[#parts + 1] = rep(opaque_line, bot)
+    parts[#parts + 1] = rep(opaque_row, bot)
   end
 
-  canvas.pixels = concat(parts, "")
+  canvas.pixels = join(parts, "")
 end
 
-function Lantern:teardown()
-  self.opaque_line = nil
-  self.opaque_pixel = nil
-  self.dynamic_rows = nil
+function M:teardown()
+  self.opaque_row = nil
+  self.opaque_px = nil
+  self.rowbuf = nil
 end
 
-return Lantern:new()
+return M:new()
