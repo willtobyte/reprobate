@@ -1,10 +1,9 @@
-local basic = require("interpreters/basic")
-
-local jump = require("helpers/jump")
-
 local scene = {}
 
 local pool
+
+local basic = require("interpreters/basic")
+local jump = require("helpers/jump")
 
 function scene.on_enter()
   scenemanager:register("highschool")
