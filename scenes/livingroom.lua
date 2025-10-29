@@ -4,6 +4,7 @@ local pool = {}
 
 local prefix = "livingroom/"
 
+local jump = require("helpers/jump")
 local toolbox = require("helpers/toolbox")
 local tween = require("library/tween")
 local Scribe = require("helpers/scribe")
@@ -118,8 +119,8 @@ local function verify()
         pool.voodoocast.alpha = 0
         pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
 
-        timermanager:singleshot(6000, function()
-          scenemanager:set("highschool")
+        timermanager:singleshot(3000, function()
+          pool.teenager:on_touch(jump.to("highschool"))
         end)
       end)
     end)
