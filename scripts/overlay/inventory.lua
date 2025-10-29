@@ -14,20 +14,19 @@ function M.new(layout, character, objects)
   self.target = nil
   self.x_offset = 0
   self.y_offset = 0
-  self.x_orig = 0
-  self.y_orig = 0
+  self.x_origin = 0
+  self.y_origin = 0
 
   for i = 1, #self.objects do
     self.objects[i].y = self.layout.y
 
     self.objects[i]:on_touch(function(_, x, y)
       local object = self.objects[i]
-      self.x_orig = object.x
-      self.y_orig = object.y
-
+      self.x_origin = object.x
+      self.y_origin = object.y
       self.target = i
-      self.x_offset = x - self.x_orig
-      self.y_offset = y - self.y_orig
+      self.x_offset = x - self.x_origin
+      self.y_offset = y - self.y_origin
     end)
   end
 
@@ -99,8 +98,11 @@ end
 
 function M:teardown()
   if self.target ~= nil then
-    self.objects[self.target].x = self.x_orig
-    self.objects[self.target].y = self.y_orig
+    self.objects[self.target].placement = {
+      x = 0,
+      y = self.y_origin,
+    }
+
     self.target = nil
   end
 
