@@ -2,12 +2,11 @@ local scene = {}
 
 local pool = {}
 
-local lantern = require("effects/lantern")
+local lantern = require("effect/lantern")
 
 function scene.on_enter() end
 
 function scene.on_motion(x, y)
-  -- pool.lightmask.placement = { x - 588, y - 331 }
   lantern:motion(x, y)
 end
 

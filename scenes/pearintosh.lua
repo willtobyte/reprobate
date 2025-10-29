@@ -1,4 +1,4 @@
-local basic = require("interpreter/basic")
+local basic = require("interpreters/basic")
 
 local jump = require("helpers/jump")
 
