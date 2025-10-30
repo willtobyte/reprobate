@@ -120,13 +120,16 @@ function M:loop()
 
     for col = 1, dynamic_width do
       local x = min_x + col - 1
-      local distance_sq = x_distances_sq[x] + y_dist_sq
+      -- local distance_sq = x_distances_sq[x] + y_dist_sq
 
-      if distance_sq > OUTER_RADIUS_SQ then
-        distance_sq = OUTER_RADIUS_SQ
-      end
+      -- if distance_sq > OUTER_RADIUS_SQ then
+      --   distance_sq = OUTER_RADIUS_SQ
+      -- end
 
-      row_buffer[col] = pixel_cache[alpha_lookup[distance_sq]]
+      -- row_buffer[col] = pixel_cache[alpha_lookup[distance_sq]]
+      local dist_sq = x_distances_sq[x] + y_dist_sq
+      local clamped = dist_sq > OUTER_RADIUS_SQ and OUTER_RADIUS_SQ or dist_sq
+      row_buffer[col] = pixel_cache[alpha_lookup[clamped]]
     end
 
     part_count = part_count + 1
