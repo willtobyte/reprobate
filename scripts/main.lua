@@ -9,9 +9,7 @@ _G.engine = EngineFactory.new()
   :with_sentry(dsn)
   :create()
 
-_G.debugger = require("debugger")
-
-math.randomseed(os.time() + math.floor(os.clock() * 1e6))
+math.randomseed(666)
 
 function setup()
   overlay.cursor:set("horn")
