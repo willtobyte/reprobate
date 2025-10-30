@@ -4,14 +4,23 @@ local pool = {}
 
 local lantern = require("effects/lantern")
 
-function scene.on_enter() end
+function scene.on_enter()
+  pool.dark = cassette:get(key, true)
+  if not pool.dark then
+    -- Enable clicks
+  end
+end
 
 function scene.on_motion(x, y)
-  lantern:motion(x, y)
+  if pool.dark then
+    lantern:motion(x, y)
+  end
 end
 
 function scene.on_loop()
-  lantern:loop()
+  if pool.dark then
+    lantern:loop()
+  end
 end
 
 function scene.on_leave()

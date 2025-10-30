@@ -142,6 +142,20 @@ function M:loop()
   canvas.pixels = concat(parts)
 end
 
-function M:teardown() end
+function M:teardown()
+  for i = 0, WIDTH - 1 do
+    x_distances_sq[i] = nil
+  end
+
+  for i = 0, HEIGHT - 1 do
+    y_distances_sq[i] = nil
+  end
+
+  for i = 1, WIDTH do
+    row_buffer[i] = nil
+  end
+
+  canvas:clear()
+end
 
 return M:new()
