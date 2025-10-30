@@ -4,21 +4,23 @@ local pool = {}
 
 local lantern = require("effects/lantern")
 
+local prefix = "chemistrylab/"
+
 function scene.on_enter()
-  pool.dark = cassette:get(key, true)
-  if not pool.dark then
+  pool.lighton = cassette:get(prefix .. "lighton", true)
+  if pool.lighton then
     -- Enable clicks
   end
 end
 
 function scene.on_motion(x, y)
-  if pool.dark then
+  if not pool.lighton then
     lantern:motion(x, y)
   end
 end
 
 function scene.on_loop()
-  if pool.dark then
+  if not pool.lighton then
     lantern:loop()
   end
 end
