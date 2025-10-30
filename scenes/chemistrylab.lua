@@ -3,7 +3,6 @@ local scene = {}
 local pool = {}
 
 local lantern = require("effects/lantern")
-
 local prefix = "chemistrylab/"
 
 function scene.on_enter()
@@ -14,6 +13,7 @@ function scene.on_enter()
 end
 
 function scene.on_motion(x, y)
+  error("Motion event not implemented")
   if not pool.lighton then
     lantern:motion(x, y)
   end
