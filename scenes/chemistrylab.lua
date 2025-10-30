@@ -3,6 +3,7 @@ local scene = {}
 local pool = {}
 
 local lantern = require("effects/lantern")
+
 local prefix = "chemistrylab/"
 
 function scene.on_enter()
