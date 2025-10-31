@@ -1,23 +1,23 @@
 {
-  "count": 100,
+  "count": 60,
   "spawn": {
-    "x": { "start": 100.0, "end": 100.0 },
-    "y": { "start": 100.0, "end": 100.0 },
-    "life": { "start": 1.0, "end": 3.0 },
+    "x": { "start": 10.0, "end": 10.0 },
+    "y": { "start": 10.0, "end": 10.0 },
+    "life": { "start": 0.4, "end": 2.0 },
     "scale": { "start": 0.2, "end": 2.0 },
     "alpha": { "start": 10, "end": 40 },
     "angle": { "start": -200, "end": 360 }
   },
   "velocity": {
     "x": { "start": 0.0, "end": 0.0 },
-    "y": { "start": -10.0, "end": -50.0 }
+    "y": { "start": -4.0, "end": -30.0 }
   },
   "gravity": {
     "x": { "start": 0.0, "end": 0.0 },
     "y": { "start": 0.0, "end": 0.0 }
   },
   "rotation": {
-    "force": { "start": 0.0, "end": 0.0 },
+    "force": { "start": 0.2, "end": 0.4 },
     "velocity": { "start": 0.0, "end": 0.0 }
   }
 }
