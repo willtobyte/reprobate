@@ -5,7 +5,7 @@ _G.engine = EngineFactory.new()
   :with_width(1920)
   :with_height(1080)
   :with_scale(4.0)
-  :with_fullscreen(false)
+  :with_fullscreen(true)
   :with_sentry(dsn)
   :create()
 
@@ -16,12 +16,7 @@ function setup()
 
   local scene = queryparam("scene", "prelude")
 
-  local b = 0
-  dbg.assert(b ~= 0, "Division by zero!")
-
   scenemanager:register(scene)
 
   scenemanager:set(scene)
 end
-
-function loop() end
