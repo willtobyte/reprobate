@@ -1,0 +1,31 @@
+{
+  "animations": {
+    "closed": {
+      "bounds": {
+        "rectangle": {
+          "x": 93,
+          "y": 171,
+          "width": 28,
+          "height": 49
+        }
+      }
+    },
+    "open": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 93,
+            "y": 171
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 42,
+            "height": 49
+          }
+        }
+      ]
+    }
+  }
+}

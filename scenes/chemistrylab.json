@@ -18,6 +18,11 @@
       "name": "alien"
     },
     {
+      "action": "closed",
+      "kind": "cabinetdoor",
+      "name": "cabinetdoor"
+    },
+    {
       "kind": "switch",
       "name": "switch"
     },
@@ -26,7 +31,6 @@
       "kind": "book",
       "name": "book"
     },
-
     {
       "action": "default",
       "kind": "light",

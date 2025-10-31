@@ -9,6 +9,12 @@ local prefix = "chemistrylab/"
 function scene.on_enter()
   pool.switch = scene:get("switch", SceneType.object)
 
+  pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
+  pool.cabinetdoor:on_touch(function()
+    pool.cabinetdoor.action = "open"
+    pool.switch.action = "off"
+  end)
+
   pool.lighton = cassette:get(prefix .. "lighton", true)
   if pool.lighton then
     -- Enable clicks
