@@ -1,0 +1,138 @@
+{
+  "animations": {
+    "default": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 291,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 89,
+            "height": 26
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 273,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 29,
+            "width": 184,
+            "height": 254
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 273,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 285,
+            "width": 184,
+            "height": 254
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 291,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 92,
+            "y": 1,
+            "width": 89,
+            "height": 26
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 273,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 29,
+            "width": 184,
+            "height": 254
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 291,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 89,
+            "height": 26
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 291,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 89,
+            "height": 26
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 291,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 89,
+            "height": 26
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 291,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 89,
+            "height": 26
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 291,
+            "y": 16
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 89,
+            "height": 26
+          }
+        }
+      ]
+    }
+  }
+}

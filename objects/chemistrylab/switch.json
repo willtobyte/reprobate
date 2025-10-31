@@ -1,0 +1,38 @@
+{
+  "animations": {
+    "on": {
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 93,
+            "y": 173
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 18,
+            "height": 41
+          }
+        }
+      ]
+    },
+    "off": {
+      "frames": [
+        {
+          "duration": -1,
+          "offset": {
+            "x": 93,
+            "y": 175
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 44,
+            "width": 18,
+            "height": 39
+          }
+        }
+      ]
+    }
+  }
+}

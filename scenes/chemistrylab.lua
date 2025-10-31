@@ -7,7 +7,9 @@ local lantern = require("effects/lantern")
 local prefix = "chemistrylab/"
 
 function scene.on_enter()
-  pool.lighton = cassette:get(prefix .. "lighton", false)
+  pool.switch = scene:get("switch", SceneType.object)
+
+  pool.lighton = cassette:get(prefix .. "lighton", true)
   if pool.lighton then
     -- Enable clicks
   end

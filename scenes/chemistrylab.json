@@ -1,4 +1,36 @@
 {
   "width": 480,
-  "height": 270
+  "height": 270,
+  "objects": [
+    {
+      "action": "default",
+      "kind": "testtubes",
+      "name": "testtubes"
+    },
+    {
+      "action": "default",
+      "kind": "fireextinguisher",
+      "name": "fireextinguisher"
+    },
+    {
+      "action": "default",
+      "kind": "alien",
+      "name": "alien"
+    },
+    {
+      "kind": "switch",
+      "name": "switch"
+    },
+    {
+      "action": "default",
+      "kind": "book",
+      "name": "book"
+    },
+
+    {
+      "action": "default",
+      "kind": "lights",
+      "name": "lights"
+    }
+  ]
 }
