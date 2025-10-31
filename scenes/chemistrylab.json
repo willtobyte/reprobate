@@ -32,7 +32,6 @@
       "name": "book"
     },
     {
-      "action": "default",
       "kind": "light",
       "name": "light"
     },
