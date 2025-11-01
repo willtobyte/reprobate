@@ -12,8 +12,6 @@ function transition(options)
   end
 end
 
-local pool = {}
-
 local state = { system = {} }
 
 local function _wrap_key(k)
@@ -40,8 +38,6 @@ setmetatable(state, {
 })
 
 _G.state = state
-
-_G.pool = pool
 
 function any(t)
   local n = dense(t)

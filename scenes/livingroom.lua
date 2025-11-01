@@ -1,6 +1,6 @@
 local scene = {}
 
-local prefix = "livingroom/"
+local pool = {}
 
 local jump = require("helpers/jump")
 local tween = require("library/tween")
@@ -174,9 +174,7 @@ function scene.on_enter()
   pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
   pool.voodoodoll = scene:get("voodoodoll", SceneType.object)
 
-  local key = prefix .. "cabinetdoor"
-
-  if cassette:get(key) then
+  if state.cabinetdoor then
     pool.cabinetdoor.action = "open"
     pool.voodoodoll.action = "default"
   else
@@ -196,10 +194,9 @@ function scene.on_enter()
 
   for name, _ in pairs(items) do
     local object = scene:get(name, SceneType.object)
-    local key = prefix .. name
     pool[name] = object
 
-    local taken = cassette:get(key, false)
+    local taken = state[name] or false
 
     pool.collected[name] = taken
 

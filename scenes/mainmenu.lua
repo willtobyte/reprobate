@@ -7,9 +7,10 @@ local jump = require("helpers/jump")
 function scene.on_enter()
   local stage = cassette:get("system/stage", "babyroom")
 
-  scenemanager:destroy("prelude")
-  scenemanager:register("whobuilt")
-  scenemanager:register(stage)
+  transition({
+    destroy = { "prelude" },
+    register = { "whobuilt", stage },
+  })
 
   pool.music = scene:get("theme", SceneType.effect)
   pool.music:play(true)

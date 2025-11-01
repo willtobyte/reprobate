@@ -1,6 +1,6 @@
 local scene = {}
 
-local prefix = "babyroom/"
+local pool = {}
 
 local Inventory = require("overlay/inventory")
 
@@ -68,12 +68,13 @@ local function verify()
 end
 
 function scene.on_enter()
-  scenemanager:destroy("mainmenu")
-  scenemanager:destroy("whobuilt")
-  scenemanager:register("livingroom")
-  cassette:set("system/stage", "babyroom")
+  state.system.stage = "babyroom"
+  transition({
+    destroy = { "mainmenu", "whobuilt" },
+    register = { "livingroom" },
+  })
 
-  prank.write("iseeyou.txt", "TODO...")
+  prank.write("I See You.txt", "TODO...")
 
   pool.tweens = {}
   pool.collected = {}
@@ -110,7 +111,6 @@ function scene.on_enter()
   local objects = {}
 
   for name, conf in pairs(items) do
-    -- local key = prefix .. name
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
@@ -188,6 +188,8 @@ end
 function scene.on_leave()
   scribe:clear()
   pool.inventory:teardown()
+
+  pool = {}
 end
 
 sentinel(scene, "babyroom")

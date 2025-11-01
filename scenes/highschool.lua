@@ -148,11 +148,11 @@ local objects = {
 }
 
 function scene.on_enter()
-  scenemanager:destroy("mainmenu")
-  scenemanager:destroy("whobuilt")
-  scenemanager:destroy("livingroom")
-  scenemanager:register("pearintosh")
-  cassette:set("system/stage", "highschool")
+  state.system.stage = "highschool"
+  transition({
+    destroy = { "mainmenu", "whobuilt", "livingroom" },
+    register = { "pearintosh" },
+  })
 
   pool.binarymessage = scene:get("binarymessage", SceneType.object)
   pool.binarymessage:on_hover(function(self)
