@@ -40,6 +40,16 @@
       "action": "default",
       "kind": "ceilingvent",
       "name": "ceilingvent"
+    },
+    {
+      "action": "default",
+      "kind": "openendwrench",
+      "name": "openendwrench"
+    },
+    {
+      "action": "default",
+      "kind": "key",
+      "name": "key"
     }
   ],
   "particles": [
