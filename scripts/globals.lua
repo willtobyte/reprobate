@@ -15,8 +15,8 @@ end
 local state = { system = {} }
 
 local function _wrap_key(k)
-  local scene = scenemanager:get()
-  return scene.name .. "/" .. k
+  local scene = scenemanager.current
+  return scene .. "/" .. k
 end
 
 setmetatable(state.system, {

@@ -3,6 +3,8 @@ local scene = {}
 local basic = require("interpreters/basic")
 local jump = require("helpers/jump")
 
+local pool = {}
+
 function scene.on_enter()
   scenemanager:register("highschool")
 
@@ -182,6 +184,8 @@ end
 
 function scene.on_leave()
   pool.label:clear()
+
+  pool = {}
 end
 
 sentinel(scene, "pearintosh")

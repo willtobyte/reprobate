@@ -81,12 +81,12 @@ function scene.on_enter()
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
-  pool.beelzebuuth.misses:subscribe(function(value)
-    if value >= 6 then
-      pool.beelzebuuth.action = "summon"
-      pool.beelzebuuth.misses = 0
-    end
-  end)
+  -- pool.beelzebuuth.misses:subscribe(function(value)
+  --   if value >= 6 then
+  --     pool.beelzebuuth.action = "summon"
+  --     pool.beelzebuuth.misses = 0
+  --   end
+  -- end)
 
   pool.television:on_touch(function()
     say("This game is haunted, can you feel it?")

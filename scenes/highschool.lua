@@ -1,5 +1,7 @@
 local scene = {}
 
+local pool = {}
+
 local Inventory = require("overlay/inventory")
 
 local jump = require("helpers/jump")
@@ -236,6 +238,8 @@ end
 function scene.on_leave()
   scribe:clear()
   pool.inventory:teardown()
+
+  pool = {}
 end
 
 sentinel(scene, "highschool")
