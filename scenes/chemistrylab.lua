@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool = {}
-
 function scene.on_enter()
   pool.light = scene:get("light", SceneType.object)
 
@@ -59,9 +57,7 @@ function scene.on_motion(x, y) end
 
 function scene.on_loop() end
 
-function scene.on_leave()
-  pool = {}
-end
+function scene.on_leave() end
 
 sentinel(scene, "chemistrylab")
 

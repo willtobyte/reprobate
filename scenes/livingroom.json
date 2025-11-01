@@ -1,6 +1,10 @@
 {
   "width": 480,
   "height": 270,
+  "transition": {
+    "destroy": ["mainmenu", "whobuilt", "babyroom"],
+    "register": ["highschool"]
+  },
   "effects": ["rainmuffled"],
   "objects": [
     {

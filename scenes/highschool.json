@@ -89,7 +89,7 @@
     {
       "action": "default",
       "kind": "HUD/playboy",
-      "name": "playboy"
+      "name": "HUD/playboy"
     }
   ]
 }

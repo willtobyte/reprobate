@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool = {}
-
 local prefix = "livingroom/"
 
 local jump = require("helpers/jump")
@@ -254,8 +252,6 @@ end
 
 function scene.on_leave()
   scribe:clear()
-
-  pool = {}
 end
 
 sentinel(scene, "livingroom")

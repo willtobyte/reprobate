@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool
-
 local basic = require("interpreters/basic")
 local jump = require("helpers/jump")
 
@@ -184,8 +182,6 @@ end
 
 function scene.on_leave()
   pool.label:clear()
-
-  pool = {}
 end
 
 sentinel(scene, "pearintosh")

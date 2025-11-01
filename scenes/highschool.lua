@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool = {}
-
 local Inventory = require("overlay/inventory")
 
 local jump = require("helpers/jump")
@@ -219,8 +217,8 @@ function scene.on_enter()
 
   local layout = scene:get("layout", SceneType.object)
   local character = scene:get("boy", SceneType.object)
-  local playboy = scene:get("playboy", SceneType.object)
-  pool.inventory = Inventory.new(layout, character, { playboy })
+  local magazine = scene:get("HUD/playboy", SceneType.object)
+  pool.inventory = Inventory.new(layout, character, { magazine })
 end
 
 function scene.on_motion(x, y)
@@ -238,8 +236,6 @@ end
 function scene.on_leave()
   scribe:clear()
   pool.inventory:teardown()
-
-  pool = {}
 end
 
 sentinel(scene, "highschool")

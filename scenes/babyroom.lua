@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool = {}
-
 local prefix = "babyroom/"
 
 local Inventory = require("overlay/inventory")
@@ -113,7 +111,7 @@ function scene.on_enter()
   local objects = {}
 
   for name, conf in pairs(items) do
-    local key = prefix .. name
+    -- local key = prefix .. name
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
@@ -122,7 +120,8 @@ function scene.on_enter()
     pool[hud] = item
     table.insert(objects, item)
 
-    local taken = cassette:get(key, false)
+    -- local taken = cassette:get(key, false)
+    local taken = state[name] or false
 
     pool.collected[name] = taken
 
@@ -138,7 +137,8 @@ function scene.on_enter()
         pool.television.action = "poltergeist"
         pool.collected[name] = true
 
-        cassette:set(key, true)
+        -- cassette:set(key, true)
+        state[name] = true
         pool.tweens[#pool.tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
         pool[hud].action = "default"
 
@@ -189,8 +189,6 @@ end
 function scene.on_leave()
   scribe:clear()
   pool.inventory:teardown()
-
-  pool = {}
 end
 
 sentinel(scene, "babyroom")
