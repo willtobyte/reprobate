@@ -11,6 +11,8 @@ _G.engine = EngineFactory.new()
 
 math.randomseed(666)
 
+require("globals")
+
 function setup()
   overlay.cursor:set("horn")
 

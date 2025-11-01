@@ -3,7 +3,6 @@ local scene = {}
 local prefix = "livingroom/"
 
 local jump = require("helpers/jump")
-local toolbox = require("helpers/toolbox")
 local tween = require("library/tween")
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
@@ -93,7 +92,7 @@ function lightning:update()
 end
 
 local function verify()
-  if toolbox.all(pool.collected) then
+  if all(pool.collected) then
     cassette:set("system/stage", "highschool")
 
     timermanager:singleshot(3000, function()
@@ -126,11 +125,11 @@ local function verify()
 end
 
 function scene.on_enter()
-  scenemanager:destroy("mainmenu")
-  scenemanager:destroy("whobuilt")
-  scenemanager:destroy("babyroom")
-  scenemanager:register("highschool")
-  cassette:set("system/stage", "livingroom")
+  state.system.stage = "livingroom"
+  transition({
+    destroy = { "mainmenu", "whobuilt", "babyroom" },
+    register = { "highschool" },
+  })
 
   pool.theme = scene:get("rainmuffled", SceneType.effect)
   pool.theme:play(true)

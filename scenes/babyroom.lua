@@ -7,7 +7,6 @@ local Inventory = require("overlay/inventory")
 local tween = require("library/tween")
 
 local ops = require("helpers/ops")
-local toolbox = require("helpers/toolbox")
 local prank = require("helpers/prank")
 local jump = require("helpers/jump")
 local Scribe = require("helpers/scribe")
@@ -49,7 +48,7 @@ local items = {
 }
 
 local function verify()
-  if toolbox.all(pool.collected) then
+  if all(pool.collected) then
     cassette:set("system/stage", "livingroom")
 
     -- achievement:unlock("")
