@@ -39,6 +39,28 @@ setmetatable(state, {
 
 _G.state = state
 
+function dense(t)
+  if type(t) ~= "table" then
+    return nil
+  end
+
+  local count = 0
+  for i = 1, #t do
+    if t[i] == nil then
+      return nil
+    end
+    count = count + 1
+  end
+
+  for k, _ in pairs(t) do
+    if type(k) ~= "number" or k < 1 or k > count or k ~= math.floor(k) then
+      return nil
+    end
+  end
+
+  return count > 0 and count or nil
+end
+
 function any(t)
   local n = dense(t)
   if n then
