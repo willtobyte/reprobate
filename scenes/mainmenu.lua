@@ -5,7 +5,7 @@ local pool = {}
 local jump = require("helpers/jump")
 
 function scene.on_enter()
-  local stage = cassette:get("system/stage", "babyroom")
+  local stage = state.system.stage or "babyroom"
 
   transition({
     destroy = { "prelude" },

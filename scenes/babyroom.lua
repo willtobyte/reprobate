@@ -49,7 +49,7 @@ local items = {
 
 local function verify()
   if all(pool.collected) then
-    cassette:set("system/stage", "livingroom")
+    state.system.stage = livingroom
 
     -- achievement:unlock("")
 
@@ -81,12 +81,12 @@ function scene.on_enter()
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
-  -- pool.beelzebuuth.misses:subscribe(function(value)
-  --   if value >= 6 then
-  --     pool.beelzebuuth.action = "summon"
-  --     pool.beelzebuuth.misses = 0
-  --   end
-  -- end)
+  pool.beelzebuuth.misses:subscribe(function(value)
+    if value >= 6 then
+      pool.beelzebuuth.action = "summon"
+      pool.beelzebuuth.misses = 0
+    end
+  end)
 
   pool.television:on_touch(function()
     say("This game is haunted, can you feel it?")
@@ -119,7 +119,6 @@ function scene.on_enter()
     pool[hud] = item
     table.insert(objects, item)
 
-    -- local taken = cassette:get(key, false)
     local taken = state[name] or false
 
     pool.collected[name] = taken
