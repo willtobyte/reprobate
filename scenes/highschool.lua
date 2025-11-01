@@ -151,6 +151,7 @@ local objects = {
 
 function scene.on_enter()
   state.system.stage = "highschool"
+
   transition({
     destroy = { "mainmenu", "whobuilt", "livingroom" },
     register = { "pearintosh" },

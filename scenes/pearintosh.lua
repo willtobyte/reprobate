@@ -6,7 +6,10 @@ local jump = require("helpers/jump")
 local pool = {}
 
 function scene.on_enter()
-  scenemanager:register("highschool")
+  transition({
+    destroy = { "mainmenu", "whobuilt" },
+    register = { "highschool" },
+  })
 
   pool = {
     prelude = [[

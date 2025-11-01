@@ -69,6 +69,7 @@ end
 
 function scene.on_enter()
   state.system.stage = "babyroom"
+
   transition({
     destroy = { "mainmenu", "whobuilt" },
     register = { "livingroom" },

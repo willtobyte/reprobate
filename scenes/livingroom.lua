@@ -93,7 +93,7 @@ end
 
 local function verify()
   if all(pool.collected) then
-    cassette:set("system/stage", "highschool")
+    state.system.stage = "highschool"
 
     timermanager:singleshot(3000, function()
       scribe:clear()
@@ -126,6 +126,7 @@ end
 
 function scene.on_enter()
   state.system.stage = "livingroom"
+
   transition({
     destroy = { "mainmenu", "whobuilt", "babyroom" },
     register = { "highschool" },
