@@ -56,7 +56,7 @@ RUN TO EXECUTE, EXIT TO QUIT
   pool.dialup:on_end(function()
     print(">>> ...")
     -- TODO
-    -- scenemanager:set("minigame")
+    -- scenemanager:set("minigame"
   end)
 end
 

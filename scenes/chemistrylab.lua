@@ -2,64 +2,62 @@ local scene = {}
 
 local pool = {}
 
-local prefix = "chemistrylab/"
-
-local state = {}
-
-local meta = {}
-
-function meta.__newindex(table, key, value)
-  cassette:set(prefix .. key, value)
-  rawset(table, key, value)
-end
-
-setmetatable(state, meta)
-
-local lantern = require("effects/lantern")
-
 function scene.on_enter()
+  pool.light = scene:get("light", SceneType.object)
+
   pool.switch = scene:get("switch", SceneType.object)
 
+  if state.switch ~= "on" then
+    pool.switch.action = "off"
+    pool.light.action = nil
+  else
+    pool.switch.action = "on"
+    pool.light.action = "blinking"
+  end
+
   pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
+  if state.cabinetdoor then
+    pool.cabinetdoor.action = "open"
+  end
+
   pool.cabinetdoor:on_touch(function()
     pool.cabinetdoor.action = "open"
-    pool.switch.action = "off"
 
-    state.foo = "bar"
+    state.cabinetdoor = true
+    pool.switch.action = "on"
+    state.switch = "on"
+  end)
+
+  pool.switch:on_touch(function()
+    pool.light.action = nil
+    pool.switch.action = "off"
+    state.switch = "off"
   end)
 
   pool.emitter1 = scene:get("emitter1", SceneType.particle)
   pool.emitter2 = scene:get("emitter2", SceneType.particle)
   pool.emitter3 = scene:get("emitter3", SceneType.particle)
 
+  if state.fireextinguished then
+    pool.emitter1.active = false
+    pool.emitter2.active = false
+    pool.emitter3.active = false
+  end
+
   pool.fireextinguisher = scene:get("fireextinguisher", SceneType.object)
   pool.fireextinguisher:on_touch(function()
+    state.fireextinguished = true
     pool.emitter1.emitting = false
     pool.emitter2.emitting = false
     pool.emitter3.emitting = false
   end)
-
-  pool.lighton = cassette:get(prefix .. "lighton", true)
-  if pool.lighton then
-    -- Enable clicks
-  end
 end
 
-function scene.on_motion(x, y)
-  if not pool.lighton then
-    lantern:motion(x, y)
-  end
-end
+function scene.on_motion(x, y) end
 
-function scene.on_loop()
-  if not pool.lighton then
-    lantern:loop()
-  end
-end
+function scene.on_loop() end
 
 function scene.on_leave()
-  lantern:teardown()
-
   pool = {}
 end
 

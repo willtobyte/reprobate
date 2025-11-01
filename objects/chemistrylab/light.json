@@ -1,6 +1,6 @@
 {
   "animations": {
-    "default": {
+    "blinking": {
       "frames": [
         {
           "duration": 200,
