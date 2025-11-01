@@ -5,8 +5,7 @@ local pool = {}
 local jump = require("helpers/jump")
 
 function scene.on_enter()
-  scenemanager:register("mainmenu")
-  scenemanager:register("whobuilt")
+  transition({ register = { "mainmenu", "whobuilt" } })
 
   pool.quarter = scene:get("quarter", SceneType.object)
 
