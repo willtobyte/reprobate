@@ -180,7 +180,7 @@ function scene.on_enter()
     pool.voodoodoll.action = "default"
   else
     pool.cabinetdoor:on_touch(function()
-      pool.cabinetdoor:on_touch(nil)
+      state.cabinetdoor = true
       pool.cabinetdoor.action = "open"
       pool.voodoodoll.action = "default"
       pool.voodoodoll.alpha = 0
@@ -206,7 +206,7 @@ function scene.on_enter()
     else
       object:on_touch(function(self)
         pool.collected[name] = true
-        cassette:set(key, true)
+        state[name] = true
 
         pool.tweens.disappear[#pool.tweens.disappear + 1] =
           tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
