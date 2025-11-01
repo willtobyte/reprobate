@@ -7,12 +7,11 @@ function scene.on_enter()
 
   pool.switch = scene:get("switch", SceneType.object)
 
-  if state.switch == "on" then
-    pool.switch.action = "on"
-    pool.light.action = "blinking"
-  elseif state.switch == "off" then
-    pool.switch.action = "off"
-    pool.light.action = nil
+  local s = state.switch
+  if s == "on" then
+    pool.switch.action, pool.light.action = "on", "blinking"
+  elseif s == "off" then
+    pool.switch.action, pool.light.action = "off", nil
   end
 
   pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
