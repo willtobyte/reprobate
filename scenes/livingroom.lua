@@ -248,6 +248,8 @@ end
 
 function scene.on_leave()
   scribe:clear()
+
+  pool = {}
 end
 
 sentinel(scene, "livingroom")
