@@ -57,7 +57,7 @@
       "name": "emitter1",
       "kind": "smoke",
       "emitting": true,
-      "x": 200,
+      "x": 190,
       "y": 160
     },
     {
@@ -71,7 +71,7 @@
       "name": "emitter3",
       "kind": "smoke",
       "emitting": true,
-      "x": 280,
+      "x": 290,
       "y": 160
     }
   ]
