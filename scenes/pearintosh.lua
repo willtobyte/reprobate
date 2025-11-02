@@ -132,7 +132,7 @@ function scene.on_keypress(code)
             achievement:unlock("ACH_IN_LEAGUE_WITH_SATAN")
             pool.backcursor.visible = false
             pool.dialup:play()
-            pool.program = pool.program .. "\nLay down my soul to the gods metal"
+            pool.program = pool.program .. "\nLay down my soul to the gods of metal."
           end
         end
 
