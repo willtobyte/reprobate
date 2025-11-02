@@ -194,21 +194,17 @@ function scene.on_enter()
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
-    conf.taken = state[name] == true
+    conf.taken = not not state[name]
+    object.visible = not conf.taken
+    object:on_touch(function(self)
+      conf.taken = true
+      state[name] = true
 
-    if conf.taken then
-      object.visible = false
-    else
-      object:on_touch(function(self)
-        conf.taken = true
-        state[name] = true
+      pool.tweens.disappear[#pool.tweens.disappear + 1] =
+        tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
 
-        pool.tweens.disappear[#pool.tweens.disappear + 1] =
-          tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
-
-        verify()
-      end)
-    end
+      verify()
+    end)
   end
 end
 
