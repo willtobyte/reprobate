@@ -55,6 +55,11 @@
       "action": "default",
       "kind": "gasoline",
       "name": "gasoline"
+    },
+    {
+      "action": "closed",
+      "kind": "bottomcabinetdoor",
+      "name": "bottomcabinetdoor"
     }
   ],
   "particles": [
