@@ -106,7 +106,7 @@ function scene.on_enter()
       target.action = action
     end)
 
-    object:on_touch(function()
+    target:on_touch(function()
       say(message)
     end)
   end

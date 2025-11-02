@@ -157,7 +157,7 @@ function scene.on_enter()
       local delay = math.random(conf.minimum, conf.maximum) * 1000
 
       timermanager:set(delay, function()
-        pool[name].action = conf.action
+        object.action = conf.action
         if conf.lightning then
           lightning:trigger()
         end
@@ -188,8 +188,7 @@ function scene.on_enter()
 
       local message = "The doll is not yours, it belongs to the loa that rides it."
       say(message, 3, 3, 3000)
-
-      cassette:set(key, true)
+      state.cabinetdoor = true
     end)
   end
 

@@ -14,9 +14,10 @@ end
 
 local state = { system = {} }
 
-local function _wrap_key(k)
+local function _wrap_key(key)
   local scene = scenemanager.current
-  return scene .. "/" .. k
+  assert(key ~= nil, "key must not be nil")
+  return scene .. "/" .. key
 end
 
 setmetatable(state.system, {
