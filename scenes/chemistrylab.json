@@ -28,9 +28,9 @@
       "name": "switch"
     },
     {
-      "action": "default",
-      "kind": "book",
-      "name": "book"
+      "action": "moving",
+      "kind": "redbook",
+      "name": "redbook"
     },
     {
       "action": "blinking",
