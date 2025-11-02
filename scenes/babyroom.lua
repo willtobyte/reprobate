@@ -48,8 +48,8 @@ local items = {
 }
 
 local function verify()
-  if all(pool.collected) then
-    state.system.stage = livingroom
+  if all(items, "taken") then
+    state.system.stage = "livingroom"
 
     -- achievement:unlock("")
 
@@ -68,8 +68,6 @@ local function verify()
 end
 
 function scene.on_enter()
-  state.system.stage = "babyroom"
-
   transition({
     destroy = { "mainmenu", "whobuilt" },
     register = { "livingroom" },
@@ -78,7 +76,6 @@ function scene.on_enter()
   prank.write("I See You.txt", "TODO...")
 
   pool.tweens = {}
-  pool.collected = {}
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
@@ -122,11 +119,9 @@ function scene.on_enter()
     pool[hud] = item
     table.insert(objects, item)
 
-    local taken = state[name] or false
+    conf.taken = state[name] == true
 
-    pool.collected[name] = taken
-
-    if taken then
+    if conf.taken then
       object.visible = false
       item.action = "default"
     else
@@ -136,10 +131,9 @@ function scene.on_enter()
         end
 
         pool.television.action = "poltergeist"
-        pool.collected[name] = true
-
-        -- cassette:set(key, true)
+        conf.taken = true
         state[name] = true
+
         pool.tweens[#pool.tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
         pool[hud].action = "default"
 

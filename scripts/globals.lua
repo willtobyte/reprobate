@@ -62,29 +62,73 @@ function dense(t)
   return count > 0 and count or nil
 end
 
-function any(t)
-  local n = dense(t)
-  if n then
-    for i = 1, n do
-      if t[i] then
+function any(t, selector)
+  if selector == nil then
+    local n = dense(t)
+    if n then
+      for i = 1, n do
+        if t[i] then
+          return true
+        end
+      end
+      return false
+    end
+    for _, v in pairs(t) do
+      if v then
         return true
       end
     end
     return false
   end
-  for _, v in pairs(t) do
-    if v then
-      return true
+
+  if type(selector) == "string" then
+    for _, v in pairs(t) do
+      if type(v) == "table" and v[selector] then
+        return true
+      end
     end
+    return false
   end
-  return false
+
+  if type(selector) == "function" then
+    for k, v in pairs(t) do
+      if selector(v, k) then
+        return true
+      end
+    end
+    return false
+  end
+
+  error("invalid selector for any: " .. tostring(selector))
 end
 
-function all(t)
-  for _, v in pairs(t) do
-    if not v then
-      return false
+function all(t, selector)
+  if selector == nil then
+    for _, v in pairs(t) do
+      if not v then
+        return false
+      end
     end
+    return true
   end
-  return true
+
+  if type(selector) == "string" then
+    for _, v in pairs(t) do
+      if type(v) ~= "table" or not v[selector] then
+        return false
+      end
+    end
+    return true
+  end
+
+  if type(selector) == "function" then
+    for k, v in pairs(t) do
+      if not selector(v, k) then
+        return false
+      end
+    end
+    return true
+  end
+
+  error("invalid selector for all: " .. tostring(selector))
 end

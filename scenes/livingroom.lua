@@ -92,7 +92,7 @@ function lightning:update()
 end
 
 local function verify()
-  if all(pool.collected) then
+  if all(items, "taken") then
     state.system.stage = "highschool"
 
     timermanager:singleshot(3000, function()
@@ -139,8 +139,6 @@ function scene.on_enter()
     appear = {},
     disappear = {},
   }
-
-  pool.collected = {}
 
   pool.teenager = scene:get("teenager", SceneType.object)
   pool.voodoocast = scene:get("voodoocast", SceneType.object)
@@ -192,19 +190,17 @@ function scene.on_enter()
     end)
   end
 
-  for name, _ in pairs(items) do
+  for name, conf in pairs(items) do
     local object = scene:get(name, SceneType.object)
     pool[name] = object
 
-    local taken = state[name] or false
+    conf.taken = state[name] == true
 
-    pool.collected[name] = taken
-
-    if taken then
+    if conf.taken then
       object.visible = false
     else
       object:on_touch(function(self)
-        pool.collected[name] = true
+        conf.taken = true
         state[name] = true
 
         pool.tweens.disappear[#pool.tweens.disappear + 1] =
