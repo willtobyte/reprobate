@@ -11,7 +11,6 @@ local objects = {
     messages = {
       "I swear, officer... It was just one Space Beer!",
       "Houston, I have a hangover...",
-      "Hey, bartender! Turn off the stars before they start singing.",
     },
   },
 }
