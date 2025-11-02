@@ -74,6 +74,9 @@ local function ready()
 end
 
 function scene.on_enter()
+  pool.geigercounter = scene:get("geigercounter", SceneType.effect)
+  pool.geigercounter:play(true)
+
   pool.emitter1 = scene:get("emitter1", SceneType.particle)
   pool.emitter2 = scene:get("emitter2", SceneType.particle)
   pool.emitter3 = scene:get("emitter3", SceneType.particle)
