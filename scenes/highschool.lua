@@ -200,8 +200,8 @@ function scene.on_enter()
       end
 
       local messages = conf.messages
-      local last = #messages
-      local index = math.random(last)
+      local count = #messages
+      local index = math.random(count)
       local message = messages[index]
 
       if conf.achievement and index == conf.achievement.index then
