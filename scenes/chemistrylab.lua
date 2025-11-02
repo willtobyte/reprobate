@@ -16,7 +16,7 @@ local objects = {
   },
 }
 
-local function initialize()
+local function ready()
   pool.light = scene:get("light", SceneType.object)
 
   pool.switch = scene:get("switch", SceneType.object)
@@ -83,7 +83,7 @@ function scene.on_enter()
     pool.emitter2.active = false
     pool.emitter3.active = false
 
-    initialize()
+    ready()
   end
 
   pool.fireextinguisher = scene:get("fireextinguisher", SceneType.object)
@@ -93,7 +93,7 @@ function scene.on_enter()
     pool.emitter2.emitting = false
     pool.emitter3.emitting = false
 
-    initialize()
+    ready()
   end)
 end
 
