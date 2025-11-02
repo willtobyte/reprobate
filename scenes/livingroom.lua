@@ -99,8 +99,8 @@ local function verify()
       scribe:clear()
 
       for _, object in pairs(pool) do
-        if object.visible ~= nil then
-          object.visible = false
+        if object.on_touch ~= nil then
+          object:on_touch(nil)
         end
       end
 
