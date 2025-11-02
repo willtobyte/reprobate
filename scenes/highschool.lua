@@ -131,7 +131,7 @@ local objects = {
     messages = {
       "I am learning C. Pointers are awesome!",
       "General protection fault? What the heck is going on?",
-      "Did you know you can write an OS in assembly?",
+      "Did you know you can write an OS in C++?",
     },
     receivables = {
       [playboy] = {
