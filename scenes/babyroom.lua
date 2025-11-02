@@ -34,7 +34,7 @@ local animations = {
   },
   robot = {
     minimum = 3,
-    maximum = 13,
+    maximum = 8,
     action = "shrug",
     message = "Need more input!",
   },
@@ -100,8 +100,10 @@ function scene.on_enter()
 
     local delay = math.random(conf.minimum, conf.maximum) * 1000
     local action = conf.action
+
+    local target = object
     timermanager:set(delay, function()
-      pool[name].action = action
+      target.action = action
     end)
 
     object:on_touch(function()
