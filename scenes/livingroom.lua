@@ -197,7 +197,12 @@ function scene.on_enter()
     conf.taken = not not state[name]
     object.visible = not conf.taken
     object:on_touch(function(self)
+      if conf.taken then
+        return
+      end
+
       conf.taken = true
+
       state[name] = true
 
       pool.tweens.disappear[#pool.tweens.disappear + 1] =
