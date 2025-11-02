@@ -50,6 +50,11 @@
       "action": "default",
       "kind": "key",
       "name": "key"
+    },
+    {
+      "action": "default",
+      "kind": "gasoline",
+      "name": "gasoline"
     }
   ],
   "particles": [
