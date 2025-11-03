@@ -106,14 +106,14 @@ function scene.on_motion(x, y)
   local cy = alien_y + alien_h * 0.5
 
   local dx, dy = x - cx, y - cy
-  local dist = math.sqrt(dx * dx + dy * dy)
+  local distance = math.sqrt(dx * dx + dy * dy)
 
   local r_max = math.min(cx, 480 - cx, cy, 270 - cy)
   if r_max <= 0 then
     return
   end
 
-  local t = math.min(dist / r_max, 1.0)
+  local t = math.min(distance / r_max, 1.0)
   local volume = 1.0 - 0.9 * t
 
   pool.geigercounter.volume = volume
