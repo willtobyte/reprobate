@@ -122,7 +122,7 @@ end
 function scene.on_loop(delta)
   scribe:loop(delta)
 
-  if not pool.alien then
+  if not pool.alien.visible then
     pool.geigercounter:stop()
   end
 end
