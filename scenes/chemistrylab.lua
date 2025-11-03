@@ -73,6 +73,7 @@ local function ready()
 end
 
 function scene.on_enter()
+  pool.alien = scene:get("alien", SceneType.object)
   pool.geigercounter = scene:get("geigercounter", SceneType.effect)
   pool.geigercounter:play(true)
 
@@ -99,10 +100,31 @@ function scene.on_enter()
   end)
 end
 
-function scene.on_motion(x, y) end
+function scene.on_motion(x, y)
+  local alien_x, alien_y, alien_w, alien_h = 249, 183, 127, 48
+  local cx = alien_x + alien_w * 0.5
+  local cy = alien_y + alien_h * 0.5
+
+  local dx, dy = x - cx, y - cy
+  local dist = math.sqrt(dx * dx + dy * dy)
+
+  local r_max = math.min(cx, 480 - cx, cy, 270 - cy)
+  if r_max <= 0 then
+    return
+  end
+
+  local t = math.min(dist / r_max, 1.0)
+  local volume = 1.0 - 0.9 * t
+
+  pool.geigercounter.volume = volume
+end
 
 function scene.on_loop(delta)
   scribe:loop(delta)
+
+  if not pool.alien then
+    pool.geigercounter:stop()
+  end
 end
 
 function scene.on_leave()
