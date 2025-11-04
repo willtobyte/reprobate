@@ -93,6 +93,9 @@ end
 
 local function verify()
   if all(items, "taken") then
+    if state.system.stage == "highschool" then
+      return
+    end
     state.system.stage = "highschool"
 
     timermanager:singleshot(3000, function()
