@@ -101,11 +101,13 @@ local function verify()
     timermanager:singleshot(3000, function()
       scribe:clear()
 
-      for _, object in pairs(pool) do
-        if object.on_touch ~= nil then
-          object:on_touch(nil)
+      for name, conf in pairs(objects) do
+        if pool[name] and pool[name].on_touch then
+          pool[name]:on_touch(nil)
         end
       end
+
+      pool.cabinetdoor:on_touch(nil)
 
       pool.teenager.action = "default"
       pool.teenager.alpha = 200
