@@ -90,3 +90,4 @@ jobs:
           depot1Path: windows
           depot2Path: macos
           releaseBranch: alpha
+          debugBranch: true
