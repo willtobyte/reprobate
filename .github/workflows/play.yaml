@@ -52,21 +52,6 @@ jobs:
         run: |
           sed -i -E 's/^(\s*:with_fullscreen\s*)\(false\)/\1(true)/' scripts/main.lua
 
-      # - name: Create cartridge
-      #   run: |
-      #     7z a cartridge.7z \
-      #       . \
-      #       -xr!icon.png \
-      #       -xr!.git \
-      #       -xr!.* \
-      #       -t7z \
-      #       -m0=lzma2 \
-      #       -mx=2 \
-      #       -mfb=8 \
-      #       -md=32k \
-      #       -ms=off \
-      #       -mmt=off
-
       - name: Select files to assets folder
         run: |
           set -e

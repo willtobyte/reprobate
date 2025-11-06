@@ -33,7 +33,7 @@ jobs:
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
 
-          zip -r cartridge.zip .
+          zip -r cartridge.rom .
 
       - name: Download Carimbo WebAssembly runtime
         env:
@@ -47,7 +47,7 @@ jobs:
         run: |
           mkdir -p output
           touch output/favicon.ico
-          mv cartridge.zip output/
+          mv cartridge.rom output/
           mv carimbo.js output/
           mv carimbo.wasm output/
 
@@ -124,7 +124,7 @@ jobs:
                 const canvas = document.getElementById("canvas");
                 const loading = document.getElementById("loading");
 
-                const promise = fetch("cartridge.zip");
+                const promise = fetch("cartridge.rom");
 
                 window.Module = {
                   canvas,
@@ -134,7 +134,7 @@ jobs:
                     const response = await promise;
                     const blob = await response.blob();
                     const buffer = await blob.arrayBuffer();
-                    FS.writeFile("/cartridge.zip", new Uint8Array(buffer));
+                    FS.writeFile("/cartridge.rom", new Uint8Array(buffer));
                     Module.callMain();
                   },
                 };

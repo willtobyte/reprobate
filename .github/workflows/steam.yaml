@@ -30,7 +30,7 @@ jobs:
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
 
-          zip -r cartridge.zip .
+          zip -r cartridge.rom .
 
       - name: Download Carimbo runtime
         env:
@@ -63,8 +63,8 @@ jobs:
         run: |
           mkdir -p output/{macos,windows}
 
-          cp cartridge.zip output/macos/
-          cp cartridge.zip output/windows/
+          cp cartridge.rom output/macos/
+          cp cartridge.rom output/windows/
 
           cp carimbo output/macos/
           cp carimbo.exe output/windows/

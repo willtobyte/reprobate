@@ -30,7 +30,7 @@ jobs:
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
 
-          zip -r cartridge.zip .
+          zip -r cartridge.rom .
 
       - name: Download Carimbo WebAssembly runtime
         env:
@@ -44,7 +44,7 @@ jobs:
         run: |
           mkdir -p output
           touch output/favicon.ico
-          mv cartridge.zip output/
+          mv cartridge.rom output/
           mv carimbo.js output/
           mv carimbo.wasm output/
 
@@ -60,7 +60,7 @@ jobs:
           /carimbo.wasm
             Cache-Control: public, max-age=31536000, immutable
 
-          /cartridge.zip
+          /cartridge.rom
             Cache-Control: public, max-age=31536000, immutable
           EOF
 
@@ -141,7 +141,7 @@ jobs:
               <script>
                 console.log("Game: ${GIT_TAG}");
 
-                const download = fetch("cartridge.zip?v=${GIT_TAG}")
+                const download = fetch("cartridge.rom?v=${GIT_TAG}")
                   .then(res => res.blob())
                   .then(blob => blob.arrayBuffer());
 
@@ -151,7 +151,7 @@ jobs:
                   locateFile: (path) => path.endsWith(".wasm") ? path + "?v=${GIT_TAG}" : path,
                   onRuntimeInitialized: async () => {
                     const buffer = await download;
-                    FS.writeFile("/cartridge.zip", new Uint8Array(buffer));
+                    FS.writeFile("/cartridge.rom", new Uint8Array(buffer));
                     document.getElementById("loading").remove();
                     Module.callMain();
                   },

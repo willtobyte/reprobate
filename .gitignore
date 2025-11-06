@@ -2,7 +2,7 @@
 
 .sentry-native
 
-cassette.json
+cassette.tap
 
 stdout.txt
 stderr.txt
