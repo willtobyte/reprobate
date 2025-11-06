@@ -87,6 +87,7 @@ function scene.on_enter()
   end)
 
   pool.television:on_touch(function()
+    error("Beep boop")
     say("This game is haunted, can you feel it?")
   end)
 
