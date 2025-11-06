@@ -12,6 +12,8 @@ function transition(options)
   end
 end
 
+---@class State
+---@field [string] any
 local state = { system = {} }
 
 local function _wrap_key(key)
@@ -38,6 +40,7 @@ setmetatable(state, {
   end,
 })
 
+---@type State
 _G.state = state
 
 function dense(t)
