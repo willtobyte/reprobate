@@ -71,7 +71,6 @@ jobs:
           cp steamworks/redistributable_bin/osx/libsteam_api.dylib output/macos/
 
           cp carimbo.exe output/windows/
-          cp carimbo.pdb output/windows/
           cp crashpad_handler.exe output/windows/
           cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
 
@@ -90,4 +89,3 @@ jobs:
           depot1Path: windows
           depot2Path: macos
           releaseBranch: alpha
-          debugBranch: true # allows *.pdb on the depot.
