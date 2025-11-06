@@ -67,10 +67,12 @@ jobs:
           cp cartridge.rom output/windows/
 
           cp carimbo output/macos/
+          cp crashpad_handler output/macos/
           cp steamworks/redistributable_bin/osx/libsteam_api.dylib output/macos/
 
           cp carimbo.exe output/windows/
           cp carimbo.pdb output/windows/
+          cp crashpad_handler.exe output/windows/
           cp steamworks/redistributable_bin/win64/steam_api64.dll output/windows/
 
           for d in output/{macos,windows}; do
