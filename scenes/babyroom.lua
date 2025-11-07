@@ -53,16 +53,13 @@ local function verify()
 
     -- achievement:unlock("")
 
-    timermanager:singleshot(1000, function()
-      pool.door = scene:get("door", SceneType.object)
-      pool.door:on_touch(jump.to("livingroom"))
+    pool.door = scene:get("door", SceneType.object)
+    pool.effect = scene:get("door", SceneType.effect)
+    pool.door:on_touch(jump.to("livingroom"))
+    pool.door.action = "default"
 
-      pool.door.action = "default"
-
-      timermanager:singleshot(3000, function()
-        pool.effect = scene:get("door", SceneType.effect)
-        pool.effect:play()
-      end)
+    timermanager:singleshot(3000, function()
+      pool.effect:play()
     end)
   end
 end
