@@ -54,16 +54,10 @@ jobs:
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         run: |
-          VERSION="${CARIMBO_TAG#v}"
-
           sentry-cli debug-files upload \
             --include-sources \
             --log-level=info \
             carimbo.pdb
-
-          sentry-cli releases new "$VERSION"
-          sentry-cli releases set-commits "$VERSION" --auto
-          sentry-cli releases finalize "$VERSION"
 
       - name: Clone Steam SDK
         run: gh repo clone willtobyte/steamworks steamworks
