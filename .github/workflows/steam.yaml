@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v3.0.97"
+      CARIMBO_TAG: "v3.0.98"
 
     permissions:
       contents: write
@@ -43,6 +43,27 @@ jobs:
         run: |
           unzip Windows.zip -d .
           tar -xzf macOS.tar.gz
+
+      - name: Install Sentry CLI
+        run: |
+          curl -sL https://sentry.io/get-cli/ | bash
+
+      - name: Upload debug symbols to Sentry
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        run: |
+          VERSION="${CARIMBO_TAG#v}"
+
+          sentry-cli debug-files upload \
+            --include-sources \
+            --log-level=info \
+            carimbo.pdb
+
+          sentry-cli releases new "$VERSION"
+          sentry-cli releases set-commits "$VERSION" --auto
+          sentry-cli releases finalize "$VERSION"
 
       - name: Clone Steam SDK
         run: gh repo clone willtobyte/steamworks steamworks
