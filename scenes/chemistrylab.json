@@ -76,7 +76,7 @@
       "kind": "smoke",
       "emitting": true,
       "x": 240,
-      "y": 160
+      "y": 190
     },
     {
       "name": "emitter3",
