@@ -27,11 +27,11 @@ local function ready()
   end
 
   pool.bottomcabinetdoor = scene:get("bottomcabinetdoor", SceneType.object)
-  if state.cabinetdoor then
+  if state.bottomcabinetdoor then
     pool.bottomcabinetdoor.action = "open"
   end
   pool.bottomcabinetdoor:on_touch(function()
-    state.cabinetdoor = "open"
+    state.bottomcabinetdoor = true
     pool.bottomcabinetdoor.action = "open"
   end)
 
@@ -39,8 +39,6 @@ local function ready()
   if state.cabinetdoor then
     pool.cabinetdoor.action = "open"
     pool.switch.action = state.switch
-  else
-    pool.switch.action = nil
   end
 
   pool.cabinetdoor:on_touch(function()
