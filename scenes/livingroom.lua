@@ -108,7 +108,7 @@ local function verify()
 
       for name, conf in pairs(objects) do
         if pool[name] and pool[name].on_touch then
-          pool[name]:on_touch(nil)
+          pool[name]:on_touch(function() end)
         end
       end
 
@@ -124,9 +124,7 @@ local function verify()
         pool.voodoocast.alpha = 0
         pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
 
-        timermanager:singleshot(3000, function()
-          pool.teenager:on_touch(jump.to("highschool"))
-        end)
+        timermanager:singleshot(3000, jump.to("highschool"))
       end)
     end)
   end
