@@ -70,7 +70,7 @@ function scene.on_enter()
     register = { "livingroom" },
   })
 
-  prank.write("I See You.txt", "TODO...")
+  prank.write("We Have A Connection.txt", "TODO...")
 
   pool.tweens = {}
   pool.television = scene:get("television", SceneType.object)

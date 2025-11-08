@@ -70,10 +70,12 @@ function lightning:update()
   if not self.active then
     return
   end
+
   local now = moment()
   if now < self.next_at then
     return
   end
+
   if self.phase == "bright" then
     self.count = self.count + 1
     pool.darker.action = "default"
@@ -82,10 +84,12 @@ function lightning:update()
       self.phase = nil
       return
     end
+
     self.phase = "dark"
     self.next_at = now + math.random(20, 30)
     return
   end
+
   pool.darker.action = nil
   self.phase = "bright"
   self.next_at = now + math.random(20, 30)
@@ -96,6 +100,7 @@ local function verify()
     if state.system.stage == "highschool" then
       return
     end
+
     state.system.stage = "highschool"
 
     timermanager:singleshot(3000, function()
@@ -106,8 +111,6 @@ local function verify()
           pool[name]:on_touch(nil)
         end
       end
-
-      pool.cabinetdoor:on_touch(nil)
 
       pool.teenager.action = "default"
       pool.teenager.alpha = 200
