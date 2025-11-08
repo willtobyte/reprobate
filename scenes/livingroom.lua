@@ -106,9 +106,9 @@ local function verify()
     timermanager:singleshot(3000, function()
       scribe:clear()
 
-      for name, conf in pairs(objects) do
-        if pool[name] and pool[name].on_touch then
-          pool[name]:on_touch(function() end)
+      for _, object in pairs(pool) do
+        if type(object) == "table" and object.on_touch then
+          object:on_touch(function() end)
         end
       end
 
