@@ -19,10 +19,10 @@ local function ready()
   pool.light = scene:get("light", SceneType.object)
 
   pool.switch = scene:get("switch", SceneType.object)
-  local s = state.switch
-  if s == "on" then
+  local switch = state.switch
+  if switch == "on" then
     pool.switch.action, pool.light.action = "on", "blinking"
-  elseif s == "off" then
+  elseif switch == "off" then
     pool.switch.action, pool.light.action = "off", nil
   end
 

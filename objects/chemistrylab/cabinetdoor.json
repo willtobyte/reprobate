@@ -13,7 +13,7 @@
     "open": {
       "frames": [
         {
-          "duration": 200,
+          "duration": -1,
           "offset": {
             "x": 93,
             "y": 171
