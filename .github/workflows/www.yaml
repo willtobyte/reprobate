@@ -12,7 +12,7 @@ jobs:
     if: true
 
     env:
-      CARIMBO_TAG: "v3.0.105"
+      CARIMBO_TAG: "v3.0.106"
 
     permissions:
       contents: write
