@@ -190,8 +190,6 @@ function scene.on_enter()
           if reaction.accept then
             -- TODO add script to inventory
             pool.inventory:release()
-
-            error("Beep boop")
           end
 
           local messages = reaction.messages
