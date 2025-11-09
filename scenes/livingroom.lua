@@ -2,7 +2,6 @@ local scene = {}
 
 local pool = {}
 
-local jump = require("helpers/jump")
 local tween = require("library/tween")
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
@@ -97,17 +96,15 @@ end
 
 local function verify()
   if all(items, "taken") then
-    if state.system.stage == "highschool" then
-      return
-    end
-
     state.system.stage = "highschool"
 
     timermanager:singleshot(3000, function()
       scribe:clear()
 
       for name in pairs(objects) do
-        pool[name].visible = false
+        if pool[name] then
+          pool[name].visible = false
+        end
       end
 
       pool.teenager.action = "default"
@@ -122,7 +119,9 @@ local function verify()
         pool.voodoocast.alpha = 0
         pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
 
-        timermanager:singleshot(3000, jump.to("highschool"))
+        timermanager:singleshot(3000, function()
+          scenemanager:set("highschool")
+        end)
       end)
     end)
   end
