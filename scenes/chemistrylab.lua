@@ -27,6 +27,12 @@ local items = {
   gasoline = {},
 }
 
+local function verify()
+  if all(items, "taken") then
+    -- TODO
+  end
+end
+
 local function ready()
   pool.light = scene:get("light", SceneType.object)
 
@@ -97,7 +103,7 @@ local function ready()
       pool.tweens.disappear[#pool.tweens.disappear + 1] =
         tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
 
-      -- verify()
+      verify()
     end)
   end
 end
