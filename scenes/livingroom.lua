@@ -1,6 +1,7 @@
 local scene = {}
 
 local pool = {}
+local timers = {}
 
 local tween = require("library/tween")
 local Scribe = require("helpers/scribe")
@@ -98,7 +99,7 @@ local function verify()
   if all(items, "taken") then
     state.system.stage = "highschool"
 
-    timermanager:singleshot(2000, function()
+    local id = timermanager:singleshot(2000, function()
       scribe:clear()
 
       for name in pairs(objects) do
@@ -111,8 +112,9 @@ local function verify()
       pool.teenager.alpha = 200
       pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
     end)
+    timers[#timers + 1] = id
 
-    timermanager:singleshot(5000, function()
+    id = timermanager:singleshot(5000, function()
       pool.teenager.action = nil
       pool.teenager.action = "default"
 
@@ -120,10 +122,12 @@ local function verify()
       pool.voodoocast.alpha = 0
       pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
     end)
+    timers[#timers + 1] = id
 
-    timermanager:singleshot(9000, function()
+    id = timermanager:singleshot(9000, function()
       scenemanager:set("highschool")
     end)
+    timers[#timers + 1] = id
   end
 end
 
@@ -157,12 +161,13 @@ function scene.on_enter()
     if bounded then
       local delay = math.random(conf.minimum, conf.maximum) * 1000
 
-      timermanager:set(delay, function()
+      local id = timermanager:set(delay, function()
         object.action = conf.action
         if conf.lightning then
           lightning:trigger()
         end
       end)
+      timers[#timers + 1] = id
     end
 
     object:on_touch(function()
@@ -246,6 +251,11 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  for _, id in ipairs(timers) do
+    timermanager:cancel(id)
+  end
+  timers = {}
+
   scribe:clear()
 
   pool = {}

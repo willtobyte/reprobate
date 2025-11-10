@@ -1,6 +1,7 @@
 local scene = {}
 
 local pool = {}
+local timers = {}
 
 local Inventory = require("overlay/inventory")
 
@@ -16,7 +17,7 @@ local scribe = Scribe.scribe
 local animations = {
   car = {
     minimum = 5,
-    maximum = 12,
+    maximum = 8,
     action = "run",
     message = "Twisted dream. Metal price.",
   },
@@ -28,7 +29,7 @@ local animations = {
   },
   clown = {
     minimum = 6,
-    maximum = 18,
+    maximum = 9,
     action = "blink",
     message = "A cosmic clown is closing in. Not here for laughs.",
   },
@@ -53,14 +54,15 @@ local function verify()
 
     -- achievement:unlock("")
 
-    pool.door = scene:get("door", SceneType.object)
     pool.effect = scene:get("door", SceneType.effect)
-    pool.door:on_touch(jump.to("livingroom"))
+    pool.door = scene:get("door", SceneType.object)
     pool.door.action = "default"
 
-    timermanager:singleshot(3000, function()
+    local id = timermanager:singleshot(3000, function()
       pool.effect:play()
+      pool.door:on_touch(jump.to("livingroom"))
     end)
+    timers[#timers + 1] = id
   end
 end
 
@@ -96,9 +98,10 @@ function scene.on_enter()
     local action = conf.action
 
     local target = object
-    timermanager:set(delay, function()
+    local id = timermanager:set(delay, function()
       target.action = action
     end)
+    timers[#timers + 1] = id
 
     target:on_touch(function()
       say(message)
@@ -179,6 +182,11 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  for _, id in ipairs(timers) do
+    timermanager:cancel(id)
+  end
+  timers = {}
+
   scribe:clear()
   pool.inventory:teardown()
 
