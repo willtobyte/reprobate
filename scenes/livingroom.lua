@@ -98,7 +98,7 @@ local function verify()
   if all(items, "taken") then
     state.system.stage = "highschool"
 
-    timermanager:singleshot(3000, function()
+    timermanager:singleshot(2000, function()
       scribe:clear()
 
       for name in pairs(objects) do
@@ -110,19 +110,19 @@ local function verify()
       pool.teenager.action = "default"
       pool.teenager.alpha = 200
       pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
+    end)
 
-      timermanager:singleshot(3000, function()
-        pool.teenager.action = nil
-        pool.teenager.action = "default"
+    timermanager:singleshot(5000, function()
+      pool.teenager.action = nil
+      pool.teenager.action = "default"
 
-        pool.voodoocast.action = "default"
-        pool.voodoocast.alpha = 0
-        pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
+      pool.voodoocast.action = "default"
+      pool.voodoocast.alpha = 0
+      pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
+    end)
 
-        timermanager:singleshot(3000, function()
-          scenemanager:set("highschool")
-        end)
-      end)
+    timermanager:singleshot(9000, function()
+      scenemanager:set("highschool")
     end)
   end
 end
