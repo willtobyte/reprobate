@@ -251,12 +251,12 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  scribe:clear()
+
   for _, id in ipairs(timers) do
     timermanager:cancel(id)
   end
   timers = {}
-
-  scribe:clear()
 
   pool = {}
 end
