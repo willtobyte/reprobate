@@ -94,7 +94,8 @@ local function ready()
 
       conf.taken = true
       state[name] = true
-      pool.tweens.disappear[#pool.tweens.disappear + 1] = tween.new(1, self, { alpha = 0, scale = 1.6 }, "inOutQuad")
+      pool.tweens.disappear[#pool.tweens.disappear + 1] =
+        tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
 
       -- verify()
     end)
