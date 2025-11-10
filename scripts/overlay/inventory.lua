@@ -106,13 +106,15 @@ function M:teardown()
     self.target = nil
   end
 
+  self.layout.y = self.original_y_position
+  self.character.y = self.original_y_position
+
   for i = 1, #self.objects do
     self.objects[i]:on_touch(nil)
+    self.objects[i].y = self.original_y_position
   end
 
   self.objects = nil
-
-  self.layout.y = self.start_y
   self.layout = nil
   self.character = nil
 end
