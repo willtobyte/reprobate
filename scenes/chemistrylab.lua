@@ -2,6 +2,7 @@ local scene = {}
 
 local pool = {}
 
+local tween = require("library/tween")
 local Scribe = require("helpers/scribe")
 local say = Scribe.say
 local scribe = Scribe.scribe
@@ -13,6 +14,17 @@ local objects = {
       "Houston, I have a hangover...",
     },
   },
+  testtubes = {
+    messages = {
+      "teste",
+    },
+  },
+}
+
+local items = {
+  openendwrench = {},
+  smallkey = {},
+  gasoline = {},
 }
 
 local function ready()
@@ -68,9 +80,33 @@ local function ready()
 
     pool[name] = object
   end
+
+  for name, conf in pairs(items) do
+    local object = scene:get(name, SceneType.object)
+    pool[name] = object
+
+    conf.taken = not not state[name]
+    object.visible = not conf.taken
+    object:on_touch(function(self)
+      if conf.taken then
+        return
+      end
+
+      conf.taken = true
+      state[name] = true
+      pool.tweens.disappear[#pool.tweens.disappear + 1] = tween.new(1, self, { alpha = 0, scale = 1.6 }, "inOutQuad")
+
+      -- verify()
+    end)
+  end
 end
 
 function scene.on_enter()
+  pool.tweens = {
+    appear = {},
+    disappear = {},
+  }
+
   pool.alien = scene:get("alien", SceneType.object)
   pool.geigercounter = scene:get("geigercounter", SceneType.effect)
   pool.geigercounter:play(true)
@@ -123,6 +159,29 @@ function scene.on_loop(delta)
   if not pool.alien.visible then
     pool.geigercounter:stop()
   end
+
+  local function step(tweens, hide)
+    local n = #tweens
+    if n == 0 then
+      return
+    end
+
+    for i = n, 1, -1 do
+      local t = tweens[i]
+      if t:update(delta) then
+        if t.subject and hide then
+          t.subject.visible = false
+        end
+
+        tweens[i] = tweens[n]
+        tweens[n] = nil
+        n = n - 1
+      end
+    end
+  end
+
+  step(pool.tweens.appear, false)
+  step(pool.tweens.disappear, true)
 end
 
 function scene.on_leave()

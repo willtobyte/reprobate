@@ -49,8 +49,8 @@
     },
     {
       "action": "default",
-      "kind": "key",
-      "name": "key"
+      "kind": "smallkey",
+      "name": "smallkey"
     },
     {
       "action": "default",
