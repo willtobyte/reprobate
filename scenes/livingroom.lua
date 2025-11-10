@@ -213,7 +213,7 @@ function scene.on_enter()
       conf.taken = true
       state[name] = true
       pool.tweens.disappear[#pool.tweens.disappear + 1] =
-        tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
+        tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
 
       verify()
     end)

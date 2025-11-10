@@ -134,7 +134,7 @@ function scene.on_enter()
         conf.taken = true
         state[name] = true
 
-        pool.tweens[#pool.tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.5 }, "inOutQuad")
+        pool.tweens[#pool.tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
         pool[hud].action = "default"
 
         verify()
