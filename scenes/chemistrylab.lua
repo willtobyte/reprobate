@@ -33,7 +33,7 @@ local function verify()
   end
 end
 
-local function ready()
+local function setup()
   pool.light = scene:get("light", SceneType.object)
 
   pool.switch = scene:get("switch", SceneType.object)
@@ -127,7 +127,7 @@ function scene.on_enter()
     pool.emitter2.active = false
     pool.emitter3.active = false
 
-    ready()
+    setup()
   end
 
   pool.fireextinguisher = scene:get("fireextinguisher", SceneType.object)
@@ -137,7 +137,7 @@ function scene.on_enter()
     pool.emitter2.emitting = false
     pool.emitter3.emitting = false
 
-    ready()
+    setup()
   end)
 end
 
