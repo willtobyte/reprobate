@@ -6,9 +6,8 @@ local timers = {}
 local Inventory = require("overlay/inventory")
 
 local jump = require("helpers/jump")
-local Scribe = require("helpers/scribe")
-local say = Scribe.say
-local scribe = Scribe.scribe
+local scribe = require("helpers/scribe")
+local say = scribe.say
 
 local playboy = "HUD/playboy"
 
@@ -191,7 +190,7 @@ function scene.on_enter()
 
           if reaction.accept then
             -- TODO add script to inventory
-            pool.inventory:release()
+            pool.inventory.release()
           end
 
           local messages = reaction.messages
@@ -227,20 +226,20 @@ function scene.on_enter()
 end
 
 function scene.on_motion(x, y)
-  pool.inventory:motion(x, y)
+  pool.inventory.motion(x, y)
 end
 
 function scene.on_touch() end
 
 function scene.on_loop(delta)
-  scribe:loop(delta)
+  scribe.loop(delta)
 
-  pool.inventory:loop(delta)
+  pool.inventory.loop(delta)
 end
 
 function scene.on_leave()
-  scribe:clear()
-  pool.inventory:teardown()
+  scribe.clear()
+  pool.inventory.teardown()
 
   for _, id in ipairs(timers) do
     timermanager:cancel(id)

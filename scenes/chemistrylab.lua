@@ -3,9 +3,9 @@ local scene = {}
 local pool = {}
 
 local tween = require("library/tween")
-local Scribe = require("helpers/scribe")
-local say = Scribe.say
-local scribe = Scribe.scribe
+local tweens = require("helpers/tweens")
+local scribe = require("helpers/scribe")
+local say = scribe.say
 
 local objects = {
   alien = {
@@ -100,8 +100,7 @@ local function setup()
 
       conf.taken = true
       state[name] = true
-      pool.tweens.disappear[#pool.tweens.disappear + 1] =
-        tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
+      tweens.disappear[name] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
 
       verify()
     end)
@@ -109,11 +108,6 @@ local function setup()
 end
 
 function scene.on_enter()
-  pool.tweens = {
-    appear = {},
-    disappear = {},
-  }
-
   pool.alien = scene:get("alien", SceneType.object)
   pool.geigercounter = scene:get("geigercounter", SceneType.effect)
   pool.geigercounter:play(true)
@@ -161,39 +155,23 @@ function scene.on_motion(x, y)
 end
 
 function scene.on_loop(delta)
-  scribe:loop(delta)
+  scribe.loop(delta)
 
   if not pool.alien.visible then
     pool.geigercounter:stop()
   end
 
-  local function step(tweens, hide)
-    local n = #tweens
-    if n == 0 then
-      return
+  tweens.loop(delta, function(type, name, t)
+    if t.subject and type == "disappear" then
+      t.subject.visible = false
     end
-
-    for i = n, 1, -1 do
-      local t = tweens[i]
-      if t:update(delta) then
-        if t.subject and hide then
-          t.subject.visible = false
-        end
-
-        tweens[i] = tweens[n]
-        tweens[n] = nil
-        n = n - 1
-      end
-    end
-  end
-
-  step(pool.tweens.appear, false)
-  step(pool.tweens.disappear, true)
+  end)
 end
 
 function scene.on_leave()
-  scribe:clear()
+  scribe.clear()
 
+  tweens.teardown()
   pool = {}
 end
 

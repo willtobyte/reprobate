@@ -6,13 +6,15 @@ local timers = {}
 local Inventory = require("overlay/inventory")
 
 local tween = require("library/tween")
+local tweens = require("helpers/tweens")
 
 local ops = require("helpers/ops")
 local prank = require("helpers/prank")
 local jump = require("helpers/jump")
-local Scribe = require("helpers/scribe")
-local say = Scribe.say
-local scribe = Scribe.scribe
+local scribe = require("helpers/scribe")
+local say = scribe.say
+
+local camera = require("camera")
 
 local animations = {
   car = {
@@ -74,7 +76,6 @@ function scene.on_enter()
 
   prank.write("We Have A Connection.txt", "TODO...")
 
-  pool.tweens = {}
   pool.television = scene:get("television", SceneType.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
 
@@ -134,7 +135,7 @@ function scene.on_enter()
         conf.taken = true
         state[name] = true
 
-        pool.tweens[#pool.tweens + 1] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
+        tweens.disappear[name] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
         pool[hud].action = "default"
 
         verify()
@@ -154,42 +155,35 @@ function scene.on_touch()
 end
 
 function scene.on_motion(x, y)
-  pool.inventory:motion(x, y)
+  pool.inventory.motion(x, y)
 end
 
 function scene.on_loop(delta)
-  scribe:loop(delta)
+  scribe.loop(delta)
 
-  pool.inventory:loop(delta)
+  pool.inventory.loop(delta)
 
-  local n = #pool.tweens
-  if n == 0 then
-    return
-  end
-
-  for i = n, 1, -1 do
-    local t = pool.tweens[i]
-    if t:update(delta) then
-      if t.subject then
-        t.subject.visible = false
-      end
-
-      pool.tweens[i] = pool.tweens[n]
-      pool.tweens[n] = nil
-      n = n - 1
+  tweens.loop(delta, function(type, name, t)
+    if t.subject and type == "disappear" then
+      t.subject.visible = false
     end
-  end
+  end)
+end
+
+function scene.on_camera(delta)
+  return camera.calculate(delta)
 end
 
 function scene.on_leave()
-  scribe:clear()
-  pool.inventory:teardown()
+  scribe.clear()
+  pool.inventory.teardown()
 
   for _, id in ipairs(timers) do
     timermanager:cancel(id)
   end
   timers = {}
 
+  tweens.teardown()
   pool = {}
 end
 

@@ -1,91 +1,99 @@
-local Writer = {}
-Writer.__index = Writer
+local scribe = {}
 
 local INTERVAL = 0.08
 
-function Writer.new()
-  local self = setmetatable({}, Writer)
-  self.label = overlay:create(WidgetType.label)
-  local font = fontfactory:get("rpgfont")
-  self.label.font = font
-  self.label.effect = FontEffect.fadein
-  self.text = ""
-  self.index = 0
-  self.accumulator = 0
-  self.is_writing = false
-  self.finish_delay = 0
-  self.finish_countdown = nil
-  self.callback = nil
-  self.x, self.y = 0, 0
-  return self
+-- Internal state
+local label = nil
+local text = ""
+local index = 0
+local accumulator = 0
+local is_writing = false
+local finish_delay = 0
+local finish_countdown = nil
+local callback = nil
+local x, y = 0, 0
+
+local function initialize()
+  if not label then
+    label = overlay:create(WidgetType.label)
+    local font = fontfactory:get("rpgfont")
+    label.font = font
+    label.effect = FontEffect.fadein
+  end
 end
 
-function Writer:on_finish(timeout, callback)
+function scribe.on_finish(timeout, cb)
   assert(type(timeout) == "number")
-  assert(type(callback) == "function")
-  self.finish_delay = timeout
-  self.callback = callback
+  assert(type(cb) == "function")
+  finish_delay = timeout
+  callback = cb
 end
 
-function Writer:clear()
-  self.index = 0
-  self.text = ""
-  self.accumulator = 0
-  self.is_writing = false
-  self.finish_countdown = nil
-  self.callback = nil
-  self.label:clear()
+function scribe.clear()
+  index = 0
+  text = ""
+  accumulator = 0
+  is_writing = false
+  finish_countdown = nil
+  callback = nil
+  if label then
+    label:clear()
+  end
 end
 
-function Writer:write(text, x, y)
-  assert(type(text) == "string")
-  assert(type(x) == "number")
-  assert(type(y) == "number")
-  self.text = text
-  self.index = 0
-  self.accumulator = 0
-  self.is_writing = true
-  self.finish_countdown = nil
-  self.x, self.y = x, y
-  self.label:set("", x, y)
+function scribe.write(txt, px, py)
+  assert(type(txt) == "string")
+  assert(type(px) == "number")
+  assert(type(py) == "number")
+  initialize()
+  if not label then
+    return
+  end
+  text = txt
+  index = 0
+  accumulator = 0
+  is_writing = true
+  finish_countdown = nil
+  x, y = px, py
+  label:set("", x, y)
 end
 
-function Writer:loop(delta)
-  if self.is_writing then
-    self.accumulator = self.accumulator + delta
-    while self.accumulator >= INTERVAL do
-      self.accumulator = self.accumulator - INTERVAL
-      self.index = self.index + 1
-      local substr = self.text:sub(1, self.index)
-      self.label:set(substr, self.x, self.y)
-      if self.index >= #self.text then
-        self.is_writing = false
-        self.finish_countdown = moment() + self.finish_delay
+function scribe.loop(delta)
+  if not label then
+    return
+  end
+  if is_writing then
+    accumulator = accumulator + delta
+    while accumulator >= INTERVAL do
+      accumulator = accumulator - INTERVAL
+      index = index + 1
+      local substr = text:sub(1, index)
+      label:set(substr, x, y)
+      if index >= #text then
+        is_writing = false
+        finish_countdown = moment() + finish_delay
         break
       end
     end
   end
 
-  if not self.is_writing and self.finish_countdown then
-    if moment() >= self.finish_countdown then
-      local cb = self.callback
-      self:clear()
-      return cb()
+  if not is_writing and finish_countdown then
+    if moment() >= finish_countdown then
+      local cb = callback
+      scribe.clear()
+      if cb then
+        return cb()
+      end
     end
   end
 end
 
-local scribe = Writer.new()
-
-local function say(msg, x, y, ms)
-  scribe:clear()
-  scribe:write(msg, x or 3, y or 3)
-  scribe:on_finish(ms or 6000, function()
-    scribe:clear()
+function scribe.say(msg, px, py, ms)
+  scribe.clear()
+  scribe.write(msg, px or 3, py or 3)
+  scribe.on_finish(ms or 6000, function()
+    scribe.clear()
   end)
 end
 
-return {
-  scribe = scribe,
-  say = say,
-}
+return scribe

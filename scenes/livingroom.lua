@@ -4,9 +4,9 @@ local pool = {}
 local timers = {}
 
 local tween = require("library/tween")
-local Scribe = require("helpers/scribe")
-local say = Scribe.say
-local scribe = Scribe.scribe
+local tweens = require("helpers/tweens")
+local scribe = require("helpers/scribe")
+local say = scribe.say
 
 local objects = {
   antiquewallclock = {
@@ -100,7 +100,7 @@ local function verify()
     state.system.stage = "highschool"
 
     local id = timermanager:singleshot(2000, function()
-      scribe:clear()
+      scribe.clear()
 
       for name in pairs(objects) do
         if pool[name] then
@@ -110,7 +110,7 @@ local function verify()
 
       pool.teenager.action = "default"
       pool.teenager.alpha = 200
-      pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.teenager, { alpha = 255 })
+      tweens.appear.teenager = tween.new(1, pool.teenager, { alpha = 255 })
     end)
     timers[#timers + 1] = id
 
@@ -120,7 +120,7 @@ local function verify()
 
       pool.voodoocast.action = "default"
       pool.voodoocast.alpha = 0
-      pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoocast, { alpha = 255 })
+      tweens.appear.voodoocast = tween.new(1, pool.voodoocast, { alpha = 255 })
     end)
     timers[#timers + 1] = id
 
@@ -141,11 +141,6 @@ function scene.on_enter()
 
   pool.theme = scene:get("rainmuffled", SceneType.effect)
   pool.theme:play(true)
-
-  pool.tweens = {
-    appear = {},
-    disappear = {},
-  }
 
   pool.teenager = scene:get("teenager", SceneType.object)
   pool.voodoocast = scene:get("voodoocast", SceneType.object)
@@ -191,7 +186,7 @@ function scene.on_enter()
       pool.cabinetdoor.action = "open"
       pool.voodoodoll.action = "default"
       pool.voodoodoll.alpha = 0
-      pool.tweens.appear[#pool.tweens.appear + 1] = tween.new(1, pool.voodoodoll, { alpha = 255 })
+      tweens.appear.voodoodoll = tween.new(1, pool.voodoodoll, { alpha = 255 })
 
       local message = "The doll is not yours, it belongs to the loa that rides it."
       say(message, 3, 3, 3000)
@@ -212,8 +207,7 @@ function scene.on_enter()
 
       conf.taken = true
       state[name] = true
-      pool.tweens.disappear[#pool.tweens.disappear + 1] =
-        tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
+      tweens.disappear[name] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
 
       verify()
     end)
@@ -221,43 +215,27 @@ function scene.on_enter()
 end
 
 function scene.on_loop(delta)
-  scribe:loop(delta)
+  scribe.loop(delta)
   -- pool.inventory:loop(delta)
 
   lightning:update()
 
-  local function step(tweens, hide)
-    local n = #tweens
-    if n == 0 then
-      return
+  tweens.loop(delta, function(type, name, t)
+    if t.subject and type == "disappear" then
+      t.subject.visible = false
     end
-
-    for i = n, 1, -1 do
-      local t = tweens[i]
-      if t:update(delta) then
-        if t.subject and hide then
-          t.subject.visible = false
-        end
-
-        tweens[i] = tweens[n]
-        tweens[n] = nil
-        n = n - 1
-      end
-    end
-  end
-
-  step(pool.tweens.appear, false)
-  step(pool.tweens.disappear, true)
+  end)
 end
 
 function scene.on_leave()
-  scribe:clear()
+  scribe.clear()
 
   for _, id in ipairs(timers) do
     timermanager:cancel(id)
   end
   timers = {}
 
+  tweens.teardown()
   pool = {}
 end
 

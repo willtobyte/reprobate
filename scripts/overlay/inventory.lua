@@ -1,152 +1,156 @@
-local M = {}
-M.__index = M
+local Inventory = {}
 
 local ANIMATION_DURATION = 0.2
 
-function M.new(layout, character, objects)
-  local self = setmetatable({}, M)
-  self.layout = layout
-  self.character = character
-  self.objects = objects
-  self.original_y_position = layout.y
-  self.layout.y = self.original_y_position + 40
-  self.character.y = self.layout.y
-  self.target = nil
-  self.x_offset = 0
-  self.y_offset = 0
-  self.x_origin = 0
-  self.y_origin = 0
+function Inventory.new(layout, character, objects)
+  local original_y_position = layout.y
+  layout.y = original_y_position + 40
+  character.y = layout.y
 
-  for i = 1, #self.objects do
-    self.objects[i].y = self.layout.y
+  local target = nil
+  local x_offset = 0
+  local y_offset = 0
+  local x_origin = 0
+  local y_origin = 0
 
-    self.objects[i]:on_touch(function(_, x, y)
-      local object = self.objects[i]
-      self.x_origin = object.x
-      self.y_origin = object.y
-      self.target = i
-      self.x_offset = x - self.x_origin
-      self.y_offset = y - self.y_origin
+  local is_animating = false
+  local start_y = layout.y
+  local delta = 0
+  local progress = 0
+
+  for i = 1, #objects do
+    objects[i].y = layout.y
+
+    objects[i]:on_touch(function(_, x, y)
+      local object = objects[i]
+      x_origin = object.x
+      y_origin = object.y
+      target = i
+      x_offset = x - x_origin
+      y_offset = y - y_origin
     end)
   end
 
-  self.is_animating = false
-  self.start_y = self.layout.y
-  self.delta = 0
-  self.progress = 0
-  return self
-end
+  local function motion(x, y)
+    if target then
+      objects[target].placement = {
+        x = x - x_offset,
+        y = y - y_offset,
+      }
+    end
 
-function M:motion(x, y)
-  if self.target then
-    self.objects[self.target].placement = {
-      x = x - self.x_offset,
-      y = y - self.y_offset,
-    }
+    if is_animating then
+      return
+    end
+
+    local target_y = y > 180 and original_y_position or original_y_position + 40
+
+    if target_y == layout.y then
+      return
+    end
+
+    start_y = layout.y
+    delta = target_y - start_y
+    progress = 0
+    is_animating = true
   end
 
-  if self.is_animating then
-    return
+  local function loop(dt)
+    if not is_animating then
+      return
+    end
+
+    progress = progress + dt
+
+    local ratio = progress / ANIMATION_DURATION
+
+    if ratio >= 1 then
+      layout.y = start_y + delta
+      character.y = layout.y
+
+      for i = 1, #objects do
+        if target ~= i then
+          objects[i].y = layout.y
+        end
+      end
+
+      is_animating = false
+      return
+    end
+
+    local current_y = start_y + delta * ratio
+
+    layout.y = current_y
+    character.y = current_y
+
+    for i = 1, #objects do
+      if target ~= i then
+        objects[i].y = current_y
+      end
+    end
   end
 
-  local target_y = y > 180 and self.original_y_position or self.original_y_position + 40
+  local function teardown()
+    if target ~= nil then
+      objects[target].placement = {
+        x = 0,
+        y = y_origin,
+      }
 
-  if target_y == self.layout.y then
-    return
+      target = nil
+    end
+
+    layout.y = original_y_position
+    character.y = original_y_position
+
+    for i = 1, #objects do
+      objects[i]:on_touch(nil)
+      objects[i].y = original_y_position
+    end
+
+    objects = nil
+    layout = nil
+    character = nil
   end
 
-  self.start_y = self.layout.y
-  self.delta = target_y - self.start_y
-  self.progress = 0
-  self.is_animating = true
-end
-
-function M:loop(delta)
-  if not self.is_animating then
-    return
-  end
-
-  self.progress = self.progress + delta
-
-  local ratio = self.progress / ANIMATION_DURATION
-
-  if ratio >= 1 then
-    self.layout.y = self.start_y + self.delta
-    self.character.y = self.layout.y
-
-    for i = 1, #self.objects do
-      if self.target ~= i then
-        self.objects[i].y = self.layout.y
+  local function release()
+    if target then
+      local object = objects[target]
+      if object then
+        object.visible = false
       end
     end
 
-    self.is_animating = false
-    return
+    target = nil
   end
 
-  local current_y = self.start_y + self.delta * ratio
+  local instance = {
+    motion = motion,
+    loop = loop,
+    teardown = teardown,
+    release = release,
+  }
 
-  self.layout.y = current_y
-  self.character.y = current_y
+  setmetatable(instance, {
+    __index = function(t, key)
+      if key == "dragging" then
+        if not target then
+          return nil
+        end
+        if not objects then
+          return nil
+        end
+        local object = objects[target]
+        if not object then
+          return nil
+        end
+        return object.kind
+      end
+      return rawget(t, key)
+    end,
+  })
 
-  for i = 1, #self.objects do
-    if self.target ~= i then
-      self.objects[i].y = current_y
-    end
-  end
+  return instance
 end
 
-function M:teardown()
-  if self.target ~= nil then
-    self.objects[self.target].placement = {
-      x = 0,
-      y = self.y_origin,
-    }
-
-    self.target = nil
-  end
-
-  self.layout.y = self.original_y_position
-  self.character.y = self.original_y_position
-
-  for i = 1, #self.objects do
-    self.objects[i]:on_touch(nil)
-    self.objects[i].y = self.original_y_position
-  end
-
-  self.objects = nil
-  self.layout = nil
-  self.character = nil
-end
-
-function M:release()
-  if self.target then
-    local object = self.objects[self.target]
-    if object then
-      object.visible = false
-    end
-  end
-
-  self.target = nil
-end
-
-M.__index = function(instance, key)
-  if key == "dragging" then
-    local target = instance.target
-    if not target then
-      return nil
-    end
-    local objects = instance.objects
-    if not objects then
-      return nil
-    end
-    local object = objects[target]
-    if not object then
-      return nil
-    end
-    return object.kind
-  end
-  return rawget(M, key)
-end
-
-return M
+return Inventory
