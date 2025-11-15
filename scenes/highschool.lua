@@ -226,7 +226,6 @@ function scene.on_enter()
 end
 
 function scene.on_motion(x, y)
-  error("Ah ra!")
   pool.inventory.motion(x, y)
 end
 
