@@ -189,6 +189,7 @@ function scene.on_enter()
           end
 
           if reaction.accept then
+            error("Beep boop!")
             -- TODO add script to inventory
             pool.inventory.release()
           end
