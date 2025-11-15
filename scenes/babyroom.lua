@@ -7,6 +7,7 @@ local Inventory = require("overlay/inventory")
 
 local tween = require("library/tween")
 local tweens = require("helpers/tweens")
+local lantern = require("effects/lantern")
 
 local ops = require("helpers/ops")
 local prank = require("helpers/prank")
@@ -156,11 +157,13 @@ end
 
 function scene.on_motion(x, y)
   pool.inventory.motion(x, y)
+  lantern:motion(x, y)
 end
 
 function scene.on_loop(delta)
   scribe.loop(delta)
 
+  lantern:loop()
   pool.inventory.loop(delta)
 
   tweens.loop(delta, function(type, name, t)
