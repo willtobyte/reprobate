@@ -175,7 +175,6 @@ end
 
 function scene.on_leave()
   scribe.clear()
-  pool.inventory.teardown()
 
   for _, id in ipairs(timers) do
     timermanager:cancel(id)
@@ -183,6 +182,7 @@ function scene.on_leave()
   timers = {}
 
   tweens.teardown()
+  pool.inventory.teardown()
   pool = {}
 end
 
