@@ -60,6 +60,7 @@ TYPE RUN TO BEGIN
   pool.dialup:on_end(function()
     print(">>> ...")
     -- TODO
+    -- state.system.stage = "minigame"
     -- scenemanager:set("minigame"
   end)
 end
@@ -83,7 +84,7 @@ function scene.on_loop(delta)
   pool.label:set(text, 105, 18)
 
   if pool.pentagram then
-    pentagram:loop()
+    pentagram:loop(delta)
   end
 end
 
