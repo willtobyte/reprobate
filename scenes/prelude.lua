@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool = {}
-
 local jump = require("helpers/jump")
 
 function scene.on_enter()
@@ -31,10 +29,6 @@ function scene.on_touch()
   if pool.clicks >= 10 then
     achievement:unlock("ACH_CLICK_FOREHEAD") -- How about trying to click with your forehead?
   end
-end
-
-function scene.on_leave()
-  pool = {}
 end
 
 sentinel(scene, "prelude")

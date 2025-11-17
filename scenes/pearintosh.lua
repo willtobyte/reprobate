@@ -4,8 +4,6 @@ local basic = require("interpreters/basic")
 local jump = require("helpers/jump")
 local pentagram = require("effects/pentagram")
 
-local pool = {}
-
 function scene.on_enter()
   transition({
     destroy = { "mainmenu", "whobuilt" },
@@ -198,8 +196,6 @@ function scene.on_leave()
   if pool.pentagram then
     pentagram:teardown()
   end
-
-  pool = {}
 end
 
 sentinel(scene, "pearintosh")

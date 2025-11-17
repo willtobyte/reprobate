@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool = {}
-
 local jump = require("helpers/jump")
 
 function scene.on_enter()
@@ -30,10 +28,6 @@ function scene.on_motion(x, y)
   else
     pool.headbanger.action = "left"
   end
-end
-
-function scene.on_leave()
-  pool = {}
 end
 
 sentinel(scene, "mainmenu")

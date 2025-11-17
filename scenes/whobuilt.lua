@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool = {}
-
 local jump = require("helpers/jump")
 
 function scene.on_enter()
@@ -61,10 +59,6 @@ function scene.on_enter()
   pool.rodrigo:on_touch(function()
     openurl("https://rodrigodelduca.org")
   end)
-end
-
-function scene.on_leave()
-  pool = {}
 end
 
 sentinel(scene, "whobuilt")

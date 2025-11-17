@@ -1,7 +1,5 @@
 local scene = {}
 
-local pool = {}
-
 local Inventory = require("overlay/inventory")
 
 local tween = require("library/tween")
@@ -70,6 +68,8 @@ function scene.on_enter()
     destroy = { "mainmenu", "whobuilt" },
     register = { "livingroom" },
   })
+
+  error("aaa")
 
   prank.write("We Have A Connection.txt", "TODO...")
 
@@ -175,7 +175,6 @@ function scene.on_leave()
 
   tweens.teardown()
   pool.inventory.teardown()
-  pool = {}
 end
 
 sentinel(scene, "babyroom")

@@ -1,8 +1,5 @@
 local scene = {}
 
-local pool = {}
-local timers = {}
-
 local Inventory = require("overlay/inventory")
 
 local jump = require("helpers/jump")
@@ -170,10 +167,9 @@ function scene.on_enter()
 
   pool.bloodyhandprint = scene:get("bloodyhandprint", SceneType.object)
 
-  local id = timermanager:set(6666, function()
+  timermanager:set(6666, function()
     pool.bloodyhandprint.action = "default"
   end)
-  timers[#timers + 1] = id
 
   for name, conf in pairs(objects) do
     local object = scene:get(name, SceneType.object)
@@ -240,13 +236,6 @@ end
 function scene.on_leave()
   scribe.clear()
   pool.inventory.teardown()
-
-  for _, id in ipairs(timers) do
-    timermanager:cancel(id)
-  end
-  timers = {}
-
-  pool = {}
 end
 
 sentinel(scene, "highschool")

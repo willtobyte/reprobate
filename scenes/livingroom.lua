@@ -1,8 +1,5 @@
 local scene = {}
 
-local pool = {}
-local timers = {}
-
 local tween = require("library/tween")
 local tweens = require("helpers/tweens")
 local scribe = require("helpers/scribe")
@@ -229,7 +226,6 @@ end
 function scene.on_leave()
   scribe.clear()
   tweens.teardown()
-  pool = {}
 end
 
 sentinel(scene, "livingroom")
