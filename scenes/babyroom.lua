@@ -69,7 +69,7 @@ function scene.on_enter()
     register = { "livingroom" },
   })
 
-  error("aaa")
+  -- error("aaa")
 
   prank.write("We Have A Connection.txt", "TODO...")
 
