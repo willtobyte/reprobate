@@ -1,7 +1,6 @@
 local scene = {}
 
 local pool = {}
-local timers = {}
 
 local Inventory = require("overlay/inventory")
 
@@ -59,11 +58,10 @@ local function verify()
     pool.door = scene:get("door", SceneType.object)
     pool.door.action = "default"
 
-    local id = timermanager:singleshot(3000, function()
+    timermanager:singleshot(3000, function()
       pool.effect:play()
       pool.door:on_touch(jump.to("livingroom"))
     end)
-    timers[#timers + 1] = id
   end
 end
 
@@ -98,10 +96,9 @@ function scene.on_enter()
     local action = conf.action
 
     local target = object
-    local id = timermanager:set(delay, function()
+    timermanager:set(delay, function()
       target.action = action
     end)
-    timers[#timers + 1] = id
 
     target:on_touch(function()
       say(message)
@@ -175,11 +172,6 @@ end
 
 function scene.on_leave()
   scribe.clear()
-
-  for _, id in ipairs(timers) do
-    timermanager:cancel(id)
-  end
-  timers = {}
 
   tweens.teardown()
   pool.inventory.teardown()

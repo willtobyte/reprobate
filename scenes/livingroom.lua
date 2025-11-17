@@ -99,7 +99,7 @@ local function verify()
   if all(items, "taken") then
     state.system.stage = "highschool"
 
-    local id = timermanager:singleshot(2000, function()
+    timermanager:singleshot(2000, function()
       scribe.clear()
 
       for name in pairs(objects) do
@@ -112,9 +112,8 @@ local function verify()
       pool.teenager.alpha = 200
       tweens.appear.teenager = tween.new(1, pool.teenager, { alpha = 255 })
     end)
-    timers[#timers + 1] = id
 
-    id = timermanager:singleshot(5000, function()
+    timermanager:singleshot(5000, function()
       pool.teenager.action = nil
       pool.teenager.action = "default"
 
@@ -122,12 +121,10 @@ local function verify()
       pool.voodoocast.alpha = 0
       tweens.appear.voodoocast = tween.new(1, pool.voodoocast, { alpha = 255 })
     end)
-    timers[#timers + 1] = id
 
-    id = timermanager:singleshot(9000, function()
+    timermanager:singleshot(9000, function()
       scenemanager:set("highschool")
     end)
-    timers[#timers + 1] = id
   end
 end
 
@@ -159,13 +156,12 @@ function scene.on_enter()
       local a = conf.action
       local l = conf.lightning
 
-      local id = timermanager:set(delay, function()
+      timermanager:set(delay, function()
         o.action = a
         if l then
           lightning:trigger()
         end
       end)
-      timers[#timers + 1] = id
     end
 
     object:on_touch(function()
@@ -232,12 +228,6 @@ end
 
 function scene.on_leave()
   scribe.clear()
-
-  for _, id in ipairs(timers) do
-    timermanager:cancel(id)
-  end
-  timers = {}
-
   tweens.teardown()
   pool = {}
 end
