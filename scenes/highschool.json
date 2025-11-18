@@ -90,6 +90,16 @@
       "action": "default",
       "kind": "HUD/playboy",
       "name": "HUD/playboy"
+    },
+    {
+      "action": "default",
+      "kind": "sourcecode",
+      "name": "sourcecode"
+    },
+    {
+      "action": "default",
+      "kind": "minisourcecode",
+      "name": "minisourcecode"
     }
   ]
 }
