@@ -1,0 +1,112 @@
+{
+  "animations": {
+    "default": {
+      "frames": [
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 204
+          },
+          "rectangle": {
+            "x": 1,
+            "y": 1,
+            "width": 35,
+            "height": 51
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 204
+          },
+          "rectangle": {
+            "x": 38,
+            "y": 1,
+            "width": 35,
+            "height": 51
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 204
+          },
+          "rectangle": {
+            "x": 75,
+            "y": 1,
+            "width": 35,
+            "height": 51
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 204
+          },
+          "rectangle": {
+            "x": 112,
+            "y": 1,
+            "width": 35,
+            "height": 51
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 204
+          },
+          "rectangle": {
+            "x": 149,
+            "y": 1,
+            "width": 35,
+            "height": 51
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 204
+          },
+          "rectangle": {
+            "x": 112,
+            "y": 1,
+            "width": 35,
+            "height": 51
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 204
+          },
+          "rectangle": {
+            "x": 75,
+            "y": 1,
+            "width": 35,
+            "height": 51
+          }
+        },
+        {
+          "duration": 200,
+          "offset": {
+            "x": 16,
+            "y": 204
+          },
+          "rectangle": {
+            "x": 38,
+            "y": 1,
+            "width": 35,
+            "height": 51
+          }
+        }
+      ]
+    }
+  }
+}

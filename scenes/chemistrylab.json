@@ -61,6 +61,15 @@
       "action": "closed",
       "kind": "bottomcabinetdoor",
       "name": "bottomcabinetdoor"
+    },
+    {
+      "kind": "tubeamplifier",
+      "name": "tubeamplifier"
+    },
+    {
+      "action": "default",
+      "kind": "geigercounter",
+      "name": "geigercounter"
     }
   ],
   "particles": [

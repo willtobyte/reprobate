@@ -43,12 +43,19 @@ local function setup()
   end
 
   pool.bottomcabinetdoor = scene:get("bottomcabinetdoor", SceneType.object)
+  pool.tubeamplifier = scene:get("tubeamplifier", SceneType.object)
   if state.bottomcabinetdoor then
     pool.bottomcabinetdoor.action = "open"
+
+    pool.tubeamplifier.action = "default"
   end
   pool.bottomcabinetdoor:on_touch(function()
     state.bottomcabinetdoor = true
     pool.bottomcabinetdoor.action = "open"
+
+    pool.tubeamplifier.action = "default"
+    pool.tubeamplifier.alpha = 0
+    tweens.appear.tubeamplifier = tween.new(1, pool.tubeamplifier, { alpha = 255 })
   end)
 
   pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
