@@ -2,7 +2,6 @@ local scene = {}
 
 local basic = require("interpreters/basic")
 local jump = require("helpers/jump")
-local pentagram = require("effects/pentagram")
 
 function scene.on_enter()
   transition({
@@ -80,10 +79,6 @@ function scene.on_loop(delta)
 
   local text = pool.prelude .. pool.program .. (cursor.visible and "_" or "")
   pool.label:set(text, 105, 18)
-
-  if pool.pentagram then
-    pentagram:loop(delta)
-  end
 end
 
 function scene.on_text(text)
@@ -192,10 +187,6 @@ end
 
 function scene.on_leave()
   pool.label:clear()
-
-  if pool.pentagram then
-    pentagram:teardown()
-  end
 end
 
 sentinel(scene, "pearintosh")
