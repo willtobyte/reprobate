@@ -85,11 +85,6 @@
       "action": "shadow",
       "kind": "HUD/crucifix",
       "name": "HUD/crucifix"
-    },
-    {
-      "action": "default",
-      "kind": "analoginterference",
-      "name": "analoginterference"
     }
   ]
 }
