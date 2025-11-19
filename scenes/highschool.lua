@@ -192,6 +192,7 @@ function scene.on_enter()
           end
 
           if reaction.accept then
+            state.sourcecode = true
             pool.minisourcecode.action = "default"
             pool.inventory.release()
           end
@@ -226,6 +227,11 @@ function scene.on_enter()
   local character = scene:get("boy", SceneType.object)
   local magazine = scene:get("HUD/playboy", SceneType.object)
   pool.inventory = Inventory.new(layout, character, { magazine })
+
+  if state.sourcecode then
+    pool.minisourcecode.action = "default"
+    magazine.action = nil
+  end
 end
 
 function scene.on_motion(x, y)
