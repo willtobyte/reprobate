@@ -192,7 +192,7 @@ function scene.on_enter()
           end
 
           if reaction.accept then
-            -- TODO add script to inventory
+            pool.minisourcecode.action = "default"
             pool.inventory.release()
           end
 

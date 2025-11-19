@@ -96,7 +96,6 @@
       "name": "sourcecode"
     },
     {
-      "action": "default",
       "kind": "minisourcecode",
       "name": "minisourcecode"
     }
