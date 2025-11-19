@@ -32,9 +32,9 @@ local function verify()
 end
 
 local function setup()
-  pool.light = scene:get("light", SceneType.object)
+  pool.light = scene:get("light", SceneKind.object)
 
-  pool.switch = scene:get("switch", SceneType.object)
+  pool.switch = scene:get("switch", SceneKind.object)
   local switch = state.switch
   if switch == "on" then
     pool.switch.action, pool.light.action = "on", "blinking"
@@ -42,8 +42,8 @@ local function setup()
     pool.switch.action, pool.light.action = "off", nil
   end
 
-  pool.bottomcabinetdoor = scene:get("bottomcabinetdoor", SceneType.object)
-  pool.tubeamplifier = scene:get("tubeamplifier", SceneType.object)
+  pool.bottomcabinetdoor = scene:get("bottomcabinetdoor", SceneKind.object)
+  pool.tubeamplifier = scene:get("tubeamplifier", SceneKind.object)
   if state.bottomcabinetdoor then
     pool.bottomcabinetdoor.action = "open"
 
@@ -58,7 +58,7 @@ local function setup()
     tweens.appear.tubeamplifier = tween.new(1, pool.tubeamplifier, { alpha = 255 })
   end)
 
-  pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
+  pool.cabinetdoor = scene:get("cabinetdoor", SceneKind.object)
   if state.cabinetdoor then
     pool.cabinetdoor.action = "open"
     pool.switch.action = state.switch
@@ -79,7 +79,7 @@ local function setup()
   end)
 
   for name, conf in pairs(objects) do
-    local object = scene:get(name, SceneType.object)
+    local object = scene:get(name, SceneKind.object)
 
     object:on_touch(function()
       local messages = conf.messages
@@ -93,7 +93,7 @@ local function setup()
   end
 
   for name, conf in pairs(items) do
-    local object = scene:get(name, SceneType.object)
+    local object = scene:get(name, SceneKind.object)
     pool[name] = object
 
     conf.taken = not not state[name]
@@ -113,13 +113,13 @@ local function setup()
 end
 
 function scene.on_enter()
-  pool.alien = scene:get("alien", SceneType.object)
-  pool.geigercounter = scene:get("geigercounter", SceneType.effect)
+  pool.alien = scene:get("alien", SceneKind.object)
+  pool.geigercounter = scene:get("geigercounter", SceneKind.effect)
   pool.geigercounter:play(true)
 
-  pool.emitter1 = scene:get("emitter1", SceneType.particle)
-  pool.emitter2 = scene:get("emitter2", SceneType.particle)
-  pool.emitter3 = scene:get("emitter3", SceneType.particle)
+  pool.emitter1 = scene:get("emitter1", SceneKind.particle)
+  pool.emitter2 = scene:get("emitter2", SceneKind.particle)
+  pool.emitter3 = scene:get("emitter3", SceneKind.particle)
 
   if state.fireextinguished then
     pool.emitter1.active = false
@@ -129,7 +129,7 @@ function scene.on_enter()
     setup()
   end
 
-  pool.fireextinguisher = scene:get("fireextinguisher", SceneType.object)
+  pool.fireextinguisher = scene:get("fireextinguisher", SceneKind.object)
   pool.fireextinguisher:on_touch(function()
     state.fireextinguished = true
     pool.emitter1.emitting = false

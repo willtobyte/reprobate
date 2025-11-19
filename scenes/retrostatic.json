@@ -1,4 +1,5 @@
 {
+  "type": "blank",
   "width": 480,
   "height": 270,
   "effects": ["noise"],

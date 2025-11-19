@@ -10,16 +10,16 @@ function scene.on_enter()
     register = { "whobuilt", "retrostatic" },
   })
 
-  pool.music = scene:get("theme", SceneType.effect)
+  pool.music = scene:get("theme", SceneKind.effect)
   pool.music:play(true)
 
-  pool.play = scene:get("play", SceneType.object)
+  pool.play = scene:get("play", SceneKind.object)
   pool.play:on_touch(jump.to("retrostatic"))
 
-  pool.credits = scene:get("credits", SceneType.object)
+  pool.credits = scene:get("credits", SceneKind.object)
   pool.credits:on_touch(jump.to("whobuilt"))
 
-  pool.headbanger = scene:get("headbanger", SceneType.object)
+  pool.headbanger = scene:get("headbanger", SceneKind.object)
 end
 
 function scene.on_motion(x, y)

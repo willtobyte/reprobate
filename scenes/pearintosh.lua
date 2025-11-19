@@ -33,10 +33,10 @@ TYPE RUN TO BEGIN
   pool.label.font = pool.font
 
   pool.effects = {}
-  pool.effects.key1 = scene:get("key1", SceneType.effect)
-  pool.effects.key2 = scene:get("key2", SceneType.effect)
+  pool.effects.key1 = scene:get("key1", SceneKind.effect)
+  pool.effects.key2 = scene:get("key2", SceneKind.effect)
 
-  pool.backcursor = scene:get("backcursor", SceneType.object)
+  pool.backcursor = scene:get("backcursor", SceneKind.object)
   pool.backcursor.action = "default"
   pool.backcursor:on_hover(function(self)
     self.action = "hover"
@@ -46,13 +46,13 @@ TYPE RUN TO BEGIN
   end)
   pool.backcursor:on_touch(jump.to("highschool"))
 
-  local switch = scene:get("switch", SceneType.object)
+  local switch = scene:get("switch", SceneKind.object)
   switch:on_touch(function()
     pool.program = "10 "
     pool.halted = false
   end)
 
-  pool.dialup = scene:get("dialup", SceneType.effect)
+  pool.dialup = scene:get("dialup", SceneKind.effect)
 
   pool.dialup:on_end(function()
     print(">>> ...")

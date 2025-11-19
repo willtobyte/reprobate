@@ -52,8 +52,8 @@ local function verify()
 
     -- achievement:unlock("")
 
-    pool.effect = scene:get("door", SceneType.effect)
-    pool.door = scene:get("door", SceneType.object)
+    pool.effect = scene:get("door", SceneKind.effect)
+    pool.door = scene:get("door", SceneKind.object)
     pool.door.action = "default"
 
     timermanager:singleshot(3000, function()
@@ -73,8 +73,8 @@ function scene.on_enter()
 
   prank.write("We Have A Connection.txt", "TODO...")
 
-  pool.television = scene:get("television", SceneType.object)
-  pool.beelzebuuth = scene:get("beelzebuuth", SceneType.object)
+  pool.television = scene:get("television", SceneKind.object)
+  pool.beelzebuuth = scene:get("beelzebuuth", SceneKind.object)
 
   pool.beelzebuuth.misses:subscribe(function(value)
     if value >= 6 then
@@ -89,7 +89,7 @@ function scene.on_enter()
 
   for name, conf in pairs(animations) do
     local message = conf.message
-    local object = scene:get(name, SceneType.object)
+    local object = scene:get(name, SceneKind.object)
     pool[name] = object
 
     local delay = math.random(conf.minimum, conf.maximum) * 1000
@@ -108,11 +108,11 @@ function scene.on_enter()
   local objects = {}
 
   for name, conf in pairs(items) do
-    local object = scene:get(name, SceneType.object)
+    local object = scene:get(name, SceneKind.object)
     pool[name] = object
 
     local hud = "HUD/" .. name
-    local item = scene:get(hud, SceneType.object)
+    local item = scene:get(hud, SceneKind.object)
     pool[hud] = item
     table.insert(objects, item)
 
@@ -139,8 +139,8 @@ function scene.on_enter()
     end
   end
 
-  local layout = scene:get("layout", SceneType.object)
-  local character = scene:get("boy", SceneType.object)
+  local layout = scene:get("layout", SceneKind.object)
+  local character = scene:get("boy", SceneKind.object)
   pool.inventory = Inventory.new(layout, character, objects)
 
   say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)

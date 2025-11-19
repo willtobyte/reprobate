@@ -5,18 +5,18 @@ local jump = require("helpers/jump")
 function scene.on_enter()
   achievement:unlock("ACH_CURIUS_PERSON") -- Curious enough to check the Credits.
 
-  pool.music = scene:get("theme", SceneType.effect)
+  pool.music = scene:get("theme", SceneKind.effect)
   pool.music:play(true)
 
-  pool.symbols = scene:get("symbols", SceneType.object)
-  pool.goat = scene:get("goat", SceneType.effect)
+  pool.symbols = scene:get("symbols", SceneKind.object)
+  pool.goat = scene:get("goat", SceneKind.effect)
 
   pool.symbols:on_touch(function()
     achievement:unlock("ACH_BLESSED_BY_THE_GOAT")
     pool.goat:play()
   end)
 
-  pool.back = scene:get("backbutton", SceneType.object)
+  pool.back = scene:get("backbutton", SceneKind.object)
 
   pool.back:on_hover(function(self)
     self.action = "hover"
@@ -28,9 +28,9 @@ function scene.on_enter()
 
   pool.back:on_touch(jump.to("mainmenu"))
 
-  pool.aline = scene:get("aline", SceneType.object)
+  pool.aline = scene:get("aline", SceneKind.object)
 
-  pool.rodrigo = scene:get("rodrigo", SceneType.object)
+  pool.rodrigo = scene:get("rodrigo", SceneKind.object)
 
   pool.aline:on_hover(function(self)
     self.action = "hover"

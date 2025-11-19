@@ -5,7 +5,7 @@ local jump = require("helpers/jump")
 function scene.on_enter()
   transition({ register = { "mainmenu", "whobuilt" } })
 
-  pool.quarter = scene:get("quarter", SceneType.object)
+  pool.quarter = scene:get("quarter", SceneKind.object)
 
   pool.quarter:on_hover(function(self)
     self.action = "hover"
@@ -17,7 +17,7 @@ function scene.on_enter()
 
   pool.quarter:on_touch(jump.to("mainmenu"))
 
-  pool.click = scene:get("click", SceneType.effect)
+  pool.click = scene:get("click", SceneKind.effect)
 
   pool.clicks = 0
 end

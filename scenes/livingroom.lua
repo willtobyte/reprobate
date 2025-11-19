@@ -133,16 +133,16 @@ function scene.on_enter()
     register = { "highschool" },
   })
 
-  pool.theme = scene:get("rainmuffled", SceneType.effect)
+  pool.theme = scene:get("rainmuffled", SceneKind.effect)
   pool.theme:play(true)
 
-  pool.teenager = scene:get("teenager", SceneType.object)
-  pool.voodoocast = scene:get("voodoocast", SceneType.object)
+  pool.teenager = scene:get("teenager", SceneKind.object)
+  pool.voodoocast = scene:get("voodoocast", SceneKind.object)
 
-  pool.darker = scene:get("darker", SceneType.object)
+  pool.darker = scene:get("darker", SceneKind.object)
 
   for name, conf in pairs(objects) do
-    local object = scene:get(name, SceneType.object)
+    local object = scene:get(name, SceneKind.object)
 
     pool[name] = object
 
@@ -170,8 +170,8 @@ function scene.on_enter()
     end)
   end
 
-  pool.cabinetdoor = scene:get("cabinetdoor", SceneType.object)
-  pool.voodoodoll = scene:get("voodoodoll", SceneType.object)
+  pool.cabinetdoor = scene:get("cabinetdoor", SceneKind.object)
+  pool.voodoodoll = scene:get("voodoodoll", SceneKind.object)
 
   if state.cabinetdoor then
     pool.cabinetdoor.action = "open"
@@ -191,7 +191,7 @@ function scene.on_enter()
   end
 
   for name, conf in pairs(items) do
-    local object = scene:get(name, SceneType.object)
+    local object = scene:get(name, SceneKind.object)
     pool[name] = object
 
     conf.taken = not not state[name]
