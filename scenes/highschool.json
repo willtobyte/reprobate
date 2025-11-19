@@ -92,7 +92,6 @@
       "name": "HUD/playboy"
     },
     {
-      "action": "default",
       "kind": "sourcecode",
       "name": "sourcecode"
     },

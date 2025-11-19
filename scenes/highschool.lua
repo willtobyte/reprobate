@@ -43,12 +43,6 @@ local objects = {
       },
     },
   },
-  longhairgirl = {
-    messages = {
-      "My parents want me to study medicine, I love computers.",
-      "Did you see what happened in the chemistry lab?",
-    },
-  },
   punkgirl = {
     messages = {
       "Reactionary discourse from state-puppet teachers.",
@@ -80,8 +74,7 @@ local objects = {
   },
   purpleman = {
     messages = {
-      "And what if none of this ever truly mattered?",
-      "The false dream they dreamed on our behalf.",
+      "Did you see what happened in the chemistry lab?",
     },
     receivables = {
       [playboy] = {
@@ -150,7 +143,7 @@ function scene.on_enter()
   state.system.stage = "highschool"
 
   transition({
-    destroy = { "mainmenu", "whobuilt", "livingroom" },
+    destroy = { "mainmenu", "whobuilt", "retrostatic", "livingroom" },
     register = { "pearintosh" },
   })
 
@@ -171,10 +164,24 @@ function scene.on_enter()
     pool.bloodyhandprint.action = "default"
   end)
 
+  pool.sourcecode = scene:get("sourcecode", SceneType.object)
+  pool.minisourcecode = scene:get("minisourcecode", SceneType.object)
+  pool.minisourcecode:on_touch(function()
+    if pool.sourcecode.action ~= "default" then
+      pool.sourcecode.action = "default"
+    else
+      pool.sourcecode.action = nil
+    end
+  end)
+
   for name, conf in pairs(objects) do
     local object = scene:get(name, SceneType.object)
 
     object:on_touch(function()
+      if pool.sourcecode.action == "default" then
+        return
+      end
+
       local kind = pool.inventory.dragging
       if kind ~= nil then
         if conf.receivables then

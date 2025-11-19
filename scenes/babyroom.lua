@@ -65,7 +65,7 @@ end
 
 function scene.on_enter()
   transition({
-    destroy = { "mainmenu", "whobuilt" },
+    destroy = { "mainmenu", "whobuilt", "retrostatic" },
     register = { "livingroom" },
   })
 

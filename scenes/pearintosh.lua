@@ -5,7 +5,7 @@ local jump = require("helpers/jump")
 
 function scene.on_enter()
   transition({
-    destroy = { "mainmenu", "whobuilt" },
+    destroy = { "mainmenu", "whobuilt", "retrostatic" },
     register = { "highschool" },
   })
 

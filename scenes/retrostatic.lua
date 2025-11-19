@@ -4,7 +4,7 @@ function scene.on_enter()
   local stage = state.system.stage or "babyroom"
 
   transition({
-    destroy = { "prelude" },
+    destroy = { "prelude", "mainmenu", "whobuilt" },
     register = { "whobuilt", stage },
   })
 

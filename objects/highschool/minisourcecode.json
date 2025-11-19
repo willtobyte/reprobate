@@ -1,6 +1,14 @@
 {
   "animations": {
     "default": {
+      "bounds": {
+        "rectangle": {
+          "x": 415,
+          "y": 213,
+          "width": 50,
+          "height": 35
+        }
+      },
       "frames": [
         {
           "duration": -1,
