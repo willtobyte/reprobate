@@ -1,7 +1,7 @@
 {
   "width": 480,
   "height": 270,
-  "effects": [],
+  "effects": ["noise"],
   "objects": [
     {
       "action": "default",

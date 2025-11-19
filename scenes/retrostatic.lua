@@ -8,6 +8,9 @@ function scene.on_enter()
     register = { "whobuilt", stage },
   })
 
+  pool.noise = scene:get("noise", SceneType.effect)
+  pool.noise:play(true)
+
   pool.interference = scene:get("interference", SceneType.object)
   pool.interference:on_end(function()
     scenemanager:set(stage)
