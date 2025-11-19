@@ -3,18 +3,18 @@ local scene = {}
 local jump = require("helpers/jump")
 
 function scene.on_enter()
-  local stage = state.system.stage or "babyroom"
+  -- local stage = state.system.stage or "babyroom"
 
   transition({
     destroy = { "prelude" },
-    register = { "whobuilt", stage },
+    register = { "whobuilt", "retrostatic" },
   })
 
   pool.music = scene:get("theme", SceneType.effect)
   pool.music:play(true)
 
   pool.play = scene:get("play", SceneType.object)
-  pool.play:on_touch(jump.to(stage))
+  pool.play:on_touch(jump.to("retrostatic"))
 
   pool.credits = scene:get("credits", SceneType.object)
   pool.credits:on_touch(jump.to("whobuilt"))
