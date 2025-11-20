@@ -5,11 +5,12 @@ local jump = require("helpers/jump")
 local stage = state.system.stage or "babyroom"
 
 local function play()
+  pool.music:stop()
   pool.play:on_touch(nil)
   pool.credits:on_touch(nil)
 
   pool.noise:play(true)
-
+  pool.interference.action = "default"
   pool.interference:on_end(function()
     scenemanager:set(stage)
   end)
