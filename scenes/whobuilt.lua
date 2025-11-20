@@ -1,7 +1,5 @@
 local scene = {}
 
-local jump = require("helpers/jump")
-
 function scene.on_enter()
   achievement:unlock("ACH_CURIUS_PERSON") -- Curious enough to check the Credits.
 

@@ -8,7 +8,7 @@ local tweens = require("helpers/tweens")
 local camera = require("camera")
 local ops = require("helpers/ops")
 local prank = require("helpers/prank")
-local jump = require("helpers/jump")
+
 local scribe = require("helpers/scribe")
 local say = scribe.say
 

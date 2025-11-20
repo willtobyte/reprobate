@@ -14,7 +14,7 @@ end
 
 ---@class State
 ---@field [string] any
-local state = { system = {} }
+state = { system = {} }
 
 local function _wrap_key(key)
   local scene = scenemanager.current
@@ -40,10 +40,7 @@ setmetatable(state, {
   end,
 })
 
----@type State
-_G.state = state
-
-function dense(t)
+local function dense(t)
   if type(t) ~= "table" then
     return nil
   end
@@ -134,4 +131,18 @@ function all(t, selector)
   end
 
   error("invalid selector for all: " .. tostring(selector))
+end
+
+jump = {}
+
+function jump.to(name, delay)
+  assert(type(name) == "string" and #name > 0, "scene name must be a non-empty string")
+  assert(delay == nil or (type(delay) == "number" and delay >= 0), "delay must be a non-negative number")
+
+  delay = delay or 100
+  return function(...)
+    timermanager:singleshot(delay, function()
+      scenemanager:set(name)
+    end)
+  end
 end

@@ -1,7 +1,5 @@
 local scene = {}
 
-local jump = require("helpers/jump")
-
 local stage = state.system.stage or "babyroom"
 
 local function play()
@@ -11,7 +9,8 @@ local function play()
 
   pool.noise:play(true)
   pool.interference.action = "default"
-  pool.interference:on_end(function()
+
+  timermanager:singleshot(1100, function()
     scenemanager:set(stage)
   end)
 end

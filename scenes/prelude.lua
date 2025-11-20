@@ -1,7 +1,5 @@
 local scene = {}
 
-local jump = require("helpers/jump")
-
 function scene.on_enter()
   transition({ register = { "mainmenu", "whobuilt" } })
 

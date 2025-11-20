@@ -1,7 +1,6 @@
 local scene = {}
 
 local basic = require("interpreters/basic")
-local jump = require("helpers/jump")
 
 function scene.on_enter()
   transition({

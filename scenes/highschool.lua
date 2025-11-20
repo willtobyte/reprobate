@@ -2,7 +2,6 @@ local scene = {}
 
 local Inventory = require("overlay/inventory")
 
-local jump = require("helpers/jump")
 local scribe = require("helpers/scribe")
 local say = scribe.say
 
