@@ -129,7 +129,7 @@ function scene.on_enter()
   state.system.stage = "livingroom"
 
   transition({
-    destroy = { "mainmenu", "whobuilt", "retrostatic", "babyroom" },
+    destroy = { "mainmenu", "whobuilt", "babyroom" },
     register = { "highschool" },
   })
 
