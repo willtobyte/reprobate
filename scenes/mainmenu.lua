@@ -2,7 +2,7 @@ local scene = {}
 
 local stage = state.system.stage or "babyroom"
 
-local function play()
+local function go()
   pool.music:stop()
   pool.play:on_touch(nil)
   pool.credits:on_touch(nil)
@@ -10,9 +10,8 @@ local function play()
   pool.noise:play(true)
   pool.interference.action = "default"
 
-  timermanager:singleshot(1100, function()
-    scenemanager:set(stage)
-  end)
+  local fn = jump.to(stage, 1100)
+  fn()
 end
 
 function scene.on_enter()
@@ -25,7 +24,7 @@ function scene.on_enter()
   pool.music:play(true)
 
   pool.play = scene:get("play", SceneKind.object)
-  pool.play:on_touch(play)
+  pool.play:on_touch(go)
 
   pool.credits = scene:get("credits", SceneKind.object)
   pool.credits:on_touch(jump.to("whobuilt"))
