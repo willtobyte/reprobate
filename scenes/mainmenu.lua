@@ -10,8 +10,8 @@ local function go()
   pool.noise:play(true)
   pool.interference.action = "default"
 
-  local fn = jump.to(stage, 1100)
-  fn()
+  local func = jump.to(stage, 1100)
+  func()
 end
 
 function scene.on_enter()
