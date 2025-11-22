@@ -23,6 +23,7 @@ local items = {
   openendwrench = {},
   smallkey = {},
   gasoline = {},
+  tubeamplifier = {},
 }
 
 local function verify()
