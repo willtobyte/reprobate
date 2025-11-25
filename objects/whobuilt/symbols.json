@@ -2,7 +2,7 @@
   "animations": {
     "blaspheming": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "height": 80,
           "width": 30,
           "x": 228,
@@ -16,7 +16,7 @@
             "x": 32,
             "y": 7
           },
-          "rectangle": {
+          "quad": {
             "height": 147,
             "width": 416,
             "x": 1,

@@ -8,7 +8,7 @@
             "x": 279,
             "y": 59
           },
-          "rectangle": {
+          "quad": {
             "height": 211,
             "width": 113,
             "x": 1,
@@ -21,7 +21,7 @@
             "x": 279,
             "y": 59
           },
-          "rectangle": {
+          "quad": {
             "height": 211,
             "width": 113,
             "x": 1,
@@ -30,7 +30,7 @@
         }
       ],
       "bounds": {
-        "rectangle": {
+        "quad": {
           "height": 211,
           "width": 113,
           "x": 279,
@@ -40,7 +40,7 @@
     },
     "hover": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "height": 211,
           "width": 113,
           "x": 279,
@@ -54,7 +54,7 @@
             "x": 279,
             "y": 59
           },
-          "rectangle": {
+          "quad": {
             "height": 211,
             "width": 113,
             "x": 1,

@@ -2,7 +2,7 @@
   "animations": {
     "default": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 0,
           "y": 40,
           "width": 50,
@@ -13,42 +13,42 @@
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 1, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 1, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 97, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 97, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 193, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 193, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 1, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 1, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 97, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 97, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 193, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 193, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 1, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 1, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 97, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 97, "width": 47, "height": 94 }
         }
       ]
     },
@@ -56,7 +56,7 @@
       "next": "default",
       "effect": "thunder",
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 0,
           "y": 40,
           "width": 50,
@@ -67,17 +67,17 @@
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 289, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 289, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 385, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 385, "width": 47, "height": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "rectangle": { "x": 1, "y": 481, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 481, "width": 47, "height": 94 }
         }
       ]
     }

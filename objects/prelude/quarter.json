@@ -2,7 +2,7 @@
   "animations": {
     "normal": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "height": 108,
           "width": 64,
           "x": 28,
@@ -16,7 +16,7 @@
             "x": 28,
             "y": 20
           },
-          "rectangle": {
+          "quad": {
             "x": 67,
             "y": 1,
             "width": 64,
@@ -27,7 +27,7 @@
     },
     "hover": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "height": 108,
           "width": 64,
           "x": 28,
@@ -41,7 +41,7 @@
             "x": 28,
             "y": 20
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 1,
             "width": 64,

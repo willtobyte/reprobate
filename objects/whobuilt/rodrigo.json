@@ -2,7 +2,7 @@
   "animations": {
     "burning": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "height": 231,
           "width": 96,
           "x": 96,
@@ -16,7 +16,7 @@
             "x": 96,
             "y": 39
           },
-          "rectangle": {
+          "quad": {
             "height": 231,
             "width": 96,
             "x": 1,
@@ -29,7 +29,7 @@
             "x": 96,
             "y": 39
           },
-          "rectangle": {
+          "quad": {
             "height": 231,
             "width": 96,
             "x": 1,
@@ -40,7 +40,7 @@
     },
     "hover": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "height": 231,
           "width": 96,
           "x": 96,
@@ -54,7 +54,7 @@
             "x": 96,
             "y": 39
           },
-          "rectangle": {
+          "quad": {
             "height": 231,
             "width": 96,
             "x": 1,

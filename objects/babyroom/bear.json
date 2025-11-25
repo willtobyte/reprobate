@@ -3,7 +3,7 @@
     "blink": {
       "next": "default",
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 116,
           "y": 119,
           "width": 28,
@@ -17,7 +17,7 @@
             "x": 118,
             "y": 119
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 1,
             "width": 27,
@@ -30,7 +30,7 @@
             "x": 118,
             "y": 119
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 39,
             "width": 27,
@@ -43,7 +43,7 @@
             "x": 118,
             "y": 119
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 77,
             "width": 27,
@@ -56,7 +56,7 @@
             "x": 118,
             "y": 119
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 1,
             "width": 27,
@@ -67,7 +67,7 @@
     },
     "default": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 116,
           "y": 119,
           "width": 28,
@@ -81,7 +81,7 @@
             "x": 118,
             "y": 119
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 1,
             "width": 27,

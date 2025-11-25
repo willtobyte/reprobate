@@ -2,7 +2,7 @@
   "animations": {
     "default": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 365,
           "y": 104,
           "width": 20,
@@ -16,7 +16,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 0,
             "y": 0,
             "width": 65,
@@ -28,7 +28,7 @@
     "moving": {
       "next": "default",
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 365,
           "y": 104,
           "width": 20,
@@ -42,7 +42,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 0,
             "y": 0,
             "width": 65,
@@ -55,7 +55,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 0,
             "y": 0,
             "width": 65,
@@ -68,7 +68,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 0,
             "y": 0,
             "width": 65,
@@ -81,7 +81,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 0,
             "y": 0,
             "width": 65,
@@ -94,7 +94,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 65,
             "y": 0,
             "width": 65,
@@ -107,7 +107,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 130,
             "y": 0,
             "width": 65,
@@ -120,7 +120,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 130,
             "y": 0,
             "width": 65,
@@ -133,7 +133,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 130,
             "y": 0,
             "width": 65,
@@ -146,7 +146,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 130,
             "y": 0,
             "width": 65,
@@ -159,7 +159,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 130,
             "y": 0,
             "width": 65,
@@ -172,7 +172,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 130,
             "y": 0,
             "width": 65,
@@ -185,7 +185,7 @@
             "x": 318,
             "y": 81
           },
-          "rectangle": {
+          "quad": {
             "x": 195,
             "y": 0,
             "width": 65,

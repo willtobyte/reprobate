@@ -8,7 +8,7 @@
             "x": 0,
             "y": 101
           },
-          "rectangle": {
+          "quad": {
             "height": 169,
             "width": 480,
             "x": 1,
@@ -21,7 +21,7 @@
             "x": 0,
             "y": 93
           },
-          "rectangle": {
+          "quad": {
             "height": 177,
             "width": 480,
             "x": 1,
@@ -34,7 +34,7 @@
             "x": 0,
             "y": 85
           },
-          "rectangle": {
+          "quad": {
             "height": 185,
             "width": 480,
             "x": 1,
@@ -47,7 +47,7 @@
             "x": 0,
             "y": 53
           },
-          "rectangle": {
+          "quad": {
             "height": 217,
             "width": 480,
             "x": 1,

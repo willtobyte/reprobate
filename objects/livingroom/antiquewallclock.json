@@ -2,7 +2,7 @@
   "animations": {
     "default": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 276,
           "y": 63,
           "width": 28,
@@ -16,7 +16,7 @@
             "x": 276,
             "y": 63
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 1,
             "width": 28,
@@ -29,7 +29,7 @@
             "x": 276,
             "y": 63
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 48,
             "width": 28,
@@ -42,7 +42,7 @@
             "x": 276,
             "y": 63
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 95,
             "width": 28,
@@ -55,7 +55,7 @@
             "x": 276,
             "y": 63
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 48,
             "width": 28,
@@ -68,7 +68,7 @@
             "x": 276,
             "y": 63
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 1,
             "width": 28,
@@ -81,7 +81,7 @@
             "x": 276,
             "y": 63
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 142,
             "width": 28,
@@ -94,7 +94,7 @@
             "x": 276,
             "y": 63
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 189,
             "width": 28,
@@ -107,7 +107,7 @@
             "x": 276,
             "y": 63
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 142,
             "width": 28,

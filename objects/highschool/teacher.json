@@ -2,7 +2,7 @@
   "animations": {
     "default": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 291,
           "y": 91,
           "width": 44,
@@ -16,7 +16,7 @@
             "x": 291,
             "y": 91
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 1,
             "width": 44,

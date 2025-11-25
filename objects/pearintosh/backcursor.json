@@ -2,7 +2,7 @@
   "animations": {
     "default": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 18,
           "y": 18,
           "width": 32,
@@ -16,7 +16,7 @@
             "x": 18,
             "y": 18
           },
-          "rectangle": {
+          "quad": {
             "x": 32,
             "y": 21,
             "width": 25,
@@ -27,7 +27,7 @@
     },
     "hover": {
       "bounds": {
-        "rectangle": {
+        "quad": {
           "x": 18,
           "y": 18,
           "width": 32,
@@ -41,7 +41,7 @@
             "x": 18,
             "y": 18
           },
-          "rectangle": {
+          "quad": {
             "x": 32,
             "y": 21,
             "width": 25,
@@ -54,7 +54,7 @@
             "x": 16,
             "y": 17
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 1,
             "width": 27,
@@ -67,7 +67,7 @@
             "x": 16,
             "y": 18
           },
-          "rectangle": {
+          "quad": {
             "x": 59,
             "y": 1,
             "width": 27,
@@ -80,7 +80,7 @@
             "x": 14,
             "y": 18
           },
-          "rectangle": {
+          "quad": {
             "x": 88,
             "y": 1,
             "width": 28,
@@ -93,7 +93,7 @@
             "x": 12,
             "y": 18
           },
-          "rectangle": {
+          "quad": {
             "x": 1,
             "y": 21,
             "width": 29,
@@ -106,7 +106,7 @@
             "x": 14,
             "y": 18
           },
-          "rectangle": {
+          "quad": {
             "x": 59,
             "y": 22,
             "width": 28,
@@ -119,7 +119,7 @@
             "x": 16,
             "y": 18
           },
-          "rectangle": {
+          "quad": {
             "x": 89,
             "y": 22,
             "width": 27,
@@ -132,7 +132,7 @@
             "x": 16,
             "y": 17
           },
-          "rectangle": {
+          "quad": {
             "x": 30,
             "y": 1,
             "width": 27,
