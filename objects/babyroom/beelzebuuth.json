@@ -1,5 +1,5 @@
 {
-  "animations": {
+  "timelines": {
     "summon": {
       "effect": "scream",
       "oneshot": true,
@@ -13,8 +13,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 23,
-            "height": 28
+            "w": 23,
+            "h": 28
           }
         },
         {
@@ -26,8 +26,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 23,
-            "height": 28
+            "w": 23,
+            "h": 28
           }
         },
         {
@@ -39,8 +39,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 23,
-            "height": 28
+            "w": 23,
+            "h": 28
           }
         },
         {
@@ -52,8 +52,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 23,
-            "height": 28
+            "w": 23,
+            "h": 28
           }
         }
       ]

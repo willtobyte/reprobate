@@ -1,5 +1,5 @@
 {
-  "animations": {
+  "timelines": {
     "default": {
       "frames": [
         {
@@ -9,27 +9,27 @@
             "y": 17
           },
           "quad": {
-            "height": 20,
-            "width": 62,
+            "h": 20,
+            "w": 62,
             "x": 1,
             "y": 1
           }
         }
       ],
-      "bounds": {
+      "hitbox": {
         "quad": {
-          "height": 20,
-          "width": 64,
+          "h": 20,
+          "w": 64,
           "x": 18,
           "y": 18
         }
       }
     },
     "hover": {
-      "bounds": {
+      "hitbox": {
         "quad": {
-          "height": 20,
-          "width": 64,
+          "h": 20,
+          "w": 64,
           "x": 18,
           "y": 18
         }
@@ -42,8 +42,8 @@
             "y": 17
           },
           "quad": {
-            "height": 20,
-            "width": 62,
+            "h": 20,
+            "w": 62,
             "x": 65,
             "y": 1
           }

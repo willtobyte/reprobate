@@ -1,12 +1,12 @@
 {
-  "animations": {
+  "timelines": {
     "default": {
-      "bounds": {
+      "hitbox": {
         "quad": {
           "x": 364,
           "y": 76,
-          "width": 32,
-          "height": 40
+          "w": 32,
+          "h": 40
         }
       },
       "frames": [
@@ -19,8 +19,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 33,
-            "height": 39
+            "w": 33,
+            "h": 39
           }
         }
       ]

@@ -1,10 +1,10 @@
 {
-  "animations": {
+  "timelines": {
     "blaspheming": {
-      "bounds": {
+      "hitbox": {
         "quad": {
-          "height": 80,
-          "width": 30,
+          "h": 80,
+          "w": 30,
           "x": 228,
           "y": 39
         }
@@ -17,8 +17,8 @@
             "y": 7
           },
           "quad": {
-            "height": 147,
-            "width": 416,
+            "h": 147,
+            "w": 416,
             "x": 1,
             "y": 1
           }

@@ -1,5 +1,5 @@
 {
-  "animations": {
+  "timelines": {
     "display": {
       "frames": [
         {
@@ -9,8 +9,8 @@
             "y": 212
           },
           "quad": {
-            "height": 47,
-            "width": 328,
+            "h": 47,
+            "w": 328,
             "x": 1,
             "y": 1
           }

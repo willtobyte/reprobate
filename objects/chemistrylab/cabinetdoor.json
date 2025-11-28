@@ -1,12 +1,12 @@
 {
-  "animations": {
+  "timelines": {
     "closed": {
-      "bounds": {
+      "hitbox": {
         "quad": {
           "x": 93,
           "y": 171,
-          "width": 28,
-          "height": 49
+          "w": 28,
+          "h": 49
         }
       }
     },
@@ -21,8 +21,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 42,
-            "height": 49
+            "w": 42,
+            "h": 49
           }
         }
       ]

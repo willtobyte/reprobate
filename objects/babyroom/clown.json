@@ -1,13 +1,13 @@
 {
-  "animations": {
+  "timelines": {
     "blink": {
       "next": "default",
-      "bounds": {
+      "hitbox": {
         "quad": {
           "x": 276,
           "y": 96,
-          "width": 32,
-          "height": 40
+          "w": 32,
+          "h": 40
         }
       },
       "frames": [
@@ -20,8 +20,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 32,
-            "height": 37
+            "w": 32,
+            "h": 37
           }
         },
         {
@@ -33,8 +33,8 @@
           "quad": {
             "x": 35,
             "y": 1,
-            "width": 32,
-            "height": 37
+            "w": 32,
+            "h": 37
           }
         },
         {
@@ -46,8 +46,8 @@
           "quad": {
             "x": 35,
             "y": 1,
-            "width": 32,
-            "height": 37
+            "w": 32,
+            "h": 37
           }
         },
         {
@@ -59,19 +59,19 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 32,
-            "height": 37
+            "w": 32,
+            "h": 37
           }
         }
       ]
     },
     "default": {
-      "bounds": {
+      "hitbox": {
         "quad": {
           "x": 276,
           "y": 96,
-          "width": 32,
-          "height": 40
+          "w": 32,
+          "h": 40
         }
       },
       "frames": [
@@ -84,8 +84,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 32,
-            "height": 37
+            "w": 32,
+            "h": 37
           }
         }
       ]

@@ -1,83 +1,83 @@
 {
-  "animations": {
+  "timelines": {
     "default": {
-      "bounds": {
+      "hitbox": {
         "quad": {
           "x": 0,
           "y": 40,
-          "width": 50,
-          "height": 95
+          "w": 50,
+          "h": 95
         }
       },
       "frames": [
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 1, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 1, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 97, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 97, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 193, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 193, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 1, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 1, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 97, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 97, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 193, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 193, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 1, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 1, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 97, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 97, "w": 47, "h": 94 }
         }
       ]
     },
     "lightning": {
       "next": "default",
       "effect": "thunder",
-      "bounds": {
+      "hitbox": {
         "quad": {
           "x": 0,
           "y": 40,
-          "width": 50,
-          "height": 95
+          "w": 50,
+          "h": 95
         }
       },
       "frames": [
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 289, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 289, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 385, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 385, "w": 47, "h": 94 }
         },
         {
           "duration": 120,
           "offset": { "x": 0, "y": 40 },
-          "quad": { "x": 1, "y": 481, "width": 47, "height": 94 }
+          "quad": { "x": 1, "y": 481, "w": 47, "h": 94 }
         }
       ]
     }

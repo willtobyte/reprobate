@@ -1,12 +1,12 @@
 {
-  "animations": {
+  "timelines": {
     "on": {
-      "bounds": {
+      "hitbox": {
         "quad": {
           "x": 93,
           "y": 173,
-          "width": 18,
-          "height": 41
+          "w": 18,
+          "h": 41
         }
       },
       "frames": [
@@ -19,19 +19,19 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 18,
-            "height": 41
+            "w": 18,
+            "h": 41
           }
         }
       ]
     },
     "off": {
-      "bounds": {
+      "hitbox": {
         "quad": {
           "x": 93,
           "y": 175,
-          "width": 18,
-          "height": 39
+          "w": 18,
+          "h": 39
         }
       },
       "frames": [
@@ -44,8 +44,8 @@
           "quad": {
             "x": 1,
             "y": 44,
-            "width": 18,
-            "height": 39
+            "w": 18,
+            "h": 39
           }
         }
       ]

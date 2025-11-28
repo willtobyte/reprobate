@@ -1,5 +1,5 @@
 {
-  "animations": {
+  "timelines": {
     "shadow": {
       "frames": [
         {
@@ -11,8 +11,8 @@
           "quad": {
             "x": 1,
             "y": 1,
-            "width": 36,
-            "height": 35
+            "w": 36,
+            "h": 35
           }
         }
       ]
@@ -28,8 +28,8 @@
           "quad": {
             "x": 39,
             "y": 1,
-            "width": 36,
-            "height": 35
+            "w": 36,
+            "h": 35
           }
         }
       ]
