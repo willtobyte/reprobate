@@ -141,6 +141,8 @@ function scene.on_enter()
 
   pool.darker = scene:get("darker", SceneKind.object)
 
+  pool.thunder = scene:get("thunder", SceneKind.effect)
+
   for name, conf in pairs(objects) do
     local object = scene:get(name, SceneKind.object)
 
@@ -157,6 +159,7 @@ function scene.on_enter()
         o.action = a
         if l then
           lightning:trigger()
+          pool.thunder:play()
         end
       end)
     end

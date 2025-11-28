@@ -2,7 +2,7 @@
   "type": "backdrop",
   "width": 480,
   "height": 270,
-  "effects": ["rainmuffled"],
+  "effects": ["rainmuffled", "thunder"],
   "objects": [
     {
       "action": "default",

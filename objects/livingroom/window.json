@@ -54,7 +54,6 @@
     },
     "lightning": {
       "next": "default",
-      "effect": "thunder",
       "hitbox": {
         "quad": {
           "x": 0,
