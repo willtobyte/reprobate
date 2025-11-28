@@ -133,9 +133,9 @@ function scene.on_enter()
   pool.fireextinguisher = scene:get("fireextinguisher", SceneKind.object)
   pool.fireextinguisher:on_touch(function()
     state.fireextinguished = true
-    pool.emitter1.emitting = false
-    pool.emitter2.emitting = false
-    pool.emitter3.emitting = false
+    pool.emitter1.spawning = false
+    pool.emitter2.spawning = false
+    pool.emitter3.spawning = false
 
     setup()
   end)

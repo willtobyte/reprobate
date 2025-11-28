@@ -4,6 +4,7 @@ local stage = state.system.stage or "babyroom"
 
 local function go()
   pool.music:stop()
+
   pool.play:on_touch(nil)
   pool.credits:on_touch(nil)
 

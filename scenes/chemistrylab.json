@@ -77,21 +77,21 @@
     {
       "name": "emitter1",
       "kind": "smoke",
-      "emitting": true,
+      "spawning": true,
       "x": 190,
       "y": 160
     },
     {
       "name": "emitter2",
       "kind": "smoke",
-      "emitting": true,
+      "spawning": true,
       "x": 240,
       "y": 190
     },
     {
       "name": "emitter3",
       "kind": "smoke",
-      "emitting": true,
+      "spawning": true,
       "x": 290,
       "y": 160
     }
