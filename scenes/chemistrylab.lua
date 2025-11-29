@@ -114,6 +114,13 @@ local function setup()
 end
 
 function scene.on_enter()
+  state.system.stage = "chemistrylab"
+
+  -- transition({
+  --   destroy = { "mainmenu", "whobuilt" },
+  --   register = { "TODO" },
+  -- })
+
   pool.alien = scene:get("alien", SceneKind.object)
   pool.geigercounter = scene:get("geigercounter", SceneKind.effect)
   pool.geigercounter:play(true)

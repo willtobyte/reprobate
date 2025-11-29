@@ -64,12 +64,12 @@ local function verify()
 end
 
 function scene.on_enter()
+  state.system.stage = "livingroom"
+
   transition({
     destroy = { "mainmenu", "whobuilt" },
     register = { "livingroom" },
   })
-
-  -- error("aaa")
 
   prank.write("We Have A Connection.txt", "TODO...")
 

@@ -105,6 +105,8 @@ local function verify()
         end
       end
 
+      pool.cabinetdoor.visible = false
+
       pool.teenager.action = "default"
       pool.teenager.alpha = 200
       tweens.appear.teenager = tween.new(1, pool.teenager, { alpha = 255 })
