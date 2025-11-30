@@ -51,6 +51,7 @@ local function setup()
     pool.tubeamplifier.action = "default"
   end
   pool.bottomcabinetdoor:on_touch(function()
+    pool.bottomcabinetdoor:on_touch(nil)
     state.bottomcabinetdoor = true
     pool.bottomcabinetdoor.action = "open"
 
@@ -66,6 +67,7 @@ local function setup()
   end
 
   pool.cabinetdoor:on_touch(function()
+    pool.cabinetdoor:on_touch(nil)
     pool.cabinetdoor.action = "open"
 
     state.cabinetdoor = true

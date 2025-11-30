@@ -9,8 +9,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
-    if: true
-
     env:
       CARIMBO_TAG: "v5.0.12"
 
