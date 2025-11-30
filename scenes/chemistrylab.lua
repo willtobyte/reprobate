@@ -102,6 +102,7 @@ local function setup()
     conf.taken = not not state[name]
     object.visible = not conf.taken
     object:on_touch(function(self)
+      object:on_touch(nil)
       if conf.taken then
         return
       end

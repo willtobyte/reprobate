@@ -125,6 +125,7 @@ function scene.on_enter()
       item.action = "default"
     else
       object:on_touch(function(self)
+        object:on_touch(nil)
         if conf.damage then
           overlay:dispatch(WidgetType.cursor, "damage")
         end
