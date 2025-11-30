@@ -1,7 +1,6 @@
 {
   "timelines": {
     "summon": {
-      "effect": "scream",
       "oneshot": true,
       "frames": [
         {

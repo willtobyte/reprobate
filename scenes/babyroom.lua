@@ -75,10 +75,12 @@ function scene.on_enter()
 
   pool.television = scene:get("television", SceneKind.object)
   pool.beelzebuuth = scene:get("beelzebuuth", SceneKind.object)
+  pool.scream = scene:get("scream", SceneKind.effect)
 
   pool.beelzebuuth.misses:subscribe(function(value)
     if value >= 6 then
       pool.beelzebuuth.action = "summon"
+      pool.scream:play()
       pool.beelzebuuth.misses = 0
     end
   end)
