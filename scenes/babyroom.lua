@@ -64,7 +64,7 @@ local function verify()
 end
 
 function scene.on_enter()
-  state.system.stage = "livingroom"
+  state.system.stage = "babyroom"
 
   transition({
     destroy = { "mainmenu", "whobuilt" },
