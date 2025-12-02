@@ -33,7 +33,7 @@ function Inventory.new(layout, character, objects)
 
   local function motion(x, y)
     if target then
-      objects[target].placement = {
+      objects[target].position = {
         x = x - x_offset,
         y = y - y_offset,
       }
@@ -92,7 +92,7 @@ function Inventory.new(layout, character, objects)
 
   local function teardown()
     if target ~= nil then
-      objects[target].placement = {
+      objects[target].position = {
         x = 0,
         y = y_origin,
       }
