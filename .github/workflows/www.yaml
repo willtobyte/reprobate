@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CARIMBO_TAG: "v6.0.2"
+      CARIMBO_TAG: "v6.0.3"
 
     permissions:
       contents: write
