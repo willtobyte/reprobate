@@ -2,7 +2,7 @@
   "type": "backdrop",
   "width": 480,
   "height": 270,
-  "effects": ["rainmuffled", "thunder"],
+  "effects": ["rainmuffled", "thunder", "gettingintometal"],
   "objects": [
     {
       "action": "default",
