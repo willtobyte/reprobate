@@ -92,15 +92,17 @@ function scene.on_enter()
   for name, conf in pairs(animations) do
     local object = scene:get(name, SceneKind.object)
     local delay = math.random(conf.minimum, conf.maximum) * 1000
+    local action = conf.action
+    local message = conf.message
 
     pool[name] = object
 
     timermanager:set(delay, function()
-      object.action = conf.action
+      object.action = action
     end)
 
     object:on_touch(function()
-      say(conf.message)
+      say(message)
     end)
   end
 
