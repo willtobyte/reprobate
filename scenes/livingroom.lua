@@ -96,6 +96,8 @@ local function verify()
   if all(items, "taken") then
     state.system.stage = "highschool"
 
+    pool.gettingintometal:play()
+
     timermanager:singleshot(2000, function()
       scribe.clear()
 
@@ -122,7 +124,7 @@ local function verify()
     end)
 
     timermanager:singleshot(9000, function()
-      scenemanager:set("highschool")
+      pool.teenager:on_touch(jump.to("highschool"))
     end)
   end
 end
@@ -137,6 +139,8 @@ function scene.on_enter()
 
   pool.theme = scene:get("rainmuffled", SceneKind.effect)
   pool.theme:play(true)
+
+  pool.gettingintometal = scene:get("gettingintometal", SceneKind.effect)
 
   pool.teenager = scene:get("teenager", SceneKind.object)
   pool.voodoocast = scene:get("voodoocast", SceneKind.object)
