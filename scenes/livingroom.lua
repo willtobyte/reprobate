@@ -111,7 +111,7 @@ local function verify()
 
       pool.teenager.action = "default"
       pool.teenager.alpha = 200
-      tweens.appear.teenager = tween.new(1, pool.teenager, { alpha = 255 })
+      tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
     end)
 
     timermanager:singleshot(5000, function()
@@ -120,7 +120,7 @@ local function verify()
 
       pool.voodoocast.action = "default"
       pool.voodoocast.alpha = 0
-      tweens.appear.voodoocast = tween.new(1, pool.voodoocast, { alpha = 255 })
+      tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
     end)
 
     timermanager:singleshot(9000, function()
