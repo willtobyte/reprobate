@@ -2,7 +2,6 @@ local scribe = {}
 
 local INTERVAL = 0.08
 
--- Internal state
 local label = nil
 local text = ""
 local index = 0
@@ -88,10 +87,10 @@ function scribe.loop(delta)
   end
 end
 
-function scribe.say(msg, px, py, ms)
+function scribe.say(message, px, py, ttl)
   scribe.clear()
-  scribe.write(msg, px or 3, py or 3)
-  scribe.on_finish(ms or 6000, function()
+  scribe.write(message, px or 3, py or 3)
+  scribe.on_finish(ttl or 6000, function()
     scribe.clear()
   end)
 end
