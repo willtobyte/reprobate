@@ -112,9 +112,6 @@ function scene.on_keypress(code)
         local function stdout(message)
           local achievements = {
             ["666"] = "ACH_IN_LEAGUE_WITH_SATAN", -- In League with Satan.
-            ["SATAN"] = "BLACK_CASTLE_SECRET",
-            ["42"] = "ANSWER_TO_EVERYTHING",
-            ["MOON"] = "LUNAR_TOMB_UNLOCKED",
           }
 
           local id = achievements[string.upper(message)]
@@ -127,7 +124,6 @@ function scene.on_keypress(code)
           pool.pentagram = message == "666"
 
           if pool.pentagram then
-            achievement:unlock("ACH_IN_LEAGUE_WITH_SATAN")
             pool.backcursor.visible = false
             pool.dialup:play()
             pool.program = pool.program .. "\nLay down my soul to the gods of metal."
