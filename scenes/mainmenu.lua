@@ -21,8 +21,6 @@ function scene.on_enter()
     register = { "whobuilt", stage },
   })
 
-  achievement:unlock("NEW_ACHIEVEMENT_3_9")
-
   pool.music = scene:get("theme", SceneKind.effect)
   pool.music:play(true)
 
