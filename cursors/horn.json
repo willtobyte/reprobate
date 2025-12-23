@@ -7,7 +7,7 @@
     "default": {
       "frames": [
         {
-          "duration": 200,
+          "duration": 130,
           "offset": {
             "x": 5,
             "y": 4
@@ -20,7 +20,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 130,
           "offset": {
             "x": 5,
             "y": 5
@@ -33,7 +33,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 130,
           "offset": {
             "x": 5,
             "y": 5
@@ -46,7 +46,7 @@
           }
         },
         {
-          "duration": 200,
+          "duration": 130,
           "offset": {
             "x": 5,
             "y": 5
