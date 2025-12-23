@@ -17,7 +17,6 @@ local function initialize()
     label = overlay:create(WidgetType.label)
     local font = fontfactory:get("rpgfont")
     label.font = font
-    label.effect = FontEffect.fadein
   end
 end
 
