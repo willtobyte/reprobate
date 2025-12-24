@@ -4,7 +4,7 @@ local tweens = require("helpers/tweens")
 local scribe = {}
 
 local INTERVAL = 0.08
-local FADE_DURATION = 0.5
+local FADE_DURATION = 1.0
 
 local label = nil
 local text = ""
