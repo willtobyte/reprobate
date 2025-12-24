@@ -172,11 +172,9 @@ end
 
 function scene.on_loop(delta)
   scribe.loop(delta)
-
   if not pool.alien.visible then
     pool.geigercounter:stop()
   end
-
   tweens.loop(delta, function(type, name, t)
     if t.subject and type == "disappear" then
       t.subject.visible = false

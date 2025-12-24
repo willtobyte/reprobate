@@ -223,7 +223,6 @@ end
 
 function scene.on_loop(delta)
   scribe.loop(delta)
-  -- pool.inventory:loop(delta)
 
   lightning:update()
 

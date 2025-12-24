@@ -2,6 +2,7 @@ local scene = {}
 
 local Inventory = require("overlay/inventory")
 
+local tweens = require("helpers/tweens")
 local scribe = require("helpers/scribe")
 local say = scribe.say
 
@@ -241,13 +242,14 @@ function scene.on_touch() end
 
 function scene.on_loop(delta)
   scribe.loop(delta)
-
   pool.inventory.loop(delta)
+  tweens.loop(delta)
 end
 
 function scene.on_leave()
   scribe.clear()
   pool.inventory.teardown()
+  tweens.teardown()
 end
 
 sentinel(scene, "highschool")
