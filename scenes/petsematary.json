@@ -1,5 +1,7 @@
 {
   "type": "backdrop",
   "width": 480,
-  "height": 270
+  "height": 270,
+  "layer": { "type": "background" },
+  "physics": true
 }
