@@ -1,6 +1,6 @@
 local camera = {}
 
-local position = Vec2.new(0, 0)
+local position = Quad.new(0, 0, viewport.width, viewport.height)
 local speed = 1
 
 function camera.calculate(delta)

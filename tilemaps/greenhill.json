@@ -4,7 +4,7 @@
   "height": 18,
   "layers": [
     {
-      "collider": false,
+      "collider": true,
       "name": "background",
       "tiles": [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

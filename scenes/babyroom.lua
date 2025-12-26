@@ -5,7 +5,6 @@ local Inventory = require("overlay/inventory")
 local tween = require("library/tween")
 local tweens = require("helpers/tweens")
 
-local camera = require("camera")
 local ops = require("helpers/ops")
 local prank = require("helpers/prank")
 
@@ -164,10 +163,6 @@ function scene.on_loop(delta)
       t.subject.visible = false
     end
   end)
-end
-
-function scene.on_camera(delta)
-  return camera.calculate(delta)
 end
 
 function scene.on_leave()
