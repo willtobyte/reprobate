@@ -133,9 +133,9 @@ function scene.on_enter()
   pool.emitter3 = scene:get("emitter3", SceneKind.particle)
 
   if state.fireextinguished then
-    pool.emitter1.active = false
-    pool.emitter2.active = false
-    pool.emitter3.active = false
+    pool.emitter1.spawning = false
+    pool.emitter2.spawning = false
+    pool.emitter3.spawning = false
 
     setup()
   end
