@@ -8,34 +8,27 @@ function scene.on_enter()
     register = { "highschool" },
   })
 
-  pool = {
-    prelude = [[
+  pool.prelude = [[
 MORNING STAR SOFTWARE 1986 (C)
 BASIC V1.6.6
 49152 BYTES FREE
 
 TYPE RUN TO BEGIN
 
-]],
-    program = "10 ",
-    cursor = {
-      visible = true,
-      timer = 0,
-      interval = 0.3,
-    },
-    typing = false,
-    halted = false,
+]]
+  pool.program = "10 "
+  pool.cursor = {
+    visible = true,
+    timer = 0,
+    interval = 0.3,
   }
+  pool.typing = false
+  pool.halted = false
 
   pool.font = fontfactory:get("retro")
   pool.label = overlay:create(WidgetType.label)
   pool.label.font = pool.font
 
-  pool.effects = {}
-  pool.effects.key1 = scene:get("key1", SceneKind.effect)
-  pool.effects.key2 = scene:get("key2", SceneKind.effect)
-
-  pool.backcursor = scene:get("backcursor", SceneKind.object)
   pool.backcursor.action = "default"
   pool.backcursor:on_hover(function(self)
     self.action = "hover"
@@ -45,19 +38,13 @@ TYPE RUN TO BEGIN
   end)
   pool.backcursor:on_touch(jump.to("highschool"))
 
-  local switch = scene:get("switch", SceneKind.object)
-  switch:on_touch(function()
+  pool.switch:on_touch(function()
     pool.program = "10 "
     pool.halted = false
   end)
 
-  pool.dialup = scene:get("dialup", SceneKind.effect)
-
   pool.dialup:on_end(function()
     print(">>> ...")
-    -- TODO
-    -- state.system.stage = "minigame"
-    -- scenemanager:set("minigame"
   end)
 end
 
@@ -97,7 +84,7 @@ function scene.on_keypress(code)
     return
   end
 
-  local effect = pool.effects["key" .. math.random(2)]
+  local effect = pool["key" .. math.random(2)]
   effect:play()
 
   if code == KeyEvent.backspace then

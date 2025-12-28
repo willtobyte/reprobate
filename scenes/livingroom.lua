@@ -137,22 +137,10 @@ function scene.on_enter()
     register = { "highschool" },
   })
 
-  pool.theme = scene:get("rainmuffled", SceneKind.effect)
-  pool.theme:play(true)
-
-  pool.gettingintometal = scene:get("gettingintometal", SceneKind.effect)
-
-  pool.teenager = scene:get("teenager", SceneKind.object)
-  pool.voodoocast = scene:get("voodoocast", SceneKind.object)
-
-  pool.darker = scene:get("darker", SceneKind.object)
-
-  pool.thunder = scene:get("thunder", SceneKind.effect)
+  pool.rainmuffled:play(true)
 
   for name, conf in pairs(objects) do
-    local object = scene:get(name, SceneKind.object)
-
-    pool[name] = object
+    local object = pool[name]
 
     local bounded = conf.minimum ~= nil and conf.maximum ~= nil
     if bounded then
@@ -179,9 +167,6 @@ function scene.on_enter()
     end)
   end
 
-  pool.cabinetdoor = scene:get("cabinetdoor", SceneKind.object)
-  pool.voodoodoll = scene:get("voodoodoll", SceneKind.object)
-
   if state.cabinetdoor then
     pool.cabinetdoor.action = "open"
     pool.voodoodoll.action = "default"
@@ -201,8 +186,7 @@ function scene.on_enter()
   end
 
   for name, conf in pairs(items) do
-    local object = scene:get(name, SceneKind.object)
-    pool[name] = object
+    local object = pool[name]
 
     conf.taken = not not state[name]
     object.visible = not conf.taken

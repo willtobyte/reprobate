@@ -33,9 +33,6 @@ local function verify()
 end
 
 local function setup()
-  pool.light = scene:get("light", SceneKind.object)
-
-  pool.switch = scene:get("switch", SceneKind.object)
   local switch = state.switch
   if switch == "on" then
     pool.switch.action, pool.light.action = "on", "blinking"
@@ -43,11 +40,8 @@ local function setup()
     pool.switch.action, pool.light.action = "off", nil
   end
 
-  pool.bottomcabinetdoor = scene:get("bottomcabinetdoor", SceneKind.object)
-  pool.tubeamplifier = scene:get("tubeamplifier", SceneKind.object)
   if state.bottomcabinetdoor then
     pool.bottomcabinetdoor.action = "open"
-
     pool.tubeamplifier.action = "default"
   end
   pool.bottomcabinetdoor:on_touch(function()
@@ -60,7 +54,6 @@ local function setup()
     tweens.appear.tubeamplifier = tween.new(1, pool.tubeamplifier, { alpha = 255 })
   end)
 
-  pool.cabinetdoor = scene:get("cabinetdoor", SceneKind.object)
   if state.cabinetdoor then
     pool.cabinetdoor.action = "open"
     pool.switch.action = state.switch
@@ -82,7 +75,7 @@ local function setup()
   end)
 
   for name, conf in pairs(objects) do
-    local object = scene:get(name, SceneKind.object)
+    local object = pool[name]
 
     object:on_touch(function()
       local messages = conf.messages
@@ -91,13 +84,10 @@ local function setup()
       local message = messages[index]
       say(message, 3, 3, 3000)
     end)
-
-    pool[name] = object
   end
 
   for name, conf in pairs(items) do
-    local object = scene:get(name, SceneKind.object)
-    pool[name] = object
+    local object = pool[name]
 
     conf.taken = not not state[name]
     object.visible = not conf.taken
@@ -119,18 +109,7 @@ end
 function scene.on_enter()
   state.system.stage = "chemistrylab"
 
-  -- transition({
-  --   destroy = { "mainmenu", "whobuilt" },
-  --   register = { "TODO" },
-  -- })
-
-  pool.alien = scene:get("alien", SceneKind.object)
-  pool.geigercounter = scene:get("geigercounter", SceneKind.effect)
   pool.geigercounter:play(true)
-
-  pool.emitter1 = scene:get("emitter1", SceneKind.particle)
-  pool.emitter2 = scene:get("emitter2", SceneKind.particle)
-  pool.emitter3 = scene:get("emitter3", SceneKind.particle)
 
   if state.fireextinguished then
     pool.emitter1.spawning = false
@@ -140,7 +119,6 @@ function scene.on_enter()
     setup()
   end
 
-  pool.fireextinguisher = scene:get("fireextinguisher", SceneKind.object)
   pool.fireextinguisher:on_touch(function()
     state.fireextinguished = true
     pool.emitter1.spawning = false

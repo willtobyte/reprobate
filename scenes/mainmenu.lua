@@ -3,7 +3,7 @@ local scene = {}
 local stage = state.system.stage or "babyroom"
 
 local function go()
-  pool.music:stop()
+  pool.theme:stop()
 
   pool.play:on_touch(nil)
   pool.credits:on_touch(nil)
@@ -21,20 +21,9 @@ function scene.on_enter()
     register = { "whobuilt", stage },
   })
 
-  pool.music = scene:get("theme", SceneKind.effect)
-  pool.music:play(true)
-
-  pool.play = scene:get("play", SceneKind.object)
+  pool.theme:play(true)
   pool.play:on_touch(go)
-
-  pool.credits = scene:get("credits", SceneKind.object)
   pool.credits:on_touch(jump.to("whobuilt"))
-
-  pool.noise = scene:get("noise", SceneKind.effect)
-
-  pool.interference = scene:get("interference", SceneKind.object)
-
-  pool.headbanger = scene:get("headbanger", SceneKind.object)
 end
 
 function scene.on_motion(x, y)

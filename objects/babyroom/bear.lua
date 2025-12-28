@@ -1,11 +1,11 @@
 return {
   on_begin = function() end,
 
-  on_loop = function(delta) end,
-
   on_end = function() end,
 
-  on_collision = function() end,
+  on_loop = function()
+    print(">>> " .. self.kind .. " " .. tostring(pool.playboy.kind))
+  end,
 
   on_collision_end = function() end,
 

@@ -4,7 +4,7 @@
   "height": 270,
   "layer": { "type": "background" },
   "physics": true,
-  "effects": ["door", "scream"],
+  "effects": ["doorsound", "scream"],
   "objects": [
     {
       "kind": "beelzebuuth",

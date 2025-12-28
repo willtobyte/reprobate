@@ -147,7 +147,6 @@ function scene.on_enter()
     register = { "pearintosh" },
   })
 
-  pool.binarymessage = scene:get("binarymessage", SceneKind.object)
   pool.binarymessage:on_hover(function(self)
     self.action = "default"
   end)
@@ -155,17 +154,12 @@ function scene.on_enter()
     self.action = "hidden"
   end)
 
-  pool.pearintosh = scene:get("pearintosh", SceneKind.object)
   pool.pearintosh:on_touch(jump.to("pearintosh"))
-
-  pool.bloodyhandprint = scene:get("bloodyhandprint", SceneKind.object)
 
   timermanager:set(6666, function()
     pool.bloodyhandprint.action = "default"
   end)
 
-  pool.sourcecode = scene:get("sourcecode", SceneKind.object)
-  pool.minisourcecode = scene:get("minisourcecode", SceneKind.object)
   pool.minisourcecode:on_touch(function()
     if pool.sourcecode.action ~= "default" then
       pool.sourcecode.action = "default"
@@ -175,7 +169,7 @@ function scene.on_enter()
   end)
 
   for name, conf in pairs(objects) do
-    local object = scene:get(name, SceneKind.object)
+    local object = pool[name]
 
     object:on_touch(function()
       if pool.sourcecode.action == "default" then
@@ -187,7 +181,6 @@ function scene.on_enter()
         if conf.receivables then
           local reaction = conf.receivables[kind]
           if reaction.gameover then
-            -- TODO show game over screen
             return
           end
 
@@ -219,14 +212,10 @@ function scene.on_enter()
 
       say(message, 3, 3, 3000)
     end)
-
-    pool[name] = object
   end
 
-  local layout = scene:get("layout", SceneKind.object)
-  local character = scene:get("boy", SceneKind.object)
-  local magazine = scene:get("HUD/playboy", SceneKind.object)
-  pool.inventory = Inventory.new(layout, character, { magazine })
+  local magazine = pool[playboy]
+  pool.inventory = Inventory.new(pool.layout, pool.boy, { magazine })
 
   if state.sourcecode then
     pool.minisourcecode.action = "default"

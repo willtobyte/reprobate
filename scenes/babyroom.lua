@@ -49,14 +49,10 @@ local function verify()
   if all(items, "taken") then
     state.system.stage = "livingroom"
 
-    -- achievement:unlock("")
-
-    pool.effect = scene:get("door", SceneKind.effect)
-    pool.door = scene:get("door", SceneKind.object)
     pool.door.action = "default"
 
     timermanager:singleshot(3000, function()
-      pool.effect:play()
+      pool.doorsound:play()
       pool.door:on_touch(jump.to("livingroom"))
     end)
   end
@@ -72,10 +68,6 @@ function scene.on_enter()
 
   prank.write("We Have A Connection.txt", "TODO...")
 
-  pool.television = scene:get("television", SceneKind.object)
-  pool.beelzebuuth = scene:get("beelzebuuth", SceneKind.object)
-  pool.scream = scene:get("scream", SceneKind.effect)
-
   pool.beelzebuuth.misses:subscribe(function(value)
     if value >= 6 then
       pool.beelzebuuth.action = "summon"
@@ -89,12 +81,10 @@ function scene.on_enter()
   end)
 
   for name, conf in pairs(animations) do
-    local object = scene:get(name, SceneKind.object)
+    local object = pool[name]
     local delay = math.random(conf.minimum, conf.maximum) * 1000
     local action = conf.action
     local message = conf.message
-
-    pool[name] = object
 
     timermanager:set(delay, function()
       object.action = action
@@ -108,12 +98,10 @@ function scene.on_enter()
   local objects = {}
 
   for name, conf in pairs(items) do
-    local object = scene:get(name, SceneKind.object)
-    pool[name] = object
+    local object = pool[name]
 
     local hud = "HUD/" .. name
-    local item = scene:get(hud, SceneKind.object)
-    pool[hud] = item
+    local item = pool[hud]
     table.insert(objects, item)
 
     conf.taken = state[name] == true
@@ -140,9 +128,7 @@ function scene.on_enter()
     end
   end
 
-  local layout = scene:get("layout", SceneKind.object)
-  local character = scene:get("boy", SceneKind.object)
-  pool.inventory = Inventory.new(layout, character, objects)
+  pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
 
   say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
 end
