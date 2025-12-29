@@ -10,4 +10,8 @@ return {
   on_damage = function(amount)
     return tostring(amount)
   end,
+
+  on_loop = function()
+    emit.hello("world")
+  end,
 }

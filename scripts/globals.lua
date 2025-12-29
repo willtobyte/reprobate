@@ -1,3 +1,5 @@
+require("library/signals")
+
 function transition(options)
   if options.destroy then
     for _, name in ipairs(options.destroy) do

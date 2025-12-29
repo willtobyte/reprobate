@@ -61,6 +61,10 @@ end
 function scene.on_enter()
   state.system.stage = "babyroom"
 
+  slot.hello(function(msg)
+    print("hello " .. msg)
+  end)
+
   transition({
     destroy = { "mainmenu", "whobuilt" },
     register = { "livingroom" },
