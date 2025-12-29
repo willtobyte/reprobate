@@ -1,6 +1,5 @@
 return {
-
-  on_loop = function()
-    pool.bear.ipc.rodrigo("arg111", "arg222")
+  on_touch = function()
+    print(pool.bear.damage(10))
   end,
 }
