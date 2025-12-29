@@ -1,5 +1,5 @@
 return {
-  on_touch = function()
-    print(pool.bear.damage(10))
+  on_loop = function()
+    print(tostring(scribe.say))
   end,
 }
