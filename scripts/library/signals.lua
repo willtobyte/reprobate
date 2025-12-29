@@ -37,6 +37,7 @@ emit = setmetatable({}, {
     return emit_signal(name)
   end,
 })
+
 slot = setmetatable({}, {
   __index = function(_, name)
     return connect_slot(name)
