@@ -3,12 +3,12 @@ local scene = {}
 function scene.on_enter()
   transition({ register = { "mainmenu", "whobuilt" } })
 
-  pool.quarter:on_hover(function(self)
-    self.action = "hover"
+  pool.quarter:on_hover(function()
+    pool.quarter.action = "hover"
   end)
 
-  pool.quarter:on_unhover(function(self)
-    self.action = "normal"
+  pool.quarter:on_unhover(function()
+    pool.quarter.action = "normal"
   end)
 
   pool.quarter:on_touch(jump.to("mainmenu"))

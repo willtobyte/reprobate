@@ -91,7 +91,7 @@ local function setup()
 
     conf.taken = not not state[name]
     object.visible = not conf.taken
-    object:on_touch(function(self)
+    object:on_touch(function()
       object:on_touch(nil)
       if conf.taken then
         return
@@ -99,7 +99,7 @@ local function setup()
 
       conf.taken = true
       state[name] = true
-      tweens.disappear[name] = tween.new(1, self, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
+      tweens.disappear[name] = tween.new(1, object, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
 
       verify()
     end)

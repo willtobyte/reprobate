@@ -10,18 +10,18 @@ function scene.on_enter()
     pool.goat:play()
   end)
 
-  pool.backbutton:on_hover(function(self)
-    self.action = "hover"
+  pool.backbutton:on_hover(function()
+    pool.backbutton.action = "hover"
   end)
 
-  pool.backbutton:on_unhover(function(self)
-    self.action = "default"
+  pool.backbutton:on_unhover(function()
+    pool.backbutton.action = "default"
   end)
 
   pool.backbutton:on_touch(jump.to("mainmenu"))
 
-  pool.aline:on_hover(function(self)
-    self.action = "hover"
+  pool.aline:on_hover(function()
+    pool.aline.action = "hover"
   end)
 
   pool.aline:on_unhover(function()
@@ -34,8 +34,8 @@ function scene.on_enter()
     openurl("https://linktr.ee/dandelion.pixelart")
   end)
 
-  pool.rodrigo:on_hover(function(self)
-    self.action = "hover"
+  pool.rodrigo:on_hover(function()
+    pool.rodrigo.action = "hover"
   end)
 
   pool.rodrigo:on_unhover(function()

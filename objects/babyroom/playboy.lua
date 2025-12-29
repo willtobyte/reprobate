@@ -1,6 +1,6 @@
 return {
 
   on_loop = function()
-    print("on loop playboy")
+    pool.bear.ipc.rodrigo("arg111", "arg222")
   end,
 }

@@ -30,11 +30,11 @@ TYPE RUN TO BEGIN
   pool.label.font = pool.font
 
   pool.backcursor.action = "default"
-  pool.backcursor:on_hover(function(self)
-    self.action = "hover"
+  pool.backcursor:on_hover(function()
+    pool.backcursor.action = "hover"
   end)
-  pool.backcursor:on_unhover(function(self)
-    self.action = "default"
+  pool.backcursor:on_unhover(function()
+    pool.backcursor.action = "default"
   end)
   pool.backcursor:on_touch(jump.to("highschool"))
 

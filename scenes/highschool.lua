@@ -147,11 +147,11 @@ function scene.on_enter()
     register = { "pearintosh" },
   })
 
-  pool.binarymessage:on_hover(function(self)
-    self.action = "default"
+  pool.binarymessage:on_hover(function()
+    pool.binarymessage.action = "default"
   end)
-  pool.binarymessage:on_unhover(function(self)
-    self.action = "hidden"
+  pool.binarymessage:on_unhover(function()
+    pool.binarymessage.action = "hidden"
   end)
 
   pool.pearintosh:on_touch(jump.to("pearintosh"))
