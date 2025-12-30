@@ -39,8 +39,8 @@ end
 
 function scene.on_leave()
   scribe.clear()
-  pool.inventory.teardown()
   tweens.teardown()
+  pool.inventory.teardown()
 end
 
 sentinel(scene, "highschool")
