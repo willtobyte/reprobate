@@ -5,7 +5,6 @@ local Inventory = require("overlay/inventory")
 local tween = require("library/tween")
 local tweens = require("helpers/tweens")
 
-local ops = require("helpers/ops")
 local prank = require("helpers/prank")
 
 local scribe = require("helpers/scribe")
@@ -41,7 +40,7 @@ function scene.on_enter()
 
   prank.write("We Have A Connection.txt", "TODO...")
 
-  pool.beelzebuuth.misses:subscribe(function(value)
+  pool.beelzebuuth:subscribe("misses", function(value)
     if value >= 6 then
       pool.beelzebuuth.action = "summon"
       pool.scream:play()
@@ -88,7 +87,7 @@ function scene.on_enter()
 end
 
 function scene.on_touch()
-  ops.incr(pool.beelzebuuth.misses)
+  pool.beelzebuuth.misses = (pool.beelzebuuth.misses or 0) + 1
 end
 
 function scene.on_motion(x, y)
