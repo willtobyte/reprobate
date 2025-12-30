@@ -14,14 +14,13 @@ local hideable = {
   "window",
 }
 
-local items = {
-  sugarcanespirit = {},
-  voodoodoll = {},
-}
+local items = { "sugarcanespirit", "voodoodoll" }
 
 local function verify()
-  if not all(items, "taken") then
-    return
+  for _, name in ipairs(items) do
+    if not state[name] then
+      return
+    end
   end
 
   state.system.stage = "highschool"
@@ -55,6 +54,8 @@ local function verify()
   end)
 end
 
+local collected = nil
+
 function scene.on_enter()
   state.system.stage = "livingroom"
 
@@ -63,41 +64,9 @@ function scene.on_enter()
     register = { "highschool" },
   })
 
+  collected = slot.collected(verify)
+
   pool.rainmuffled:play(true)
-
-  if state.cabinetdoor then
-    pool.cabinetdoor.action = "open"
-    pool.voodoodoll.action = "default"
-  else
-    pool.cabinetdoor:on_touch(function()
-      pool.cabinetdoor:on_touch(nil)
-      state.cabinetdoor = true
-      pool.cabinetdoor.action = "open"
-      pool.voodoodoll.action = "default"
-      pool.voodoodoll.alpha = 0
-      tweens.appear.voodoodoll = tween.new(1, pool.voodoodoll, { alpha = 255 })
-      scribe.say("The doll is not yours, it belongs to the loa that rides it.", 3, 3, 3000)
-    end)
-  end
-
-  for name, conf in pairs(items) do
-    local object = pool[name]
-
-    conf.taken = not not state[name]
-    object.visible = not conf.taken
-    object:on_touch(function()
-      object:on_touch(nil)
-      if conf.taken then
-        return
-      end
-
-      conf.taken = true
-      state[name] = true
-      tweens.disappear[name] = tween.new(1, object, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
-
-      verify()
-    end)
-  end
 end
 
 function scene.on_loop(delta)
@@ -111,6 +80,7 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  disconnect(collected)
   scribe.clear()
   tweens.teardown()
 end

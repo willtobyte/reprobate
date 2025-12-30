@@ -2,23 +2,17 @@ local scene = {}
 
 local Inventory = require("overlay/inventory")
 
-local tween = require("library/tween")
 local tweens = require("helpers/tweens")
-
 local prank = require("helpers/prank")
-
 local scribe = require("helpers/scribe")
 
-local items = {
-  crucifix = { damage = true },
-  gijoe = {},
-  nintendo = {},
-  playboy = {},
-}
+local items = { "crucifix", "gijoe", "nintendo", "playboy" }
 
 local function verify()
-  if not all(items, "taken") then
-    return
+  for _, name in ipairs(items) do
+    if not state[name] then
+      return
+    end
   end
 
   state.system.stage = "livingroom"
@@ -31,6 +25,8 @@ local function verify()
   end)
 end
 
+local collected = nil
+
 function scene.on_enter()
   state.system.stage = "babyroom"
 
@@ -41,42 +37,14 @@ function scene.on_enter()
 
   prank.write("We Have A Connection.txt", "TODO...")
 
-  pool.beelzebuuth:subscribe("misses", function(value)
-    if value >= 6 then
-      pool.beelzebuuth.action = "summon"
-      pool.scream:play()
-      pool.beelzebuuth.misses = 0
-    end
+  collected = slot.collected(function()
+    pool.television.action = "poltergeist"
+    verify()
   end)
 
   local objects = {}
-
-  for name, conf in pairs(items) do
-    local object = pool[name]
-    local item = pool["HUD/" .. name]
-    table.insert(objects, item)
-
-    conf.taken = state[name] == true
-
-    if conf.taken then
-      object.visible = false
-      item.action = "default"
-    else
-      object:on_touch(function()
-        object:on_touch(nil)
-        if conf.damage then
-          overlay:dispatch(WidgetType.cursor, "damage")
-        end
-
-        pool.television.action = "poltergeist"
-        conf.taken = true
-        state[name] = true
-
-        tweens.disappear[name] = tween.new(1, object, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
-        item.action = "default"
-        verify()
-      end)
-    end
+  for _, name in ipairs(items) do
+    table.insert(objects, pool["HUD/" .. name])
   end
 
   pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
@@ -105,6 +73,7 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  disconnect(collected)
   scribe.clear()
   tweens.teardown()
   pool.inventory.teardown()

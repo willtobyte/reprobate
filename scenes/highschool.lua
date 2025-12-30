@@ -13,8 +13,6 @@ function scene.on_enter()
     register = { "pearintosh" },
   })
 
-  pool.pearintosh:on_touch(jump.to("pearintosh"))
-
   local magazine = pool["HUD/playboy"]
   pool.inventory = Inventory.new(pool.layout, pool.boy, { magazine })
 

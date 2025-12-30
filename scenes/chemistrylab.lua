@@ -1,86 +1,25 @@
 local scene = {}
 
-local tween = require("library/tween")
 local tweens = require("helpers/tweens")
 local scribe = require("helpers/scribe")
 
-local items = {
-  openendwrench = {},
-  smallkey = {},
-  gasoline = {},
-  tubeamplifier = {},
-}
+local items = { "openendwrench", "smallkey", "gasoline", "tubeamplifier" }
 
 local function verify()
-  if all(items, "taken") then
-    -- TODO
+  for _, name in ipairs(items) do
+    if not state[name] then
+      return
+    end
   end
+  -- TODO
 end
 
-local function setup()
-  local switch = state.switch
-  if switch == "on" then
-    pool.switch.action, pool.light.action = "on", "blinking"
-  elseif switch == "off" then
-    pool.switch.action, pool.light.action = "off", nil
-  end
-
-  if state.bottomcabinetdoor then
-    pool.bottomcabinetdoor.action = "open"
-    pool.tubeamplifier.action = "default"
-  end
-  pool.bottomcabinetdoor:on_touch(function()
-    pool.bottomcabinetdoor:on_touch(nil)
-    state.bottomcabinetdoor = true
-    pool.bottomcabinetdoor.action = "open"
-
-    pool.tubeamplifier.action = "default"
-    pool.tubeamplifier.alpha = 0
-    tweens.appear.tubeamplifier = tween.new(1, pool.tubeamplifier, { alpha = 255 })
-  end)
-
-  if state.cabinetdoor then
-    pool.cabinetdoor.action = "open"
-    pool.switch.action = state.switch
-  end
-
-  pool.cabinetdoor:on_touch(function()
-    pool.cabinetdoor:on_touch(nil)
-    pool.cabinetdoor.action = "open"
-
-    state.cabinetdoor = true
-    pool.switch.action = "on"
-    state.switch = "on"
-  end)
-
-  pool.switch:on_touch(function()
-    pool.light.action = nil
-    pool.switch.action = "off"
-    state.switch = "off"
-  end)
-
-  for name, conf in pairs(items) do
-    local object = pool[name]
-
-    conf.taken = not not state[name]
-    object.visible = not conf.taken
-    object:on_touch(function()
-      object:on_touch(nil)
-      if conf.taken then
-        return
-      end
-
-      conf.taken = true
-      state[name] = true
-      tweens.disappear[name] = tween.new(1, object, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
-
-      verify()
-    end)
-  end
-end
+local collected = nil
 
 function scene.on_enter()
   state.system.stage = "chemistrylab"
+
+  collected = slot.collected(verify)
 
   pool.geigereffect:play(true)
 
@@ -88,18 +27,7 @@ function scene.on_enter()
     pool.emitter1.spawning = false
     pool.emitter2.spawning = false
     pool.emitter3.spawning = false
-
-    setup()
   end
-
-  pool.fireextinguisher:on_touch(function()
-    state.fireextinguished = true
-    pool.emitter1.spawning = false
-    pool.emitter2.spawning = false
-    pool.emitter3.spawning = false
-
-    setup()
-  end)
 end
 
 function scene.on_motion(x, y)
@@ -134,8 +62,8 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
+  disconnect(collected)
   scribe.clear()
-
   tweens.teardown()
 end
 
