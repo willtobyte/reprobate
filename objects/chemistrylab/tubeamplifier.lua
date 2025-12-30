@@ -1,1 +1,3 @@
-return require("helpers/collectible")("tubeamplifier")
+local collectible = require("helpers/collectible")
+
+return collectible("tubeamplifier")

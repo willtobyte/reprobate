@@ -1,1 +1,3 @@
-return require("helpers/collectible")("sugarcanespirit")
+local collectible = require("helpers/collectible")
+
+return collectible("sugarcanespirit")

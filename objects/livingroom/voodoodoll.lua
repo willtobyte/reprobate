@@ -1,1 +1,3 @@
-return require("helpers/collectible")("voodoodoll")
+local collectible = require("helpers/collectible")
+
+return collectible("voodoodoll")

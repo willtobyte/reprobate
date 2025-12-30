@@ -1,1 +1,3 @@
-return require("helpers/collectible")("gasoline")
+local collectible = require("helpers/collectible")
+
+return collectible("gasoline")

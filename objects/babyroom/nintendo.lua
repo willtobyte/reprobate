@@ -1,1 +1,3 @@
-return require("helpers/collectible")("nintendo", { hud = true })
+local collectible = require("helpers/collectible")
+
+return collectible("nintendo", { hud = true })

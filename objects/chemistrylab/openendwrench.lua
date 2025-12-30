@@ -1,1 +1,3 @@
-return require("helpers/collectible")("openendwrench")
+local collectible = require("helpers/collectible")
+
+return collectible("openendwrench")

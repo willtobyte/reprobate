@@ -1,1 +1,3 @@
-return require("helpers/collectible")("crucifix", { damage = true, hud = true })
+local collectible = require("helpers/collectible")
+
+return collectible("crucifix", { damage = true, hud = true })

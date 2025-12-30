@@ -1,1 +1,3 @@
-return require("helpers/collectible")("smallkey")
+local collectible = require("helpers/collectible")
+
+return collectible("smallkey")
