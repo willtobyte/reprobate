@@ -13,22 +13,7 @@ function scene.on_enter()
     register = { "pearintosh" },
   })
 
-  pool.binarymessage:on_hover(function()
-    pool.binarymessage.action = "default"
-  end)
-  pool.binarymessage:on_unhover(function()
-    pool.binarymessage.action = "hidden"
-  end)
-
   pool.pearintosh:on_touch(jump.to("pearintosh"))
-
-  pool.minisourcecode:on_touch(function()
-    if pool.sourcecode.action ~= "default" then
-      pool.sourcecode.action = "default"
-    else
-      pool.sourcecode.action = nil
-    end
-  end)
 
   local magazine = pool["HUD/playboy"]
   pool.inventory = Inventory.new(pool.layout, pool.boy, { magazine })
