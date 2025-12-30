@@ -3,7 +3,6 @@ local scene = {}
 local tween = require("library/tween")
 local tweens = require("helpers/tweens")
 local scribe = require("helpers/scribe")
-local say = scribe.say
 
 local hideable = {
   "antiquewallclock",
@@ -21,40 +20,39 @@ local items = {
 }
 
 local function verify()
-  if all(items, "taken") then
-    state.system.stage = "highschool"
-
-    pool.gettingintometal:play()
-
-    timermanager:singleshot(2000, function()
-      scribe.clear()
-
-      for _, name in ipairs(hideable) do
-        if pool[name] then
-          pool[name].visible = false
-        end
-      end
-
-      pool.cabinetdoor.visible = false
-
-      pool.teenager.action = "default"
-      pool.teenager.alpha = 200
-      tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
-    end)
-
-    timermanager:singleshot(5000, function()
-      pool.teenager.action = nil
-      pool.teenager.action = "default"
-
-      pool.voodoocast.action = "default"
-      pool.voodoocast.alpha = 0
-      tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
-    end)
-
-    timermanager:singleshot(9000, function()
-      pool.teenager:on_touch(jump.to("highschool"))
-    end)
+  if not all(items, "taken") then
+    return
   end
+
+  state.system.stage = "highschool"
+  pool.gettingintometal:play()
+
+  timermanager:singleshot(2000, function()
+    scribe.clear()
+
+    for _, name in ipairs(hideable) do
+      if pool[name] then
+        pool[name].visible = false
+      end
+    end
+
+    pool.cabinetdoor.visible = false
+    pool.teenager.action = "default"
+    pool.teenager.alpha = 200
+    tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
+  end)
+
+  timermanager:singleshot(5000, function()
+    pool.teenager.action = nil
+    pool.teenager.action = "default"
+    pool.voodoocast.action = "default"
+    pool.voodoocast.alpha = 0
+    tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
+  end)
+
+  timermanager:singleshot(9000, function()
+    pool.teenager:on_touch(jump.to("highschool"))
+  end)
 end
 
 function scene.on_enter()
@@ -78,10 +76,7 @@ function scene.on_enter()
       pool.voodoodoll.action = "default"
       pool.voodoodoll.alpha = 0
       tweens.appear.voodoodoll = tween.new(1, pool.voodoodoll, { alpha = 255 })
-
-      local message = "The doll is not yours, it belongs to the loa that rides it."
-      say(message, 3, 3, 3000)
-      state.cabinetdoor = true
+      scribe.say("The doll is not yours, it belongs to the loa that rides it.", 3, 3, 3000)
     end)
   end
 

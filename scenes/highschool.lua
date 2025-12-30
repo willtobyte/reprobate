@@ -18,10 +18,11 @@ function scene.on_enter()
   local magazine = pool["HUD/playboy"]
   pool.inventory = Inventory.new(pool.layout, pool.boy, { magazine })
 
-  if state.sourcecode then
-    pool.minisourcecode.action = "default"
-    magazine.action = nil
+  if not state.sourcecode then
+    return
   end
+  pool.minisourcecode.action = "default"
+  magazine.action = nil
 end
 
 function scene.on_motion(x, y)

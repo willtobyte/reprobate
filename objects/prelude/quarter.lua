@@ -4,7 +4,7 @@ return {
   end,
 
   on_unhover = function()
-    self.action = "default"
+    self.action = "normal"
   end,
 
   on_touch = jump.to("mainmenu"),

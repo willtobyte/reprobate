@@ -29,20 +29,6 @@ TYPE RUN TO BEGIN
   pool.label = overlay:create(WidgetType.label)
   pool.label.font = pool.font
 
-  pool.backcursor.action = "default"
-  pool.backcursor:on_hover(function()
-    pool.backcursor.action = "hover"
-  end)
-  pool.backcursor:on_unhover(function()
-    pool.backcursor.action = "default"
-  end)
-  pool.backcursor:on_touch(jump.to("highschool"))
-
-  pool.switch:on_touch(function()
-    pool.program = "10 "
-    pool.halted = false
-  end)
-
   pool.dialup:on_end(function()
     print(">>> ...")
   end)

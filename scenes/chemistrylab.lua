@@ -82,7 +82,7 @@ end
 function scene.on_enter()
   state.system.stage = "chemistrylab"
 
-  pool.geigercounter:play(true)
+  pool.geigereffect:play(true)
 
   if state.fireextinguished then
     pool.emitter1.spawning = false
@@ -118,13 +118,13 @@ function scene.on_motion(x, y)
   local t = math.min(distance / r_max, 1.0)
   local volume = 1.0 - 0.9 * t
 
-  pool.geigercounter.volume = volume
+  pool.geigereffect.volume = volume
 end
 
 function scene.on_loop(delta)
   scribe.loop(delta)
   if not pool.alien.visible then
-    pool.geigercounter:stop()
+    pool.geigereffect:stop()
   end
   tweens.loop(delta, function(type, name, t)
     if t.subject and type == "disappear" then

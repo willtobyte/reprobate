@@ -4,7 +4,7 @@
   "height": 270,
   "layer": { "type": "background" },
   "physics": true,
-  "effects": ["geigercounter"],
+  "effects": ["geigereffect"],
   "objects": [
     {
       "action": "default",
