@@ -7,7 +7,7 @@ local messages = {
 
 return {
   on_touch = function()
-    self.i = self.i % #messages + 1
+    self.i = (self.i or 0) % #messages + 1
     say(messages[self.i], 3, 3, 3000)
   end,
 }

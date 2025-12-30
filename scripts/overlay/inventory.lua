@@ -21,7 +21,7 @@ function Inventory.new(layout, character, objects)
   for i = 1, #objects do
     objects[i].y = layout.y
 
-    objects[i]:on_touch(function(_, x, y)
+    objects[i]:on_touch(function(x, y)
       local object = objects[i]
       x_origin = object.x
       y_origin = object.y
