@@ -2,8 +2,8 @@ local say = require("helpers/scribe").say
 
 return {
   on_spawn = function()
-    self._timer = timermanager:set(math.random(4, 10) * 1000, function()
-      self.action = "blink"
+    self._timer = timermanager:set(math.random(3, 8) * 1000, function()
+      self.action = "shrug"
     end)
   end,
 
@@ -12,6 +12,6 @@ return {
   end,
 
   on_touch = function()
-    say("Do you want to play for five nights at my house?")
+    say("Need more input!")
   end,
 }

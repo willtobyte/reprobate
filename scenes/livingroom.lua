@@ -5,92 +5,20 @@ local tweens = require("helpers/tweens")
 local scribe = require("helpers/scribe")
 local say = scribe.say
 
-local objects = {
-  antiquewallclock = {
-    messages = {
-      "Dawn no longer comes.",
-      "Time catches up with everyone;\nSooner or later, the moment will come.",
-    },
-  },
-  baphomet = {
-    messages = {
-      "Hell? The worst torment is to live in this realm of hypocrisy.",
-    },
-  },
-  bloodpriest = {
-    messages = {
-      "...Cast into the fields of evil pleasure.",
-      "Hear they dead lips...",
-    },
-  },
-  pictures = {
-    minimum = 4,
-    maximum = 10,
-    action = "moving",
-    messages = { "What you seek, I control without help." },
-  },
-  mirrors = {
-    messages = { "Banished, cold, alone, through the mirror I watch, aeons away." },
-  },
-  ogremask = {
-    messages = { "Oni no tsume de omae no tamashii o hikisake." },
-  },
-  window = {
-    minimum = 3,
-    maximum = 6,
-    action = "lightning",
-    messages = { "You cannot escape your own mind." },
-    lightning = true,
-  },
+local hideable = {
+  "antiquewallclock",
+  "baphomet",
+  "bloodpriest",
+  "pictures",
+  "mirrors",
+  "ogremask",
+  "window",
 }
 
 local items = {
   sugarcanespirit = {},
   voodoodoll = {},
 }
-
-local lightning = { active = false, next_at = 0, count = 0, total = 0, phase = nil }
-
-function lightning:trigger()
-  if self.active then
-    return
-  end
-  self.active = true
-  self.count = 0
-  self.total = math.random(3, 4)
-  self.phase = "bright"
-  pool.darker.action = nil
-  self.next_at = moment() + math.random(20, 30)
-end
-
-function lightning:update()
-  if not self.active then
-    return
-  end
-
-  local now = moment()
-  if now < self.next_at then
-    return
-  end
-
-  if self.phase == "bright" then
-    self.count = self.count + 1
-    pool.darker.action = "default"
-    if self.count >= self.total then
-      self.active = false
-      self.phase = nil
-      return
-    end
-
-    self.phase = "dark"
-    self.next_at = now + math.random(20, 30)
-    return
-  end
-
-  pool.darker.action = nil
-  self.phase = "bright"
-  self.next_at = now + math.random(20, 30)
-end
 
 local function verify()
   if all(items, "taken") then
@@ -101,7 +29,7 @@ local function verify()
     timermanager:singleshot(2000, function()
       scribe.clear()
 
-      for name in pairs(objects) do
+      for _, name in ipairs(hideable) do
         if pool[name] then
           pool[name].visible = false
         end
@@ -138,34 +66,6 @@ function scene.on_enter()
   })
 
   pool.rainmuffled:play(true)
-
-  for name, conf in pairs(objects) do
-    local object = pool[name]
-
-    local bounded = conf.minimum ~= nil and conf.maximum ~= nil
-    if bounded then
-      local delay = math.random(conf.minimum, conf.maximum) * 1000
-      local o = object
-      local a = conf.action
-      local l = conf.lightning
-
-      timermanager:set(delay, function()
-        o.action = a
-        if l then
-          lightning:trigger()
-          pool.thunder:play()
-        end
-      end)
-    end
-
-    object:on_touch(function()
-      local messages = conf.messages
-      local count = #messages
-      local index = math.random(count)
-      local message = messages[index]
-      say(message, 3, 3, 3000)
-    end)
-  end
 
   if state.cabinetdoor then
     pool.cabinetdoor.action = "open"
@@ -207,8 +107,6 @@ end
 
 function scene.on_loop(delta)
   scribe.loop(delta)
-
-  lightning:update()
 
   tweens.loop(delta, function(type, name, t)
     if t.subject and type == "disappear" then

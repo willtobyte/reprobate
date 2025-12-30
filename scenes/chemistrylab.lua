@@ -3,21 +3,6 @@ local scene = {}
 local tween = require("library/tween")
 local tweens = require("helpers/tweens")
 local scribe = require("helpers/scribe")
-local say = scribe.say
-
-local objects = {
-  alien = {
-    messages = {
-      "I swear, officer... It was just one Space Beer!",
-      "Houston, I have a hangover...",
-    },
-  },
-  testtubes = {
-    messages = {
-      "teste",
-    },
-  },
-}
 
 local items = {
   openendwrench = {},
@@ -73,18 +58,6 @@ local function setup()
     pool.switch.action = "off"
     state.switch = "off"
   end)
-
-  for name, conf in pairs(objects) do
-    local object = pool[name]
-
-    object:on_touch(function()
-      local messages = conf.messages
-      local count = #messages
-      local index = math.random(count)
-      local message = messages[index]
-      say(message, 3, 3, 3000)
-    end)
-  end
 
   for name, conf in pairs(items) do
     local object = pool[name]

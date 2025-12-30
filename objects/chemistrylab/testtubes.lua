@@ -1,0 +1,7 @@
+local say = require("helpers/scribe").say
+
+return {
+  on_touch = function()
+    say("teste", 3, 3, 3000)
+  end,
+}

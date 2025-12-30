@@ -1,0 +1,22 @@
+local say = require("helpers/scribe").say
+
+local messages = {
+  "Your laziness will get you sent straight to hell.",
+  "Everyone, open page 42 of The C Programming Language book.",
+}
+
+return {
+  on_touch = function()
+    if pool.sourcecode.action == "default" then
+      return
+    end
+
+    local kind = pool.inventory.dragging
+    if kind == "HUD/playboy" then
+      return
+    end
+
+    self.i = self.i % #messages + 1
+    say(messages[self.i], 3, 3, 3000)
+  end,
+}

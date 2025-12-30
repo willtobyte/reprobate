@@ -11,33 +11,6 @@ local prank = require("helpers/prank")
 local scribe = require("helpers/scribe")
 local say = scribe.say
 
-local animations = {
-  car = {
-    minimum = 5,
-    maximum = 8,
-    action = "run",
-    message = "Twisted dream. Metal price.",
-  },
-  bear = {
-    minimum = 4,
-    maximum = 10,
-    action = "blink",
-    message = "Do you want to play for five nights at my house?",
-  },
-  clown = {
-    minimum = 6,
-    maximum = 9,
-    action = "blink",
-    message = "A cosmic clown is closing in. Not here for laughs.",
-  },
-  robot = {
-    minimum = 3,
-    maximum = 8,
-    action = "shrug",
-    message = "Need more input!",
-  },
-}
-
 local items = {
   crucifix = { damage = true },
   gijoe = {},
@@ -79,25 +52,6 @@ function scene.on_enter()
       pool.beelzebuuth.misses = 0
     end
   end)
-
-  pool.television:on_touch(function()
-    say("This game is haunted, can you feel it?")
-  end)
-
-  for name, conf in pairs(animations) do
-    local object = pool[name]
-    local delay = math.random(conf.minimum, conf.maximum) * 1000
-    local action = conf.action
-    local message = conf.message
-
-    timermanager:set(delay, function()
-      object.action = action
-    end)
-
-    object:on_touch(function()
-      say(message)
-    end)
-  end
 
   local objects = {}
 
