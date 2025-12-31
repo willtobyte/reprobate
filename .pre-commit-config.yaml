@@ -13,11 +13,16 @@ repos:
     hooks:
       - id: stylua-github
 
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v4.0.0-alpha.8
+  - repo: https://github.com/biomejs/pre-commit
+    rev: v0.6.1
     hooks:
-      - id: prettier
-        types_or: [json, markdown]
+      - id: biome-format
+        types: [json]
+
+  - repo: https://github.com/rvben/rumdl-pre-commit
+    rev: v0.0.207
+    hooks:
+      - id: rumdl-fmt
 
   - repo: https://github.com/shssoichiro/oxipng
     rev: v10.0.0
