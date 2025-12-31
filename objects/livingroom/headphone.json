@@ -1,18 +1,18 @@
 {
 	"timelines": {
-		"default": {
+		"headphone.png": {
 			"frames": [
 				{
 					"duration": 200,
 					"offset": {
-						"x": 71,
-						"y": 64
+						"x": 69,
+						"y": 68
 					},
 					"quad": {
 						"x": 1,
 						"y": 1,
-						"w": 25,
-						"h": 35
+						"w": 27,
+						"h": 20
 					}
 				}
 			]
