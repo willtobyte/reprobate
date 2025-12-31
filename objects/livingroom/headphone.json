@@ -1,9 +1,17 @@
 {
 	"timelines": {
-		"headphone.png": {
+		"default": {
+			"hitbox": {
+				"quad": {
+					"x": 69,
+					"y": 68,
+					"w": 27,
+					"h": 20
+				}
+			},
 			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 69,
 						"y": 68
