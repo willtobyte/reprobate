@@ -63,6 +63,11 @@
 		},
 		{
 			"action": "default",
+			"kind": "cottoncandycocoongun",
+			"name": "cottoncandycocoongun"
+		},
+		{
+			"action": "default",
 			"kind": "cabinetdoor",
 			"name": "cabinetdoor"
 		},

@@ -16,7 +16,7 @@ local hideable = {
 	"window",
 }
 
-local items = { "sugarcanespirit", "voodoodoll", "headphone" }
+local items = { "sugarcanespirit", "voodoodoll", "headphone", "cottoncandycocoongun" }
 
 local function verify()
 	for _, name in ipairs(items) do
