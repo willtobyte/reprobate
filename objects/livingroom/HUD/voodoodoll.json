@@ -1,9 +1,9 @@
 {
 	"timelines": {
-		"voodoodol": {
+		"shadow": {
 			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 324,
 						"y": 230
@@ -17,10 +17,10 @@
 				}
 			]
 		},
-		"voodoodoll.png": {
+		"default": {
 			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 324,
 						"y": 230
