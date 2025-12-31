@@ -92,6 +92,21 @@
 		{
 			"kind": "voodoocast",
 			"name": "voodoocast"
+		},
+		{
+			"action": "shadow",
+			"kind": "HUD/headphone",
+			"name": "HUD/headphone"
+		},
+		{
+			"action": "shadow",
+			"kind": "HUD/sugarcanespirit",
+			"name": "HUD/sugarcanespirit"
+		},
+		{
+			"action": "shadow",
+			"kind": "HUD/voodoodoll",
+			"name": "HUD/voodoodoll"
 		}
 	]
 }

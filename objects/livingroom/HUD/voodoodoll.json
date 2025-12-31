@@ -1,0 +1,38 @@
+{
+	"timelines": {
+		"voodoodol": {
+			"frames": [
+				{
+					"duration": 200,
+					"offset": {
+						"x": 324,
+						"y": 230
+					},
+					"quad": {
+						"x": 1,
+						"y": 1,
+						"w": 22,
+						"h": 35
+					}
+				}
+			]
+		},
+		"voodoodoll.png": {
+			"frames": [
+				{
+					"duration": 200,
+					"offset": {
+						"x": 324,
+						"y": 230
+					},
+					"quad": {
+						"x": 1,
+						"y": 38,
+						"w": 22,
+						"h": 35
+					}
+				}
+			]
+		}
+	}
+}

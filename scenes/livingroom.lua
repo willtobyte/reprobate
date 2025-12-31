@@ -16,7 +16,7 @@ local hideable = {
 	"window",
 }
 
-local items = { "sugarcanespirit", "voodoodoll" }
+local items = { "sugarcanespirit", "voodoodoll", "headphone" }
 
 local function verify()
 	for _, name in ipairs(items) do
@@ -69,9 +69,9 @@ function scene.on_enter()
 	collected = slot.collected(verify)
 
 	local objects = {}
-	-- for _, name in ipairs(items) do
-	--  table.insert(objects, pool["HUD/" .. name])
-	-- end
+	for _, name in ipairs(items) do
+		table.insert(objects, pool["HUD/" .. name])
+	end
 
 	pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
 
