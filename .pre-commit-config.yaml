@@ -8,15 +8,18 @@ repos:
       - id: check-json
       - id: check-added-large-files
 
-  - repo: local
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v2.3.1
     hooks:
-      - id: catatonia
-        name: perform code formatting & otimizations
-        language: system
-        pass_filenames: false
-        entry: bash
-        args:
-          - -ceu
-          - --
-          - |
-            docker run --rm --pull=missing --user "$(id -u):$(id -g)" -v "$PWD:/data" ghcr.io/willtobyte/catatonia:latest
+      - id: stylua-github
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        types_or: [json, markdown]
+
+  - repo: https://github.com/shssoichiro/oxipng
+    rev: v10.0.0
+    hooks:
+      - id: oxipng
