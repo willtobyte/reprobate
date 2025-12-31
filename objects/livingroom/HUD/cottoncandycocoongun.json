@@ -1,0 +1,38 @@
+{
+	"timelines": {
+		"default": {
+			"frames": [
+				{
+					"duration": -1,
+					"offset": {
+						"x": 175,
+						"y": 233
+					},
+					"quad": {
+						"x": 1,
+						"y": 1,
+						"w": 35,
+						"h": 28
+					}
+				}
+			]
+		},
+		"shaow": {
+			"frames": [
+				{
+					"duration": -1,
+					"offset": {
+						"x": 175,
+						"y": 233
+					},
+					"quad": {
+						"x": 38,
+						"y": 1,
+						"w": 35,
+						"h": 28
+					}
+				}
+			]
+		}
+	}
+}

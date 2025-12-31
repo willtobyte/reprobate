@@ -107,6 +107,11 @@
 			"action": "shadow",
 			"kind": "HUD/voodoodoll",
 			"name": "HUD/voodoodoll"
+		},
+		{
+			"action": "shadow",
+			"kind": "HUD/cottoncandycocoongun",
+			"name": "HUD/cottoncandycocoongun"
 		}
 	]
 }
