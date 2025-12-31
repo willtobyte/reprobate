@@ -1,3 +1,3 @@
 local collectible = require("helpers/collectible")
 
-return collectible("voodoodoll")
+return collectible("voodoodoll", { hud = true })
