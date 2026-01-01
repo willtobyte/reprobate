@@ -1,6 +1,8 @@
+local ticker = require("helpers/ticker")
+
 return {
 	on_spawn = function()
-		timermanager:singleshot(6666, function()
+		ticker.after(66, function()
 			self.action = "default"
 		end)
 	end,

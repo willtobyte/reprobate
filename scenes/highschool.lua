@@ -42,6 +42,7 @@ function scene.on_leave()
 	pool.inventory.teardown()
 end
 
+ticker.wrap(scene)
 sentinel(scene, "highschool")
 
 return scene

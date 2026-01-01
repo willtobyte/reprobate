@@ -19,7 +19,7 @@ local function verify()
 
 	pool.door.action = "default"
 
-	timermanager:singleshot(3000, function()
+	ticker.after(30, function()
 		pool.doorsound:play()
 		pool.door:on_touch(jump.to("livingroom"))
 	end)
@@ -79,6 +79,7 @@ function scene.on_leave()
 	pool.inventory.teardown()
 end
 
+ticker.wrap(scene)
 sentinel(scene, "babyroom")
 
 return scene

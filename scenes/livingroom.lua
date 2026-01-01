@@ -28,7 +28,7 @@ local function verify()
 	state.system.stage = "highschool"
 	pool.gettingintometal:play()
 
-	timermanager:singleshot(2000, function()
+	ticker.after(20, function()
 		scribe.clear()
 
 		for _, name in ipairs(hideable) do
@@ -48,7 +48,7 @@ local function verify()
 		tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
 	end)
 
-	timermanager:singleshot(5000, function()
+	ticker.after(50, function()
 		pool.teenager.action = nil
 		pool.teenager.action = "default"
 		pool.voodoocast.action = "default"
@@ -56,7 +56,7 @@ local function verify()
 		tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
 	end)
 
-	timermanager:singleshot(9000, function()
+	ticker.after(90, function()
 		pool.teenager:on_touch(jump.to("highschool"))
 	end)
 end
@@ -105,6 +105,7 @@ function scene.on_leave()
 	tweens.teardown()
 end
 
+ticker.wrap(scene)
 sentinel(scene, "livingroom")
 
 return scene

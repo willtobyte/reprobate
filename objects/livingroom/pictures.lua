@@ -1,8 +1,9 @@
 local say = require("helpers/scribe").say
+local ticker = require("helpers/ticker")
 
 return {
 	on_spawn = function()
-		timermanager:set(math.random(4, 10) * 1000, function()
+		ticker.every(math.random(4, 10) * 10, function()
 			self.action = "moving"
 		end)
 	end,

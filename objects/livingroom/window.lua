@@ -1,4 +1,5 @@
 local say = require("helpers/scribe").say
+local ticker = require("helpers/ticker")
 
 local lightning = { active = false, next_at = 0, count = 0, total = 0, phase = nil }
 
@@ -16,7 +17,7 @@ end
 
 return {
 	on_spawn = function()
-		timermanager:set(math.random(3, 6) * 1000, function()
+		ticker.every(math.random(3, 6) * 10, function()
 			self.action = "lightning"
 			trigger()
 			pool.thunder:play()
