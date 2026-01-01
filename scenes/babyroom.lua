@@ -37,7 +37,7 @@ function scene.on_enter()
 
 	prank.write("We Have A Connection.txt", "TODO...")
 
-	held = slot.held(function()
+	held = slot.collected(function()
 		pool.television.action = "poltergeist"
 		verify()
 	end)

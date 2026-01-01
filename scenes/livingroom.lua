@@ -71,7 +71,7 @@ function scene.on_enter()
 		register = { "highschool" },
 	})
 
-	held = slot.held(verify)
+	held = slot.collected(verify)
 
 	local objects = {}
 	for _, name in ipairs(items) do

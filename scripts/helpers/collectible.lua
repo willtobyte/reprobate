@@ -35,7 +35,7 @@ local function collectible(name, options)
 				pool["HUD/" .. name].action = "default"
 			end
 
-			emit.held(name)
+			emit.collected(name)
 		end,
 	}
 end

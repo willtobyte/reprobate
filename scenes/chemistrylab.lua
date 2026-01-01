@@ -19,7 +19,7 @@ local held = nil
 function scene.on_enter()
 	state.system.stage = "chemistrylab"
 
-	held = slot.held(verify)
+	held = slot.collected(verify)
 
 	pool.geigereffect:play(true)
 
