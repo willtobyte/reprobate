@@ -1,6 +1,10 @@
 require("library/signals")
 
 ticker = require("helpers/ticker")
+say = require("helpers/scribe").say
+collectible = require("helpers/collectible")
+tween = require("library/tween")
+tweens = require("helpers/tweens")
 
 function transition(options)
 	if options.destroy then

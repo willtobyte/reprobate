@@ -1,6 +1,3 @@
-local say = require("helpers/scribe").say
-local ticker = require("helpers/ticker")
-
 local lightning = { active = false, next_at = 0, count = 0, total = 0, phase = nil }
 
 local function trigger()

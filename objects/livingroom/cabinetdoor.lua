@@ -1,7 +1,3 @@
-local tween = require("library/tween")
-local tweens = require("helpers/tweens")
-local say = require("helpers/scribe").say
-
 return {
 	on_spawn = function()
 		if not state.cabinetdoor then

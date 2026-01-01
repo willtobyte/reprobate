@@ -1,6 +1,3 @@
-local say = require("helpers/scribe").say
-local ticker = require("helpers/ticker")
-
 return {
 	on_spawn = function()
 		ticker.every(math.random(3, 8) * 10, function()
