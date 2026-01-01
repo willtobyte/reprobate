@@ -1,29 +1,28 @@
 {
-  "type": "backdrop",
-  "width": 480,
-  "height": 270,
-  "layer": { "type": "background" },
-  "physics": true,
-  "effects": ["noise", "theme"],
-  "objects": [
-    {
-      "action": "default",
-      "kind": "play",
-      "name": "play"
-    },
-    {
-      "action": "default",
-      "kind": "credits",
-      "name": "credits"
-    },
-    {
-      "action": "left",
-      "kind": "headbanger",
-      "name": "headbanger"
-    },
-    {
-      "kind": "interference",
-      "name": "interference"
-    }
-  ]
+	"type": "backdrop",
+	"width": 480,
+	"height": 270,
+	"layer": { "type": "background" },
+	"effects": ["noise", "theme"],
+	"objects": [
+		{
+			"action": "default",
+			"kind": "play",
+			"name": "play"
+		},
+		{
+			"action": "default",
+			"kind": "credits",
+			"name": "credits"
+		},
+		{
+			"action": "left",
+			"kind": "headbanger",
+			"name": "headbanger"
+		},
+		{
+			"kind": "interference",
+			"name": "interference"
+		}
+	]
 }

@@ -3,7 +3,6 @@
 	"width": 480,
 	"height": 270,
 	"layer": { "type": "background" },
-	"physics": true,
 	"effects": ["rainmuffled", "thunder", "gettingintometal"],
 	"objects": [
 		{

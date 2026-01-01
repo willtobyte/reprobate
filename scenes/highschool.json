@@ -1,106 +1,105 @@
 {
-  "type": "backdrop",
-  "width": 480,
-  "height": 270,
-  "layer": { "type": "background" },
-  "physics": true,
-  "objects": [
-    {
-      "action": "hidden",
-      "kind": "binarymessage",
-      "name": "binarymessage"
-    },
-    {
-      "action": "default",
-      "kind": "redguy",
-      "name": "redguy"
-    },
-    {
-      "action": "default",
-      "kind": "blondgirl",
-      "name": "blondgirl"
-    },
-    {
-      "kind": "bloodyhandprint",
-      "name": "bloodyhandprint"
-    },
-    {
-      "action": "default",
-      "kind": "bulletinboard",
-      "name": "bulletinboard"
-    },
-    {
-      "action": "default",
-      "kind": "pearintosh",
-      "name": "pearintosh"
-    },
-    {
-      "action": "default",
-      "kind": "gothgirl",
-      "name": "gothgirl"
-    },
-    {
-      "action": "default",
-      "kind": "longhairgirl",
-      "name": "longhairgirl"
-    },
-    {
-      "action": "default",
-      "kind": "thenerd",
-      "name": "thenerd"
-    },
-    {
-      "action": "default",
-      "kind": "punkgirl",
-      "name": "punkgirl"
-    },
-    {
-      "action": "default",
-      "kind": "purplegirl",
-      "name": "purplegirl"
-    },
-    {
-      "action": "default",
-      "kind": "purpleman",
-      "name": "purpleman"
-    },
-    {
-      "action": "default",
-      "kind": "teacher",
-      "name": "teacher"
-    },
-    {
-      "action": "default",
-      "kind": "decorations",
-      "name": "decorations"
-    },
-    {
-      "action": "default",
-      "kind": "wallclock",
-      "name": "wallclock"
-    },
-    {
-      "action": "default",
-      "kind": "layout",
-      "name": "layout"
-    },
-    {
-      "action": "default",
-      "kind": "boy",
-      "name": "boy"
-    },
-    {
-      "action": "default",
-      "kind": "HUD/playboy",
-      "name": "HUD/playboy"
-    },
-    {
-      "kind": "sourcecode",
-      "name": "sourcecode"
-    },
-    {
-      "kind": "minisourcecode",
-      "name": "minisourcecode"
-    }
-  ]
+	"type": "backdrop",
+	"width": 480,
+	"height": 270,
+	"layer": { "type": "background" },
+	"objects": [
+		{
+			"action": "hidden",
+			"kind": "binarymessage",
+			"name": "binarymessage"
+		},
+		{
+			"action": "default",
+			"kind": "redguy",
+			"name": "redguy"
+		},
+		{
+			"action": "default",
+			"kind": "blondgirl",
+			"name": "blondgirl"
+		},
+		{
+			"kind": "bloodyhandprint",
+			"name": "bloodyhandprint"
+		},
+		{
+			"action": "default",
+			"kind": "bulletinboard",
+			"name": "bulletinboard"
+		},
+		{
+			"action": "default",
+			"kind": "pearintosh",
+			"name": "pearintosh"
+		},
+		{
+			"action": "default",
+			"kind": "gothgirl",
+			"name": "gothgirl"
+		},
+		{
+			"action": "default",
+			"kind": "longhairgirl",
+			"name": "longhairgirl"
+		},
+		{
+			"action": "default",
+			"kind": "thenerd",
+			"name": "thenerd"
+		},
+		{
+			"action": "default",
+			"kind": "punkgirl",
+			"name": "punkgirl"
+		},
+		{
+			"action": "default",
+			"kind": "purplegirl",
+			"name": "purplegirl"
+		},
+		{
+			"action": "default",
+			"kind": "purpleman",
+			"name": "purpleman"
+		},
+		{
+			"action": "default",
+			"kind": "teacher",
+			"name": "teacher"
+		},
+		{
+			"action": "default",
+			"kind": "decorations",
+			"name": "decorations"
+		},
+		{
+			"action": "default",
+			"kind": "wallclock",
+			"name": "wallclock"
+		},
+		{
+			"action": "default",
+			"kind": "layout",
+			"name": "layout"
+		},
+		{
+			"action": "default",
+			"kind": "boy",
+			"name": "boy"
+		},
+		{
+			"action": "default",
+			"kind": "HUD/playboy",
+			"name": "HUD/playboy"
+		},
+		{
+			"kind": "sourcecode",
+			"name": "sourcecode"
+		},
+		{
+			"kind": "minisourcecode",
+			"name": "minisourcecode"
+		}
+	]
 }

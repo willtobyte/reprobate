@@ -1,101 +1,100 @@
 {
-  "type": "backdrop",
-  "width": 480,
-  "height": 270,
-  "layer": { "type": "background" },
-  "physics": true,
-  "effects": ["geigereffect"],
-  "objects": [
-    {
-      "action": "default",
-      "kind": "testtubes",
-      "name": "testtubes"
-    },
-    {
-      "action": "default",
-      "kind": "fireextinguisher",
-      "name": "fireextinguisher"
-    },
-    {
-      "action": "default",
-      "kind": "alien",
-      "name": "alien"
-    },
-    {
-      "action": "closed",
-      "kind": "cabinetdoor",
-      "name": "cabinetdoor"
-    },
-    {
-      "kind": "switch",
-      "name": "switch"
-    },
-    {
-      "action": "moving",
-      "kind": "redbook",
-      "name": "redbook"
-    },
-    {
-      "action": "blinking",
-      "kind": "light",
-      "name": "light"
-    },
-    {
-      "action": "default",
-      "kind": "ceilingvent",
-      "name": "ceilingvent"
-    },
-    {
-      "action": "default",
-      "kind": "openendwrench",
-      "name": "openendwrench"
-    },
-    {
-      "action": "default",
-      "kind": "smallkey",
-      "name": "smallkey"
-    },
-    {
-      "action": "default",
-      "kind": "gasoline",
-      "name": "gasoline"
-    },
-    {
-      "action": "closed",
-      "kind": "bottomcabinetdoor",
-      "name": "bottomcabinetdoor"
-    },
-    {
-      "kind": "tubeamplifier",
-      "name": "tubeamplifier"
-    },
-    {
-      "action": "default",
-      "kind": "geigercounter",
-      "name": "geigercounter"
-    }
-  ],
-  "particles": [
-    {
-      "name": "emitter1",
-      "kind": "smoke",
-      "spawning": true,
-      "x": 220,
-      "y": 190
-    },
-    {
-      "name": "emitter2",
-      "kind": "smoke",
-      "spawning": true,
-      "x": 270,
-      "y": 220
-    },
-    {
-      "name": "emitter3",
-      "kind": "smoke",
-      "spawning": true,
-      "x": 320,
-      "y": 190
-    }
-  ]
+	"type": "backdrop",
+	"width": 480,
+	"height": 270,
+	"layer": { "type": "background" },
+	"effects": ["geigereffect"],
+	"objects": [
+		{
+			"action": "default",
+			"kind": "testtubes",
+			"name": "testtubes"
+		},
+		{
+			"action": "default",
+			"kind": "fireextinguisher",
+			"name": "fireextinguisher"
+		},
+		{
+			"action": "default",
+			"kind": "alien",
+			"name": "alien"
+		},
+		{
+			"action": "closed",
+			"kind": "cabinetdoor",
+			"name": "cabinetdoor"
+		},
+		{
+			"kind": "switch",
+			"name": "switch"
+		},
+		{
+			"action": "moving",
+			"kind": "redbook",
+			"name": "redbook"
+		},
+		{
+			"action": "blinking",
+			"kind": "light",
+			"name": "light"
+		},
+		{
+			"action": "default",
+			"kind": "ceilingvent",
+			"name": "ceilingvent"
+		},
+		{
+			"action": "default",
+			"kind": "openendwrench",
+			"name": "openendwrench"
+		},
+		{
+			"action": "default",
+			"kind": "smallkey",
+			"name": "smallkey"
+		},
+		{
+			"action": "default",
+			"kind": "gasoline",
+			"name": "gasoline"
+		},
+		{
+			"action": "closed",
+			"kind": "bottomcabinetdoor",
+			"name": "bottomcabinetdoor"
+		},
+		{
+			"kind": "tubeamplifier",
+			"name": "tubeamplifier"
+		},
+		{
+			"action": "default",
+			"kind": "geigercounter",
+			"name": "geigercounter"
+		}
+	],
+	"particles": [
+		{
+			"name": "emitter1",
+			"kind": "smoke",
+			"spawning": true,
+			"x": 220,
+			"y": 190
+		},
+		{
+			"name": "emitter2",
+			"kind": "smoke",
+			"spawning": true,
+			"x": 270,
+			"y": 220
+		},
+		{
+			"name": "emitter3",
+			"kind": "smoke",
+			"spawning": true,
+			"x": 320,
+			"y": 190
+		}
+	]
 }

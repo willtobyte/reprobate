@@ -1,15 +1,14 @@
 {
-  "type": "backdrop",
-  "width": 480,
-  "height": 270,
-  "layer": { "type": "background" },
-  "physics": true,
-  "effects": ["click"],
-  "objects": [
-    {
-      "action": "normal",
-      "kind": "quarter",
-      "name": "quarter"
-    }
-  ]
+	"type": "backdrop",
+	"width": 480,
+	"height": 270,
+	"layer": { "type": "background" },
+	"effects": ["click"],
+	"objects": [
+		{
+			"action": "normal",
+			"kind": "quarter",
+			"name": "quarter"
+		}
+	]
 }

@@ -1,26 +1,25 @@
 {
-  "type": "backdrop",
-  "width": 480,
-  "height": 270,
-  "layer": { "type": "background" },
-  "physics": true,
-  "effects": ["dialup", "key1", "key2"],
-  "fonts": ["retro"],
-  "objects": [
-    {
-      "action": "default",
-      "kind": "backcursor",
-      "name": "backcursor"
-    },
-    {
-      "action": "default",
-      "kind": "switch",
-      "name": "switch"
-    },
-    {
-      "action": "default",
-      "kind": "web",
-      "name": "web"
-    }
-  ]
+	"type": "backdrop",
+	"width": 480,
+	"height": 270,
+	"layer": { "type": "background" },
+	"effects": ["dialup", "key1", "key2"],
+	"fonts": ["retro"],
+	"objects": [
+		{
+			"action": "default",
+			"kind": "backcursor",
+			"name": "backcursor"
+		},
+		{
+			"action": "default",
+			"kind": "switch",
+			"name": "switch"
+		},
+		{
+			"action": "default",
+			"kind": "web",
+			"name": "web"
+		}
+	]
 }

@@ -1,7 +1,6 @@
 {
-  "type": "backdrop",
-  "width": 480,
-  "height": 270,
-  "layer": { "type": "tilemap", "content": "greenhill" },
-  "physics": true
+	"type": "backdrop",
+	"width": 480,
+	"height": 270,
+	"layer": { "type": "tilemap", "content": "greenhill" }
 }

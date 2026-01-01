@@ -1,93 +1,92 @@
 {
-  "type": "backdrop",
-  "width": 480,
-  "height": 270,
-  "layer": { "type": "background" },
-  "physics": true,
-  "effects": ["doorsound", "scream"],
-  "objects": [
-    {
-      "kind": "beelzebuuth",
-      "name": "beelzebuuth"
-    },
-    {
-      "action": "default",
-      "kind": "car",
-      "name": "car"
-    },
-    {
-      "action": "default",
-      "kind": "crucifix",
-      "name": "crucifix"
-    },
-    {
-      "action": "default",
-      "kind": "bear",
-      "name": "bear"
-    },
-    {
-      "action": "default",
-      "kind": "clown",
-      "name": "clown"
-    },
-    {
-      "action": "default",
-      "kind": "gijoe",
-      "name": "gijoe"
-    },
-    {
-      "action": "default",
-      "kind": "nintendo",
-      "name": "nintendo"
-    },
-    {
-      "action": "default",
-      "kind": "playboy",
-      "name": "playboy"
-    },
-    {
-      "action": "default",
-      "kind": "robot",
-      "name": "robot"
-    },
-    {
-      "action": "default",
-      "kind": "television",
-      "name": "television"
-    },
-    {
-      "kind": "door",
-      "name": "door"
-    },
-    {
-      "action": "default",
-      "kind": "layout",
-      "name": "layout"
-    },
-    {
-      "action": "default",
-      "kind": "boy",
-      "name": "boy"
-    },
-    {
-      "action": "shadow",
-      "kind": "HUD/playboy",
-      "name": "HUD/playboy"
-    },
-    {
-      "action": "shadow",
-      "kind": "HUD/gijoe",
-      "name": "HUD/gijoe"
-    },
-    {
-      "action": "shadow",
-      "kind": "HUD/nintendo",
-      "name": "HUD/nintendo"
-    },
-    {
-      "action": "shadow",
-      "kind": "HUD/crucifix",
-      "name": "HUD/crucifix"
-    }
-  ]
+	"type": "backdrop",
+	"width": 480,
+	"height": 270,
+	"layer": { "type": "background" },
+	"effects": ["doorsound", "scream"],
+	"objects": [
+		{
+			"kind": "beelzebuuth",
+			"name": "beelzebuuth"
+		},
+		{
+			"action": "default",
+			"kind": "car",
+			"name": "car"
+		},
+		{
+			"action": "default",
+			"kind": "crucifix",
+			"name": "crucifix"
+		},
+		{
+			"action": "default",
+			"kind": "bear",
+			"name": "bear"
+		},
+		{
+			"action": "default",
+			"kind": "clown",
+			"name": "clown"
+		},
+		{
+			"action": "default",
+			"kind": "gijoe",
+			"name": "gijoe"
+		},
+		{
+			"action": "default",
+			"kind": "nintendo",
+			"name": "nintendo"
+		},
+		{
+			"action": "default",
+			"kind": "playboy",
+			"name": "playboy"
+		},
+		{
+			"action": "default",
+			"kind": "robot",
+			"name": "robot"
+		},
+		{
+			"action": "default",
+			"kind": "television",
+			"name": "television"
+		},
+		{
+			"kind": "door",
+			"name": "door"
+		},
+		{
+			"action": "default",
+			"kind": "layout",
+			"name": "layout"
+		},
+		{
+			"action": "default",
+			"kind": "boy",
+			"name": "boy"
+		},
+		{
+			"action": "shadow",
+			"kind": "HUD/playboy",
+			"name": "HUD/playboy"
+		},
+		{
+			"action": "shadow",
+			"kind": "HUD/gijoe",
+			"name": "HUD/gijoe"
+		},
+		{
+			"action": "shadow",
+			"kind": "HUD/nintendo",
+			"name": "HUD/nintendo"
+		},
+		{
+			"action": "shadow",
+			"kind": "HUD/crucifix",
+			"name": "HUD/crucifix"
+		}
+	]
 }
