@@ -61,7 +61,7 @@ local function verify()
 	end)
 end
 
-local collected = nil
+local held = nil
 
 function scene.on_enter()
 	state.system.stage = "livingroom"
@@ -71,7 +71,7 @@ function scene.on_enter()
 		register = { "highschool" },
 	})
 
-	collected = slot.collected(verify)
+	held = slot.held(verify)
 
 	local objects = {}
 	for _, name in ipairs(items) do
@@ -100,7 +100,7 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
-	disconnect(collected)
+	disconnect(held)
 	scribe.clear()
 	tweens.teardown()
 end

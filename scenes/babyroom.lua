@@ -9,74 +9,74 @@ local scribe = require("helpers/scribe")
 local items = { "crucifix", "gijoe", "nintendo", "playboy" }
 
 local function verify()
-  for _, name in ipairs(items) do
-    if not state[name] then
-      return
-    end
-  end
+	for _, name in ipairs(items) do
+		if not state[name] then
+			return
+		end
+	end
 
-  state.system.stage = "livingroom"
+	state.system.stage = "livingroom"
 
-  pool.door.action = "default"
+	pool.door.action = "default"
 
-  timermanager:singleshot(3000, function()
-    pool.doorsound:play()
-    pool.door:on_touch(jump.to("livingroom"))
-  end)
+	timermanager:singleshot(3000, function()
+		pool.doorsound:play()
+		pool.door:on_touch(jump.to("livingroom"))
+	end)
 end
 
-local collected = nil
+local held = nil
 
 function scene.on_enter()
-  state.system.stage = "babyroom"
+	state.system.stage = "babyroom"
 
-  transition({
-    destroy = { "mainmenu", "whobuilt" },
-    register = { "livingroom" },
-  })
+	transition({
+		destroy = { "mainmenu", "whobuilt" },
+		register = { "livingroom" },
+	})
 
-  prank.write("We Have A Connection.txt", "TODO...")
+	prank.write("We Have A Connection.txt", "TODO...")
 
-  collected = slot.collected(function()
-    pool.television.action = "poltergeist"
-    verify()
-  end)
+	held = slot.held(function()
+		pool.television.action = "poltergeist"
+		verify()
+	end)
 
-  local objects = {}
-  for _, name in ipairs(items) do
-    table.insert(objects, pool["HUD/" .. name])
-  end
+	local objects = {}
+	for _, name in ipairs(items) do
+		table.insert(objects, pool["HUD/" .. name])
+	end
 
-  pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
+	pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
 
-  scribe.say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
+	scribe.say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
 end
 
 function scene.on_touch()
-  pool.beelzebuuth.misses = (pool.beelzebuuth.misses or 0) + 1
+	pool.beelzebuuth.misses = (pool.beelzebuuth.misses or 0) + 1
 end
 
 function scene.on_motion(x, y)
-  pool.inventory.motion(x, y)
+	pool.inventory.motion(x, y)
 end
 
 function scene.on_loop(delta)
-  scribe.loop(delta)
+	scribe.loop(delta)
 
-  pool.inventory.loop(delta)
+	pool.inventory.loop(delta)
 
-  tweens.loop(delta, function(type, name, t)
-    if t.subject and type == "disappear" then
-      t.subject.visible = false
-    end
-  end)
+	tweens.loop(delta, function(type, name, t)
+		if t.subject and type == "disappear" then
+			t.subject.visible = false
+		end
+	end)
 end
 
 function scene.on_leave()
-  disconnect(collected)
-  scribe.clear()
-  tweens.teardown()
-  pool.inventory.teardown()
+	disconnect(held)
+	scribe.clear()
+	tweens.teardown()
+	pool.inventory.teardown()
 end
 
 sentinel(scene, "babyroom")

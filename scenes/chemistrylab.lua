@@ -14,12 +14,12 @@ local function verify()
 	-- TODO
 end
 
-local collected = nil
+local held = nil
 
 function scene.on_enter()
 	state.system.stage = "chemistrylab"
 
-	collected = slot.collected(verify)
+	held = slot.held(verify)
 
 	pool.geigereffect:play(true)
 
@@ -64,7 +64,7 @@ function scene.on_loop(delta)
 end
 
 function scene.on_leave()
-	disconnect(collected)
+	disconnect(held)
 	scribe.clear()
 	tweens.teardown()
 end
