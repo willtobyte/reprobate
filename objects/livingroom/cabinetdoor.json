@@ -1,46 +1,46 @@
 {
-  "timelines": {
-    "default": {
-      "hitbox": {
-        "quad": {
-          "x": 105,
-          "y": 76,
-          "w": 32,
-          "h": 50
-        }
-      },
-      "frames": [
-        {
-          "duration": -1,
-          "offset": {
-            "x": 0,
-            "y": 0
-          },
-          "quad": {
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0
-          }
-        }
-      ]
-    },
-    "open": {
-      "frames": [
-        {
-          "duration": -1,
-          "offset": {
-            "x": 102,
-            "y": 78
-          },
-          "quad": {
-            "x": 1,
-            "y": 1,
-            "w": 31,
-            "h": 53
-          }
-        }
-      ]
-    }
-  }
+	"timelines": {
+		"default": {
+			"hitbox": {
+				"aabb": {
+					"x": 105,
+					"y": 76,
+					"w": 32,
+					"h": 50
+				}
+			},
+			"frames": [
+				{
+					"duration": -1,
+					"offset": {
+						"x": 0,
+						"y": 0
+					},
+					"quad": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		"open": {
+			"frames": [
+				{
+					"duration": -1,
+					"offset": {
+						"x": 102,
+						"y": 78
+					},
+					"quad": {
+						"x": 1,
+						"y": 1,
+						"w": 31,
+						"h": 53
+					}
+				}
+			]
+		}
+	}
 }

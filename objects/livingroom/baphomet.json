@@ -1,29 +1,29 @@
 {
-  "timelines": {
-    "default": {
-      "hitbox": {
-        "quad": {
-          "x": 155,
-          "y": 86,
-          "w": 36,
-          "h": 30
-        }
-      },
-      "frames": [
-        {
-          "duration": 200,
-          "offset": {
-            "x": 155,
-            "y": 86
-          },
-          "quad": {
-            "x": 1,
-            "y": 1,
-            "w": 36,
-            "h": 30
-          }
-        }
-      ]
-    }
-  }
+	"timelines": {
+		"default": {
+			"hitbox": {
+				"aabb": {
+					"x": 155,
+					"y": 86,
+					"w": 36,
+					"h": 30
+				}
+			},
+			"frames": [
+				{
+					"duration": 200,
+					"offset": {
+						"x": 155,
+						"y": 86
+					},
+					"quad": {
+						"x": 1,
+						"y": 1,
+						"w": 36,
+						"h": 30
+					}
+				}
+			]
+		}
+	}
 }

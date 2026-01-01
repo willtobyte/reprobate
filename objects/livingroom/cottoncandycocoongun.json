@@ -2,7 +2,7 @@
 	"timelines": {
 		"default": {
 			"hitbox": {
-				"quad": {
+				"aabb": {
 					"x": 199,
 					"y": 56,
 					"w": 21,
