@@ -24,9 +24,9 @@ function scene.on_enter()
 	pool.geigereffect:play(true)
 
 	if state.fireextinguished then
-		pool.emitter1.spawning = false
-		pool.emitter2.spawning = false
-		pool.emitter3.spawning = false
+		for i = 1, 3 do
+			pool["emitter" .. i].spawning = false
+		end
 	end
 end
 
