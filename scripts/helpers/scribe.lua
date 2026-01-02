@@ -16,6 +16,8 @@ local x, y = 0, 0
 local states = {}
 local fading_out = false
 local fade_out_state = nil
+local effects = {}
+local fade_effects = {}
 
 local function initialize()
 	if not label then
@@ -45,6 +47,12 @@ function scribe.clear()
 	for k in pairs(states) do
 		tweens.scribe[k] = nil
 		states[k] = nil
+	end
+	for k in pairs(effects) do
+		effects[k] = nil
+	end
+	for k in pairs(fade_effects) do
+		fade_effects[k] = nil
 	end
 	if label then
 		label.effect = nil
@@ -92,11 +100,18 @@ function scribe.loop(delta)
 	end
 
 	if fading_out then
-		local effects = {}
+		local alpha = fade_out_state.alpha
+		local scale = fade_out_state.scale
 		for i = 1, #text do
-			effects[i] = { alpha = fade_out_state.alpha, scale = fade_out_state.scale }
+			local entry = fade_effects[i]
+			if entry then
+				entry.alpha = alpha
+				entry.scale = scale
+			else
+				fade_effects[i] = { alpha = alpha, scale = scale }
+			end
 		end
-		label.effect = effects
+		label.effect = fade_effects
 		if moment() >= countdown then
 			local cb = callback
 			scribe.clear()
@@ -107,21 +122,23 @@ function scribe.loop(delta)
 		return
 	end
 
-	local effects = {}
-	local completed = {}
+	local has_effects = false
 	for i, s in pairs(states) do
 		if s.alpha >= 255 then
-			completed[#completed + 1] = i
+			states[i] = nil
+			tweens.scribe[i] = nil
+			effects[i] = nil
 		else
-			effects[i] = { alpha = s.alpha }
+			local entry = effects[i]
+			if entry then
+				entry.alpha = s.alpha
+			else
+				effects[i] = { alpha = s.alpha }
+			end
+			has_effects = true
 		end
 	end
-	for j = 1, #completed do
-		local i = completed[j]
-		states[i] = nil
-		tweens.scribe[i] = nil
-	end
-	if next(effects) then
+	if has_effects then
 		label.effect = effects
 	end
 
