@@ -76,6 +76,11 @@
 		},
 		{
 			"action": "default",
+			"kind": "playboy",
+			"name": "playboy"
+		},
+		{
+			"action": "default",
 			"kind": "layout",
 			"name": "layout"
 		},
