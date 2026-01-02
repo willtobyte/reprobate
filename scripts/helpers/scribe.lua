@@ -1,7 +1,7 @@
 local scribe = {}
 
 local INTERVAL = 0.08
-local FADE_DURATION = 1.0
+local FADE_IN_DURATION = 1.0
 local FADE_OUT_DURATION = 0.6
 
 local label = nil
@@ -82,7 +82,7 @@ function scribe.loop(delta)
 			local substr = text:sub(1, index)
 			label:set(substr, x, y)
 			states[index] = { alpha = 0 }
-			tweens.scribe[index] = tween.new(FADE_DURATION, states[index], { alpha = 255 }, "outQuad")
+			tweens.scribe[index] = tween.new(FADE_IN_DURATION, states[index], { alpha = 255 }, "outQuad")
 			if index >= #text then
 				writing = false
 				countdown = moment() + finish_delay
@@ -129,7 +129,7 @@ function scribe.loop(delta)
 		if moment() >= countdown then
 			fading_out = true
 			fade_out_state = { alpha = 255, scale = 1.0 }
-			tweens.scribe.fade_out = tween.new(FADE_OUT_DURATION, fade_out_state, { alpha = 0, scale = 0.5 }, "inQuad")
+			tweens.scribe.fade_out = tween.new(FADE_OUT_DURATION, fade_out_state, { alpha = 0, scale = 0.0 }, "linear")
 			countdown = moment() + (FADE_OUT_DURATION * 1000)
 		end
 	end
