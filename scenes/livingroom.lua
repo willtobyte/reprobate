@@ -1,11 +1,5 @@
 local scene = {}
 
-local tween = require("library/tween")
-local tweens = require("helpers/tweens")
-local scribe = require("helpers/scribe")
-
-local Inventory = require("overlay/inventory")
-
 local hideable = {
 	"antiquewallclock",
 	"baphomet",

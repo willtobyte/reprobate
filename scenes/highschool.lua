@@ -1,10 +1,5 @@
 local scene = {}
 
-local Inventory = require("overlay/inventory")
-
-local tweens = require("helpers/tweens")
-local scribe = require("helpers/scribe")
-
 function scene.on_enter()
 	state.system.stage = "highschool"
 

@@ -1,10 +1,6 @@
 local scene = {}
 
-local Inventory = require("overlay/inventory")
-
-local tweens = require("helpers/tweens")
 local prank = require("helpers/prank")
-local scribe = require("helpers/scribe")
 
 local items = { "crucifix", "gijoe", "nintendo", "playboy" }
 

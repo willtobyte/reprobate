@@ -1,8 +1,5 @@
 local scene = {}
 
-local tweens = require("helpers/tweens")
-local scribe = require("helpers/scribe")
-
 local items = { "openendwrench", "smallkey", "gasoline", "tubeamplifier" }
 
 local function verify()

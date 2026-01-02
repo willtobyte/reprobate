@@ -1,6 +1,3 @@
-local tween = require("library/tween")
-local tweens = require("helpers/tweens")
-
 local z = 1000
 
 local function collectible(name, options)
