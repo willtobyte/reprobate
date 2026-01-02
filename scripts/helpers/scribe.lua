@@ -2,6 +2,7 @@ local scribe = {}
 
 local INTERVAL = 0.08
 local FADE_DURATION = 1.0
+local FADE_OUT_DURATION = 0.6
 
 local label = nil
 local text = ""
@@ -13,6 +14,8 @@ local countdown = nil
 local callback = nil
 local x, y = 0, 0
 local states = {}
+local fading_out = false
+local fade_out_state = nil
 
 local function initialize()
 	if not label then
@@ -36,6 +39,9 @@ function scribe.clear()
 	writing = false
 	countdown = nil
 	callback = nil
+	fading_out = false
+	fade_out_state = nil
+	tweens.scribe.fade_out = nil
 	for k in pairs(states) do
 		tweens.scribe[k] = nil
 		states[k] = nil
@@ -85,6 +91,22 @@ function scribe.loop(delta)
 		end
 	end
 
+	if fading_out then
+		local effects = {}
+		for i = 1, #text do
+			effects[i] = { alpha = fade_out_state.alpha, scale = fade_out_state.scale }
+		end
+		label.effect = effects
+		if moment() >= countdown then
+			local cb = callback
+			scribe.clear()
+			if cb then
+				return cb()
+			end
+		end
+		return
+	end
+
 	local effects = {}
 	local completed = {}
 	for i, s in pairs(states) do
@@ -105,11 +127,10 @@ function scribe.loop(delta)
 
 	if not writing and countdown then
 		if moment() >= countdown then
-			local cb = callback
-			scribe.clear()
-			if cb then
-				return cb()
-			end
+			fading_out = true
+			fade_out_state = { alpha = 255, scale = 1.0 }
+			tweens.scribe.fade_out = tween.new(FADE_OUT_DURATION, fade_out_state, { alpha = 0, scale = 0.5 }, "inQuad")
+			countdown = moment() + (FADE_OUT_DURATION * 1000)
 		end
 	end
 end
