@@ -10,7 +10,7 @@ end
 
 function ticker.every(ticks, callback)
 	id = id + 1
-	counters[id] = { target = ticks, current = math.random(0, ticks - 1), callback = callback, once = false }
+	counters[id] = { target = ticks, current = 0, callback = callback, once = false }
 	return id
 end
 
