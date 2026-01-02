@@ -1,6 +1,8 @@
 local tween = require("library/tween")
 local tweens = require("helpers/tweens")
 
+local z = 1000
+
 local function collectible(name, options)
 	local damage = options and options.damage
 	local hud = options and options.hud
@@ -24,7 +26,8 @@ local function collectible(name, options)
 
 			local object = pool[name]
 			object:on_touch(nil)
-			object.z = 1000
+			z = z + 1
+			object.z = z
 			state[name] = true
 
 			if damage then
