@@ -24,6 +24,7 @@ local function collectible(name, options)
 
 			local object = pool[name]
 			object:on_touch(nil)
+			object.z = 1000
 			state[name] = true
 
 			if damage then
