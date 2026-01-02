@@ -7,6 +7,16 @@
 	"objects": [
 		{
 			"action": "default",
+			"kind": "cottoncandycocoongun",
+			"name": "cottoncandycocoongun"
+		},
+		{
+			"action": "default",
+			"kind": "bookshelf",
+			"name": "bookshelf"
+		},
+		{
+			"action": "default",
 			"kind": "bloodpriest",
 			"name": "bloodpriest"
 		},
@@ -59,11 +69,6 @@
 			"action": "default",
 			"kind": "headphone",
 			"name": "headphone"
-		},
-		{
-			"action": "default",
-			"kind": "cottoncandycocoongun",
-			"name": "cottoncandycocoongun"
 		},
 		{
 			"action": "default",
