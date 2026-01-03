@@ -13,6 +13,8 @@ function transition(options)
 		for _, name in ipairs(options.destroy) do
 			scenemanager:destroy(name)
 		end
+
+		collectgarbage("collect")
 	end
 
 	if options.register then
@@ -147,6 +149,14 @@ jump = {}
 
 function jump.to(name)
 	return function()
+		local current = scenemanager.current
+
+		if current and current ~= name then
+			scenemanager:destroy(current)
+		end
+
 		scenemanager:set(name)
+
+		collectgarbage("collect")
 	end
 end
