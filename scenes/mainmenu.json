@@ -12,8 +12,8 @@
 		},
 		{
 			"action": "default",
-			"kind": "credits",
-			"name": "credits"
+			"kind": "whobuilt",
+			"name": "whobuilt"
 		},
 		{
 			"action": "left",

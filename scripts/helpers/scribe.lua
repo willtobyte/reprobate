@@ -4,7 +4,7 @@ local INTERVAL = 0.08
 local FADE_IN_DURATION = 1.0
 local FADE_OUT_DURATION = 0.6
 
-local label = nil
+local label = overlay:create(WidgetType.label, "rpgfont")
 local text = ""
 local index = 0
 local accumulator = 0
@@ -18,14 +18,6 @@ local fading_out = false
 local fade_out_state = nil
 local effects = {}
 local fade_effects = {}
-
-local function initialize()
-	if not label then
-		label = overlay:create(WidgetType.label)
-		local font = fontfactory:get("rpgfont")
-		label.font = font
-	end
-end
 
 function scribe.on_finish(timeout, cb)
 	assert(type(timeout) == "number")
@@ -54,20 +46,14 @@ function scribe.clear()
 	for k in pairs(fade_effects) do
 		fade_effects[k] = nil
 	end
-	if label then
-		label.effect = nil
-		label:clear()
-	end
+	label.effect = nil
+	label:clear()
 end
 
 function scribe.write(txt, px, py)
 	assert(type(txt) == "string")
 	assert(type(px) == "number")
 	assert(type(py) == "number")
-	initialize()
-	if not label then
-		return
-	end
 	text = txt
 	index = 0
 	accumulator = 0
@@ -78,10 +64,6 @@ function scribe.write(txt, px, py)
 end
 
 function scribe.loop(delta)
-	if not label then
-		return
-	end
-
 	if writing then
 		accumulator = accumulator + delta
 		while accumulator >= INTERVAL do

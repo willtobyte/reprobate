@@ -1,6 +1,7 @@
 local scene = {}
 
 local basic = require("interpreters/basic")
+pool.label = overlay:create(WidgetType.label, "retro")
 
 function scene.on_enter()
 	transition({
@@ -24,10 +25,6 @@ TYPE RUN TO BEGIN
 	}
 	pool.typing = false
 	pool.halted = false
-
-	pool.font = fontfactory:get("retro")
-	pool.label = overlay:create(WidgetType.label)
-	pool.label.font = pool.font
 
 	pool.dialup:on_end(function()
 		print(">>> ...")
@@ -59,7 +56,7 @@ function scene.on_text(text)
 	end
 
 	text = string.upper(text)
-	if pool.font.glyphs:find(text, 1, true) then
+	if pool.label.glyphs:find(text, 1, true) then
 		pool.program = pool.program .. text
 		pool.typing = true
 	end

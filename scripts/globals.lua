@@ -147,12 +147,7 @@ jump = {}
 
 function jump.to(name)
 	return function()
-		local current = scenemanager.current
-
-		if current and current ~= name then
-			scenemanager:destroy(current)
-		end
-
+		scenemanager:register(name)
 		scenemanager:set(name)
 	end
 end
