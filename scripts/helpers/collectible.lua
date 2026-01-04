@@ -28,7 +28,7 @@ local function collectible(name, options)
 			state[name] = true
 
 			if damage then
-				overlay:dispatch(WidgetType.cursor, "damage")
+				overlay:dispatch("damage")
 			end
 
 			tweens.disappear[name] = tween.new(1, object, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")

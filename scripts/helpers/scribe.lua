@@ -4,7 +4,7 @@ local INTERVAL = 0.08
 local FADE_IN_DURATION = 1.0
 local FADE_OUT_DURATION = 0.6
 
-local label = overlay:create(WidgetType.label, "rpgfont")
+local label = overlay:label("rpgfont")
 local text = ""
 local index = 0
 local accumulator = 0

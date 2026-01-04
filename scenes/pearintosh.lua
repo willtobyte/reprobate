@@ -3,7 +3,7 @@ local scene = {}
 local basic = require("interpreters/basic")
 
 function scene.on_enter()
-	pool.label = overlay:create(WidgetType.label, "retro")
+	pool.label = overlay:label("retro")
 	transition({
 		destroy = { "mainmenu", "whobuilt", "retrostatic" },
 		register = { "highschool" },
@@ -151,7 +151,7 @@ function scene.on_keypress(code)
 end
 
 function scene.on_leave()
-	overlay:destroy(pool.label)
+	overlay:label(pool.label)
 end
 
 ticker.wrap(scene)

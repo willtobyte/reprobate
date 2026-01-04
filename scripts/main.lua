@@ -15,7 +15,7 @@ math.randomseed(666)
 require("globals")
 
 function setup()
-	overlay:create(WidgetType.cursor, "horn")
+	overlay:cursor("horn")
 
 	local scene = queryparam("scene", "prelude")
 
