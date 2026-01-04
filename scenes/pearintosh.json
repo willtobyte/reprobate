@@ -4,7 +4,6 @@
 	"height": 270,
 	"layer": { "type": "background" },
 	"effects": ["dialup", "key1", "key2"],
-	"fonts": ["retro"],
 	"objects": [
 		{
 			"action": "default",

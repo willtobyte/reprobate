@@ -150,10 +150,6 @@ function scene.on_keypress(code)
 	end
 end
 
-function scene.on_leave()
-	pool.label:clear()
-end
-
 ticker.wrap(scene)
 sentinel(scene, "pearintosh")
 
