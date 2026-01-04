@@ -5,6 +5,7 @@ local hideable = {
 	"baphomet",
 	"bloodpriest",
 	"pictures",
+	"playboy",
 	"mirrors",
 	"ogremask",
 	"window",
