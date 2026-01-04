@@ -1,9 +1,9 @@
 local scene = {}
 
 local basic = require("interpreters/basic")
-pool.label = overlay:create(WidgetType.label, "retro")
 
 function scene.on_enter()
+	pool.label = overlay:create(WidgetType.label, "retro")
 	transition({
 		destroy = { "mainmenu", "whobuilt", "retrostatic" },
 		register = { "highschool" },
