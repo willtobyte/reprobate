@@ -16,6 +16,11 @@ local held = nil
 function scene.on_enter()
 	state.system.stage = "chemistrylab"
 
+	transition({
+		destroy = { "mainmenu", "whobuilt" },
+		-- register = { "" },
+	})
+
 	held = slot.collected(verify)
 
 	pool.geigereffect:play(true)
