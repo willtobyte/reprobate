@@ -151,7 +151,7 @@ function scene.on_keypress(code)
 end
 
 function scene.on_leave()
-	pool.label:destroy()
+	overlay:destroy(pool.label)
 end
 
 ticker.wrap(scene)
