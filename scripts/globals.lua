@@ -22,8 +22,6 @@ function transition(options)
 	end
 end
 
----@class State
----@field [string] any
 state = { system = {} }
 
 local function _wrap_key(key)
