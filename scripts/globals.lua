@@ -41,6 +41,10 @@ setmetatable(state.system, {
 	end,
 })
 
+function state.clear()
+	cassette:clear()
+end
+
 setmetatable(state, {
 	__newindex = function(t, k, v)
 		cassette:set(_wrap_key(k), v)

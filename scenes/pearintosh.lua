@@ -27,7 +27,14 @@ TYPE RUN TO BEGIN
 	pool.halted = false
 
 	pool.dialup:on_end(function()
-		print(">>> ...")
+		if not pool.pentagram then
+			return
+		end
+
+		state.clear()
+
+		local fn = jump.to("mainmenu")
+		fn()
 	end)
 end
 
