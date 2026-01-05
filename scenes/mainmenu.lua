@@ -11,8 +11,8 @@ function scene.on_enter()
 	pool.theme:play(true)
 end
 
-function scene.on_motion(x, y)
-	pool.headbanger.on_motion(x)
+function scene.on_motion(x)
+	pool.headbanger.motion(x)
 end
 
 ticker.wrap(scene)
