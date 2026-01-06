@@ -28,3 +28,4 @@ repos:
     rev: v10.0.0
     hooks:
       - id: oxipng
+        args: ["-o", "6", "--strip", "safe", "--alpha"]
