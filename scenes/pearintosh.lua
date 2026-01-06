@@ -103,7 +103,21 @@ function scene.on_keypress(code)
 					if pool.pentagram then
 						pool.backcursor.visible = false
 						pool.dialup:play()
-						pool.program = pool.program .. "\nLay down my soul to the gods of metal."
+						pool.program = pool.program
+							.. "\n"
+							.. [[
+
+I invoke the Four Forces!
+
+Satan,the will that burns and defies.
+Lucifer,the light that awakens forbidden sight.
+Belial,the untamed lord of earthbound power.
+Leviathan,the abyssal force of endless depths.
+
+Four Forces come forth!
+
+...
+            ]]
 					end
 				end
 
