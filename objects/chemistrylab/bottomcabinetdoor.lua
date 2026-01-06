@@ -9,10 +9,13 @@ return {
 		if not state.safe then
 			return
 		end
+
 		if state.bottomcabinetdoor then
 			return
 		end
+
 		self:on_touch(nil)
+
 		state.bottomcabinetdoor = true
 		self.action = "open"
 		pool.tubeamplifier.action = "default"
