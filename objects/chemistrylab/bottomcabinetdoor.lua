@@ -6,6 +6,9 @@ return {
 	end,
 
 	on_touch = function()
+		if not state.safe then
+			return
+		end
 		if state.bottomcabinetdoor then
 			return
 		end
