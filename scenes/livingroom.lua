@@ -1,103 +1,103 @@
 local scene = {}
 
 local hideable = {
-	"antiquewallclock",
-	"baphomet",
-	"bloodpriest",
-	"pictures",
-	"playboy",
-	"mirrors",
-	"ogremask",
-	"window",
+  "antiquewallclock",
+  "baphomet",
+  "bloodpriest",
+  "pictures",
+  "playboy",
+  "mirrors",
+  "ogremask",
+  "window",
 }
 
 local items = { "sugarcanespirit", "voodoodoll", "headphone", "cottoncandycocoongun" }
 
 local function verify()
-	for _, name in ipairs(items) do
-		if not state[name] then
-			return
-		end
-	end
+  for _, name in ipairs(items) do
+    if not state[name] then
+      return
+    end
+  end
 
-	state.system.stage = "highschool"
-	pool.gettingintometal:play()
+  state.system.stage = "highschool"
+  pool.gettingintometal:play()
 
-	ticker.after(20, function()
-		scribe.clear()
+  ticker.after(20, function()
+    scribe.clear()
 
-		for _, name in ipairs(hideable) do
-			if pool[name] then
-				pool[name].visible = false
-			end
-		end
+    for _, name in ipairs(hideable) do
+      if pool[name] then
+        pool[name].visible = false
+      end
+    end
 
-		pool.cabinetdoor.visible = false
-		pool.layout.visible = false
-		pool.boy.visible = false
-		for _, name in ipairs(items) do
-			pool["HUD/" .. name].visible = false
-		end
-		pool.teenager.action = "default"
-		pool.teenager.alpha = 200
-		tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
-	end)
+    pool.cabinetdoor.visible = false
+    pool.layout.visible = false
+    pool.boy.visible = false
+    for _, name in ipairs(items) do
+      pool["HUD/" .. name].visible = false
+    end
+    pool.teenager.action = "default"
+    pool.teenager.alpha = 200
+    tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
+  end)
 
-	ticker.after(50, function()
-		pool.teenager.action = nil
-		pool.teenager.action = "default"
-		pool.voodoocast.action = "default"
-		pool.voodoocast.alpha = 0
-		tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
-	end)
+  ticker.after(50, function()
+    pool.teenager.action = nil
+    pool.teenager.action = "default"
+    pool.voodoocast.action = "default"
+    pool.voodoocast.alpha = 0
+    tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
+  end)
 
-	ticker.after(90, function()
-		pool.teenager:on_touch(jump.to("highschool"))
-	end)
+  ticker.after(90, function()
+    pool.teenager:on_touch(jump.to("highschool"))
+  end)
 end
 
 local held = nil
 
 function scene.on_enter()
-	state.system.stage = "livingroom"
+  state.system.stage = "livingroom"
 
-	transition({
-		destroy = { "mainmenu", "whobuilt", "babyroom" },
-		register = { "highschool" },
-	})
+  transition({
+    destroy = { "mainmenu", "whobuilt", "babyroom" },
+    register = { "highschool" },
+  })
 
-	held = slot.collected(verify)
+  held = slot.collected(verify)
 
-	local objects = {}
-	for _, name in ipairs(items) do
-		table.insert(objects, pool["HUD/" .. name])
-	end
+  local objects = {}
+  for _, name in ipairs(items) do
+    table.insert(objects, pool["HUD/" .. name])
+  end
 
-	pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
+  pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
 
-	pool.rainmuffled:play(true)
+  pool.rainmuffled:play(true)
 end
 
 function scene.on_motion(x, y)
-	pool.inventory.motion(x, y)
+  pool.inventory.motion(x, y)
 end
 
 function scene.on_loop(delta)
-	scribe.loop(delta)
+  scribe.loop(delta)
 
-	pool.inventory.loop(delta)
+  pool.inventory.loop(delta)
 
-	tweens.loop(delta, function(type, name, t)
-		if t.subject and type == "disappear" then
-			t.subject.visible = false
-		end
-	end)
+  tweens.loop(delta, function(type, name, t)
+    if t.subject and type == "disappear" then
+      t.subject.visible = false
+    end
+  end)
 end
 
 function scene.on_leave()
-	disconnect(held)
-	scribe.clear()
-	tweens.teardown()
+  disconnect(held)
+  scribe.clear()
+  tweens.teardown()
 end
 
 ticker.wrap(scene)

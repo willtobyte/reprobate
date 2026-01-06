@@ -3,11 +3,11 @@ local base = collectible("gasoline")
 local original = base.on_touch
 
 base.on_touch = function()
-	if not state.safe then
-		return
-	end
+  if not state.safe then
+    return
+  end
 
-	original()
+  original()
 end
 
 return base
