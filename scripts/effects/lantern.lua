@@ -2,15 +2,30 @@ local M = {}
 M.__index = M
 
 local floor = math.floor
-local min = math.min
-local max = math.max
+local sqrt = math.sqrt
 
 local INNER_RADIUS = 40
 local FADE_WIDTH = 20
 local OUTER_RADIUS = INNER_RADIUS + FADE_WIDTH
 local OUTER_RADIUS_SQ = OUTER_RADIUS * OUTER_RADIUS
 local INNER_RADIUS_SQ = INNER_RADIUS * INNER_RADIUS
-local FADE_RANGE = OUTER_RADIUS_SQ - INNER_RADIUS_SQ
+local FADE_SCALE = 255 / (OUTER_RADIUS_SQ - INNER_RADIUS_SQ)
+
+local max_dx_by_dy = {}
+for dy = 0, OUTER_RADIUS do
+  local remaining = OUTER_RADIUS_SQ - dy * dy
+  max_dx_by_dy[dy] = remaining > 0 and floor(sqrt(remaining)) or 0
+end
+
+local alpha_by_dist_sq = {}
+for dist_sq = 0, OUTER_RADIUS_SQ do
+  if dist_sq <= INNER_RADIUS_SQ then
+    alpha_by_dist_sq[dist_sq] = 0
+  else
+    local alpha = floor((dist_sq - INNER_RADIUS_SQ) * FADE_SCALE)
+    alpha_by_dist_sq[dist_sq] = alpha > 255 and 255 or alpha
+  end
+end
 
 local WIDTH = 480
 local HEIGHT = 270
@@ -24,7 +39,6 @@ local ffi = rawget(_G, "jit") and require("ffi")
 if ffi then
   local buffer = ffi.new("uint8_t[?]", BUFFER_SIZE)
   local ffi_copy = ffi.copy
-  local ffi_fill = ffi.fill
   local ffi_string = ffi.string
 
   for i = 0, TOTAL_PIXELS - 1 do
@@ -62,33 +76,33 @@ if ffi then
 
     ffi_copy(buffer, opaque_buffer, BUFFER_SIZE)
 
-    local y_start = max(0, my - OUTER_RADIUS)
-    local y_end = min(HEIGHT - 1, my + OUTER_RADIUS)
+    local y_start = my - OUTER_RADIUS
+    if y_start < 0 then
+      y_start = 0
+    end
+    local y_end = my + OUTER_RADIUS
+    if y_end > HEIGHT - 1 then
+      y_end = HEIGHT - 1
+    end
 
     for y = y_start, y_end do
       local dy = y - my
+      local abs_dy = dy < 0 and -dy or dy
+      local max_dx = max_dx_by_dy[abs_dy]
+      local x_start = mx - max_dx
+      if x_start < 0 then
+        x_start = 0
+      end
+      local x_end = mx + max_dx
+      if x_end > WIDTH - 1 then
+        x_end = WIDTH - 1
+      end
       local dy_sq = dy * dy
-      local max_dx_sq = OUTER_RADIUS_SQ - dy_sq
-      if max_dx_sq > 0 then
-        local max_dx = floor(max_dx_sq ^ 0.5)
-        local x_start = max(0, mx - max_dx)
-        local x_end = min(WIDTH - 1, mx + max_dx)
-        local row_offset = y * WIDTH * 4
+      local row_offset = y * WIDTH * 4
 
-        for x = x_start, x_end do
-          local dx = x - mx
-          local dist_sq = dx * dx + dy_sq
-          local alpha
-          if dist_sq <= INNER_RADIUS_SQ then
-            alpha = 0
-          else
-            alpha = floor(((dist_sq - INNER_RADIUS_SQ) / FADE_RANGE) * 255)
-            if alpha > 255 then
-              alpha = 255
-            end
-          end
-          buffer[row_offset + x * 4 + 3] = alpha
-        end
+      for x = x_start, x_end do
+        local dx = x - mx
+        buffer[row_offset + x * 4 + 3] = alpha_by_dist_sq[dx * dx + dy_sq]
       end
     end
 
@@ -110,7 +124,6 @@ else
 
   local opaque = pixel_cache[255]
   local opaque_row = rep(opaque, WIDTH)
-  local full_opaque = rep(opaque_row, HEIGHT)
 
   local prefix_cache = { [0] = "" }
   local suffix_cache = { [0] = "" }
@@ -195,22 +208,14 @@ else
       for x = x_start_base, x_end_base do
         local dx = x - mx
         local dist_sq = dx * dx + dy_sq
-        local alpha
-        if dist_sq <= INNER_RADIUS_SQ then
-          alpha = 0
-        elseif dist_sq >= OUTER_RADIUS_SQ then
-          alpha = 255
-        else
-          alpha = floor(((dist_sq - INNER_RADIUS_SQ) / FADE_RANGE) * 255)
-        end
         ri = ri + 1
-        row_pixels[ri] = pixel_cache[alpha]
+        row_pixels[ri] = pixel_cache[alpha_by_dist_sq[dist_sq] or 255]
       end
 
       pi = pi + 1
       parts[pi] = prefix_str
       pi = pi + 1
-      parts[pi] = concat(row_pixels, "", 1, row_width)
+      parts[pi] = concat(row_pixels, nil, 1, row_width)
       pi = pi + 1
       parts[pi] = suffix_str
     end
@@ -221,7 +226,7 @@ else
       parts[pi] = row_bot_cache[remaining]
     end
 
-    canvas.pixels = concat(parts, "", 1, pi)
+    canvas.pixels = concat(parts, nil, 1, pi)
   end
 
   function M:teardown()
