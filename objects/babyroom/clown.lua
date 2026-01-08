@@ -1,6 +1,6 @@
 return {
   on_spawn = function()
-    ticker.every(math.random(6, 9) * 10, function()
+    ticker.every(math.random(13, 16) * 10, function()
       self.action = "blink"
     end)
   end,
