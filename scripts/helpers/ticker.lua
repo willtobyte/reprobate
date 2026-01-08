@@ -1,6 +1,8 @@
 local ticker = {}
 local counters = {}
 local id = 0
+local to_remove = {}
+local to_remove_count = 0
 
 function ticker.after(ticks, callback)
   id = id + 1
@@ -19,24 +21,28 @@ function ticker.cancel(timer_id)
 end
 
 function ticker.clear()
-  counters = {}
+  for key in pairs(counters) do
+    counters[key] = nil
+  end
+  id = 0
 end
 
 function ticker.tick()
-  local to_remove = {}
-  for tid, c in pairs(counters) do
-    c.current = c.current + 1
-    if c.current >= c.target then
-      c.callback()
-      if c.once then
-        to_remove[#to_remove + 1] = tid
+  to_remove_count = 0
+  for tid, counter in pairs(counters) do
+    counter.current = counter.current + 1
+    if counter.current >= counter.target then
+      counter.callback()
+      if counter.once then
+        to_remove_count = to_remove_count + 1
+        to_remove[to_remove_count] = tid
       else
-        c.current = 0
+        counter.current = 0
       end
     end
   end
-  for i = 1, #to_remove do
-    counters[to_remove[i]] = nil
+  for index = 1, to_remove_count do
+    counters[to_remove[index]] = nil
   end
 end
 
