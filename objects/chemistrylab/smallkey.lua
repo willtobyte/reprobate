@@ -1,4 +1,4 @@
-local base = collectible("smallkey")
+local base = collectible("smallkey", { hud = true })
 
 local original = base.on_touch
 

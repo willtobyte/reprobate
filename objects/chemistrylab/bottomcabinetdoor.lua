@@ -14,12 +14,18 @@ return {
       return
     end
 
+    if not state.smallkey then
+      return
+    end
+
     self:on_touch(nil)
 
     state.bottomcabinetdoor = true
+    state.unlocked = true
     self.action = "open"
     pool.tubeamplifier.action = "default"
     pool.tubeamplifier.alpha = 0
     tweens.appear.tubeamplifier = tween.new(1, pool.tubeamplifier, { alpha = 255 })
+    pool["HUD/smallkey"].visible = false
   end,
 }
