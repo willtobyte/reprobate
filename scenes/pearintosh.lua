@@ -102,6 +102,7 @@ function scene.on_keypress(code)
 
           if pool.pentagram then
             pool.backcursor.visible = false
+            pool.switch:on_touch(nil)
             pool.dialup:play()
             pool.program = pool.program
               .. "\n"

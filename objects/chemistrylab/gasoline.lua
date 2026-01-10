@@ -1,4 +1,4 @@
-local base = collectible("gasoline")
+local base = collectible("gasoline", { hud = true })
 
 local original = base.on_touch
 
