@@ -1,1 +1,1 @@
-return collectible("cottoncandycocoongun", { hud = true })
+return collectible("cottoncandycocoongun")

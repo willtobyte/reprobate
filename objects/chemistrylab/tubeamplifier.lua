@@ -1,4 +1,4 @@
-local base = collectible("tubeamplifier", { hud = true })
+local base = collectible("tubeamplifier")
 local original = base.on_touch
 
 base.on_touch = function()

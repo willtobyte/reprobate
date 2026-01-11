@@ -1,1 +1,1 @@
-return collectible("crucifix", { damage = true, hud = true })
+return collectible("crucifix", { damage = true })

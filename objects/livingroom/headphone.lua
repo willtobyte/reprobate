@@ -1,1 +1,1 @@
-return collectible("headphone", { hud = true })
+return collectible("headphone")

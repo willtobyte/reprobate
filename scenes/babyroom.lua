@@ -38,13 +38,6 @@ function scene.on_enter()
     verify()
   end)
 
-  local objects = {}
-  for _, name in ipairs(items) do
-    table.insert(objects, pool["HUD/" .. name])
-  end
-
-  pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
-
   scribe.say("I drown your divinity in the acheron of my soul.", 3, 3, 12000)
 end
 
@@ -52,14 +45,8 @@ function scene.on_touch()
   pool.beelzebuuth.misses = (pool.beelzebuuth.misses or 0) + 1
 end
 
-function scene.on_motion(x, y)
-  pool.inventory.motion(x, y)
-end
-
 function scene.on_loop(delta)
   scribe.loop(delta)
-
-  pool.inventory.loop(delta)
 
   tweens.loop(delta, function(type, name, t)
     if t.subject and type == "disappear" then
@@ -72,8 +59,13 @@ function scene.on_leave()
   disconnect(held)
   scribe.clear()
   tweens.teardown()
-  pool.inventory.teardown()
 end
+
+HUD(scene, {
+  layout = "layout",
+  character = "boy",
+  items = items,
+})
 
 ticker.wrap(scene)
 sentinel(scene, "babyroom")

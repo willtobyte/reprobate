@@ -5,6 +5,7 @@ scribe = require("helpers/scribe")
 say = scribe.say
 Inventory = require("overlay/inventory")
 collectible = require("helpers/collectible")
+HUD = require("helpers/HUD")
 tween = require("library/tween")
 tweens = require("helpers/tweens")
 

@@ -1,1 +1,1 @@
-return collectible("playboy", { hud = true })
+return collectible("playboy")

@@ -2,7 +2,6 @@ local z = 1000
 
 local function collectible(name, options)
   local damage = options and options.damage
-  local hud = options and options.hud
 
   return {
     on_spawn = function()
@@ -11,8 +10,9 @@ local function collectible(name, options)
       end
 
       pool[name].visible = false
-      if hud then
-        pool["HUD/" .. name].action = "default"
+      local thumbnail = pool["HUD/" .. name]
+      if thumbnail then
+        thumbnail.action = "default"
       end
     end,
 
@@ -32,8 +32,10 @@ local function collectible(name, options)
       end
 
       tweens.disappear[name] = tween.new(1, object, { alpha = 0, angle = 360, scale = 1.6 }, "inOutQuad")
-      if hud then
-        pool["HUD/" .. name].action = "default"
+
+      local thumbnail = pool["HUD/" .. name]
+      if thumbnail then
+        thumbnail.action = "default"
       end
 
       emit.collected(name)

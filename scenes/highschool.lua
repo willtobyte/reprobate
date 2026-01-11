@@ -8,34 +8,29 @@ function scene.on_enter()
     register = { "pearintosh" },
   })
 
-  local magazine = pool["HUD/playboy"]
-
-  pool.inventory = Inventory.new(pool.layout, pool.boy, { magazine })
-
   if not state.sourcecode then
     return
   end
 
   pool.minisourcecode.action = "default"
-
-  magazine.action = nil
-end
-
-function scene.on_motion(x, y)
-  pool.inventory.motion(x, y)
+  pool["HUD/playboy"].action = nil
 end
 
 function scene.on_loop(delta)
   scribe.loop(delta)
-  pool.inventory.loop(delta)
   tweens.loop(delta)
 end
 
 function scene.on_leave()
   scribe.clear()
   tweens.teardown()
-  pool.inventory.teardown()
 end
+
+HUD(scene, {
+  layout = "layout",
+  character = "boy",
+  items = { "playboy" },
+})
 
 ticker.wrap(scene)
 sentinel(scene, "highschool")

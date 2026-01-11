@@ -68,24 +68,11 @@ function scene.on_enter()
 
   held = slot.collected(verify)
 
-  local objects = {}
-  for _, name in ipairs(items) do
-    table.insert(objects, pool["HUD/" .. name])
-  end
-
-  pool.inventory = Inventory.new(pool.layout, pool.boy, objects)
-
   pool.rainmuffled:play(true)
-end
-
-function scene.on_motion(x, y)
-  pool.inventory.motion(x, y)
 end
 
 function scene.on_loop(delta)
   scribe.loop(delta)
-
-  pool.inventory.loop(delta)
 
   tweens.loop(delta, function(type, name, t)
     if t.subject and type == "disappear" then
@@ -99,6 +86,12 @@ function scene.on_leave()
   scribe.clear()
   tweens.teardown()
 end
+
+HUD(scene, {
+  layout = "layout",
+  character = "boy",
+  items = items,
+})
 
 ticker.wrap(scene)
 sentinel(scene, "livingroom")

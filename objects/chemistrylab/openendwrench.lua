@@ -1,4 +1,4 @@
-local base = collectible("openendwrench", { hud = true })
+local base = collectible("openendwrench")
 
 local original = base.on_touch
 
