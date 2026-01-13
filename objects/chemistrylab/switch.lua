@@ -8,6 +8,8 @@ return {
 
     if state.switch == "on" then
       pool.light.action = "blinking"
+    else
+      pool.light.action = nil
     end
   end,
 
