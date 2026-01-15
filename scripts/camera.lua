@@ -4,18 +4,16 @@ local position = Quad.new(0, 0, viewport.width, viewport.height)
 local speed = 1
 
 function camera.calculate(delta)
-  local player = statemanager:player(Player.one)
-
-  if player:on(Controller.up) then
+  if Keyboard.up then
     position.y = position.y - speed
   end
-  if player:on(Controller.down) then
+  if Keyboard.down then
     position.y = position.y + speed
   end
-  if player:on(Controller.left) then
+  if Keyboard.left then
     position.x = position.x - speed
   end
-  if player:on(Controller.right) then
+  if Keyboard.right then
     position.x = position.x + speed
   end
 
