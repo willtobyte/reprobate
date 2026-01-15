@@ -3,7 +3,7 @@
 	"width": 480,
 	"height": 270,
 	"layer": { "type": "background" },
-	"effects": ["geigereffect"],
+	"sounds": ["geigereffect"],
 	"objects": [
 		{
 			"action": "default",
