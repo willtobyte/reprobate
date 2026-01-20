@@ -25,6 +25,7 @@ jobs:
         run: |
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
+          rm -rf functions
 
           zip -r cartridge.rom .
 
