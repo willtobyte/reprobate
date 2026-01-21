@@ -8,8 +8,6 @@ end
 function scene.on_touch()
   pool.click:play()
 
-  achievement:unlock("ACH_THE_FIRST_OF_MANY")
-
   pool.clicks = pool.clicks + 1
   if pool.clicks >= 10 then
     achievement:unlock("ACH_CLICK_FOREHEAD") -- How about trying to click with your forehead?
