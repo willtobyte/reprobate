@@ -28,7 +28,7 @@ jobs:
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
 
-          zip -r cartridge.rom .
+          zip -3 -r cartridge.rom .
 
       - name: Download Carimbo WebAssembly runtime
         env:

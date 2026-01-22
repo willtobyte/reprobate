@@ -27,7 +27,7 @@ jobs:
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
           rm -rf functions
 
-          zip -r cartridge.rom .
+          zip -3 -r cartridge.rom .
 
       - name: Release
         uses: softprops/action-gh-release@v2
