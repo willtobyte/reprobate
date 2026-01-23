@@ -14,7 +14,6 @@ function scene.on_touch()
   end
 end
 
-ticker.wrap(scene)
 sentinel(scene, "prelude")
 
 return scene
