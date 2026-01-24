@@ -1,0 +1,21 @@
+{
+	"timelines": {
+		"default": {
+			"frames": [
+				{
+					"duration": 200,
+					"offset": {
+						"x": 119,
+						"y": 223
+					},
+					"quad": {
+						"x": 0,
+						"y": 0,
+						"w": 242,
+						"h": 47
+					}
+				}
+			]
+		}
+	}
+}

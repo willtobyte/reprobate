@@ -72,6 +72,36 @@
 			"action": "default",
 			"kind": "geigercounter",
 			"name": "geigercounter"
+		},
+		{
+			"action": "default",
+			"kind": "layout",
+			"name": "layout"
+		},
+		{
+			"action": "default",
+			"kind": "boy",
+			"name": "boy"
+		},
+		{
+			"action": "default",
+			"kind": "HUD/gasoline",
+			"name": "HUD/gasoline"
+		},
+		{
+			"action": "default",
+			"kind": "HUD/openendwrench",
+			"name": "HUD/openendwrench"
+		},
+		{
+			"action": "default",
+			"kind": "HUD/smallkey",
+			"name": "HUD/smallkey"
+		},
+		{
+			"action": "default",
+			"kind": "HUD/tubeamplifier",
+			"name": "HUD/tubeamplifier"
 		}
 	],
 	"particles": [

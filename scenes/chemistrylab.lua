@@ -71,6 +71,12 @@ function scene.on_leave()
   tweens.teardown()
 end
 
+HUD(scene, {
+  layout = "layout",
+  character = "boy",
+  items = items,
+})
+
 sentinel(scene, "chemistrylab")
 
 return scene
