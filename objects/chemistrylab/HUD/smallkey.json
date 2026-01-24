@@ -1,9 +1,26 @@
 {
 	"timelines": {
-		"deafault": {
+		"shadow": {
 			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
+					"offset": {
+						"x": 318,
+						"y": 234
+					},
+					"quad": {
+						"x": 38,
+						"y": 1,
+						"w": 35,
+						"h": 27
+					}
+				}
+			]
+		},
+		"default": {
+			"frames": [
+				{
+					"duration": -1,
 					"offset": {
 						"x": 318,
 						"y": 234
@@ -16,21 +33,6 @@
 					}
 				}
 			]
-		},
-		"shadow": [
-			{
-				"duration": -1,
-				"offset": {
-					"x": 318,
-					"y": 234
-				},
-				"quad": {
-					"x": 38,
-					"y": 1,
-					"w": 35,
-					"h": 27
-				}
-			}
-		]
+		}
 	}
 }

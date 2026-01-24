@@ -84,22 +84,22 @@
 			"name": "boy"
 		},
 		{
-			"action": "default",
+			"action": "shadow",
 			"kind": "HUD/gasoline",
 			"name": "HUD/gasoline"
 		},
 		{
-			"action": "default",
+			"action": "shadow",
 			"kind": "HUD/openendwrench",
 			"name": "HUD/openendwrench"
 		},
 		{
-			"action": "default",
+			"action": "shadow",
 			"kind": "HUD/smallkey",
 			"name": "HUD/smallkey"
 		},
 		{
-			"action": "default",
+			"action": "shadow",
 			"kind": "HUD/tubeamplifier",
 			"name": "HUD/tubeamplifier"
 		}
