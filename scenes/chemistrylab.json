@@ -110,21 +110,24 @@
 			"kind": "smoke",
 			"spawning": true,
 			"x": 220,
-			"y": 190
+			"y": 190,
+			"z": 13
 		},
 		{
 			"name": "emitter2",
 			"kind": "smoke",
 			"spawning": true,
 			"x": 270,
-			"y": 220
+			"y": 220,
+			"z": 13
 		},
 		{
 			"name": "emitter3",
 			"kind": "smoke",
 			"spawning": true,
 			"x": 320,
-			"y": 190
+			"y": 190,
+			"z": 13
 		}
 	]
 }
