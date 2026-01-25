@@ -31,7 +31,8 @@ function scene.on_enter()
     register = { "livingroom" },
   })
 
-  prank.write("We Have A Connection.txt", "TODO...")
+  -- TODO
+  -- prank.write("We Have A Connection.txt", "")
 
   held = slot.collected(function()
     pool.television.animate()
