@@ -1,7 +1,6 @@
 local messages = {
   "I will not speak of stars, for the universe has faded away.",
-  "Shattered embers of ancient stars, wandering in flesh.",
-  "Darkness is not the absence of light, it is the abyss itself.",
+  "When all colors blend to black.",
 }
 
 local playboy = {
