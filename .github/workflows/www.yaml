@@ -42,7 +42,7 @@ jobs:
         run: |
           mkdir -p output
           touch output/favicon.ico
-          mv cartridge.rom output/
+          mv cartridge.zip output/
           mv carimbo.js output/
           mv carimbo.wasm output/
 
