@@ -28,7 +28,7 @@ jobs:
           find . -name '.*' ! -name '.' ! -name '..' -print
           find . -name '.*' ! -name '.' ! -name '..' -exec rm -rf {} +
 
-          zip -3 -r cartridge.rom .
+          zip -3 -r cartridge.zip .
 
       - name: Download Carimbo WebAssembly runtime
         env:
@@ -58,7 +58,7 @@ jobs:
           /carimbo.wasm
             Cache-Control: public, max-age=31536000, immutable
 
-          /cartridge.rom
+          /cartridge.zip
             Cache-Control: public, max-age=31536000, immutable
           EOF
 
@@ -139,7 +139,7 @@ jobs:
               <script>
                 console.log("Game: ${GIT_TAG}");
 
-                const download = fetch("cartridge.rom?v=${GIT_TAG}")
+                const download = fetch("cartridge.zip?v=${GIT_TAG}")
                   .then(res => res.blob())
                   .then(blob => blob.arrayBuffer());
 
