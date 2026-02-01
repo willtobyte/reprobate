@@ -71,9 +71,9 @@ jobs:
 
       - name: Create VERSION file
         run: |
-          echo "Carimbo: $CARIMBO_TAG" > VERSION
-          echo "Game: ${{ github.ref_name }}" >> VERSION
-          echo "Site: https://carimbo.site" >> VERSION
+          echo "Game: ${{ github.ref_name }}" > VERSION
+          echo "Carimbo: $CARIMBO_TAG" >> VERSION
+          echo "Site: https://github.com/willtobyte/carimbo" >> VERSION
 
       - name: Copy files
         run: |
