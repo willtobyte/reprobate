@@ -6,3 +6,5 @@ cassette.tape
 
 stdout.txt
 stderr.txt
+
+.opencode/
