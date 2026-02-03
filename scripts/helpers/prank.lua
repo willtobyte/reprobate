@@ -1,11 +1,11 @@
 local M = {}
 
 function M.write(filename, content)
-  if operatingsystem:name() ~= "Windows" then
+  if operatingsystem.name ~= "Windows" then
     return
   end
 
-  local path = desktop:folder() .. filename
+  local path = desktop.folder .. filename
   local file = io.open(path, "w")
   if not file then
     return
