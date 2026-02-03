@@ -10,7 +10,8 @@ function scene.on_enter()
   print("Persona Name: " .. user:persona())
 
   local friends = user:friends()
-  for _, friend in ipairs(friends) do
+  for i = 1, #friends do
+    local friend = friends[i]
     print("Friend ID: " .. tostring(friend[1]) .. ", Name: " .. friend[2])
   end
   --
