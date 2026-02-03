@@ -12,7 +12,7 @@ function scene.on_enter()
   local friends = user:friends()
   for i = 1, #friends do
     local friend = friends[i]
-    print("Friend ID: " .. tostring(friend[1]) .. ", Name: " .. friend[2])
+    print("Friend ID: " .. tostring(friend.first) .. ", Name: " .. friend.second)
   end
   --
 end
