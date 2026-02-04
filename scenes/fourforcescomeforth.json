@@ -4,7 +4,7 @@
 	"layer": { "type": "background" },
 	"objects": [
 		{
-			"action": "damage",
+			"action": "default",
 			"kind": "iconofhypocrisy",
 			"name": "iconofhypocrisy"
 		}

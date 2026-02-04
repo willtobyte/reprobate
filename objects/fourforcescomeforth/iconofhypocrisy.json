@@ -1,5 +1,22 @@
 {
 	"timelines": {
+		"default": {
+			"frames": [
+				{
+					"duration": -1,
+					"offset": {
+						"x": 204,
+						"y": 111
+					},
+					"quad": {
+						"x": 1,
+						"y": 1,
+						"w": 66,
+						"h": 52
+					}
+				}
+			]
+		},
 		"damage": {
 			"frames": [
 				{
