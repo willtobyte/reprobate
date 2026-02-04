@@ -1,5 +1,12 @@
 {
 	"width": 480,
 	"height": 270,
-	"layer": { "type": "background" }
+	"layer": { "type": "background" },
+	"objects": [
+		{
+			"action": "damage",
+			"kind": "iconofhypocrisy",
+			"name": "iconofhypocrisy"
+		}
+	]
 }
