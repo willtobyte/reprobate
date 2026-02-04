@@ -5,6 +5,11 @@
 	"objects": [
 		{
 			"action": "default",
+			"kind": "blood",
+			"name": "blood"
+		},
+		{
+			"action": "default",
 			"kind": "iconofhypocrisy",
 			"name": "iconofhypocrisy"
 		}
