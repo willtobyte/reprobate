@@ -32,6 +32,11 @@
 			"action": "default",
 			"kind": "satan",
 			"name": "satan"
+		},
+		{
+			"action": "default",
+			"kind": "projectile",
+			"name": "projectile"
 		}
 	]
 }
