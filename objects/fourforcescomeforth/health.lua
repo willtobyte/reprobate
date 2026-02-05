@@ -4,15 +4,15 @@ return {
   end,
 
   on_damage = function()
-    self.life = self.life - 1
-    if self.life < 0 then
+    if self.life <= 0 then
       return
     end
+
+    self.life = self.life - 1
+    self.action = tostring(self.life)
 
     if self.life == 0 then
       self.dead = true
     end
-
-    self.action = tostring(self.life)
   end,
 }
