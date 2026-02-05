@@ -7,11 +7,10 @@ function scene.on_enter()
 end
 
 function scene.on_motion(x, y)
-  --
-end
-
-function scene.on_touch()
-  pool.health.damage()
+  pool.lucifer.motion(y)
+  pool.leviathan.motion(y)
+  pool.belial.motion(x)
+  pool.satan.motion(x)
 end
 
 sentinel(scene, "fourforcescomeforth")
