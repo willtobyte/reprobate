@@ -5,8 +5,8 @@
 	"objects": [
 		{
 			"action": "5",
-			"kind": "blood",
-			"name": "blood"
+			"kind": "health",
+			"name": "health"
 		},
 		{
 			"action": "default",
