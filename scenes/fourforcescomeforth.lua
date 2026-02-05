@@ -2,7 +2,7 @@ local scene = {}
 
 function scene.on_enter()
   pool.health:subscribe("dead", function(value)
-    print("dead changed to", value)
+    -- TODO
   end)
 end
 
