@@ -28,7 +28,7 @@
 		"damage": {
 			"frames": [
 				{
-					"duration": 200,
+					"duration": 300,
 					"offset": {
 						"x": 204,
 						"y": 111
@@ -41,7 +41,7 @@
 					}
 				},
 				{
-					"duration": 200,
+					"duration": 300,
 					"offset": {
 						"x": 205,
 						"y": 111
@@ -54,7 +54,7 @@
 					}
 				},
 				{
-					"duration": 200,
+					"duration": 300,
 					"offset": {
 						"x": 205,
 						"y": 111
@@ -67,7 +67,7 @@
 					}
 				},
 				{
-					"duration": 200,
+					"duration": 300,
 					"offset": {
 						"x": 205,
 						"y": 111
