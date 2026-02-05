@@ -12,6 +12,26 @@
 			"action": "default",
 			"kind": "iconofhypocrisy",
 			"name": "iconofhypocrisy"
+		},
+		{
+			"action": "default",
+			"kind": "lucifer",
+			"name": "lucifer"
+		},
+		{
+			"action": "default",
+			"kind": "leviathan",
+			"name": "leviathan"
+		},
+		{
+			"action": "default",
+			"kind": "belial",
+			"name": "belial"
+		},
+		{
+			"action": "default",
+			"kind": "satan",
+			"name": "satan"
 		}
 	]
 }
