@@ -4,7 +4,7 @@
 	"layer": { "type": "background" },
 	"objects": [
 		{
-			"action": "default",
+			"action": "5",
 			"kind": "blood",
 			"name": "blood"
 		},

@@ -1,9 +1,9 @@
 {
 	"timelines": {
-		"default": {
+		"5": {
 			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 209,
 						"y": 161
@@ -14,9 +14,13 @@
 						"w": 60,
 						"h": 15
 					}
-				},
+				}
+			]
+		},
+		"4": {
+			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 221,
 						"y": 161
@@ -27,9 +31,13 @@
 						"w": 48,
 						"h": 15
 					}
-				},
+				}
+			]
+		},
+		"3": {
+			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 233,
 						"y": 161
@@ -40,9 +48,13 @@
 						"w": 36,
 						"h": 15
 					}
-				},
+				}
+			]
+		},
+		"2": {
+			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 245,
 						"y": 161
@@ -53,9 +65,13 @@
 						"w": 24,
 						"h": 15
 					}
-				},
+				}
+			]
+		},
+		"1": {
+			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 257,
 						"y": 161
@@ -66,9 +82,13 @@
 						"w": 12,
 						"h": 15
 					}
-				},
+				}
+			]
+		},
+		"0": {
+			"frames": [
 				{
-					"duration": 200,
+					"duration": -1,
 					"offset": {
 						"x": 0,
 						"y": 0
