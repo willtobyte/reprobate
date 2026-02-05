@@ -9,6 +9,10 @@ return {
       return
     end
 
+    if self.life == 0 then
+      self.dead = true
+    end
+
     self.action = tostring(self.life)
   end,
 }
