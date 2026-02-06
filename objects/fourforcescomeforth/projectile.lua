@@ -1,4 +1,4 @@
-local speed = 66.6
+local speed = 80
 
 local mapping = {
   satan = { x = 1, y = -1 },
@@ -9,7 +9,8 @@ local mapping = {
 
 return {
   on_spawn = function()
-    self.velocity = { x = speed, y = speed }
+    local radians = math.rad(315)
+    self.velocity = { x = math.cos(radians) * speed, y = math.sin(radians) * speed }
   end,
 
   on_collision = function(_, kind)
