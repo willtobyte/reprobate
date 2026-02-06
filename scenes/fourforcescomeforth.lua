@@ -1,6 +1,13 @@
 local scene = {}
 
 function scene.on_enter()
+  state.system.stage = "fourforcescomeforth"
+
+  transition({
+    destroy = { "mainmenu", "whobuilt", "highschool", "pearintosh" },
+    register = {},
+  })
+
   overlay.cursor:visible(false)
 
   pool.health:subscribe("dead", function(value)

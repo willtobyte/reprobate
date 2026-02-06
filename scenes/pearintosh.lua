@@ -3,11 +3,14 @@ local scene = {}
 local basic = require("interpreters/basic")
 
 function scene.on_enter()
-  pool.label = overlay:label("retro")
+  state.system.stage = "pearintosh"
+
   transition({
-    destroy = { "mainmenu", "whobuilt", "retrostatic" },
-    register = { "highschool" },
+    destroy = { "mainmenu", "whobuilt" },
+    register = { "highschool", "fourforcescomeforth" },
   })
+
+  pool.label = overlay:label("retro")
 
   pool.prelude = [[
 MORNING STAR SOFTWARE 1986 (C)
@@ -31,9 +34,7 @@ TYPE RUN TO BEGIN
       return
     end
 
-    state.clear()
-
-    local fn = jump.to("mainmenu")
+    local fn = jump.to("fourforcescomeforth")
     fn()
   end)
 end
@@ -150,24 +151,24 @@ Four Forces come forth!
       end
     end
 
-    local last_line_number = 10
+    local line = 10
     for number in pool.program:gmatch("\n(%d+)[^\n]*") do
       number = tonumber(number)
-      if number and number > last_line_number then
+      if number and number > line then
         last_line_number = number
       end
     end
 
-    local next_line_number = last_line_number + 10
+    local next = line + 10
 
-    if next_line_number > 200 then
+    if next > 200 then
       pool.program = pool.program .. "\nOUT OF MEMORY"
       pool.typing = true
       pool.halted = true
       return
     end
 
-    pool.program = pool.program .. string.format("\n%d ", next_line_number)
+    pool.program = pool.program .. string.format("\n%d ", next)
     pool.typing = true
   end
 end

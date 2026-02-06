@@ -5,7 +5,7 @@ function scene.on_enter()
 
   transition({
     destroy = { "mainmenu", "whobuilt", "livingroom" },
-    register = { "pearintosh" },
+    register = { "pearintosh", "fourforcescomeforth" },
   })
 
   if not state.sourcecode then
