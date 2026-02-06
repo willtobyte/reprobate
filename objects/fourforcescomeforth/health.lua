@@ -1,11 +1,14 @@
 return {
   on_spawn = function()
     self.life = 5
+
+    self:subscribe("life", function(value)
+      self.action = tostring(value)
+    end)
   end,
 
   on_selfheal = function()
     self.life = 5
-    self.action = tostring(self.life)
   end,
 
   on_damage = function()
@@ -14,7 +17,8 @@ return {
     end
 
     self.life = self.life - 1
-    self.action = tostring(self.life)
+
+    pool.iconofhypocrisy.action = "damage"
 
     if self.life == 0 then
       self.dead = true
