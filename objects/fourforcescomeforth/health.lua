@@ -3,6 +3,11 @@ return {
     self.life = 5
   end,
 
+  on_selfheal = function()
+    self.life = 5
+    self.action = tostring(self.life)
+  end,
+
   on_damage = function()
     if self.life <= 0 then
       return

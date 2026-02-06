@@ -1,3 +1,5 @@
+local speed = 66.6
+
 local mapping = {
   satan = { x = 1, y = -1 },
   belial = { x = 1, y = -1 },
@@ -7,7 +9,7 @@ local mapping = {
 
 return {
   on_spawn = function()
-    self.velocity = { x = 50, y = 50 }
+    self.velocity = { x = speed, y = speed }
   end,
 
   on_collision = function(_, kind)
@@ -26,7 +28,16 @@ return {
     }
   end,
 
-  on_screen_exit = function(direction)
-    print("projectile exited screen: " .. direction)
+  on_screen_exit = function()
+    local cx, cy = 234, 133
+    local radius = 90
+
+    local degrees = math.random(0, 35) * 10
+    local radians = math.rad(degrees)
+
+    self.position = { x = cx + math.cos(radians) * radius, y = cy + math.sin(radians) * radius }
+    self.velocity = { x = math.cos(radians) * speed, y = math.sin(radians) * speed }
+
+    pool.health.selfheal()
   end,
 }
