@@ -1,9 +1,15 @@
 local scene = {}
 
 function scene.on_enter()
+  overlay.cursor:visible(false)
+
   pool.health:subscribe("dead", function(value)
     -- TODO
   end)
+end
+
+function scene.on_leave()
+  overlay.cursor:visible(true)
 end
 
 function scene.on_motion(x, y)

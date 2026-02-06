@@ -25,4 +25,8 @@ return {
       y = self.velocity.y * reflect.y,
     }
   end,
+
+  on_screen_exit = function(direction)
+    print("projectile exited screen: " .. direction)
+  end,
 }
