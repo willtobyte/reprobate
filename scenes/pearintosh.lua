@@ -109,17 +109,16 @@ function scene.on_keypress(code)
               .. "\n"
               .. [[
 
-I invoke the Four Forces!
+I invoke the Four Forces...
 
-Satan,the will that burns and defies.
-Lucifer,the light that awakens forbidden sight.
-Belial,the untamed lord of earthbound power.
-Leviathan,the abyssal force of endless depths.
+Satan, Adversary Eternal - bestow the will I claim as mine.
+Lucifer, Morning Star - ignite me in your brilliance.
+Belial, Sovereign Unbound - arise in your name.
+Leviathan, Serpent of the Abyss - ascend from the deep and answer.
 
 Four Forces come forth!
 
-...
-            ]]
+...]]
           end
         end
 
