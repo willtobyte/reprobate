@@ -1,5 +1,5 @@
-const USERNAME = "neo";
-const PASSWORD = "swordfish";
+const USERNAME = "rodrigo";
+const PASSWORD = "delduca";
 
 export const onRequest: PagesFunction = async (context) => {
   const authorization = context.request.headers.get("Authorization");
