@@ -111,10 +111,10 @@ function scene.on_keypress(code)
 
 I invoke the Four Forces...
 
-Satan, Adversary Eternal - bestow the will I claim as mine.
-Lucifer, Morning Star - ignite me in your brilliance.
-Belial, Sovereign Unbound - arise in your name.
-Leviathan, Serpent of the Abyss - ascend from the deep and answer.
+Satan, Adversary Eternal - grant me that which I desire.
+Lucifer, Morning Star - grant me thy glare.
+Belial, Sovereign Unbound - answer to thy name.
+Leviathan, Serpent of the Abyss - serpent out of the deeps.
 
 Four Forces come forth!
 
