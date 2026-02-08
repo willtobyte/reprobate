@@ -16,6 +16,7 @@ return {
   on_collision = function(_, kind)
     if kind == "iconofhypocrisy" then
       pool.health.damage()
+      pool.scream:play()
     end
 
     local reflect = mapping[kind]
@@ -40,5 +41,6 @@ return {
     self.velocity = { x = math.cos(radians) * speed, y = math.sin(radians) * speed }
 
     pool.health.selfheal()
+    pool["laugh" .. math.random(2)]:play()
   end,
 }

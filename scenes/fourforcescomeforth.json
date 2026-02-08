@@ -2,6 +2,7 @@
 	"width": 480,
 	"height": 270,
 	"layer": { "type": "background" },
+	"sounds": ["laugh1", "laugh2", "scream"],
 	"objects": [
 		{
 			"action": "5",
