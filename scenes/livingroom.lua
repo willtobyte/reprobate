@@ -35,17 +35,19 @@ local function verify()
     pool.cabinetdoor.visible = false
     pool.layout.visible = false
     pool.boy.visible = false
+
     for _, name in ipairs(items) do
       pool["HUD/" .. name].visible = false
     end
+
     pool.teenager.action = "default"
     pool.teenager.alpha = 200
     tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
   end)
 
   ticker.after(50, function()
-    pool.teenager.action = nil
-    pool.teenager.action = "default"
+    -- pool.teenager.action = nil
+    -- pool.teenager.action = "default"
     pool.voodoocast.action = "default"
     pool.voodoocast.alpha = 0
     tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
