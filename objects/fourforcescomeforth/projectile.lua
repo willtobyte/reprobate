@@ -13,7 +13,7 @@ return {
     self.velocity = { x = math.cos(radians) * speed, y = math.sin(radians) * speed }
   end,
 
-  on_collision = function(_, kind)
+  on_collision = function(id, kind)
     if kind == "iconofhypocrisy" then
       pool.health.damage()
       pool.scream:play()
