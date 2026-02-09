@@ -1,14 +1,7 @@
 local PHASE_INACTIVE = 0
 local PHASE_BRIGHT = 1
 local PHASE_DARK = 2
-local ACTION_DEFAULT = "default"
 local RANDOM_POOL_SIZE = 32
-
-local moment = moment
-local math_random = math.random
-
-local darker = nil
-local thunder = nil
 
 local delay_pool = {}
 local count_pool = {}
@@ -20,14 +13,9 @@ local count = 0
 local total = 0
 local phase = PHASE_INACTIVE
 
-local function next_delay()
+local function next_from(t)
   pool_index = pool_index % RANDOM_POOL_SIZE + 1
-  return delay_pool[pool_index]
-end
-
-local function next_count()
-  pool_index = pool_index % RANDOM_POOL_SIZE + 1
-  return count_pool[pool_index]
+  return t[pool_index]
 end
 
 local function trigger()
@@ -36,26 +24,23 @@ local function trigger()
   end
   active = true
   count = 0
-  total = next_count()
+  total = next_from(count_pool)
   phase = PHASE_BRIGHT
-  darker.action = nil
-  next_at = moment() + next_delay()
+  pool.darker.action = nil
+  next_at = moment() + next_from(delay_pool)
 end
 
 return {
   on_spawn = function()
-    darker = pool.darker
-    thunder = pool.thunder
-
     for index = 1, RANDOM_POOL_SIZE do
-      delay_pool[index] = math_random(20, 30)
-      count_pool[index] = math_random(3, 4)
+      delay_pool[index] = math.random(20, 30)
+      count_pool[index] = math.random(3, 4)
     end
 
-    ticker.every(math_random(3, 6) * 10, function()
+    ticker.every(math.random(3, 6) * 10, function()
       self.action = "lightning"
       trigger()
-      thunder:play()
+      pool.thunder:play()
     end)
   end,
 
@@ -70,20 +55,20 @@ return {
 
     if phase == PHASE_BRIGHT then
       count = count + 1
-      darker.action = ACTION_DEFAULT
+      pool.darker.action = "default"
       if count >= total then
         active = false
         phase = PHASE_INACTIVE
         return
       end
       phase = PHASE_DARK
-      next_at = moment() + next_delay()
+      next_at = moment() + next_from(delay_pool)
       return
     end
 
-    darker.action = nil
+    pool.darker.action = nil
     phase = PHASE_BRIGHT
-    next_at = moment() + next_delay()
+    next_at = moment() + next_from(delay_pool)
   end,
 
   on_touch = function()
