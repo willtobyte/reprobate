@@ -112,6 +112,7 @@ jobs:
 
                 canvas {
                   display: block;
+                  aspect-ratio: 16 / 9;
                   width: 100vw;
                   height: calc(100vw * (9 / 16));
                   max-height: 100vh;
@@ -133,7 +134,7 @@ jobs:
             <body>
               <div class="container">
                 <div id="loading">Loading…</div>
-                <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+                <canvas id="canvas" width="1280" height="720" oncontextmenu="event.preventDefault()"></canvas>
               </div>
 
               <script>
