@@ -1,8 +1,6 @@
 local scene = {}
 
 local basic = require("interpreters/basic")
-local Eneagrama = require("effects/eneagrama")
-local eneagrama = Eneagrama:new(9)
 
 function scene.on_enter()
   state.system.stage = "pearintosh"
@@ -32,10 +30,6 @@ TYPE RUN TO BEGIN
   pool.halted = false
 
   pool.dialup:on_end(function()
-    if not pool.eneagrama then
-      return
-    end
-
     local fn = jump.to("fourforcescomeforth")
     fn()
   end)
@@ -54,10 +48,6 @@ function scene.on_loop(delta)
       cursor.visible = not cursor.visible
       cursor.timer = 0
     end
-  end
-
-  if pool.eneagrama then
-    eneagrama:loop(delta)
   end
 
   local text = pool.prelude .. pool.program .. (cursor.visible and "_" or "")
@@ -105,9 +95,9 @@ function scene.on_keypress(code)
 
           pool.program = pool.program .. "\n" .. message
 
-          pool.eneagrama = message == "666"
+          pool.pentagram = message == "666"
 
-          if pool.eneagrama then
+          if pool.pentagram then
             pool.backcursor.visible = false
             pool.switch:on_touch(nil)
             pool.dialup:play()
@@ -179,7 +169,6 @@ Four Forces come forth!
 end
 
 function scene.on_leave()
-  eneagrama:teardown()
   overlay:label(pool.label)
 end
 
