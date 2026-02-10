@@ -1,14 +1,15 @@
 local scene = {}
 
+local fn = require("helpers/functional")
+
 local items = { "openendwrench", "smallkey", "gasoline", "tubeamplifier" }
 
 local function verify()
-  for _, name in ipairs(items) do
-    if not state[name] then
-      return
-    end
-  end
-  -- TODO
+  fn.every(items, function(name)
+    return state[name]
+  end, function()
+    -- TODO
+  end)
 end
 
 local held = nil

@@ -1,23 +1,22 @@
 local scene = {}
 
 local prank = require("helpers/prank")
+local fn = require("helpers/functional")
 
 local items = { "crucifix", "gijoe", "nintendo", "playboy" }
 
 local function verify()
-  for _, name in ipairs(items) do
-    if not state[name] then
-      return
-    end
-  end
+  fn.every(items, function(name)
+    return state[name]
+  end, function()
+    state.system.stage = "livingroom"
 
-  state.system.stage = "livingroom"
+    pool.door.action = "default"
 
-  pool.door.action = "default"
-
-  ticker.after(30, function()
-    pool.doorsound:play()
-    pool.door:on_touch(jump.to("livingroom"))
+    ticker.after(30, function()
+      pool.doorsound:play()
+      pool.door:on_touch(jump.to("livingroom"))
+    end)
   end)
 end
 

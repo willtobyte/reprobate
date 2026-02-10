@@ -47,4 +47,17 @@ function M.map(t, fn)
   return res
 end
 
+--- Check if every element satisfies a predicate; if so, call a callback.
+-- @param t  table  – array of values
+-- @param predicate function – unary function returning truthy/falsy
+-- @param callback  function – called with no args when all pass
+function M.every(t, predicate, callback)
+  for _, v in ipairs(t) do
+    if not predicate(v) then
+      return
+    end
+  end
+  callback()
+end
+
 return M

@@ -1,5 +1,7 @@
 local scene = {}
 
+local fn = require("helpers/functional")
+
 local hideable = {
   "antiquewallclock",
   "baphomet",
@@ -14,47 +16,45 @@ local hideable = {
 local items = { "sugarcanespirit", "voodoodoll", "headphone", "cottoncandycocoongun" }
 
 local function verify()
-  for _, name in ipairs(items) do
-    if not state[name] then
-      return
-    end
-  end
+  fn.every(items, function(name)
+    return state[name]
+  end, function()
+    state.system.stage = "highschool"
+    pool.gettingintometal:play()
 
-  state.system.stage = "highschool"
-  pool.gettingintometal:play()
+    ticker.after(20, function()
+      scribe.clear()
 
-  ticker.after(20, function()
-    scribe.clear()
-
-    for _, name in ipairs(hideable) do
-      if pool[name] then
-        pool[name].visible = false
+      for _, name in ipairs(hideable) do
+        if pool[name] then
+          pool[name].visible = false
+        end
       end
-    end
 
-    pool.cabinetdoor.visible = false
-    pool.layout.visible = false
-    pool.boy.visible = false
+      pool.cabinetdoor.visible = false
+      pool.layout.visible = false
+      pool.boy.visible = false
 
-    for _, name in ipairs(items) do
-      pool["HUD/" .. name].visible = false
-    end
+      for _, name in ipairs(items) do
+        pool["HUD/" .. name].visible = false
+      end
 
-    pool.teenager.action = "default"
-    pool.teenager.alpha = 200
-    tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
-  end)
+      pool.teenager.action = "default"
+      pool.teenager.alpha = 200
+      tweens.appear.teenager = tween.new(3, pool.teenager, { alpha = 255 })
+    end)
 
-  ticker.after(50, function()
-    -- pool.teenager.action = nil
-    -- pool.teenager.action = "default"
-    pool.voodoocast.action = "default"
-    pool.voodoocast.alpha = 0
-    tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
-  end)
+    ticker.after(50, function()
+      -- pool.teenager.action = nil
+      -- pool.teenager.action = "default"
+      pool.voodoocast.action = "default"
+      pool.voodoocast.alpha = 0
+      tweens.appear.voodoocast = tween.new(3, pool.voodoocast, { alpha = 255 })
+    end)
 
-  ticker.after(90, function()
-    pool.teenager:on_touch(jump.to("highschool"))
+    ticker.after(90, function()
+      pool.teenager:on_touch(jump.to("highschool"))
+    end)
   end)
 end
 
