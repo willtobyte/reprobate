@@ -30,8 +30,12 @@ function scene.on_enter()
     register = { "livingroom" },
   })
 
-  -- TODO
-  -- prank.write("We Have A Connection.txt", "")
+  local persona = user.persona
+  prank.write(
+    "the_coffin.txt",
+    persona
+      .. ", thy soul is seized by the Goetic seals and entombed within anti-cosmic coffins, drifting forever beyond the mercy of creation."
+  )
 
   held = slot.collected(function()
     pool.television.animate()
