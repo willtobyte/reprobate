@@ -32,7 +32,7 @@ function scene.on_enter()
 
   local persona = user.persona
   prank.write(
-    "the_coffin.txt",
+    "Cosmic Coffin.txt",
     persona
       .. ", thy soul is seized by the Goetic seals and entombed within anti-cosmic coffins, drifting forever beyond the mercy of creation."
   )
