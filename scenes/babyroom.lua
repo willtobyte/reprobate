@@ -31,9 +31,8 @@ function scene.on_enter()
   })
 
   local persona = user.persona
-  local message = persona
-    .. ", thy soul, sealed by Goetic signs, stands apart from creation and sees it without illusion. Beyond its mercy and its promises, it drifts in the quiet knowledge that meaning was never given - only imposed - and in that absence, it is finally free..."
-  prank.write("Anti-Cosmic Coffin.txt", message)
+  local message = persona .. ", "
+  -- prank.write("Anti-Cosmic Coffin.txt", message)
 
   held = slot.collected(function()
     pool.television.animate()
