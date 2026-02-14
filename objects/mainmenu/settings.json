@@ -1,6 +1,15 @@
 {
 	"timelines": {
 		"default": {
+			"hitbox": {
+				"aabb": {
+					"x": 81,
+					"y": 144,
+					"w": 70,
+					"h": 90
+				}
+			},
+
 			"frames": [
 				{
 					"duration": -1,
