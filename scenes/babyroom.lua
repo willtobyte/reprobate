@@ -31,8 +31,8 @@ function scene.on_enter()
   })
 
   local persona = user.persona
-  local message = persona .. ", I am the void — a victorious miasma dwelling within thy anti-cosmic coffin..."
-  prank.write("goeticseal.txt", message)
+  local message = persona .. ", thank you for playing!"
+  prank.write("thankyou.txt", message)
 
   held = slot.collected(function()
     pool.television.animate()
