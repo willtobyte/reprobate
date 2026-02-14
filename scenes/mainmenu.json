@@ -15,6 +15,16 @@
 			"name": "whobuilt"
 		},
 		{
+			"action": "default",
+			"kind": "settings",
+			"name": "settings"
+		},
+		{
+			"action": "default",
+			"kind": "help",
+			"name": "help"
+		},
+		{
 			"action": "left",
 			"kind": "headbanger",
 			"name": "headbanger"
