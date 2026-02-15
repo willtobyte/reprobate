@@ -9,8 +9,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
+    if: true
+
     env:
-      CARIMBO_TAG: "v7.0.44"
+      CARIMBO_TAG: "v7.0.45"
 
     permissions:
       contents: write

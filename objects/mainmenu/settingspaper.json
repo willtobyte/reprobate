@@ -1,6 +1,6 @@
 {
 	"timelines": {
-		"settingspaper.png": {
+		"default": {
 			"hitbox": {
 				"aabb": {
 					"x": 0,
