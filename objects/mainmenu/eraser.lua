@@ -1,6 +1,6 @@
 return {
   on_touch = function()
-    state.clear()
+    cassette:clear()
     scenemanager:register("prelude")
     scenemanager:set("prelude")
   end,
