@@ -1,0 +1,30 @@
+{
+	"timelines": {
+		"settingspaper.png": {
+			"hitbox": {
+				"aabb": {
+					"x": 0,
+					"y": 0,
+					"w": 480,
+					"h": 270
+				}
+			},
+
+			"frames": [
+				{
+					"duration": -1,
+					"offset": {
+						"x": 0,
+						"y": 0
+					},
+					"quad": {
+						"x": 1,
+						"y": 1,
+						"w": 480,
+						"h": 270
+					}
+				}
+			]
+		}
+	}
+}
