@@ -1,6 +1,8 @@
 local scene = {}
 
 function scene.on_enter()
+  pool.erasing.action = nil
+
   local stage = state.system.stage or "babyroom"
 
   transition({
