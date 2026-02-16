@@ -18,7 +18,7 @@ function scene.on_enter()
   state.system.stage = "chemistrylab"
 
   transition({
-    destroy = { "mainmenu", "whobuilt" },
+    destroy = { "prelude", "mainmenu", "whobuilt" },
     -- register = { "" },
   })
 

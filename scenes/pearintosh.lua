@@ -6,7 +6,7 @@ function scene.on_enter()
   state.system.stage = "pearintosh"
 
   transition({
-    destroy = { "mainmenu", "whobuilt" },
+    destroy = { "prelude", "mainmenu", "whobuilt" },
     register = { "highschool", "fourforcescomeforth" },
   })
 
