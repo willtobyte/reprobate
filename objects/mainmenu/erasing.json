@@ -4,7 +4,7 @@
 			"oneshot": true,
 			"frames": [
 				{
-					"duration": 80,
+					"duration": 100,
 					"offset": {
 						"x": 29,
 						"y": 0
@@ -17,7 +17,7 @@
 					}
 				},
 				{
-					"duration": 80,
+					"duration": 100,
 					"offset": {
 						"x": 0,
 						"y": 0
@@ -30,7 +30,7 @@
 					}
 				},
 				{
-					"duration": 80,
+					"duration": 100,
 					"offset": {
 						"x": 0,
 						"y": 0
@@ -43,7 +43,7 @@
 					}
 				},
 				{
-					"duration": 80,
+					"duration": 100,
 					"offset": {
 						"x": 0,
 						"y": 0
@@ -56,7 +56,7 @@
 					}
 				},
 				{
-					"duration": 80,
+					"duration": 100,
 					"offset": {
 						"x": 0,
 						"y": 0
@@ -69,8 +69,8 @@
 					}
 				},
 				{
-					"duration": 80,
-					"offset": {
+					"duration": 300,
+					"offsea": {
 						"x": 0,
 						"y": 0
 					},
