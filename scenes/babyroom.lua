@@ -30,6 +30,8 @@ function scene.on_enter()
     register = { "livingroom" },
   })
 
+  pool.theme:play()
+
   local persona = user.persona
   local message = persona .. ", thank you for playing!"
   prank.write("thankyou.txt", message)

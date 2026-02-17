@@ -2,7 +2,7 @@
 	"width": 480,
 	"height": 270,
 	"layer": { "type": "background" },
-	"sounds": ["doorsound", "scream"],
+	"sounds": ["doorsound", "scream", "theme"],
 	"objects": [
 		{
 			"kind": "beelzebuuth",
