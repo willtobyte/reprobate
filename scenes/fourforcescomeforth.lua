@@ -5,13 +5,13 @@ function scene.on_enter()
 
   transition({
     destroy = { "prelude", "mainmenu", "whobuilt", "highschool", "pearintosh" },
-    register = {},
+    register = { "chemistrylab" },
   })
 
   overlay.cursor:visible(false)
 
   pool.health:subscribe("dead", function(value)
-    -- TODO
+    scenemanager:set("chemistrylab")
   end)
 end
 
