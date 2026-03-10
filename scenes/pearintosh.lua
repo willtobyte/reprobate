@@ -29,7 +29,7 @@ TYPE RUN TO BEGIN
   pool.typing = false
   pool.halted = false
 
-  pool.dialup:on_end(function()
+  pool.fourforces:on_end(function()
     local fn = jump.to("fourforcescomeforth")
     fn()
   end)
@@ -100,7 +100,7 @@ function scene.on_keypress(code)
           if pool.pentagram then
             pool.backcursor.visible = false
             pool.switch:on_touch(nil)
-            pool.dialup:play()
+            pool.fourforces:play()
             pool.program = pool.program
               .. "\n"
               .. [[
